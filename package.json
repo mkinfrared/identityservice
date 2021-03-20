@@ -1,0 +1,10 @@
+﻿{
+  "name": "identity-service",
+  "version": "0.1.0",
+  "scripts": {
+    "release": "standard-version && git commit -m"
+  },
+  "devDependencies": {
+    "standard-version": "^9.1.1"
+  }
+}
