@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<coverage date="2021-03-21_21-33-01" tag="" version="1.0">
+    <assembly name="IdentityService">
+        <class name="IdentityService.Controllers.WeatherForecastController" coverablelines="26"
+            coveredbranches="0" coveredlines="22" totalbranches="0" totallines="52" />
+        <class name="IdentityService.WeatherForecast" coverablelines="4" coveredbranches="0"
+            coveredlines="3" totalbranches="0" totallines="15" />
+    </assembly>
+    <assembly name="IdentityService.Views" />
+</coverage>

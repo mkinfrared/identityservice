@@ -19,12 +19,23 @@
         <Content Remove="$(SpaRoot)**" />
         <None Remove="$(SpaRoot)**" />
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+        <Content Remove="client\coverage\**" />
+        <None Remove="client\coverage\**" />
     </ItemGroup>
 
     <ItemGroup>
-      <_ContentIncludedByDefault Remove="ClientApp\package-lock.json" />
-      <_ContentIncludedByDefault Remove="ClientApp\package.json" />
-      <_ContentIncludedByDefault Remove="ClientApp\public\manifest.json" />
+        <_ContentIncludedByDefault Remove="ClientApp\package-lock.json" />
+        <_ContentIncludedByDefault Remove="ClientApp\package.json" />
+        <_ContentIncludedByDefault Remove="ClientApp\public\manifest.json" />
+        <_ContentIncludedByDefault Remove="client\coverage\coverage-final.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="client\coverage\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Remove="client\coverage\**" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

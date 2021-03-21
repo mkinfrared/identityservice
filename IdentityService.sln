@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService", "src\IdentityService\IdentityService.csproj", "{3DF4C496-4997-47FB-8568-5414D4C627DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.Test", "src\IdentityService.Test\IdentityService.Test.csproj", "{469A63A4-D0D4-42F2-87F5-3BD33C6AF64A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{3DF4C496-4997-47FB-8568-5414D4C627DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DF4C496-4997-47FB-8568-5414D4C627DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DF4C496-4997-47FB-8568-5414D4C627DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{469A63A4-D0D4-42F2-87F5-3BD33C6AF64A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{469A63A4-D0D4-42F2-87F5-3BD33C6AF64A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{469A63A4-D0D4-42F2-87F5-3BD33C6AF64A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{469A63A4-D0D4-42F2-87F5-3BD33C6AF64A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
