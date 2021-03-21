@@ -1,10 +1,56 @@
-﻿{
+{
   "name": "identity-service",
   "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "src/IdentityService/client"
+  ],
   "scripts": {
+    "build": "cd src/IdentityService/client && yarn build",
+    "lint": "yarn format && yarn lint:styles && yarn lint:ts ",
+    "lint:ts": "eslint --cache --fix \"**/*.ts?(x)\"",
+    "lint:styles": "stylelint \"**/*.scss\" --syntax scss --fix --cache",
+    "format": "prettier --write \"./\"",
     "release": "standard-version && git commit -m"
   },
   "devDependencies": {
-    "standard-version": "^9.1.1"
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/parser": "^4.18.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-no-async-without-await": "^1.2.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^4.3.8",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.2.1",
+    "standard-version": "^9.1.1",
+    "stylelint": "^13.7.2",
+    "stylelint-no-unsupported-browser-features": "^4.1.4",
+    "stylelint-order": "^4.1.0",
+    "stylelint-prettier": "^1.1.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.cs": "dotnet format --include",
+    "*.json": [
+      "prettier --write"
+    ],
+    "*.{css,scss}": [
+      "prettier --write",
+      "stylelint --fix"
+    ],
+    "*.{js,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   }
 }

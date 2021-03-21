@@ -22,24 +22,7 @@
     "@types/node": "^14.14.35",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.2",
-    "@typescript-eslint/eslint-plugin": "^4.18.0",
-    "@typescript-eslint/parser": "^4.18.0",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-import-resolver-typescript": "^2.4.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-no-async-without-await": "^1.2.0",
-    "eslint-plugin-prettier": "^3.3.1",
-    "eslint-plugin-react": "^7.22.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "husky": "^4.3.8",
     "node-sass": "^4.14.1",
-    "prettier": "^2.2.1",
-    "stylelint": "^13.7.2",
-    "stylelint-no-unsupported-browser-features": "^4.1.4",
-    "stylelint-order": "^4.1.0",
-    "stylelint-prettier": "^1.1.2",
     "typescript": "^4.2.3"
   },
   "eslintConfig": {
@@ -50,9 +33,9 @@
   },
   "browserslist": {
     "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 3 safari version"
     ],
     "development": [
       "last 1 chrome version",

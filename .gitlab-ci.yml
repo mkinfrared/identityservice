@@ -25,7 +25,6 @@ before_script:
   - yarn --version
   - dotnet restore --packages $NUGET_PACKAGES_DIRECTORY
   - yarn install --cache-folder $YARN_CACHE
-  - yarn install --cwd "src/IdentityService/client" --cache-folder $YARN_CACHE
 
 # Cache modules in between jobs
 cache:
@@ -49,13 +48,15 @@ stages:
 build:
   stage: build
   script:
+    - yarn build
     - dotnet build --no-restore
 
 lint:
   stage: lint
   script:
-    - dotnet build --no-restore
-    - echo "Lint stage works!"
+    - yarn lint
+    - dotnet tool restore
+    - dotnet format
 
 test:
   stage: test
