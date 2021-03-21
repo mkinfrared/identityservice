@@ -1,0 +1,64 @@
+image: mcr.microsoft.com/dotnet/sdk:3.1.407-buster
+
+# ### Define variables
+#
+variables:
+  # Name of yarn cache directory
+  YARN_CACHE: '.yarn'
+  # NodeJS version
+  NODE_VERSION: '14'
+  # Name of directory where restore and build objects are stored.
+  OBJECTS_DIRECTORY: 'obj'
+  # Name of directory used for keeping restored dependencies.
+  NUGET_PACKAGES_DIRECTORY: '.nuget'
+  # A relative path to the source code from project repository root.
+  # NOTE: Please edit this path so it matches the structure of your project!
+  SOURCE_CODE_PATH: 'src'
+  IDENTITY_SERVICE: 'IdentityService'
+
+
+before_script:
+  - curl -sL https://deb.nodesource.com/setup_$NODE_VERSION.x |  bash -
+  - apt-get install -y nodejs
+  - node --version
+  - npm install --global yarn
+  - yarn --version
+  - dotnet restore --packages $NUGET_PACKAGES_DIRECTORY
+  - yarn install --cache-folder $YARN_CACHE
+  - yarn install --cwd "src/IdentityService/client" --cache-folder $YARN_CACHE
+
+# Cache modules in between jobs
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - $YARN_CACHE
+    - node_modules/
+    - '$SOURCE_CODE_PATH/$IDENTITY_SERVICE/client/node_modules/'
+    # Main JSON file holding information about package dependency tree, packages versions,
+    # frameworks etc. It also holds information where to the dependencies were restored.
+    - '$SOURCE_CODE_PATH/$IDENTITY_SERVICE/obj/project.assets.json'
+    # Other NuGet and MSBuild related files. Also needed.
+    - '$SOURCE_CODE_PATH/$IDENTITY_SERVICE/obj/*.csproj.nuget.*'
+    - $NUGET_PACKAGES_DIRECTORY
+
+stages:
+  - build
+  - lint
+  - test
+
+build:
+  stage: build
+  script:
+    - dotnet build --no-restore
+
+lint:
+  stage: lint
+  script:
+    - dotnet build --no-restore
+    - echo "Lint stage works!"
+
+test:
+  stage: test
+  script:
+    - dotnet build --no-restore
+    - echo "replace this message with dotnet test"
