@@ -1,6 +1,6 @@
 ﻿const fs = require("fs");
 
-const regex = /(?<=Version>).*(?=<\/)/gi;
+const regex = /(?<=<Version>).*(?=<\/)/gi;
 
 const getVersion = (contents) => {};
 
