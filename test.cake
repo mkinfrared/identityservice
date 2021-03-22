@@ -59,6 +59,7 @@ Task("TestNet")
         CoverletOutputName = cuberturaFileName,
         ExcludeByFile = new List<string> {
             "**/Pages/*",
+            "**/Services/*",
             "**/Startup.cs",
             "**/Program.cs",
         },
