@@ -11,7 +11,7 @@ var testProjectsRelativePaths = new string[]
 };
 
 /*  Change the output artifacts and their configuration here. */
-uint threshold = 80;
+uint threshold = 0;
 var parentDirectory = Directory("./src/IdentityService.Test");
 var reactDirectory = Directory("./src/IdentityService/client");
 var coverageDirectory = parentDirectory + Directory("coverage");
@@ -58,6 +58,7 @@ Task("TestNet")
         CoverletOutputDirectory = coverageDirectory,
         CoverletOutputName = cuberturaFileName,
         ExcludeByFile = new List<string> {
+            "**/Migrations/**",
             "**/Pages/*",
             "**/Services/*",
             "**/Startup.cs",

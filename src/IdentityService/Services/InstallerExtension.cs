@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,7 +10,7 @@ namespace IdentityService.Services
     public static class InstallerExtension
     {
         public static void InstallServicesInAssembly(this IServiceCollection services,
-            IConfiguration configuration)
+            IConfiguration configuration, IWebHostEnvironment env)
         {
             var classesImplementingIIstaller = typeof(Startup).Assembly.ExportedTypes
                 .Where(installer =>
@@ -23,7 +24,7 @@ namespace IdentityService.Services
                 .Cast<ISerivce>()
                 .ToList();
 
-            installers.ForEach(installer => installer.InstallServices(services, configuration));
+            installers.ForEach(installer => installer.InstallServices(services, configuration, env));
         }
     }
 }

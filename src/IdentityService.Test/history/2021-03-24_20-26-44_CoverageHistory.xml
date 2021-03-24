@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<coverage version="1.0" date="2021-03-24_20-26-44" tag="">
+  <assembly name="IdentityService">
+    <class name="IdentityService.Config" coveredlines="0" coverablelines="120" totallines="142" coveredbranches="0" totalbranches="0" />
+    <class name="IdentityService.Controllers.WeatherForecastController" coveredlines="22" coverablelines="26" totallines="52" coveredbranches="0" totalbranches="0" />
+    <class name="IdentityService.DbContexts.AppDbContext" coveredlines="0" coverablelines="3" totallines="12" coveredbranches="0" totalbranches="0" />
+    <class name="IdentityService.Entities.User" coveredlines="0" coverablelines="1" totallines="11" coveredbranches="0" totalbranches="0" />
+    <class name="IdentityService.SeedData" coveredlines="0" coverablelines="60" totallines="99" coveredbranches="0" totalbranches="16" />
+    <class name="IdentityService.WeatherForecast" coveredlines="3" coverablelines="4" totallines="15" coveredbranches="0" totalbranches="0" />
+  </assembly>
+  <assembly name="IdentityService.Views" />
+</coverage>
