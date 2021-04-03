@@ -13,7 +13,7 @@ var testProjectsRelativePaths = new string[]
 /*  Change the output artifacts and their configuration here. */
 uint threshold = 0;
 var parentDirectory = Directory("./src/IdentityService.Test");
-var reactDirectory = Directory("./src/IdentityService/client");
+var reactDirectory = Directory("./src/IdentityService.Client/ClientApp");
 var coverageDirectory = parentDirectory + Directory("coverage");
 var historyDirectory = parentDirectory + Directory("history");
 var cuberturaFileName = "results";

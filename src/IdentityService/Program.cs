@@ -55,6 +55,12 @@ namespace IdentityService
                     var config = host.Services.GetRequiredService<IConfiguration>();
                     var connectionString = config.GetValue<string>("Postgres");
                     SeedData.EnsureSeedData(connectionString);
+
+                    using (var scope = host.Services.CreateScope())
+                    {
+                        SeedData.SeedUsers(scope.ServiceProvider);
+                    }
+
                     Log.Information("Done seeding database.");
 
                     return 0;

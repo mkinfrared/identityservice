@@ -1,12 +1,17 @@
 ﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
+using System;
 using System.Linq;
+using System.Security.Claims;
 
 using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Mappers;
 using IdentityServer4.EntityFramework.Storage;
 
+using IdentityService.Entities;
+
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -79,7 +84,7 @@ namespace IdentityService
                 Log.Debug("IdentityResources already populated");
             }
 
-            if (!context.ApiResources.Any())
+            if (!context.ApiScopes.Any())
             {
                 Log.Debug("ApiScopes being populated");
 
@@ -93,6 +98,37 @@ namespace IdentityService
             else
             {
                 Log.Debug("ApiScopes already populated");
+            }
+
+            if (!context.ApiResources.Any())
+            {
+                Log.Debug("ApiResources being populated");
+
+                foreach (var resource in Config.Resources.ToList())
+                {
+                    context.ApiResources.Add(resource.ToEntity());
+                }
+
+                context.SaveChanges();
+            }
+            else
+            {
+                Log.Debug("ApiResources already populated");
+            }
+        }
+
+        public static void SeedUsers(IServiceProvider serviceProvider)
+        {
+            var userManager = serviceProvider.GetService<UserManager<User>>();
+
+            var user = new User {UserName = "admin", DateOfBirth = new DateTime(1988, 9, 18)};
+
+            var result = userManager.CreateAsync(user, "Pass123#").GetAwaiter().GetResult();
+
+            if (result.Succeeded)
+            {
+                var claim = new Claim(ClaimTypes.Role, "admin");
+                userManager.AddClaimAsync(user, claim).GetAwaiter().GetResult();
             }
         }
     }

@@ -42,7 +42,7 @@ Task("Update Persisted Grant Context")
 });
 
 Task("Start")
-    .IsDependentOn("Update User Context")
+    .IsDependentOn("Update AppDb Context")
     .IsDependentOn("Update Configuration Context")
     .IsDependentOn("Update Persisted Grant Context")
     .Does(() => {});
