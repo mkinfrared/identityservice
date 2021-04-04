@@ -9,18 +9,61 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="FluentValidation.AspNetCore" Version="10.0.2" />
         <PackageReference Include="IdentityServer4" Version="4.1.2" />
         <PackageReference Include="IdentityServer4.AspNetIdentity" Version="4.1.2" />
         <PackageReference Include="IdentityServer4.EntityFramework" Version="4.1.2" />
         <PackageReference Include="IdentityServer4.Storage" Version="4.1.2" />
+        <PackageReference Include="MediatR" Version="9.0.0" />
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.4" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.14" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.4" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.4">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.14" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.14" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.14">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.2" />
         <PackageReference Include="Serilog.AspNetCore" Version="4.0.0" />
     </ItemGroup>
+
+    <ItemGroup>
+      <TypeScriptCompile Include="ClientApp\src\hooks\usePasswordVisibility\index.ts" />
+      <TypeScriptCompile Include="ClientApp\src\hooks\usePasswordVisibility\usePasswordVisibility.test.tsx" />
+      <TypeScriptCompile Include="ClientApp\src\hooks\usePasswordVisibility\usePasswordVisibility.tsx" />
+      <TypeScriptCompile Include="ClientApp\src\pages\Login\index.tsx" />
+      <Content Include="ClientApp\webpack.config.js" />
+      <TypeScriptCompile Include="ClientApp\src\pages\Login\Login.test.tsx" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Home\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Home\Privacy.cshtml" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\styles.min.css" />
+      <_ContentIncludedByDefault Remove="client\build\asset-manifest.json" />
+      <_ContentIncludedByDefault Remove="client\build\manifest.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="ClientApp\src\hooks" />
+      <Folder Include="wwwroot" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="ClientApp\.storybook\main.js" />
+      <None Include="ClientApp\.storybook\manager.js" />
+      <None Include="ClientApp\.storybook\preview.js" />
+    </ItemGroup>
+
+    <Target Name="GenerateStaticFiles" BeforeTargets="BeforeBuild">
+        <Exec WorkingDirectory="ClientApp" Command="yarn build" />
+    </Target>
 
 </Project>

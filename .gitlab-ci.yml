@@ -63,5 +63,7 @@ lint:
 test:
   stage: test
   script:
+    - yarn build
+    - yarn install
     - dotnet tool restore
     - dotnet cake test.cake

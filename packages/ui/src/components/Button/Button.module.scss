@@ -1,0 +1,25 @@
+.Button {
+  border: none;
+  border-radius: 20px;
+  color: #000000;
+  cursor: pointer;
+  font-weight: 600;
+  min-width: 100px;
+  padding: 10px 15px;
+
+  &.opaque {
+    background: var(--purple-gradient);
+    color: var(--white);
+  }
+
+  &.transparent {
+    background-color: transparent;
+    border: 2px solid var(--purple);
+    color: var(--white);
+  }
+
+  &:disabled {
+    cursor: auto;
+    filter: grayscale(0.9);
+  }
+}

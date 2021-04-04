@@ -24,7 +24,8 @@ namespace IdentityService.Services
                 .Cast<ISerivce>()
                 .ToList();
 
-            installers.ForEach(installer => installer.InstallServices(services, configuration, env));
+            installers.ForEach(installer =>
+                installer.InstallServices(services, configuration, env));
         }
     }
 }

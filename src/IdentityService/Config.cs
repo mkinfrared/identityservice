@@ -15,31 +15,29 @@ namespace IdentityService
         public static IEnumerable<IdentityResource> IdentityResources =>
             new IdentityResource[]
             {
-                new IdentityResources.OpenId(),
-                new IdentityResources.Profile(),
+                new IdentityResources.OpenId(), new IdentityResources.Profile()
             };
 
         public static IEnumerable<ApiScope> ApiScopes =>
-            new ApiScope[]
+            new[]
             {
-                new ApiScope("scope1"),
-                new ApiScope("scope2"),
-                new ApiScope("OrdersApi"),
+                new ApiScope("scope1"), new ApiScope("scope2"), new ApiScope("OrdersApi"),
                 new ApiScope("ClientMvc")
             };
 
         public static IEnumerable<Client> Clients =>
-            new Client[]
+            new[]
             {
                 // m2m client credentials flow client
                 new Client
                 {
                     ClientId = "m2m.client",
                     ClientName = "Client Credentials Client",
-
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    ClientSecrets = {new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256())},
-
+                    ClientSecrets =
+                    {
+                        new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256())
+                    },
                     AllowedScopes = {"scope1"}
                 },
 
@@ -47,18 +45,18 @@ namespace IdentityService
                 new Client
                 {
                     ClientId = "interactive",
-                    ClientSecrets = {new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256())},
-
+                    ClientSecrets =
+                    {
+                        new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256())
+                    },
                     AllowedGrantTypes = GrantTypes.Code,
-
                     RedirectUris = {"https://localhost:44300/signin-oidc"},
                     FrontChannelLogoutUri = "https://localhost:44300/signout-oidc",
                     PostLogoutRedirectUris = {"https://localhost:44300/signout-callback-oidc"},
-
                     AllowOfflineAccess = true,
                     AllowedScopes = {"openid", "profile", "scope2"}
                 },
-                                new Client
+                new Client
                 {
                     ClientId = "client_id",
                     ClientSecrets = {new Secret("client_secret".ToSha256())},
@@ -86,10 +84,13 @@ namespace IdentityService
                     PostLogoutRedirectUris = {"https://localhost:2001/signout-callback-oidc"},
                     FrontChannelLogoutUri = "http://localhost:2001",
                     RequireConsent = false,
+
                     // Token lifetime in seconds
                     AccessTokenLifetime = 10,
+
                     // Sets refresh token
                     AllowOfflineAccess = true
+
                     // IdentityTokenLifetime = 5
                     // AlwaysIncludeUserClaimsInIdToken = true
                 },
@@ -97,6 +98,7 @@ namespace IdentityService
                 {
                     ClientId = "spa_client",
                     AllowedGrantTypes = GrantTypes.Code,
+
                     // AllowedGrantTypes = GrantTypes.Implicit,
                     RedirectUris =
                     {
@@ -106,9 +108,16 @@ namespace IdentityService
                         "http://localhost:3000/silent-renew.html"
                     },
                     PostLogoutRedirectUris =
-                        {"https://localhost:4001/logout", "http://localhost:3000/logout"},
+                    {
+                        "https://localhost:4001/logout", "http://localhost:3000/logout"
+                    },
                     AllowedCorsOrigins = new List<string>
-                        {"https://localhost:4001", "http://localhost:3000"},
+                    {
+                        "https://localhost:4001",
+                        "http://localhost:3000",
+                        "https://localhost:10001"
+                    },
+
                     // ClientUri =
                     AllowedScopes =
                     {
@@ -120,20 +129,19 @@ namespace IdentityService
                     RequirePkce = true,
                     AllowAccessTokensViaBrowser = true,
                     AllowOfflineAccess = true,
-
                     RequireConsent = false,
                     RequireClientSecret = false,
-                    AccessTokenLifetime = 5,
+                    AccessTokenLifetime = 3600
+
                     // Token lifetime in seconds
                     // Sets refresh token
                     // AllowOfflineAccess = true,
                     // IdentityTokenLifetime = 5
                     // AlwaysIncludeUserClaimsInIdToken = true
                 }
-
             };
 
-        public static IEnumerable<ApiResource> Resources => new ApiResource[]
+        public static IEnumerable<ApiResource> Resources => new[]
         {
             new ApiResource {Name = "OrdersApi", Scopes = {"OrdersApi"}},
             new ApiResource {Name = "ClientMvc", Scopes = {"ClientMvc"}}

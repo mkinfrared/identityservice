@@ -1,11 +1,9 @@
-// unset
-
 using System.Threading.Tasks;
 
-using IdentityService.Dto;
-using IdentityService.Entities;
+using IdentityService.Features.Auth.Login;
 
-using Microsoft.AspNetCore.Identity;
+using MediatR;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace IdentityService.Controllers
@@ -14,33 +12,21 @@ namespace IdentityService.Controllers
     [Route("[controller]")]
     public class AuthController : ControllerBase
     {
-        private readonly SignInManager<User> _signInManager;
-        private readonly UserManager<User> _userManager;
+        private readonly IMediator _mediator;
 
-        public AuthController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AuthController(IMediator mediator)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
+            _mediator = mediator;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login([FromForm]LoginDto loginDto)
+        public async Task<IActionResult> Login(Login.Command command)
         {
-            // IdentityServer4.Endpoints.DiscoveryEndpoint
-
-            var user = await _userManager.FindByNameAsync(loginDto.Username);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            var signInResult = await
-                _signInManager.PasswordSignInAsync(user, loginDto.Password, true, false);
+            var signInResult = await _mediator.Send(command);
 
             if (signInResult.Succeeded)
             {
-                return Redirect(loginDto.ReturnUrl);
+                return Ok(command.ReturnUrl);
             }
 
             return BadRequest();

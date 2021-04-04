@@ -1,5 +1,3 @@
-// unset
-
 using IdentityService.DbContexts;
 
 using Microsoft.AspNetCore.Hosting;
@@ -9,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace IdentityService.Services
 {
-    public class DbService: ISerivce
+    public class DbService : ISerivce
     {
         public void InstallServices(IServiceCollection service, IConfiguration configuration,
             IWebHostEnvironment env)

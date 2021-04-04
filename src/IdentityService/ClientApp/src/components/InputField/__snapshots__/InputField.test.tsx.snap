@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<InputField /> match the snapshot 1`] = `
+<div>
+  <label
+    class="TextField-module_TextField__3-bgB"
+    data-testid="TextField"
+  >
+    <div
+      class="TextField-module_input__3FXIK"
+    >
+      <input
+        type="text"
+        value=""
+      />
+      <div
+        class="FakeButton-module_FakeButton__3fGxh TextField-module_prefix__2eBJg"
+        data-testid="FakeButton"
+        role="button"
+        tabindex="0"
+      />
+      <div
+        class="FakeButton-module_FakeButton__3fGxh TextField-module_suffix__2X_LC"
+        data-testid="FakeButton"
+        role="button"
+        tabindex="0"
+      />
+    </div>
+    <p
+      class="Text-module_Text__3EbTM TextField-module_error__3xz6q"
+      data-testid="Text"
+    />
+  </label>
+</div>
+`;

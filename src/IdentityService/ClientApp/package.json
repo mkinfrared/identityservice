@@ -1,0 +1,122 @@
+{
+  "name": "auth-client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "cross-env NODE_ENV=production webpack",
+    "test": "cross-env CI=true react-scripts test --collectCoverage",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public",
+    "coverage": "open-cli coverage/lcov-report/index.html"
+  },
+  "dependencies": {
+    "@identity-service/ui": "*",
+    "@hookform/resolvers": "^2.5.2",
+    "axios": "^0.21.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-hook-form": "^7.8.1",
+    "react-router-dom": "^5.2.0",
+    "react-use": "^17.2.4",
+    "web-vitals": "^1.1.2",
+    "yup": "^0.32.9"
+  },
+  "devDependencies": {
+    "@babel/core": "7.12.3",
+    "@babel/plugin-transform-runtime": "^7.14.3",
+    "@babel/preset-react": "^7.13.13",
+    "@identity-service/core": "^0",
+    "@identity-service/ui": "^0",
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/addon-links": "^6.2.9",
+    "@storybook/node-logger": "^6.2.9",
+    "@storybook/preset-create-react-app": "^3.1.7",
+    "@storybook/react": "^6.2.9",
+    "@svgr/webpack": "^5.5.0",
+    "@testing-library/jest-dom": "^5.13.0",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/react-hooks": "^6.0.0",
+    "@testing-library/user-event": "^13.1.9",
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.12.1",
+    "@types/react": "^17.0.9",
+    "@types/react-dom": "^17.0.6",
+    "@types/react-router-dom": "^5.1.7",
+    "@types/webpack": "^5.28.0",
+    "autoprefixer": "^10.2.6",
+    "babel-loader": "8.1.0",
+    "babel-plugin-named-asset-import": "^0.3.7",
+    "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^5.2.6",
+    "dotenv-webpack": "^7.0.3",
+    "file-loader": "^6.2.0",
+    "mini-css-extract-plugin": "^1.6.0",
+    "node-sass": "^4.14.1",
+    "postcss-loader": "^4.3.0",
+    "react-scripts": "4.0.3",
+    "sass-loader": "^10.2.0",
+    "storybook-design-token": "^1.0.2",
+    "style-loader": "^2.0.0",
+    "typescript": "^4.3.2",
+    "webpack": "~4.44.2",
+    "webpack-cli": "^4.7.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
+  },
+  "browserslist": {
+    "production": [
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 3 safari version"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.{ts,tsx}",
+      "!**/*.stories.{ts,tsx}",
+      "!**/*.type.{ts,tsx}"
+    ],
+    "coveragePathIgnorePatterns": [
+      "index",
+      "serviceWorker",
+      "containers",
+      "store",
+      "react-app-env.d.ts",
+      "reportWebVitals.ts"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 70,
+        "lines": 80,
+        "statements": 80
+      }
+    },
+    "transformIgnorePatterns": [
+      "@identity-service/core",
+      "@identity-service/ui"
+    ]
+  }
+}

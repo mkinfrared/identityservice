@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Login /> should match the snapshot 1`] = `
+<div>
+  <div
+    class="Login"
+  >
+    <div
+      class="Card-module_Card__2zjDp LoginForm form"
+      data-testid="Card"
+    >
+      <form
+        method="post"
+      >
+        <h3
+          class="Heading-module_Heading__iIC9P heading"
+          data-testid="Heading"
+        >
+          Login
+        </h3>
+        <label
+          class="TextField-module_TextField__3-bgB input"
+          data-testid="TextField"
+        >
+          <h5
+            class="Heading-module_Heading__iIC9P TextField-module_label__SBMQi"
+            data-testid="Heading"
+          >
+            Username
+          </h5>
+          <div
+            class="TextField-module_input__3FXIK"
+          >
+            <input
+              name="username"
+              type="text"
+              value=""
+            />
+            <div
+              class="FakeButton-module_FakeButton__3fGxh TextField-module_prefix__2eBJg"
+              data-testid="FakeButton"
+              role="button"
+              tabindex="0"
+            />
+            <div
+              class="FakeButton-module_FakeButton__3fGxh TextField-module_suffix__2X_LC"
+              data-testid="FakeButton"
+              role="button"
+              tabindex="0"
+            />
+          </div>
+          <p
+            class="Text-module_Text__3EbTM TextField-module_error__3xz6q"
+            data-testid="Text"
+          />
+        </label>
+        <label
+          class="TextField-module_TextField__3-bgB input TextField-module_hasSuffix__3ZA6e"
+          data-testid="TextField"
+        >
+          <h5
+            class="Heading-module_Heading__iIC9P TextField-module_label__SBMQi"
+            data-testid="Heading"
+          >
+            Password
+          </h5>
+          <div
+            class="TextField-module_input__3FXIK"
+          >
+            <input
+              name="password"
+              type="password"
+              value=""
+            />
+            <div
+              class="FakeButton-module_FakeButton__3fGxh TextField-module_prefix__2eBJg"
+              data-testid="FakeButton"
+              role="button"
+              tabindex="0"
+            />
+            <div
+              class="FakeButton-module_FakeButton__3fGxh TextField-module_suffix__2X_LC"
+              data-testid="FakeButton"
+              role="button"
+              tabindex="0"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                />
+                <path
+                  d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
+                />
+              </svg>
+            </div>
+          </div>
+          <p
+            class="Text-module_Text__3EbTM TextField-module_error__3xz6q"
+            data-testid="Text"
+          />
+        </label>
+        <input
+          hidden=""
+          name="returnUrl"
+          readonly=""
+          type="text"
+          value=""
+        />
+        <div
+          class="buttonWrapper"
+        >
+          <button
+            class="Button-module_Button__2YI99 Button-module_opaque__1DMAu"
+            data-testid="Button"
+            disabled=""
+          >
+            Login
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;

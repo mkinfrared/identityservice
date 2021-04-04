@@ -17,18 +17,24 @@
     <ItemGroup>
         <!-- Don't publish the SPA source files, but do show them in the project files list -->
         <Content Remove="$(SpaRoot)**" />
+        <Content Include="$(SpaRoot)\.env" />
         <None Remove="$(SpaRoot)**" />
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+        <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)coverage\**" />
+        <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)public\**" />
     </ItemGroup>
 
     <ItemGroup>
-      <_ContentIncludedByDefault Remove="ClientApp\yarn.lock" />
-      <_ContentIncludedByDefault Remove="ClientApp\package.json" />
-      <_ContentIncludedByDefault Remove="ClientApp\public\manifest.json" />
+      <_ContentIncludedByDefault Remove="$(SpaRoot)\yarn.lock" />
+      <_ContentIncludedByDefault Remove="$(SpaRoot)\package.json" />
+      <_ContentIncludedByDefault Remove="$(SpaRoot)\public\manifest.json" />
+      <_ContentIncludedByDefault Remove="ClientApp\build\asset-manifest.json" />
+      <_ContentIncludedByDefault Remove="ClientApp\build\manifest.json" />
+      <_ContentIncludedByDefault Remove="ClientApp\coverage\coverage-final.json" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="ClientApp\src\images" />
+      <Folder Include="$(SpaRoot)\src\images" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

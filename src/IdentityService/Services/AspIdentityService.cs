@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace IdentityService.Services
 {
-    public class AspIdentityService: ISerivce
+    public class AspIdentityService : ISerivce
     {
         public void InstallServices(IServiceCollection service, IConfiguration configuration,
             IWebHostEnvironment env)

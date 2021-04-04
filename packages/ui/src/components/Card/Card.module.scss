@@ -1,0 +1,10 @@
+@import "../../styles/_common";
+
+.Card {
+  @include dark;
+  padding: 20px;
+}
+
+.Story {
+  width: 300px;
+}

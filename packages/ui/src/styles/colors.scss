@@ -1,0 +1,33 @@
+:root {
+
+  /**
+  * @tokens Colors
+  * @presenter Color
+  */
+  --black: #000000;
+  --blue: #0071b2;
+  --cyan: #00b2ad;
+  --green: #70b200;
+  --orange: #e67100;
+  --purple: #8743ff;
+  --red: #e61800;
+  --redRgb: 230, 24, 0;
+  --yellow: #e6c400;
+  --white: #ffffff;
+  --dusty-grass: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+  --frozen-dreams: linear-gradient(
+    to top,
+    #fdcbf1 0%,
+    #fdcbf1 1%,
+    #e6dee9 100%
+  );
+  --mean-fruit: linear-gradient(120deg, #fccb90 0%, #d57eeb 100%);
+  --morpheus-den: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+  --night-fade: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+  --purple-gradient: linear-gradient(270deg, #8743ff 0%, #4136f1 100%);
+  --rainy-ashville: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+  --sunny-morning: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+  --tempting-azure: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  --true-sunset: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+  --warm-flame: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+}

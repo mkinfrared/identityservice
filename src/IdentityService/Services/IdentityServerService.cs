@@ -20,14 +20,6 @@ namespace IdentityService.Services
 
             var builder = service.AddIdentityServer(options =>
                 {
-                    options.UserInteraction.LoginUrl = "https://localhost:10001/login";
-                    options.UserInteraction.ErrorUrl = "https://localhost:10001/error";
-                    options.UserInteraction.ConsentUrl = "https://localhost:10001/consent";
-                    options.UserInteraction.LogoutUrl = "https://localhost:10001/logout";
-
-                    options.UserInteraction.DeviceVerificationUrl =
-                        "https://localhost:10001/device-verification";
-
                     options.Authentication.CookieLifetime = TimeSpan.FromDays(30);
                     options.Authentication.CookieSlidingExpiration = true;
                 })

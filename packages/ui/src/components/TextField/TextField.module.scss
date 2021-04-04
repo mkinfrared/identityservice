@@ -1,0 +1,108 @@
+@import "../../styles/common";
+
+.TextField {
+  display: block;
+  width: 100%;
+
+  &.hasError {
+
+    .input {
+      border-color: var(--red);
+      box-shadow: 0 0 5px 0 rgba(var(--redRgb), 0.8);
+    }
+  }
+
+  &.hasSuffix {
+
+    .input {
+      padding-right: 30px;
+    }
+  }
+
+  &.hasPrefix {
+
+    .input {
+      padding-left: 30px;
+    }
+  }
+
+  .label {
+    cursor: pointer;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+  }
+
+  .input {
+    border: 1px solid transparent;
+    color: #ffffff;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.8;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    @include dark;
+
+    input {
+      background-color: transparent;
+      border: none;
+      color: inherit;
+      height: 100%;
+      padding: 15px 20px;
+      width: 100%;
+
+      &::selection {
+        background-color: var(--cyan);
+        color: var(--white);
+      }
+    }
+
+    .prefix,
+    .suffix {
+      height: 30px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+
+      svg {
+        fill: currentColor;
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    .prefix {
+      left: 10px;
+    }
+
+    .suffix {
+      cursor: pointer;
+      right: 10px;
+    }
+  }
+
+  .error {
+    color: var(--red);
+    font-size: 14px;
+    margin-top: 5px;
+    overflow: hidden;
+    padding-left: 21px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+  }
+}
+
+.Story {
+  @include dark;
+  border-radius: 0;
+  min-height: 300px;
+  padding: 40px;
+
+  > div {
+    width: 400px;
+  }
+}

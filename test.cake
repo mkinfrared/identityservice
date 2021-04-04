@@ -2,7 +2,7 @@ var target = Argument("target", "Open");
 
 #addin nuget:?package=Cake.Coverlet&version=2.5.4
 #addin nuget:?package=Cake.Yarn&version=0.4.8
-#tool nuget:?package=ReportGenerator&version=4.8.7
+#tool nuget:?package=ReportGenerator&version=4.8.9
 
 /*  Specify the relative paths to your tests projects here. */
 var testProjectsRelativePaths = new string[]
@@ -11,9 +11,9 @@ var testProjectsRelativePaths = new string[]
 };
 
 /*  Change the output artifacts and their configuration here. */
-uint threshold = 0;
+uint threshold = 80;
 var parentDirectory = Directory("./src/IdentityService.Test");
-var reactDirectory = Directory("./src/IdentityService.Client/ClientApp");
+var rootDirectory = Directory(".");
 var coverageDirectory = parentDirectory + Directory("coverage");
 var historyDirectory = parentDirectory + Directory("history");
 var cuberturaFileName = "results";
@@ -33,7 +33,7 @@ Task("Clean")
 Task("TestReact")
     .Does(() =>
 {
-    Yarn.FromPath(reactDirectory).RunScript("test");
+    Yarn.FromPath(rootDirectory).RunScript("test");
 });
 
 Task("TestNet")
@@ -57,12 +57,21 @@ Task("TestNet")
         CollectCoverage = true,
         CoverletOutputDirectory = coverageDirectory,
         CoverletOutputName = cuberturaFileName,
+        Exclude = new List<string> {
+            "[*Views]*"
+        },
         ExcludeByFile = new List<string> {
+            "**/DbContexts/*",
             "**/Migrations/**",
+            "**/Models/*",
             "**/Pages/*",
             "**/Services/*",
-            "**/Startup.cs",
+            "**/Views",
+            "**/Config.cs",
             "**/Program.cs",
+            "**/Program.cs",
+            "**/SeedData.cs",
+            "**/Startup.cs",
         },
         Threshold = threshold
     };
@@ -112,14 +121,9 @@ Task("Open")
         {
             Information("Windows!");
             var netReportPath = coverageDirectory + File("index.html");
-            var reactReportPath = reactDirectory + Directory("coverage/lcov-report") + File("index.html");
 
             StartProcess("cmd", new ProcessSettings {
                 Arguments = $"/C start \"\" {netReportPath}"
-            });
-
-            StartProcess("cmd", new ProcessSettings {
-                Arguments = $"/C start \"\" {reactReportPath}"
             });
         }
     });

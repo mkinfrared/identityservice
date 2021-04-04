@@ -6,9 +6,11 @@ namespace IdentityService.Services
 {
     public class ControllerService : ISerivce
     {
-        public void InstallServices(IServiceCollection service, IConfiguration configuration, IWebHostEnvironment env)
+        public void InstallServices(IServiceCollection service, IConfiguration configuration,
+            IWebHostEnvironment env)
         {
-            service.AddControllersWithViews();
+            service.AddControllersWithViews()
+                .AddNewtonsoftJson();
         }
     }
 }

@@ -1,0 +1,23 @@
+@page
+@model object
+
+@{
+    ViewBag.Title = "Login";
+    ViewBag.Error = "Error message";
+    Layout = "_Layout";
+}
+
+@section Head
+{
+    <link asp-href-include="~/login.*.css" rel="stylesheet">
+}
+
+@section PostBody
+{
+    @* src="~/login.js" *@
+    <script type="application/javascript" asp-src-include="~/login.*.js"></script>
+}
+
+<div id="login-form">
+    Loading...
+</div>

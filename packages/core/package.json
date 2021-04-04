@@ -1,0 +1,127 @@
+{
+  "name": "@identity-service/core",
+  "version": "0.1.0",
+  "private": true,
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./lib/index.js"
+    },
+    "./hooks": {
+      "import": "./lib/hooks/index.js"
+    },
+    "./utils": {
+      "import": "./lib/utils/index.js"
+    }
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "clean": "rimraf lib",
+    "test": "cross-env CI=true react-scripts test --collectCoverage",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public",
+    "coverage": "open-cli coverage/lcov-report/index.html"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^19.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@rollup/plugin-url": "^6.0.0",
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/addon-links": "^6.2.9",
+    "@storybook/node-logger": "^6.2.9",
+    "@storybook/preset-create-react-app": "^3.1.7",
+    "@storybook/react": "^6.2.9",
+    "@svgr/rollup": "^5.5.0",
+    "@testing-library/jest-dom": "^5.13.0",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/react-hooks": "^6.0.0",
+    "@testing-library/user-event": "^13.1.9",
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.6.0",
+    "@types/react": "^17.0.9",
+    "@types/react-dom": "^17.0.6",
+    "@wessberg/rollup-plugin-ts": "^1.3.14",
+    "@zerollup/ts-transform-paths": "^1.7.18",
+    "babel-loader": "8.1.0",
+    "cross-env": "^7.0.3",
+    "open-cli": "^6.0.1",
+    "postcss": "^8.3.0",
+    "postcss-cli": "^8.3.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.50.6",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-postcss": "^4.0.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-ts-treeshaking": "^1.0.2",
+    "rollup-plugin-visualizer": "^5.5.0",
+    "sass": "^1.34.1",
+    "storybook-design-token": "^1.0.2",
+    "ttypescript": "^1.5.12",
+    "typescript": "^4.3.2"
+  },
+  "peerDependencies": {
+    "react": ">=16.8",
+    "react-dom": ">=16.8"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.{ts,tsx}",
+      "!**/*.stories.{ts,tsx}",
+      "!**/*.type.{ts,tsx}"
+    ],
+    "coveragePathIgnorePatterns": [
+      "index",
+      "react-app-env.d.ts"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "functions": 70,
+        "lines": 60,
+        "statements": 50
+      }
+    }
+  },
+  "files": [
+    "hooks",
+    "src/hooks",
+    "lib/hooks",
+    "utils",
+    "src/utils",
+    "lib/utils"
+  ]
+}

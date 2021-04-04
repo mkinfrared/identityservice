@@ -3,38 +3,43 @@
   "version": "0.1.1",
   "private": true,
   "workspaces": [
-    "src/IdentityService.Client/ClientApp"
+    "src/IdentityService/ClientApp",
+    "src/IdentityService.Client/ClientApp",
+    "packages/*"
   ],
   "scripts": {
-    "build": "cd src/IdentityService.Client/ClientApp && yarn build",
-    "lint": "yarn format && yarn lint:styles && yarn lint:ts ",
+    "build": "lerna run build",
+    "test": "lerna run test",
+    "lint": "yarn format && yarn lint:styles && yarn lint:ts",
     "lint:ts": "eslint --cache --fix --ext .ts,.tsx .",
     "lint:styles": "stylelint \"**/*.scss\" --syntax scss --fix --cache",
-    "format": "prettier --write \"./\"",
-    "release": "standard-version && git commit -m"
+    "format": "prettier --write \".\"",
+    "release": "standard-version && git commit -m",
+    "clean": "lerna clean && rm -rf node_modules"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.20.0",
-    "@typescript-eslint/parser": "^4.20.0",
-    "eslint": "^7.23.0",
+    "@typescript-eslint/eslint-plugin": "^4.26.0",
+    "@typescript-eslint/parser": "^4.26.0",
+    "eslint": "^7.28.0",
     "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-prettier": "^8.1.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-no-async-without-await": "^1.2.0",
-    "eslint-plugin-prettier": "^3.3.1",
-    "eslint-plugin-react": "^7.23.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^4.3.8",
+    "lerna": "^4.0.0",
     "lint-staged": "^10.5.4",
-    "prettier": "^2.2.1",
-    "standard-version": "^9.1.1",
-    "stylelint": "^13.12.0",
+    "prettier": "^2.3.1",
+    "standard-version": "^9.3.0",
+    "stylelint": "^13.13.1",
+    "stylelint-no-unsupported-browser-features": "^5.0.1",
     "stylelint-order": "^4.1.0",
     "stylelint-prettier": "^1.2.0",
-    "stylelint-no-unsupported-browser-features": "^4.1.4",
-    "typescript": "^4.2.3"
+    "typescript": "^4.3.2"
   },
   "husky": {
     "hooks": {
