@@ -21,12 +21,24 @@ const Template: Story<TextFieldProps> = (args) => (
   </div>
 );
 
+const MultiFields: Story<TextFieldProps> = (args) => (
+  <div className={css.Story}>
+    <div>
+      <TextField {...args} />
+      <TextField {...args} />
+      <TextField {...args} />
+      <TextField {...args} />
+    </div>
+  </div>
+);
+
 const Uncontrolled = Template.bind({});
 const Controlled = Template.bind({});
 const WithError = Template.bind({});
 const WithPrefix = Template.bind({});
 const WithSuffix = Template.bind({});
 const WithPrefixSuffix = Template.bind({});
+const MultipleFields = MultiFields.bind({});
 
 Uncontrolled.args = {};
 
@@ -68,5 +80,6 @@ export {
   WithError,
   WithPrefix,
   WithSuffix,
-  WithPrefixSuffix
+  WithPrefixSuffix,
+  MultipleFields
 };

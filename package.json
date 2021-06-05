@@ -39,7 +39,7 @@
     "stylelint-no-unsupported-browser-features": "^5.0.1",
     "stylelint-order": "^4.1.0",
     "stylelint-prettier": "^1.2.0",
-    "typescript": "^4.3.2"
+    "typescript": "~4.2.4"
   },
   "husky": {
     "hooks": {
