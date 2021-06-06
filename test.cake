@@ -7,7 +7,7 @@ var target = Argument("target", "Open");
 /*  Specify the relative paths to your tests projects here. */
 var testProjectsRelativePaths = new string[]
 {
-    "./src/IdentityService.Test/IdentityService.Test.csproj",
+    "./src/IdentityService.UnitTest/IdentityService.UnitTest.csproj",
 };
 
 /*  Change the output artifacts and their configuration here. */
@@ -30,7 +30,7 @@ Task("Clean")
         CleanDirectory(coverageDirectory);
 });
 
-Task("TestReact")
+Task("TestTS")
     .Does(() =>
 {
     Yarn.FromPath(rootDirectory).RunScript("test");
@@ -99,8 +99,8 @@ Task("TestNet")
 });
 
 Task("Report")
+    .IsDependentOn("TestTS")
     .IsDependentOn("TestNet")
-    .IsDependentOn("TestReact")
     .Does(() =>
 {
     if (IsRunningOnWindows()) {

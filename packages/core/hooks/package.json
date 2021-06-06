@@ -1,7 +1,0 @@
-{
-  "name": "hooks",
-  "version": "1.0.0",
-  "main": "../lib/hooks/index.js",
-  "types": "../lib/hooks/index.d.ts",
-  "dependencies": {}
-}

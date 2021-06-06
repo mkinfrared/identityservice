@@ -1,5 +1,5 @@
 {
-  "name": "auth-client",
+  "name": "@identity-service/client",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,7 +8,8 @@
     "test": "cross-env CI=true react-scripts test --collectCoverage",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "coverage": "open-cli coverage/lcov-report/index.html"
+    "coverage": "open-cli coverage/lcov-report/index.html",
+    "updates": "ncu"
   },
   "dependencies": {
     "@identity-service/ui": "*",
@@ -26,8 +27,8 @@
     "@babel/core": "7.12.3",
     "@babel/plugin-transform-runtime": "^7.14.3",
     "@babel/preset-react": "^7.13.13",
-    "@identity-service/core": "^0",
-    "@identity-service/ui": "^0",
+    "@identity-service/core": "*",
+    "@identity-service/ui": "*",
     "@storybook/addon-actions": "^6.2.9",
     "@storybook/addon-essentials": "^6.2.9",
     "@storybook/addon-links": "^6.2.9",

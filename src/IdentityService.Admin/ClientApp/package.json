@@ -1,5 +1,5 @@
 {
-  "name": "admin-client",
+  "name": "@identity-service/admin",
   "version": "0.1.1",
   "private": true,
   "scripts": {
@@ -9,7 +9,8 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "coverage": "open-cli coverage/lcov-report/index.html"
+    "coverage": "open-cli coverage/lcov-report/index.html",
+    "updates": "ncu"
   },
   "dependencies": {
     "@identity-service/ui": "*",

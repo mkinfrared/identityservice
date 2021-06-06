@@ -1,7 +1,12 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { classNames, usePasswordVisibility } from "@identity-service/core";
+import {
+  classNames,
+  getFormErrors,
+  usePasswordVisibility
+} from "@identity-service/core";
 import { Button, Card, Heading } from "@identity-service/ui";
 import { loginMutation } from "api/mutations";
+import { AxiosError } from "axios";
 import InputField from "components/InputField";
 import { memo } from "react";
 import { useForm } from "react-hook-form";
@@ -17,11 +22,12 @@ const LoginForm = ({ className, returnUrl }: LoginFormProps) => {
     returnUrl
   };
 
-  const { register, formState, handleSubmit } = useForm<LoginFormData>({
-    resolver: yupResolver(loginSchema),
-    mode: "onChange",
-    defaultValues
-  });
+  const { register, formState, handleSubmit, setError } =
+    useForm<LoginFormData>({
+      resolver: yupResolver(loginSchema),
+      mode: "onChange",
+      defaultValues
+    });
 
   const { errors, isValid, isSubmitting } = formState;
   const { togglePasswordVisibility, Icon, fieldType } = usePasswordVisibility();
@@ -32,8 +38,19 @@ const LoginForm = ({ className, returnUrl }: LoginFormProps) => {
 
       window.location.href = redirectUrl;
     } catch (e) {
-      // eslint-disable-next-line no-console
-      console.dir(e);
+      if (e?.isAxiosError && e?.response?.status === 400) {
+        const { response } = e as AxiosError;
+
+        const submitErrors = getFormErrors(
+          response?.data as BadRequest<LoginFormData>
+        );
+
+        submitErrors.forEach(({ name, message, type }) => {
+          setError(name, { message, type });
+        });
+      }
+
+      console.error(e);
     }
   };
 

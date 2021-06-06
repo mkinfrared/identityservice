@@ -17,10 +17,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\IdentityService\IdentityService.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
         <Folder Include="history" />
     </ItemGroup>
 
@@ -36,11 +32,14 @@
         <None Remove="coverage\**" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\IdentityService\IdentityService.csproj" />
+    </ItemGroup>
+
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-
+        <Version>0.1.1</Version>
         <IsPackable>false</IsPackable>
-
         <RootNamespace>IdentityService.Unit</RootNamespace>
     </PropertyGroup>
 

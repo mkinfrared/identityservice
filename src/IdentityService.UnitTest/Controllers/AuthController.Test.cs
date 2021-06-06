@@ -64,7 +64,7 @@ namespace IdentityService.Unit.Controllers
 
             var result = await _controller.Login(command);
 
-            Assert.IsType<BadRequestResult>(result);
+            Assert.IsType<BadRequestObjectResult>(result);
         }
     }
 }

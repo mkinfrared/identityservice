@@ -4,18 +4,20 @@
   "private": true,
   "workspaces": [
     "src/IdentityService/ClientApp",
-    "src/IdentityService.Client/ClientApp",
+    "src/IdentityService.Admin/ClientApp",
     "packages/*"
   ],
   "scripts": {
     "build": "lerna run build",
-    "test": "lerna run test",
+    "pretest": "yarn build",
+    "test": "lerna run test --parallel",
     "lint": "yarn format && yarn lint:styles && yarn lint:ts",
     "lint:ts": "eslint --cache --fix --ext .ts,.tsx .",
     "lint:styles": "stylelint \"**/*.scss\" --syntax scss --fix --cache",
     "format": "prettier --write \".\"",
     "release": "standard-version && git commit -m",
-    "clean": "lerna clean && rm -rf node_modules"
+    "clean": "lerna clean -y && rm -rf node_modules",
+    "updates": "lerna run updates --parallel"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.26.0",
@@ -33,6 +35,7 @@
     "husky": "^4.3.8",
     "lerna": "^4.0.0",
     "lint-staged": "^10.5.4",
+    "npm-check-updates": "^11.6.0",
     "prettier": "^2.3.1",
     "standard-version": "^9.3.0",
     "stylelint": "^13.13.1",

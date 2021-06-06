@@ -1,5 +1,7 @@
 using System.Threading;
 
+using FluentValidation.TestHelper;
+
 using IdentityService.Entities;
 using IdentityService.Features.Auth.Login;
 using IdentityService.Unit.Utils;
@@ -77,6 +79,66 @@ namespace IdentityService.Unit.Features
             var result = await commandHandler.Handle(command, new CancellationToken());
 
             Assert.Equal(SignInResult.Success, result);
+        }
+
+        [Fact]
+        public void Validator_Should_Have_Error_When_Username_Is_Null()
+        {
+            var validator = new Login.Validator();
+            var command = new Login.Command(null, "password", "returnUrl");
+            var result = validator.TestValidate(command);
+
+            result.ShouldHaveValidationErrorFor(c => c.Username);
+        }
+
+        [Fact]
+        public void Validator_Should_Not_Have_Error_When_Username_Is_Specified()
+        {
+            var validator = new Login.Validator();
+            var command = new Login.Command("username", "password", "returnUrl");
+            var result = validator.TestValidate(command);
+
+            result.ShouldNotHaveValidationErrorFor(c => c.Username);
+        }
+
+        [Fact]
+        public void Validator_Should_Have_Error_When_Password_Is_Null()
+        {
+            var validator = new Login.Validator();
+            var command = new Login.Command("username", null, "returnUrl");
+            var result = validator.TestValidate(command);
+
+            result.ShouldHaveValidationErrorFor(c => c.Password);
+        }
+
+        [Fact]
+        public void Validator_Should_Not_Have_Error_When_Password_Is_Specified()
+        {
+            var validator = new Login.Validator();
+            var command = new Login.Command("username", "password", "returnUrl");
+            var result = validator.TestValidate(command);
+
+            result.ShouldNotHaveValidationErrorFor(c => c.Password);
+        }
+
+        [Fact]
+        public void Validator_Should_Have_Error_When_ReturnUrl_Is_Null()
+        {
+            var validator = new Login.Validator();
+            var command = new Login.Command("username", "password", null);
+            var result = validator.TestValidate(command);
+
+            result.ShouldHaveValidationErrorFor(c => c.ReturnUrl);
+        }
+
+        [Fact]
+        public void Validator_Should_Not_Have_Error_When_ReturnUrl_Is_Specified()
+        {
+            var validator = new Login.Validator();
+            var command = new Login.Command("username", "password", "returnUrl");
+            var result = validator.TestValidate(command);
+
+            result.ShouldNotHaveValidationErrorFor(c => c.ReturnUrl);
         }
     }
 }

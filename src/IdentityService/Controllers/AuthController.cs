@@ -29,7 +29,10 @@ namespace IdentityService.Controllers
                 return Ok(command.ReturnUrl);
             }
 
-            return BadRequest();
+            return BadRequest(new
+            {
+                username = new[] {"Username or Password is incorrect"}
+            });
         }
     }
 }

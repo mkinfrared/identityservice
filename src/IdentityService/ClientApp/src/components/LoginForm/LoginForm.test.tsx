@@ -74,4 +74,37 @@ describe("<LoginForm />", () => {
 
     expect(mutationsMock.loginMutation).toHaveBeenCalledWith(data);
   });
+
+  it("should display an error on bad network request", async () => {
+    const errorMessage = "Invalid login credentials";
+
+    const axiosError = {
+      isAxiosError: true,
+      response: {
+        data: {
+          Username: ["Invalid login credentials"]
+        },
+        status: 400
+      }
+    };
+
+    mutationsMock.loginMutation.mockRejectedValueOnce(axiosError);
+
+    const { getByTestId, getByText, container } = render(Component);
+    const userNameField = container.querySelector('input[name="username"]');
+    const passwordField = container.querySelector('input[name="password"]');
+    const submitButton = getByTestId("Button");
+
+    fireEvent.change(userNameField!, { target: { value: "username" } });
+
+    fireEvent.change(passwordField!, { target: { value: "password" } });
+
+    await waitFor(() => expect(submitButton).toBeEnabled());
+
+    await fireEvent.submit(submitButton);
+
+    await waitFor(() => expect(mutationsMock.loginMutation).toHaveBeenCalled());
+
+    expect(getByText(errorMessage)).toBeInTheDocument();
+  });
 });

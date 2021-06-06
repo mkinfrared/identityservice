@@ -14,8 +14,12 @@ variables:
   # A relative path to the source code from project repository root.
   # NOTE: Please edit this path so it matches the structure of your project!
   SOURCE_CODE_PATH: "src"
+  PACKAGES_CODE_PATH: "packages"
+  CORE: "core"
+  UI: "ui"
   IDENTITY_SERVICE: "IdentityService"
-  IDENTITY_SERVICE_CLIENT: "IdentityService.Client"
+  IDENTITY_SERVICE_ADMIN: "IdentityService.Admin"
+  IDENTITY_SERVICE_UNIT_TEST: "IdentityService.UnitTest"
 
 before_script:
   - curl -sL https://deb.nodesource.com/setup_$NODE_VERSION.x |  bash -
@@ -32,14 +36,19 @@ cache:
   paths:
     - $YARN_CACHE
     - node_modules/
-    - "$SOURCE_CODE_PATH/$IDENTITY_SERVICE_CLIENT/ClientApp/node_modules/"
+    - "$SOURCE_CODE_PATH/$IDENTITY_SERVICE/ClientApp/node_modules/"
+    - "$SOURCE_CODE_PATH/$IDENTITY_SERVICE_ADMIN/ClientApp/node_modules/"
+    - "$PACKAGES_CODE_PATH/$CORE/node_modules/"
+    - "$PACKAGES_CODE_PATH/$UI/node_modules/"
     # Main JSON file holding information about package dependency tree, packages versions,
     # frameworks etc. It also holds information where to the dependencies were restored.
     - "$SOURCE_CODE_PATH/$IDENTITY_SERVICE/obj/project.assets.json"
-    - "$SOURCE_CODE_PATH/$IDENTITY_SERVICE_CLIENT/obj/project.assets.json"
+    - "$SOURCE_CODE_PATH/$IDENTITY_SERVICE_ADMIN/obj/project.assets.json"
+    - "$SOURCE_CODE_PATH/$IDENTITY_SERVICE_UNIT_TEST/obj/project.assets.json"
     # Other NuGet and MSBuild related files. Also needed.
     - "$SOURCE_CODE_PATH/$IDENTITY_SERVICE/obj/*.csproj.nuget.*"
-    - "$SOURCE_CODE_PATH/$IDENTITY_SERVICE_CLIENT/obj/*.csproj.nuget.*"
+    - "$SOURCE_CODE_PATH/$IDENTITY_SERVICE_ADMIN/obj/*.csproj.nuget.*"
+    - "$SOURCE_CODE_PATH/$IDENTITY_SERVICE_UNIT_TEST/obj/*.csproj.nuget.*"
     - $NUGET_PACKAGES_DIRECTORY
 
 stages:
@@ -63,7 +72,5 @@ lint:
 test:
   stage: test
   script:
-    - yarn build
-    - yarn install
     - dotnet tool restore
     - dotnet cake test.cake
