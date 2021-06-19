@@ -11,11 +11,11 @@ var testProjectsRelativePaths = new string[]
 };
 
 /*  Change the output artifacts and their configuration here. */
-uint threshold = 80;
-var parentDirectory = Directory("./src/IdentityService.Test");
+uint threshold = 61;
+var unitTestDirectory = Directory("./src/IdentityService.UnitTest/");
 var rootDirectory = Directory(".");
-var coverageDirectory = parentDirectory + Directory("coverage");
-var historyDirectory = parentDirectory + Directory("history");
+var coverageDirectory = unitTestDirectory + Directory("coverage");
+var historyDirectory = unitTestDirectory + Directory("history");
 var cuberturaFileName = "results";
 var cuberturaFileExtension = ".cobertura.xml";
 var coverageFilePath = coverageDirectory + File(cuberturaFileName + cuberturaFileExtension);

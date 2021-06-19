@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 
 using IdentityService.Features.Auth.Login;
+using IdentityService.Features.Auth.Register;
 
 using MediatR;
 
@@ -9,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace IdentityService.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[controller]/[action]")]
     public class AuthController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -33,6 +34,19 @@ namespace IdentityService.Controllers
             {
                 username = new[] {"Username or Password is incorrect"}
             });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(Register.Command command)
+        {
+            var registerResult = await _mediator.Send(command);
+
+            if (registerResult.Succeeded)
+            {
+                return Ok(command.RedirectUrl);
+            }
+
+            return BadRequest();
         }
     }
 }
