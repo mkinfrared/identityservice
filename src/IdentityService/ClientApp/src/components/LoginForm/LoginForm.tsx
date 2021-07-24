@@ -5,11 +5,12 @@ import {
   usePasswordVisibility
 } from "@identity-service/core";
 import { Button, Card, Heading } from "@identity-service/ui";
-import { loginMutation } from "api/mutations";
 import { AxiosError } from "axios";
-import InputField from "components/InputField";
 import { memo } from "react";
 import { useForm } from "react-hook-form";
+
+import { loginMutation } from "api/mutations";
+import InputField from "components/InputField";
 import { loginSchema } from "utils/validationSchemas";
 
 import css from "./LoginForm.module.scss";

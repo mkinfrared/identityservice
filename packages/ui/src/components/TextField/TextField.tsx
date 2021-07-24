@@ -1,5 +1,5 @@
-import React, { memo, useCallback, useRef } from "react";
 import { classNames, mergeRefs } from "@identity-service/core";
+import React, { memo, useCallback, useRef } from "react";
 
 import FakeButton from "components/FakeButton";
 import Heading from "components/Heading";

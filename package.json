@@ -17,12 +17,13 @@
     "format": "prettier --write \".\"",
     "release": "standard-version && git commit -m",
     "clean": "lerna clean -y && rm -rf node_modules",
-    "updates": "lerna run updates --parallel"
+    "updates": "lerna run updates --parallel",
+    "prepare": "husky install"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.26.0",
-    "@typescript-eslint/parser": "^4.26.0",
-    "eslint": "^7.28.0",
+    "@typescript-eslint/eslint-plugin": "^4.28.4",
+    "@typescript-eslint/parser": "^4.28.4",
+    "eslint": "^7.31.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-typescript": "^2.4.0",
@@ -32,17 +33,17 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "husky": "^4.3.8",
+    "husky": "^7.0.1",
     "lerna": "^4.0.0",
-    "lint-staged": "^10.5.4",
-    "npm-check-updates": "^11.6.0",
-    "prettier": "^2.3.1",
-    "standard-version": "^9.3.0",
+    "lint-staged": "^11.1.0",
+    "npm-check-updates": "^11.8.3",
+    "prettier": "^2.3.2",
+    "standard-version": "^9.3.1",
     "stylelint": "^13.13.1",
     "stylelint-no-unsupported-browser-features": "^5.0.1",
     "stylelint-order": "^4.1.0",
     "stylelint-prettier": "^1.2.0",
-    "typescript": "~4.2.4"
+    "typescript": "~4.3.5"
   },
   "husky": {
     "hooks": {

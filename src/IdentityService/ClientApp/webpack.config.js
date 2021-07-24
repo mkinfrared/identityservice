@@ -108,7 +108,6 @@ const config = {
       {
         test: /\.(js|mjs|jsx|ts|tsx)$/,
         use: ["babel-loader"]
-        // exclude: /node_modules[\/\\](?!(swiper|dom7)[\/\\])/
       },
       {
         test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],

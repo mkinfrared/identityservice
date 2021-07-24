@@ -28,7 +28,7 @@ export default {
     commonjs(),
     ts({
       typescript: ttypescript,
-      tsconfig: "./tsconfig.build.json"
+      tsconfig: "./tsconfig.json"
     }),
     url(),
     svgr(),

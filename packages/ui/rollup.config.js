@@ -30,7 +30,7 @@ export default {
     commonjs(),
     ts({
       typescript: ttypescript,
-      tsconfig: "./tsconfig.build.json"
+      tsconfig: "./tsconfig.json"
     }),
     babel({
       exclude: "node_modules/**",

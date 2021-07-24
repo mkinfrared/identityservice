@@ -1,5 +1,5 @@
-import React, { memo } from "react";
 import { classNames } from "@identity-service/core";
+import React, { memo } from "react";
 
 import css from "./Text.module.scss";
 import { TextProps } from "./Text.type";

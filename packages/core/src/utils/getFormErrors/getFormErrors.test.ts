@@ -26,31 +26,37 @@ describe("getFormErrors", () => {
     const result = getFormErrors(errors);
 
     expect(result).toHaveLength(6);
+
     expect(result[0]).toMatchObject({
       name: "username",
       type: "networkError",
       message: errors.Username[0]
     });
+
     expect(result[1]).toMatchObject({
       name: "password",
       type: "networkError",
       message: errors.Password[0]
     });
+
     expect(result[2]).toMatchObject({
       name: "foo",
       type: "networkError",
       message: errors.Foo[0]
     });
+
     expect(result[3]).toMatchObject({
       name: "bar",
       type: "networkError",
       message: errors.Bar[0]
     });
+
     expect(result[4]).toMatchObject({
       name: "returnUrl",
       type: "networkError",
       message: errors.ReturnUrl[0]
     });
+
     expect(result[5]).toMatchObject({
       name: "fooBar",
       type: "networkError",

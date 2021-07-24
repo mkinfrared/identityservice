@@ -1,6 +1,5 @@
-import React, { memo } from "react";
-
 import { classNames } from "@identity-service/core";
+import React, { memo } from "react";
 
 import css from "./Button.module.scss";
 import { ButtonProps } from "./Button.type";

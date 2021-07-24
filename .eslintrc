@@ -196,10 +196,7 @@
       // use <root>/tsconfig.json
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"],
-        "moduleDirectory": [
-          "node_modules",
-          "src/IdentityService.Client/ClientApp/src"
-        ]
+        "moduleDirectory": ["node_modules", "src"]
       },
       "typescript": {
         "alwaysTryTypes": true

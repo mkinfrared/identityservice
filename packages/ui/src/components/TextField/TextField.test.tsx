@@ -1,4 +1,5 @@
-import { fireEvent, render, createEvent } from "@testing-library/react";
+import { createEvent, fireEvent, render } from "@testing-library/react";
+import React from "react";
 
 import { TextField } from "./TextField";
 
@@ -28,6 +29,7 @@ describe("<TextField />", () => {
     const heading = queryByTestId("Heading");
 
     expect(heading).toBeInTheDocument();
+
     expect(heading).toHaveTextContent(label);
   });
 
@@ -42,26 +44,32 @@ describe("<TextField />", () => {
   it("should have a hasPrefix class name when prefix is defined", () => {
     const testId = "prefix";
     const prefix = <div data-testid={testId}>Marklar</div>;
+
     const { getByTestId, queryByTestId } = render(
       <TextField prefix={prefix} />
     );
+
     const textField = getByTestId("TextField");
     const prefixElement = queryByTestId(testId);
 
     expect(textField.classList).toContain("hasPrefix");
+
     expect(prefixElement).toBeInTheDocument();
   });
 
   it("should have a hasSuffix class name when suffix is defined", () => {
     const testId = "suffix";
     const suffix = <div data-testid={testId}>Marklar</div>;
+
     const { getByTestId, queryByTestId } = render(
       <TextField suffix={suffix} />
     );
+
     const textField = getByTestId("TextField");
     const prefixElement = queryByTestId(testId);
 
     expect(textField.classList).toContain("hasSuffix");
+
     expect(prefixElement).toBeInTheDocument();
   });
 

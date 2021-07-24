@@ -1,4 +1,4 @@
-import { renderHook, act } from "@testing-library/react-hooks";
+import { act, renderHook } from "@testing-library/react-hooks";
 
 import { usePasswordVisibility } from "./usePasswordVisibility";
 
@@ -14,10 +14,15 @@ describe("usePasswordVisibility", () => {
     const { current } = result;
 
     expect(current).toHaveProperty("fieldType");
+
     expect(current).toHaveProperty("togglePasswordVisibility");
+
     expect(current).toHaveProperty("Icon");
+
     expect(current.fieldType).toBe("password");
+
     expect(current.Icon).toHaveProperty("props");
+
     expect(typeof current.togglePasswordVisibility).toBe("function");
   });
 
@@ -32,6 +37,7 @@ describe("usePasswordVisibility", () => {
     });
 
     expect(result.current.fieldType).toBe("text");
+
     expect(result.current.Icon).not.toMatchObject(Icon);
   });
 });

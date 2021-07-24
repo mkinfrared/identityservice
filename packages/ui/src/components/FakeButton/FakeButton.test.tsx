@@ -1,4 +1,5 @@
 import { fireEvent, render } from "@testing-library/react";
+import React from "react";
 
 import { FakeButton } from "./FakeButton";
 
@@ -16,17 +17,29 @@ describe("<FakeButton />", () => {
     expect(container).toMatchSnapshot();
   });
 
-  // TODO fireEvent doesn't trigger keyPress event
-  // an issue is opened on github
-  // https://github.com/testing-library/dom-testing-library/issues/405
-  // change the test when the issue is fixed
   it("should call onClick passed from props on Enter press", () => {
     const { getByTestId } = render(Component);
-
+    const enterCode = 13;
     const fakeButton = getByTestId("FakeButton");
 
-    fireEvent.keyPress(fakeButton, { key: "Enter", target: fakeButton });
+    fireEvent.keyPress(fakeButton, {
+      charCode: enterCode,
+      target: fakeButton
+    });
 
-    expect(1).toBe(1);
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
+  it("should not call onClick passed from props if pressed button is not 'Enter'", () => {
+    const { getByTestId } = render(Component);
+    const enterCode = 69;
+    const fakeButton = getByTestId("FakeButton");
+
+    fireEvent.keyPress(fakeButton, {
+      charCode: enterCode,
+      target: fakeButton
+    });
+
+    expect(onClick).not.toHaveBeenCalled();
   });
 });

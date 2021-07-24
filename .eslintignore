@@ -1,3 +1,12 @@
 # Created by .ignore support plugin (hsz.mobi)
 
+bin
+build
+coverage
+lib
+node_modules
+obj
+tools
+wwwroot
+
 versionBumper.js

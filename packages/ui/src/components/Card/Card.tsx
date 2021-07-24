@@ -1,6 +1,5 @@
-import React, { memo } from "react";
-
 import { classNames } from "@identity-service/core";
+import React, { memo } from "react";
 
 import css from "./Card.module.scss";
 import { CardProps } from "./Card.type";

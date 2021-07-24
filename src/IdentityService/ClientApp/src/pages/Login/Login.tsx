@@ -1,6 +1,7 @@
-import LoginForm from "components/LoginForm";
 import { memo } from "react";
 import { useLocation } from "react-use";
+
+import LoginForm from "components/LoginForm";
 
 import css from "./Login.module.scss";
 
