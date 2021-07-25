@@ -23,5 +23,14 @@ namespace IdentityService.Unit.Controllers
             Assert.NotNull(result);
             Assert.IsType<ViewResult>(result);
         }
+
+        [Fact]
+        public void Register_Should_Return_A_View()
+        {
+            var result = _controller.Register();
+
+            Assert.NotNull(result);
+            Assert.IsType<ViewResult>(result);
+        }
     }
 }

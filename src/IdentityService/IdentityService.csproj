@@ -35,12 +35,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <TypeScriptCompile Include="ClientApp\src\api\mutations\loginMutation\index.ts" />
-      <TypeScriptCompile Include="ClientApp\src\api\mutations\loginMutation\loginMutation.test.ts" />
-      <TypeScriptCompile Include="ClientApp\src\pages\Login\index.tsx" />
       <Content Include="ClientApp\webpack.config.js" />
-      <TypeScriptCompile Include="ClientApp\src\pages\Login\Login.test.tsx" />
-      <TypeScriptCompile Include="ClientApp\src\utils\getFormErrors.ts" />
     </ItemGroup>
 
     <ItemGroup>

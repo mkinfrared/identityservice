@@ -1,14 +1,14 @@
 import api from "utils/api";
 
-import { loginMutation } from "./loginMutation";
+import { registerMutation } from "./registerMutation";
 
 jest.mock("utils/api");
 
-describe("loginMutation", () => {
+describe("registerMutation", () => {
   const apiMock = api as jest.Mocked<typeof api>;
 
   it("should be defined", () => {
-    expect(loginMutation).toBeDefined();
+    expect(registerMutation).toBeDefined();
   });
 
   it("should call post on apiMock with correct arguments", () => {
@@ -16,16 +16,21 @@ describe("loginMutation", () => {
 
     const formData = {
       username: "marklar",
+      firstName: "Timmy",
+      lastName: "Burch",
+      email: "timmy@coons.com",
+      phoneNumber: "42",
       password: "foobar",
-      returnUrl: "/foo/bar"
+      passwordConfirmation: "foobar",
+      redirectUrl: "/foo/bar"
     };
 
-    loginMutation(formData);
+    registerMutation(formData);
 
     expect(apiMock.post).toHaveBeenCalled();
 
     expect(apiMock.post).toHaveBeenCalledTimes(1);
 
-    expect(apiMock.post).toHaveBeenCalledWith("/auth/login", formData);
+    expect(apiMock.post).toHaveBeenCalledWith("/auth/register", formData);
   });
 });

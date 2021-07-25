@@ -43,8 +43,17 @@
     "jsx-a11y/label-has-associated-control": "off",
     "jsx-a11y/no-noninteractive-element-interactions": "off",
     "jsx-a11y/click-events-have-key-events": "off",
+    "import/export": "off",
+    "import/extensions": "off",
     "import/group-exports": ["error"],
-    "import/prefer-default-export": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/no-unresolved": "off",
+    "import/no-unused-modules": [
+      1,
+      {
+        "unusedExports": true
+      }
+    ],
     "import/order": [
       "error",
       {
@@ -64,15 +73,7 @@
         }
       }
     ],
-    "import/extensions": "off",
-    "import/no-extraneous-dependencies": "off",
-    "import/no-unresolved": "off",
-    "import/no-unused-modules": [
-      1,
-      {
-        "unusedExports": true
-      }
-    ],
+    "import/prefer-default-export": "off",
     "linebreak-style": ["error", "unix"],
     "no-async-without-await/no-async-without-await": 2,
     "no-console": ["error", { "allow": ["warn", "error", "info"] }],

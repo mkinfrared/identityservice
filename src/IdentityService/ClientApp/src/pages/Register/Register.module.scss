@@ -1,0 +1,12 @@
+@import "../../styles/common";
+
+.Register {
+  @extend %loginRegisterPage;
+
+  .form {
+    justify-content: flex-start;
+  }
+}
+
+.Story {
+}

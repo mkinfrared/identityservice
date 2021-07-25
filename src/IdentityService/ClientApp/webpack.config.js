@@ -15,7 +15,8 @@ const sassModuleRegex = /\.module\.(scss|sass)$/;
 const config = {
   mode: "production",
   entry: {
-    login: path.resolve("./src/pages/Login/index.tsx")
+    login: path.resolve("./src/pages/Login/index.tsx"),
+    register: path.resolve("./src/pages/Register/index.tsx")
   },
   module: {
     rules: [
@@ -83,7 +84,18 @@ const config = {
               }
             }
           },
-          "sass-loader"
+          {
+            loader: "resolve-url-loader"
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              sassOptions: {
+                sourceMap: true,
+                sourceMapContents: false
+              }
+            }
+          }
         ]
       },
       {
@@ -101,7 +113,16 @@ const config = {
             }
           },
           {
-            loader: "sass-loader"
+            loader: "resolve-url-loader"
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              sassOptions: {
+                sourceMap: true,
+                sourceMapContents: false
+              }
+            }
           }
         ]
       },

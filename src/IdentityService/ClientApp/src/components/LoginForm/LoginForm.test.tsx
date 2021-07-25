@@ -32,7 +32,7 @@ describe("<LoginForm />", () => {
     expect(submitButton).toBeDisabled();
   });
 
-  it("should have an enabled button if fields are filled", async () => {
+  it("should have an enabled button if fields are filled and valid", async () => {
     const { getByTestId, container } = render(Component);
     const userNameField = container.querySelector('input[name="username"]');
     const passwordField = container.querySelector('input[name="password"]');

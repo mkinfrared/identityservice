@@ -9,12 +9,12 @@ import { AxiosError } from "axios";
 import { memo } from "react";
 import { useForm } from "react-hook-form";
 
-import { loginMutation } from "api/mutations";
+import { LoginFormData, loginMutation } from "api/mutations";
 import InputField from "components/InputField";
 import { loginSchema } from "utils/validationSchemas";
 
 import css from "./LoginForm.module.scss";
-import { LoginFormData, LoginFormProps } from "./LoginForm.type";
+import { LoginFormProps } from "./LoginForm.type";
 
 const LoginForm = ({ className, returnUrl }: LoginFormProps) => {
   const defaultValues: LoginFormData = {

@@ -1,4 +1,4 @@
-export type LoginFormProps = {
+export type RegisterFormProps = {
   /**
    * a string that will be applied as a css class to parent element
    */
