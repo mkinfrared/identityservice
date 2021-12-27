@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 
+using IdentityService.Features.Auth.ConfirmEmail;
 using IdentityService.Features.Auth.Login;
 using IdentityService.Features.Auth.Register;
 
@@ -7,46 +8,55 @@ using MediatR;
 
 using Microsoft.AspNetCore.Mvc;
 
-namespace IdentityService.Controllers
+namespace IdentityService.Controllers;
+
+[ApiController]
+[Route("[controller]/[action]")]
+public class AuthController : ControllerBase
 {
-    [ApiController]
-    [Route("[controller]/[action]")]
-    public class AuthController : ControllerBase
+    private readonly IMediator _mediator;
+
+    public AuthController(IMediator mediator)
     {
-        private readonly IMediator _mediator;
+        _mediator = mediator;
+    }
 
-        public AuthController(IMediator mediator)
+    [HttpPost]
+    public async Task<IActionResult> Login(Login.Command command)
+    {
+        var signInResult = await _mediator.Send(command);
+
+        if (signInResult.Succeeded)
         {
-            _mediator = mediator;
+            return Ok();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Login(Login.Command command)
+        return BadRequest(new { username = new[] { "Username or Password is incorrect" } });
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Register(Register.Command command)
+    {
+        var result = await _mediator.Send(command);
+
+        if (result is null)
         {
-            var signInResult = await _mediator.Send(command);
-
-            if (signInResult.Succeeded)
-            {
-                return Ok(command.ReturnUrl);
-            }
-
-            return BadRequest(new
-            {
-                username = new[] {"Username or Password is incorrect"}
-            });
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Register(Register.Command command)
-        {
-            var registerResult = await _mediator.Send(command);
-
-            if (registerResult.Succeeded)
-            {
-                return Ok(command.RedirectUrl);
-            }
-
             return BadRequest();
         }
+
+        return Ok(result);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> VerifyEmail(ConfirmEmail.Command command)
+    {
+        var result = await _mediator.Send(command);
+
+        if (result.Succeeded)
+        {
+            return Ok();
+        }
+
+        return BadRequest();
     }
 }

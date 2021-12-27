@@ -7,7 +7,7 @@ exports[`<LoginForm /> should match the snapshot 1`] = `
     data-testid="Card"
   >
     <form
-      method="post"
+      class="form"
     >
       <h3
         class="Heading-module_Heading__iIC9P heading"
@@ -33,18 +33,6 @@ exports[`<LoginForm /> should match the snapshot 1`] = `
             type="text"
             value=""
           />
-          <div
-            class="FakeButton-module_FakeButton__3fGxh TextField-module_prefix__2eBJg"
-            data-testid="FakeButton"
-            role="button"
-            tabindex="0"
-          />
-          <div
-            class="FakeButton-module_FakeButton__3fGxh TextField-module_suffix__2X_LC"
-            data-testid="FakeButton"
-            role="button"
-            tabindex="0"
-          />
         </div>
         <p
           class="Text-module_Text__3EbTM TextField-module_error__3xz6q"
@@ -68,12 +56,6 @@ exports[`<LoginForm /> should match the snapshot 1`] = `
             name="password"
             type="password"
             value=""
-          />
-          <div
-            class="FakeButton-module_FakeButton__3fGxh TextField-module_prefix__2eBJg"
-            data-testid="FakeButton"
-            role="button"
-            tabindex="0"
           />
           <div
             class="FakeButton-module_FakeButton__3fGxh TextField-module_suffix__2X_LC"
@@ -107,6 +89,18 @@ exports[`<LoginForm /> should match the snapshot 1`] = `
         type="text"
         value="?someUrl=Marklar"
       />
+      <p
+        class="Text-module_Text__3EbTM text"
+        data-testid="Text"
+      >
+        No account yet? Consider
+         
+        <a
+          href="/account/login"
+        >
+          register
+        </a>
+      </p>
       <div
         class="buttonWrapper"
       >
@@ -114,6 +108,7 @@ exports[`<LoginForm /> should match the snapshot 1`] = `
           class="Button-module_Button__2YI99 Button-module_opaque__1DMAu"
           data-testid="Button"
           disabled=""
+          type="submit"
         >
           Login
         </button>

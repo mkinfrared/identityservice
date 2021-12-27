@@ -2,23 +2,24 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {
   classNames,
   getFormErrors,
-  usePasswordVisibility
+  usePasswordVisibility,
 } from "@identity-service/core";
-import { Button, Card, Heading } from "@identity-service/ui";
-import { AxiosError } from "axios";
-import { memo } from "react";
+import { Button, Card, Heading, Text } from "@identity-service/ui";
+import { MouseEventHandler, memo } from "react";
 import { useForm } from "react-hook-form";
 
 import { registerMutation } from "api/mutations";
 import { RegisterFormData } from "api/mutations/registerMutation/registerMutation.type";
 import InputField from "components/InputField";
+import { Routes } from "pages/Main/Main.type";
+import { isAxiosError } from "utils/api";
 import { registerSchema } from "utils/validationSchemas";
 
 import css from "./RegisterForm.module.scss";
 import { RegisterFormProps } from "./RegisterForm.type";
 
 const RegisterForm = ({ className, returnUrl }: RegisterFormProps) => {
-  const defaultValues: RegisterFormData = {
+  const defaultValues = {
     username: "",
     firstName: "",
     lastName: "",
@@ -26,30 +27,54 @@ const RegisterForm = ({ className, returnUrl }: RegisterFormProps) => {
     phoneNumber: "",
     password: "",
     passwordConfirmation: "",
-    redirectUrl: returnUrl
+    redirectUrl: returnUrl,
   };
 
   const { register, formState, handleSubmit, setError } =
     useForm<RegisterFormData>({
       defaultValues,
       mode: "onChange",
-      resolver: yupResolver(registerSchema)
+      resolver: yupResolver(registerSchema),
     });
 
   const { errors, isValid, isSubmitting } = formState;
   const { togglePasswordVisibility, fieldType, Icon } = usePasswordVisibility();
 
+  const handleLoginClick: MouseEventHandler = (event) => {
+    event.preventDefault();
+
+    const { location, history } = window;
+    const pathname = `/account/${Routes.LOGIN}`;
+    const url = new URL(location.href);
+
+    url.pathname = pathname;
+
+    history.replaceState({}, "", url.toString());
+  };
+
   const onSubmit = async (formData: RegisterFormData) => {
     try {
-      const redirectUrl = await registerMutation(formData);
+      const { token, userId } = await registerMutation(formData);
 
-      window.location.href = redirectUrl;
+      sessionStorage.setItem("emailToken", token ?? "");
+
+      sessionStorage.setItem("userId", userId);
+
+      sessionStorage.setItem("returnUrl", returnUrl);
+
+      const { location, history } = window;
+      const pathname = `/account/${Routes.CONFIRM_EMAIL}`;
+      const url = new URL(location.href);
+
+      url.pathname = pathname;
+
+      history.replaceState({}, "", url.toString());
     } catch (e) {
-      if (e?.isAxiosError && e?.response?.status === 400) {
-        const { response } = e as AxiosError;
+      if (isAxiosError(e)) {
+        const { response } = e;
 
         const submitErrors = getFormErrors(
-          response?.data as BadRequest<RegisterFormData>
+          response?.data as BadRequest<RegisterFormData>,
         );
 
         submitErrors.forEach(({ name, message, type }) => {
@@ -63,7 +88,7 @@ const RegisterForm = ({ className, returnUrl }: RegisterFormProps) => {
 
   return (
     <Card className={classNames(css.RegisterForm, className)}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
         <Heading className={css.heading}>Register</Heading>
         <InputField
           {...register("username")}
@@ -120,8 +145,16 @@ const RegisterForm = ({ className, returnUrl }: RegisterFormProps) => {
           name="redirectUrl"
           readOnly
         />
+        <Text className={css.text}>
+          Already have an account. Consider{" "}
+          <a href="/account/login" onClick={handleLoginClick}>
+            login
+          </a>
+        </Text>
         <div className={css.buttonWrapper}>
-          <Button disabled={!isValid || isSubmitting}>Register</Button>
+          <Button disabled={!isValid || isSubmitting} type="submit">
+            Register
+          </Button>
         </div>
       </form>
     </Card>

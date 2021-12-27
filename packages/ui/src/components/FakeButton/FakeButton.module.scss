@@ -1,6 +1,12 @@
+@import "../../styles/_common";
+
 .FakeButton {
   height: 100%;
   width: 100%;
+
+  &:focus-visible {
+    @include focusVisible();
+  }
 }
 
 .Story {

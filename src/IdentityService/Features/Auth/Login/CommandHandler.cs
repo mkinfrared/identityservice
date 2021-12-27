@@ -7,36 +7,35 @@ using MediatR;
 
 using Microsoft.AspNetCore.Identity;
 
-namespace IdentityService.Features.Auth.Login
+namespace IdentityService.Features.Auth.Login;
+
+public partial class Login
 {
-    public partial class Login
+    public class CommandHandler : IRequestHandler<Command, SignInResult>
     {
-        public class CommandHandler : IRequestHandler<Command, SignInResult>
+        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<User> _userManager;
+
+        public CommandHandler(UserManager<User> userManager, SignInManager<User> signInManager)
         {
-            private readonly SignInManager<User> _signInManager;
-            private readonly UserManager<User> _userManager;
+            _userManager = userManager;
+            _signInManager = signInManager;
+        }
 
-            public CommandHandler(UserManager<User> userManager, SignInManager<User> signInManager)
+        public async Task<SignInResult> Handle(Command request,
+            CancellationToken cancellationToken)
+        {
+            var user = await _userManager.FindByNameAsync(request.Username);
+
+            if (user == null)
             {
-                _userManager = userManager;
-                _signInManager = signInManager;
+                return SignInResult.Failed;
             }
 
-            public async Task<SignInResult> Handle(Command request,
-                CancellationToken cancellationToken)
-            {
-                var user = await _userManager.FindByNameAsync(request.Username);
+            var signInResult = await
+                _signInManager.PasswordSignInAsync(user, request.Password, true, false);
 
-                if (user == null)
-                {
-                    return SignInResult.Failed;
-                }
-
-                var signInResult = await
-                    _signInManager.PasswordSignInAsync(user, request.Password, true, false);
-
-                return signInResult;
-            }
+            return signInResult;
         }
     }
 }

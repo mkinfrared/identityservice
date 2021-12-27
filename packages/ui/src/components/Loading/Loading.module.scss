@@ -1,0 +1,20 @@
+.Loading {
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  justify-content: center;
+  left: 0;
+  max-height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100%;
+
+  .spinner {
+    aspect-ratio: initial;
+    height: 50px;
+    width: 50px;
+  }
+}
+
+.Story {
+}

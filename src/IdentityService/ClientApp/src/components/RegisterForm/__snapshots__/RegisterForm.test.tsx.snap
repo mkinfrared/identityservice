@@ -6,7 +6,9 @@ exports[`<RegisterForm /> should match the snapshot 1`] = `
     class="Card-module_Card__2zjDp RegisterForm"
     data-testid="Card"
   >
-    <form>
+    <form
+      class="form"
+    >
       <h3
         class="Heading-module_Heading__iIC9P heading"
         data-testid="Heading"
@@ -30,18 +32,6 @@ exports[`<RegisterForm /> should match the snapshot 1`] = `
             name="username"
             type="text"
             value=""
-          />
-          <div
-            class="FakeButton-module_FakeButton__3fGxh TextField-module_prefix__2eBJg"
-            data-testid="FakeButton"
-            role="button"
-            tabindex="0"
-          />
-          <div
-            class="FakeButton-module_FakeButton__3fGxh TextField-module_suffix__2X_LC"
-            data-testid="FakeButton"
-            role="button"
-            tabindex="0"
           />
         </div>
         <p
@@ -67,18 +57,6 @@ exports[`<RegisterForm /> should match the snapshot 1`] = `
             type="text"
             value=""
           />
-          <div
-            class="FakeButton-module_FakeButton__3fGxh TextField-module_prefix__2eBJg"
-            data-testid="FakeButton"
-            role="button"
-            tabindex="0"
-          />
-          <div
-            class="FakeButton-module_FakeButton__3fGxh TextField-module_suffix__2X_LC"
-            data-testid="FakeButton"
-            role="button"
-            tabindex="0"
-          />
         </div>
         <p
           class="Text-module_Text__3EbTM TextField-module_error__3xz6q"
@@ -102,18 +80,6 @@ exports[`<RegisterForm /> should match the snapshot 1`] = `
             name="lastName"
             type="text"
             value=""
-          />
-          <div
-            class="FakeButton-module_FakeButton__3fGxh TextField-module_prefix__2eBJg"
-            data-testid="FakeButton"
-            role="button"
-            tabindex="0"
-          />
-          <div
-            class="FakeButton-module_FakeButton__3fGxh TextField-module_suffix__2X_LC"
-            data-testid="FakeButton"
-            role="button"
-            tabindex="0"
           />
         </div>
         <p
@@ -139,18 +105,6 @@ exports[`<RegisterForm /> should match the snapshot 1`] = `
             type="text"
             value=""
           />
-          <div
-            class="FakeButton-module_FakeButton__3fGxh TextField-module_prefix__2eBJg"
-            data-testid="FakeButton"
-            role="button"
-            tabindex="0"
-          />
-          <div
-            class="FakeButton-module_FakeButton__3fGxh TextField-module_suffix__2X_LC"
-            data-testid="FakeButton"
-            role="button"
-            tabindex="0"
-          />
         </div>
         <p
           class="Text-module_Text__3EbTM TextField-module_error__3xz6q"
@@ -175,18 +129,6 @@ exports[`<RegisterForm /> should match the snapshot 1`] = `
             type="text"
             value=""
           />
-          <div
-            class="FakeButton-module_FakeButton__3fGxh TextField-module_prefix__2eBJg"
-            data-testid="FakeButton"
-            role="button"
-            tabindex="0"
-          />
-          <div
-            class="FakeButton-module_FakeButton__3fGxh TextField-module_suffix__2X_LC"
-            data-testid="FakeButton"
-            role="button"
-            tabindex="0"
-          />
         </div>
         <p
           class="Text-module_Text__3EbTM TextField-module_error__3xz6q"
@@ -210,12 +152,6 @@ exports[`<RegisterForm /> should match the snapshot 1`] = `
             name="password"
             type="password"
             value=""
-          />
-          <div
-            class="FakeButton-module_FakeButton__3fGxh TextField-module_prefix__2eBJg"
-            data-testid="FakeButton"
-            role="button"
-            tabindex="0"
           />
           <div
             class="FakeButton-module_FakeButton__3fGxh TextField-module_suffix__2X_LC"
@@ -261,12 +197,6 @@ exports[`<RegisterForm /> should match the snapshot 1`] = `
             value=""
           />
           <div
-            class="FakeButton-module_FakeButton__3fGxh TextField-module_prefix__2eBJg"
-            data-testid="FakeButton"
-            role="button"
-            tabindex="0"
-          />
-          <div
             class="FakeButton-module_FakeButton__3fGxh TextField-module_suffix__2X_LC"
             data-testid="FakeButton"
             role="button"
@@ -296,8 +226,20 @@ exports[`<RegisterForm /> should match the snapshot 1`] = `
         name="redirectUrl"
         readonly=""
         type="text"
-        value="?someUrl=Marklar"
+        value="https://marklar.com"
       />
+      <p
+        class="Text-module_Text__3EbTM text"
+        data-testid="Text"
+      >
+        Already have an account. Consider
+         
+        <a
+          href="/account/login"
+        >
+          login
+        </a>
+      </p>
       <div
         class="buttonWrapper"
       >
@@ -305,6 +247,7 @@ exports[`<RegisterForm /> should match the snapshot 1`] = `
           class="Button-module_Button__2YI99 Button-module_opaque__1DMAu"
           data-testid="Button"
           disabled=""
+          type="submit"
         >
           Register
         </button>

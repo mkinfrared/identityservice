@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ConfirmEmail /> should match the snapshot 1`] = `
+<div>
+  <div
+    class="Card-module_Card__2zjDp ConfirmEmailForm"
+    data-testid="Card"
+  >
+    <form
+      class="form"
+    >
+      <svg
+        class="icon"
+      >
+        email-icon.svg
+      </svg>
+      <h3
+        class="Heading-module_Heading__iIC9P heading"
+        data-testid="Heading"
+      >
+        Check your email
+      </h3>
+      <label
+        class="TextField-module_TextField__3-bgB"
+        data-testid="TextField"
+      >
+        <div
+          class="TextField-module_input__3FXIK"
+        >
+          <input
+            autocomplete="off"
+            name="code"
+            type="text"
+            value=""
+          />
+        </div>
+        <p
+          class="Text-module_Text__3EbTM TextField-module_error__3xz6q"
+          data-testid="Text"
+        />
+      </label>
+      <div
+        class="buttonWrapper"
+      >
+        <button
+          class="Button-module_Button__2YI99 Button-module_opaque__1DMAu"
+          data-testid="Button"
+          disabled=""
+          type="submit"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+`;

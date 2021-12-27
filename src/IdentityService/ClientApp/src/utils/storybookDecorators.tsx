@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name,import/no-unused-modules */
 import { History } from "history";
 import { Router } from "react-router-dom";
 

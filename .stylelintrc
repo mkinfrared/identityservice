@@ -1,8 +1,5 @@
 {
-  "plugins": [
-    "stylelint-order",
-    "stylelint-no-unsupported-browser-features"
-  ],
+  "plugins": ["stylelint-order", "stylelint-no-unsupported-browser-features"],
   "rules": {
     "indentation": 2,
     "string-quotes": "double",
@@ -30,13 +27,13 @@
     "media-feature-parentheses-space-inside": "never",
     "media-feature-colon-space-before": "never",
     "media-feature-colon-space-after": "always",
-    "order/order": [
-      "custom-properties",
-      "declarations"
-    ],
+    "order/order": ["custom-properties", "declarations"],
     "order/properties-alphabetical-order": true,
-    "plugin/no-unsupported-browser-features": [true, {
-      "ignore": ["intrinsic-width"]
-    }]
+    "plugin/no-unsupported-browser-features": [
+      true,
+      {
+        "ignore": ["intrinsic-width"]
+      }
+    ]
   }
 }

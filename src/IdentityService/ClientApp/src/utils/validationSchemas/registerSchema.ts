@@ -4,7 +4,7 @@ const passwordRegex = {
   upperCase: new RegExp("[A-Z]"),
   lowerCase: new RegExp("[a-z]"),
   number: new RegExp("[0-9]"),
-  special: new RegExp("[#?!@$%^&*-]")
+  special: new RegExp("[#?!@$%^&*-]"),
 };
 
 const passwordValidation = yup
@@ -13,16 +13,16 @@ const passwordValidation = yup
   .min(6)
   .matches(
     passwordRegex.upperCase,
-    "password must contain at least one upper case letter"
+    "password must contain at least one upper case letter",
   )
   .matches(
     passwordRegex.lowerCase,
-    "password must contain at least one lower case letter"
+    "password must contain at least one lower case letter",
   )
   .matches(passwordRegex.number, "password must contain at least one number")
   .matches(
     passwordRegex.special,
-    "password must contain at least one special character"
+    "password must contain at least one special character",
   );
 
 const registerSchema = yup.object().shape({
@@ -35,7 +35,7 @@ const registerSchema = yup.object().shape({
   passwordConfirmation: yup
     .string()
     .required("confirm is a required field")
-    .oneOf([yup.ref("password")], "passwords should match")
+    .oneOf([yup.ref("password")], "passwords should match"),
 });
 
 export { registerSchema };

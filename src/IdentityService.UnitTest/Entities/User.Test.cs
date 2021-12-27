@@ -4,19 +4,18 @@ using IdentityService.Entities;
 
 using Xunit;
 
-namespace IdentityService.Unit.Entities
+namespace IdentityService.Unit.Entities;
+
+public class UserTest
 {
-    public class UserTest
+    [Fact]
+    public void Should_Have_Getters_And_Setters_For_DateOfBirth_Property()
     {
-        [Fact]
-        public void Should_Have_Getters_And_Setters_For_DateOfBirth_Property()
-        {
-            var user = new User();
-            var date = DateTime.Now;
+        var user = new User();
+        var date = DateTime.Now;
 
-            user.DateOfBirth = date;
+        user.DateOfBirth = date;
 
-            Assert.Equal(user.DateOfBirth, date);
-        }
+        Assert.Equal(user.DateOfBirth, date);
     }
 }

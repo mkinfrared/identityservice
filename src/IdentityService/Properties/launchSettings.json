@@ -3,7 +3,7 @@
     "IdentityService": {
       "commandName": "Project",
       "launchBrowser": false,
-      "applicationUrl": "https://localhost:9001;http://localhost:9000",
+      "applicationUrl": "https://localhost:2001;http://localhost:2000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

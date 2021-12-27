@@ -1,6 +1,6 @@
 import commonjs from "@rollup/plugin-commonjs";
-import url from "@rollup/plugin-url";
 import resolve from "@rollup/plugin-node-resolve";
+import url from "@rollup/plugin-url";
 import svgr from "@svgr/rollup";
 import ts from "@wessberg/rollup-plugin-ts";
 import del from "rollup-plugin-delete";
@@ -10,7 +10,6 @@ import visualizer from "rollup-plugin-visualizer";
 import ttypescript from "ttypescript";
 
 const extensions = [".js", ".ts", ".jsx", ".tsx"];
-
 const dir = "lib";
 
 export default {
@@ -20,7 +19,7 @@ export default {
     format: "esm",
     preserveModules: true,
     preserveModulesRoot: "src",
-    sourcemap: true
+    sourcemap: true,
   },
   plugins: [
     del({ targets: dir }),
@@ -28,14 +27,14 @@ export default {
     commonjs(),
     ts({
       typescript: ttypescript,
-      tsconfig: "./tsconfig.json"
+      tsconfig: "./tsconfig.json",
     }),
     url(),
     svgr(),
     postcss({
       extract: false,
       modules: true,
-      use: ["sass"]
+      use: ["sass"],
     }),
     terser(),
     visualizer({
@@ -43,8 +42,8 @@ export default {
       template: "treemap",
       open: false,
       gzipSize: true,
-      brotliSize: true
-    })
+      brotliSize: true,
+    }),
   ],
-  external: ["react", "react-dom"]
+  external: ["react", "react-dom"],
 };

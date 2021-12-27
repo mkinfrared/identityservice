@@ -11,7 +11,7 @@ import { TextFieldProps } from "./TextField.type";
 
 export default {
   title: "UI/TextField",
-  component: TextField
+  component: TextField,
 } as Meta;
 
 const Template: Story<TextFieldProps> = (args) => (
@@ -45,34 +45,34 @@ Uncontrolled.args = {};
 
 Controlled.args = {
   value: "marklar",
-  onChange: action("change")
+  onChange: action("change"),
 };
 
 WithError.args = {
   value: "marklar",
   onChange: action("change"),
   error:
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. asdf sadfl kjasdf agj asldfkj asdfjlk"
+    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. asdf sadfl kjasdf agj asldfkj asdfjlk",
 };
 
 WithPrefix.args = {
   value: "marklar",
   onChange: action("change"),
-  prefix: <Doc />
+  prefix: <Doc />,
 };
 
 WithSuffix.args = {
   value: "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
   onChange: action("change"),
   suffix: <Eye />,
-  onSuffixClick: action("suffix")
+  onSuffixClick: action("suffix"),
 };
 
 WithPrefixSuffix.args = {
   value: "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
   onChange: action("change"),
   suffix: <Eye />,
-  prefix: <Doc />
+  prefix: <Doc />,
 };
 
 export {
@@ -82,5 +82,5 @@ export {
   WithPrefix,
   WithSuffix,
   WithPrefixSuffix,
-  MultipleFields
+  MultipleFields,
 };

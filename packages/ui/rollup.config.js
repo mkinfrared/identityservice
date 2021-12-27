@@ -1,10 +1,10 @@
+import babel from "@rollup/plugin-babel";
 import commonjs from "@rollup/plugin-commonjs";
-import url from "@rollup/plugin-url";
 import resolve from "@rollup/plugin-node-resolve";
+import url from "@rollup/plugin-url";
 import svgr from "@svgr/rollup";
 import ts from "@wessberg/rollup-plugin-ts";
 import autoprefixer from "autoprefixer";
-import babel from "@rollup/plugin-babel";
 import del from "rollup-plugin-delete";
 import postcss from "rollup-plugin-postcss";
 import { terser } from "rollup-plugin-terser";
@@ -12,7 +12,6 @@ import visualizer from "rollup-plugin-visualizer";
 import ttypescript from "ttypescript";
 
 const extensions = [".js", ".ts", ".jsx", ".tsx"];
-
 const dir = "lib";
 
 export default {
@@ -22,7 +21,7 @@ export default {
     format: "esm",
     preserveModules: true,
     preserveModulesRoot: "src",
-    sourcemap: true
+    sourcemap: true,
   },
   plugins: [
     del({ targets: dir }),
@@ -30,11 +29,11 @@ export default {
     commonjs(),
     ts({
       typescript: ttypescript,
-      tsconfig: "./tsconfig.json"
+      tsconfig: "./tsconfig.json",
     }),
     babel({
       exclude: "node_modules/**",
-      babelHelpers: "bundled"
+      babelHelpers: "bundled",
     }),
     url(),
     svgr(),
@@ -44,7 +43,7 @@ export default {
       minimize: true,
       modules: true,
       use: ["sass"],
-      plugins: [autoprefixer()]
+      plugins: [autoprefixer()],
     }),
     terser(),
     visualizer({
@@ -52,8 +51,8 @@ export default {
       template: "treemap",
       open: false,
       gzipSize: true,
-      brotliSize: true
-    })
+      brotliSize: true,
+    }),
   ],
-  external: ["react", "react-dom"]
+  external: ["react", "react-dom"],
 };

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Loading /> should match the snapshot 1`] = `
+<div
+  style="height: 0px; overflow: hidden;"
+>
+  <div
+    class="Loading"
+    style="height: 0px;"
+  >
+    <svg
+      class="Spinner spinner"
+    >
+      rolling-1s-200px.svg
+    </svg>
+  </div>
+</div>
+`;

@@ -34,7 +34,6 @@
 
   .input {
     border: 1px solid transparent;
-    color: #ffffff;
     font-family: Roboto, sans-serif;
     font-size: 16px;
     font-style: normal;
@@ -48,7 +47,7 @@
     input {
       background-color: transparent;
       border: none;
-      color: inherit;
+      color: #ffffff;
       height: 100%;
       padding: 15px 20px;
       width: 100%;
@@ -56,6 +55,10 @@
       &::selection {
         background-color: var(--cyan);
         color: var(--white);
+      }
+
+      &:focus-visible {
+        outline: none;
       }
     }
 

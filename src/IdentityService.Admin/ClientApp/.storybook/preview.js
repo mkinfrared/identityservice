@@ -3,7 +3,7 @@ import "../src/index.scss";
 const tokenContext = require.context(
   "!!raw-loader!../src",
   true,
-  /.\.(css|less|scss|svg)$/
+  /.\.(css|less|scss|svg)$/,
 );
 
 const tokenFiles = tokenContext.keys().map(function (filename) {
@@ -15,10 +15,10 @@ export const parameters = {
   controls: {
     matchers: {
       color: /(background|color)$/i,
-      date: /Date$/
-    }
+      date: /Date$/,
+    },
   },
   designToken: {
-    files: tokenFiles
-  }
+    files: tokenFiles,
+  },
 };

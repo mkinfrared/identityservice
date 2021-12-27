@@ -7,9 +7,27 @@ import { RegisterForm } from "./RegisterForm";
 jest.mock("api/mutations");
 
 describe("<RegisterForm />", () => {
+  const { location } = window;
   const mutationsMock = mutations as jest.Mocked<typeof mutations>;
-  const returnUrl = "?someUrl=Marklar";
+  const returnUrl = "https://marklar.com";
   const Component = <RegisterForm returnUrl={returnUrl} />;
+
+  beforeAll(() => {
+    Object.defineProperty(window, "location", {
+      configurable: true,
+      value: {
+        ...location,
+        replace: jest.fn(),
+      },
+    });
+  });
+
+  afterAll(() => {
+    Object.defineProperty(window, "location", {
+      configurable: true,
+      value: location,
+    });
+  });
 
   it("should be defined", () => {
     expect(RegisterForm).toBeDefined();
@@ -36,13 +54,13 @@ describe("<RegisterForm />", () => {
     const emailField = container.querySelector('input[name="email"]');
 
     const phoneNumberField = container.querySelector(
-      'input[name="phoneNumber"]'
+      'input[name="phoneNumber"]',
     );
 
     const passwordField = container.querySelector('input[name="password"]');
 
     const passwordConfirmationField = container.querySelector(
-      'input[name="passwordConfirmation"]'
+      'input[name="passwordConfirmation"]',
     );
 
     const submitButton = getByTestId("Button");
@@ -62,14 +80,19 @@ describe("<RegisterForm />", () => {
     fireEvent.change(passwordField!, { target: { value: "Marklar42$" } });
 
     fireEvent.change(passwordConfirmationField!, {
-      target: { value: "Marklar42$" }
+      target: { value: "Marklar42$" },
     });
 
     await waitFor(() => expect(submitButton).toBeEnabled());
   });
 
-  it("should call loginMutation on submit", async () => {
-    mutationsMock.registerMutation.mockResolvedValueOnce("");
+  it("should call registerMutation on submit", async () => {
+    const userId = "00000000-0000-0000-0000-000000000000";
+    const token = "fake-token";
+    const registerResponse = { userId, token, code: null };
+    const replaceState = jest.spyOn(window.history, "replaceState");
+
+    mutationsMock.registerMutation.mockResolvedValueOnce(registerResponse);
 
     const data = {
       username: "marklar",
@@ -79,7 +102,7 @@ describe("<RegisterForm />", () => {
       phoneNumber: "3334445566",
       password: "Marklar42$",
       passwordConfirmation: "Marklar42$",
-      redirectUrl: returnUrl
+      redirectUrl: returnUrl,
     };
 
     const { getByTestId, container } = render(Component);
@@ -89,13 +112,13 @@ describe("<RegisterForm />", () => {
     const emailField = container.querySelector('input[name="email"]');
 
     const phoneNumberField = container.querySelector(
-      'input[name="phoneNumber"]'
+      'input[name="phoneNumber"]',
     );
 
     const passwordField = container.querySelector('input[name="password"]');
 
     const passwordConfirmationField = container.querySelector(
-      'input[name="passwordConfirmation"]'
+      'input[name="passwordConfirmation"]',
     );
 
     const submitButton = getByTestId("Button");
@@ -109,13 +132,13 @@ describe("<RegisterForm />", () => {
     fireEvent.change(emailField!, { target: { value: data.email } });
 
     fireEvent.change(phoneNumberField!, {
-      target: { value: data.phoneNumber }
+      target: { value: data.phoneNumber },
     });
 
     fireEvent.change(passwordField!, { target: { value: data.password } });
 
     fireEvent.change(passwordConfirmationField!, {
-      target: { value: data.passwordConfirmation }
+      target: { value: data.passwordConfirmation },
     });
 
     await waitFor(() => expect(submitButton).toBeEnabled());
@@ -123,12 +146,14 @@ describe("<RegisterForm />", () => {
     await fireEvent.submit(submitButton);
 
     await waitFor(() =>
-      expect(mutationsMock.registerMutation).toHaveBeenCalled()
+      expect(mutationsMock.registerMutation).toHaveBeenCalled(),
     );
 
     expect(mutationsMock.registerMutation).toHaveBeenCalledTimes(1);
 
     expect(mutationsMock.registerMutation).toHaveBeenCalledWith(data);
+
+    expect(replaceState).toHaveBeenCalled();
   });
 
   it("should display an error on bad network request", async () => {
@@ -140,7 +165,7 @@ describe("<RegisterForm />", () => {
       phoneNumber: "3334445566",
       password: "Marklar42$",
       passwordConfirmation: "Marklar42$",
-      redirectUrl: returnUrl
+      redirectUrl: returnUrl,
     };
 
     const errorMessage = "Invalid login credentials";
@@ -149,10 +174,10 @@ describe("<RegisterForm />", () => {
       isAxiosError: true,
       response: {
         data: {
-          Username: ["Invalid login credentials"]
+          Username: ["Invalid login credentials"],
         },
-        status: 400
-      }
+        status: 400,
+      },
     };
 
     mutationsMock.registerMutation.mockRejectedValueOnce(axiosError);
@@ -164,13 +189,13 @@ describe("<RegisterForm />", () => {
     const emailField = container.querySelector('input[name="email"]');
 
     const phoneNumberField = container.querySelector(
-      'input[name="phoneNumber"]'
+      'input[name="phoneNumber"]',
     );
 
     const passwordField = container.querySelector('input[name="password"]');
 
     const passwordConfirmationField = container.querySelector(
-      'input[name="passwordConfirmation"]'
+      'input[name="passwordConfirmation"]',
     );
 
     const submitButton = getByTestId("Button");
@@ -184,13 +209,13 @@ describe("<RegisterForm />", () => {
     fireEvent.change(emailField!, { target: { value: data.email } });
 
     fireEvent.change(phoneNumberField!, {
-      target: { value: data.phoneNumber }
+      target: { value: data.phoneNumber },
     });
 
     fireEvent.change(passwordField!, { target: { value: data.password } });
 
     fireEvent.change(passwordConfirmationField!, {
-      target: { value: data.passwordConfirmation }
+      target: { value: data.passwordConfirmation },
     });
 
     await waitFor(() => expect(submitButton).toBeEnabled());
@@ -198,9 +223,22 @@ describe("<RegisterForm />", () => {
     await fireEvent.submit(submitButton);
 
     await waitFor(() =>
-      expect(mutationsMock.registerMutation).toHaveBeenCalled()
+      expect(mutationsMock.registerMutation).toHaveBeenCalled(),
     );
 
     expect(getByText(errorMessage)).toBeInTheDocument();
+  });
+
+  it("should redirect to login page on register click", () => {
+    const replaceState = jest.spyOn(window.history, "replaceState");
+    const url = "http://localhost/account/login";
+    const { getByText } = render(Component);
+    const link = getByText(/login/);
+
+    fireEvent.click(link);
+
+    expect(replaceState).toHaveBeenCalled();
+
+    expect(replaceState).toHaveBeenCalledWith({}, "", url);
   });
 });

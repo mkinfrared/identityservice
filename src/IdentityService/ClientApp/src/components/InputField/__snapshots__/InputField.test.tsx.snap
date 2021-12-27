@@ -13,18 +13,6 @@ exports[`<InputField /> match the snapshot 1`] = `
         type="text"
         value=""
       />
-      <div
-        class="FakeButton-module_FakeButton__3fGxh TextField-module_prefix__2eBJg"
-        data-testid="FakeButton"
-        role="button"
-        tabindex="0"
-      />
-      <div
-        class="FakeButton-module_FakeButton__3fGxh TextField-module_suffix__2X_LC"
-        data-testid="FakeButton"
-        role="button"
-        tabindex="0"
-      />
     </div>
     <p
       class="Text-module_Text__3EbTM TextField-module_error__3xz6q"

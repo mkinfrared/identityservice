@@ -5,4 +5,12 @@ body {
   font-family: Roboto, sans-serif;
   margin: 0;
   padding: 0;
+
+  a {
+    color: var(--cyan);
+
+    &:visited {
+      color: var(--orange);
+    }
+  }
 }

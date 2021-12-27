@@ -24,7 +24,7 @@ describe("<FakeButton />", () => {
 
     fireEvent.keyPress(fakeButton, {
       charCode: enterCode,
-      target: fakeButton
+      target: fakeButton,
     });
 
     expect(onClick).toHaveBeenCalledTimes(1);
@@ -37,7 +37,7 @@ describe("<FakeButton />", () => {
 
     fireEvent.keyPress(fakeButton, {
       charCode: enterCode,
-      target: fakeButton
+      target: fakeButton,
     });
 
     expect(onClick).not.toHaveBeenCalled();

@@ -9,7 +9,8 @@
     "prettier",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:import/typescript"
+    "plugin:import/typescript",
+    "plugin:react/recommended"
   ],
   "globals": {
     "Atomics": "readonly",
@@ -21,35 +22,43 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 2018,
+    "ecmaVersion": 2021,
     "sourceType": "module"
   },
   "plugins": [
-    "react",
     "@typescript-eslint",
-    "prettier",
     "import",
-    "react-hooks",
-    "no-async-without-await"
+    "prettier",
+    "react",
+    "react-hooks"
   ],
   "rules": {
     // typescript already handles that issue
     "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-use-before-define": "error",
     "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-shadow": "error",
     "arrow-parens": ["error", "always"],
-    "comma-dangle": ["error", "never"],
-    "consistent-return": "off",
-    "jsx-a11y/label-has-associated-control": "off",
-    "jsx-a11y/no-noninteractive-element-interactions": "off",
-    "jsx-a11y/click-events-have-key-events": "off",
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "always-multiline"
+      }
+    ],
+    "consistent-return": "error",
     "import/export": "off",
     "import/extensions": "off",
-    "import/group-exports": ["error"],
+    "import/group-exports": "error",
     "import/no-extraneous-dependencies": "off",
+    // typescript already handles that issue
     "import/no-unresolved": "off",
     "import/no-unused-modules": [
-      1,
+      "error",
       {
         "unusedExports": true
       }
@@ -68,28 +77,36 @@
         "newlines-between": "always",
         "alphabetize": {
           "order": "asc",
-          /* sort in ascending order. Options: ['ignore', 'asc', 'desc'] */ "caseInsensitive": true
+          /* sort in ascending order. Options: ['ignore', 'asc', 'desc'] */
+          "caseInsensitive": true
           /* ignore case. Options: [true, false] */
         }
       }
     ],
     "import/prefer-default-export": "off",
-    "linebreak-style": ["error", "unix"],
-    "no-async-without-await/no-async-without-await": 2,
-    "no-console": ["error", { "allow": ["warn", "error", "info"] }],
-    "no-empty": [
+    "jsx-a11y/label-has-associated-control": [
       "error",
       {
-        "allowEmptyCatch": true
+        "assert": "either",
+        "depth": 2
       }
     ],
+    "linebreak-style": ["error", "unix"],
+    "no-console": [
+      "error",
+      {
+        "allow": ["warn", "error", "info"]
+      }
+    ],
+    "no-empty": "error",
     "no-param-reassign": "off",
     "no-restricted-syntax": ["off", "ForOfStatement"],
     "no-plusplus": "off",
+    // handled by @typescript/no-shadow
     "no-shadow": "off",
     "no-use-before-define": "off",
-    "no-unused-expressions": "off",
-    "no-useless-constructor": "off",
+    "no-unused-expressions": "error",
+    "no-useless-constructor": "error",
     "padding-line-between-statements": [
       "error",
       {
@@ -150,14 +167,14 @@
         "next": ["singleline-let"]
       }
     ],
-    "prettier/prettier": ["error"],
-    "prefer-promise-reject-errors": "off",
+    "prettier/prettier": "error",
+    "prefer-promise-reject-errors": "error",
     "quotes": ["error", "double", "avoid-escape"],
-    "react/button-has-type": "off",
+    "react/button-has-type": "error",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-no-duplicate-props": [
-      2,
+      "error",
       {
         "ignoreCase": false
       }
@@ -169,16 +186,18 @@
       }
     ],
     "react/jsx-one-expression-per-line": "off",
-    "react/prop-types": "off",
     "react/jsx-props-no-spreading": "off",
     "react/jsx-key": [
-      2,
+      "error",
       {
         "checkFragmentShorthand": true
       }
     ],
+    "react/no-unescaped-entities": "off",
+    "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
     "react/state-in-constructor": "off",
+    "require-await": "error",
     "sort-imports": [
       "error",
       {
@@ -186,8 +205,7 @@
         "ignoreDeclarationSort": true,
         "ignoreMemberSort": false
       }
-    ],
-    "@typescript-eslint/explicit-module-boundary-types": "off"
+    ]
   },
   "settings": {
     "import/parsers": {
@@ -206,7 +224,7 @@
     },
     "react": {
       "pragma": "React",
-      "version": "16.13.1"
+      "version": "detect"
     }
   },
   "overrides": [
@@ -236,7 +254,13 @@
       }
     },
     {
-      "files": ["**/*.stories.*"],
+      "files": [
+        "**/*.stories.*",
+        ".storybook/*",
+        "**/__mocks__/*",
+        "rollup.config.js",
+        "reportWebVitals.ts"
+      ],
       "rules": {
         "import/no-unused-modules": "off",
         "import/no-anonymous-default-export": "off"

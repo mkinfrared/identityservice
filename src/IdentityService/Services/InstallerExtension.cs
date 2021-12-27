@@ -5,27 +5,26 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace IdentityService.Services
+namespace IdentityService.Services;
+
+public static class InstallerExtension
 {
-    public static class InstallerExtension
+    public static void InstallServicesInAssembly(this IServiceCollection services,
+        IConfiguration configuration, IWebHostEnvironment env)
     {
-        public static void InstallServicesInAssembly(this IServiceCollection services,
-            IConfiguration configuration, IWebHostEnvironment env)
-        {
-            var classesImplementingIIstaller = typeof(Startup).Assembly.ExportedTypes
-                .Where(installer =>
-                {
-                    return typeof(ISerivce).IsAssignableFrom(installer) &&
-                           !installer.IsInterface && !installer.IsAbstract;
-                });
+        var classesImplementingIInstaller = typeof(Startup).Assembly.ExportedTypes
+            .Where(installer =>
+            {
+                return typeof(ISerivce).IsAssignableFrom(installer) &&
+                       !installer.IsInterface && !installer.IsAbstract;
+            });
 
-            var installers = classesImplementingIIstaller
-                .Select(Activator.CreateInstance)
-                .Cast<ISerivce>()
-                .ToList();
+        var installers = classesImplementingIInstaller
+            .Select(Activator.CreateInstance)
+            .Cast<ISerivce>()
+            .ToList();
 
-            installers.ForEach(installer =>
-                installer.InstallServices(services, configuration, env));
-        }
+        installers.ForEach(installer =>
+            installer.InstallServices(services, configuration, env));
     }
 }

@@ -53,7 +53,7 @@ describe("<LoginForm />", () => {
     const data = {
       username: "marklar",
       password: "foobar",
-      returnUrl
+      returnUrl,
     };
 
     const { getByTestId, container } = render(Component);
@@ -83,10 +83,10 @@ describe("<LoginForm />", () => {
       isAxiosError: true,
       response: {
         data: {
-          Username: ["Invalid login credentials"]
+          Username: ["Invalid login credentials"],
         },
-        status: 400
-      }
+        status: 400,
+      },
     };
 
     mutationsMock.loginMutation.mockRejectedValueOnce(axiosError);
@@ -107,5 +107,18 @@ describe("<LoginForm />", () => {
     await waitFor(() => expect(mutationsMock.loginMutation).toHaveBeenCalled());
 
     expect(getByText(errorMessage)).toBeInTheDocument();
+  });
+
+  it("should redirect to register page", () => {
+    const replaceState = jest.spyOn(window.history, "replaceState");
+    const url = "http://localhost/account/register";
+    const { getByText } = render(Component);
+    const link = getByText(/register/);
+
+    fireEvent.click(link);
+
+    expect(replaceState).toHaveBeenCalled();
+
+    expect(replaceState).toHaveBeenCalledWith({}, "", url);
   });
 });

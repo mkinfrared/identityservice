@@ -11,7 +11,7 @@ const getFormErrors = <T>(data: FormData<T>) => {
     return {
       type: "networkError",
       name: (key.charAt(0).toLowerCase() + key.slice(1)) as Key<T>,
-      message: value[0]
+      message: value[0],
     };
   });
 

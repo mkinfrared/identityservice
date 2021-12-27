@@ -13,18 +13,6 @@ exports[`<TextField /> should match the snapshot 1`] = `
         type="text"
         value=""
       />
-      <div
-        class="FakeButton prefix"
-        data-testid="FakeButton"
-        role="button"
-        tabindex="0"
-      />
-      <div
-        class="FakeButton suffix"
-        data-testid="FakeButton"
-        role="button"
-        tabindex="0"
-      />
     </div>
     <p
       class="Text error"

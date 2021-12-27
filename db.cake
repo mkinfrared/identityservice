@@ -1,6 +1,6 @@
 var target = Argument("target", "Start");
 
-#addin nuget:?package=Cake.DotNetCoreEf&version=0.10.0
+#addin nuget:?package=Cake.DotNetCoreEf&version=1.0.0
 
 /*  Change the output artifacts and their configuration here. */
 var parentDirectory = Directory("./src/IdentityService");

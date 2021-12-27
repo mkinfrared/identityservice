@@ -1,3 +1,5 @@
+@import "../../styles/common";
+
 .Button {
   border: none;
   border-radius: 20px;
@@ -21,5 +23,9 @@
   &:disabled {
     cursor: auto;
     filter: grayscale(0.9);
+  }
+
+  &:focus-visible {
+    @include focusVisible;
   }
 }

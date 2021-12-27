@@ -1,6 +1,8 @@
+using System;
 using System.Threading;
 
 using IdentityService.Controllers;
+using IdentityService.Features.Auth.ConfirmEmail;
 using IdentityService.Features.Auth.Login;
 using IdentityService.Features.Auth.Register;
 
@@ -15,111 +17,153 @@ using Xunit;
 
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
-namespace IdentityService.Unit.Controllers
+namespace IdentityService.Unit.Controllers;
+
+public class AuthControllerTest
 {
-    public class AuthControllerTest
+    private readonly AuthController _controller;
+
+    private readonly Mock<IMediator> _mediatrMock = new();
+
+    public AuthControllerTest()
     {
-        private readonly AuthController _controller;
+        _controller = new AuthController(_mediatrMock.Object);
+    }
 
-        private readonly Mock<IMediator> _mediatrMock = new Mock<IMediator>();
+    [Fact]
+    public async void Login_Should_Return_OK_With_A_String()
+    {
+        var username = "marklar";
+        var password = "foobar";
+        var returnUrl = "/foo/bar";
+        var signInResult = SignInResult.Success;
 
-        public AuthControllerTest()
-        {
-            _controller = new AuthController(_mediatrMock.Object);
-        }
+        var command = new Login.Command(username, password, returnUrl);
 
-        [Fact]
-        public async void Login_Should_Return_OK_With_A_String()
-        {
-            var username = "marklar";
-            var password = "foobar";
-            var returnUrl = "/foo/bar";
-            var signInResult = SignInResult.Success;
+        _mediatrMock
+            .Setup(m =>
+                m.Send(It.IsAny<Login.Command>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(signInResult);
 
-            var command = new Login.Command(username, password, returnUrl);
+        var result = await _controller.Login(command);
 
-            _mediatrMock
-                .Setup(m =>
-                    m.Send(It.IsAny<Login.Command>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(signInResult);
+        Assert.IsType<OkResult>(result);
+    }
 
-            var result = await _controller.Login(command);
+    [Fact]
+    public async void Login_Should_Return_BadRequest()
+    {
+        var username = "marklar";
+        var password = "foobar";
+        var returnUrl = "/foo/bar";
+        var signInResult = SignInResult.Failed;
 
-            Assert.IsType<OkObjectResult>(result);
-            Assert.Equal(returnUrl, ((OkObjectResult)result).Value);
-        }
+        var command = new Login.Command(username, password, returnUrl);
 
-        [Fact]
-        public async void Login_Should_Return_BadRequest()
-        {
-            var username = "marklar";
-            var password = "foobar";
-            var returnUrl = "/foo/bar";
-            var signInResult = SignInResult.Failed;
+        _mediatrMock
+            .Setup(m =>
+                m.Send(It.IsAny<Login.Command>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(signInResult);
 
-            var command = new Login.Command(username, password, returnUrl);
+        var result = await _controller.Login(command);
 
-            _mediatrMock
-                .Setup(m =>
-                    m.Send(It.IsAny<Login.Command>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(signInResult);
+        Assert.IsType<BadRequestObjectResult>(result);
+    }
 
-            var result = await _controller.Login(command);
+    [Fact]
+    public async void Register_Should_Return_Ok()
+    {
+        var username = "marklar";
+        var firstName = "Kyle";
+        var lastName = "Broflowski";
+        var email = "kyle@coons.com";
+        var phoneNumber = "+19519413344";
+        var password = "Foobar";
+        var passwordConfirmation = "Foobar2@";
+        var returnUrl = "/foo/bar";
+        var userId = Guid.NewGuid().ToString();
+        var token = "secret-token";
+        var code = 424242;
 
-            Assert.IsType<BadRequestObjectResult>(result);
-        }
+        var registerResult = new Mock<ConfirmEmail.Command>(userId, token, code);
 
-        [Fact]
-        public async void Register_Should_Return_Ok()
-        {
-            var username = "marklar";
-            var firstName = "Kyle";
-            var lastName = "Broflowski";
-            var email = "kyle@coons.com";
-            var phoneNumber = "+19519413344";
-            var password = "Foobar";
-            var passwordConfirmation = "Foobar2@";
-            var returnUrl = "/foo/bar";
-            var registerResult = IdentityResult.Success;
+        var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
+            password, passwordConfirmation, returnUrl);
 
-            var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-                password, passwordConfirmation, returnUrl);
+        _mediatrMock
+            .Setup(m =>
+                m.Send(It.IsAny<Register.Command>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(registerResult.Object);
 
-            _mediatrMock
-                .Setup(m =>
-                    m.Send(It.IsAny<Register.Command>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(registerResult);
+        var result = await _controller.Register(command);
 
-            var result = await _controller.Register(command);
+        Assert.IsType<OkObjectResult>(result);
+        Assert.Equal(registerResult.Object, ((OkObjectResult)result).Value);
+    }
 
-            Assert.IsType<OkObjectResult>(result);
-            Assert.Equal(returnUrl, ((OkObjectResult)result).Value);
-        }
+    [Fact]
+    public async void Register_Should_Return_BadRequest()
+    {
+        var username = "marklar";
+        var firstName = "Kyle";
+        var lastName = "Broflowski";
+        var email = "kyle@coons.com";
+        var phoneNumber = "+19519413344";
+        var password = "Foobar";
+        var passwordConfirmation = "Foobar2@";
+        var returnUrl = "/foo/bar";
+        ConfirmEmail.Command? registerResult = null;
 
-        [Fact]
-        public async void Register_Should_Return_BadRequest()
-        {
-            var username = "marklar";
-            var firstName = "Kyle";
-            var lastName = "Broflowski";
-            var email = "kyle@coons.com";
-            var phoneNumber = "+19519413344";
-            var password = "Foobar";
-            var passwordConfirmation = "Foobar2@";
-            var returnUrl = "/foo/bar";
-            var registerResult = IdentityResult.Failed();
+        var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
+            password, passwordConfirmation, returnUrl);
 
-            var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-                password, passwordConfirmation, returnUrl);
+        _mediatrMock
+            .Setup(m =>
+                m.Send(It.IsAny<Register.Command>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(registerResult);
 
-            _mediatrMock
-                .Setup(m =>
-                    m.Send(It.IsAny<Register.Command>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(registerResult);
+        var result = await _controller.Register(command);
 
-            var result = await _controller.Register(command);
+        Assert.IsType<BadRequestResult>(result);
+    }
 
-            Assert.IsType<BadRequestResult>(result);
-        }
+    [Fact]
+    public async void VerifyEmail_Should_Return_Ok()
+    {
+        var userId = "marklar";
+        var token = "foobar";
+        var code = 424242;
+        var verificationResult = IdentityResult.Success;
+
+        var command = new ConfirmEmail.Command(userId, token, code);
+
+        _mediatrMock
+            .Setup(m =>
+                m.Send(It.IsAny<ConfirmEmail.Command>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(verificationResult);
+
+        var result = await _controller.VerifyEmail(command);
+
+        Assert.IsType<OkResult>(result);
+    }
+
+    [Fact]
+    public async void VerifyEmail_Should_Return_BadRequest()
+    {
+        var userId = "marklar";
+        var token = "foobar";
+        var code = 424242;
+        var verificationResult = IdentityResult.Failed();
+
+        var command = new ConfirmEmail.Command(userId, token, code);
+
+        _mediatrMock
+            .Setup(m =>
+                m.Send(It.IsAny<ConfirmEmail.Command>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(verificationResult);
+
+        var result = await _controller.VerifyEmail(command);
+
+        Assert.IsType<BadRequestResult>(result);
     }
 }

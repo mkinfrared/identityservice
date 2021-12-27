@@ -15,8 +15,7 @@ const sassModuleRegex = /\.module\.(scss|sass)$/;
 const config = {
   mode: "production",
   entry: {
-    login: path.resolve("./src/pages/Login/index.tsx"),
-    register: path.resolve("./src/pages/Register/index.tsx")
+    main: path.resolve("./src/pages/Main/index.tsx"),
   },
   module: {
     rules: [
@@ -30,11 +29,11 @@ const config = {
             loader: "postcss-loader",
             options: {
               postcssOptions: {
-                plugins: ["autoprefixer"]
-              }
-            }
-          }
-        ]
+                plugins: ["autoprefixer"],
+              },
+            },
+          },
+        ],
       },
       {
         test: cssModuleRegex,
@@ -47,19 +46,19 @@ const config = {
               importLoaders: 2,
               modules: {
                 auto: true,
-                getLocalIdent
-              }
-            }
+                getLocalIdent,
+              },
+            },
           },
           {
             loader: "postcss-loader",
             options: {
               postcssOptions: {
-                plugins: ["autoprefixer"]
-              }
-            }
-          }
-        ]
+                plugins: ["autoprefixer"],
+              },
+            },
+          },
+        ],
       },
       {
         test: sassModuleRegex,
@@ -72,31 +71,31 @@ const config = {
               importLoaders: 2,
               modules: {
                 auto: true,
-                getLocalIdent
-              }
-            }
+                getLocalIdent,
+              },
+            },
           },
           {
             loader: "postcss-loader",
             options: {
               postcssOptions: {
-                plugins: ["autoprefixer"]
-              }
-            }
+                plugins: ["autoprefixer"],
+              },
+            },
           },
           {
-            loader: "resolve-url-loader"
+            loader: "resolve-url-loader",
           },
           {
             loader: "sass-loader",
             options: {
               sassOptions: {
                 sourceMap: true,
-                sourceMapContents: false
-              }
-            }
-          }
-        ]
+                sourceMapContents: false,
+              },
+            },
+          },
+        ],
       },
       {
         test: sassRegex,
@@ -108,59 +107,59 @@ const config = {
             loader: "postcss-loader",
             options: {
               postcssOptions: {
-                plugins: ["autoprefixer"]
-              }
-            }
+                plugins: ["autoprefixer"],
+              },
+            },
           },
           {
-            loader: "resolve-url-loader"
+            loader: "resolve-url-loader",
           },
           {
             loader: "sass-loader",
             options: {
               sassOptions: {
                 sourceMap: true,
-                sourceMapContents: false
-              }
-            }
-          }
-        ]
+                sourceMapContents: false,
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.(js|mjs|jsx|ts|tsx)$/,
-        use: ["babel-loader"]
+        use: ["babel-loader"],
       },
       {
         test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
         loader: require.resolve("file-loader"),
         options: {
-          name: "static/media/[name].[hash].[ext]"
-        }
+          name: "static/media/[name].[hash].[ext]",
+        },
       },
       {
         test: /\.svg$/,
-        use: ["@svgr/webpack"]
-      }
-    ]
+        use: ["@svgr/webpack", "url-loader"],
+      },
+    ],
   },
   resolve: {
     modules: [path.resolve(__dirname, "./src"), "node_modules"],
-    extensions: [".ts", ".tsx", ".js", ".jsx"]
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
   },
   output: {
     path: path.resolve("../wwwroot"),
-    filename: "[name].[hash].js"
+    filename: "[name].[hash].js",
   },
   optimization: {
     minimize: true,
-    minimizer: [new TerserPlugin()]
+    minimizer: [new TerserPlugin()],
   },
   devtool: "source-map",
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({ filename: "[name].[hash].css" }),
-    new Dotenv()
-  ]
+    new Dotenv(),
+  ],
 };
 
 module.exports = config;

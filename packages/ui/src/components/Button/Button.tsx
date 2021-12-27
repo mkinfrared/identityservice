@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 import { classNames } from "@identity-service/core";
 import React, { memo } from "react";
 
@@ -7,8 +8,9 @@ import { ButtonProps } from "./Button.type";
 const Button = ({
   children,
   className,
-  disabled = false,
-  variant = "opaque"
+  type = "button",
+  variant = "opaque",
+  ...rest
 }: ButtonProps) => {
   const classes = [css.Button, className];
 
@@ -25,8 +27,9 @@ const Button = ({
   return (
     <button
       className={classNames(...classes)}
-      disabled={disabled}
       data-testid="Button"
+      type={type}
+      {...rest}
     >
       {children}
     </button>

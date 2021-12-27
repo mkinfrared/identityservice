@@ -8,8 +8,8 @@ export default {
   title: "COMPONENTS/InputField",
   component: InputField,
   parameters: {
-    componentSubtitle: "Subtitle goes here"
-  }
+    componentSubtitle: "Subtitle goes here",
+  },
 } as Meta;
 
 const Template: Story<InputFieldProps> = (args) => (
@@ -24,8 +24,8 @@ Default.args = {};
 
 Default.parameters = {
   docs: {
-    storyDescription: "Story description"
-  }
+    storyDescription: "Story description",
+  },
 };
 
 export { Default };

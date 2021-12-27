@@ -1,16 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <ItemGroup>
-        <PackageReference Include="coverlet.msbuild" Version="3.0.3">
+        <PackageReference Include="coverlet.msbuild" Version="3.1.0">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
         <PackageReference Include="Moq" Version="4.16.1" />
-        <PackageReference Include="ReportGenerator" Version="4.8.9" />
+        <PackageReference Include="ReportGenerator" Version="4.8.13" />
         <PackageReference Include="xunit" Version="2.4.1" />
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
-        <PackageReference Include="coverlet.collector" Version="3.0.3">
+        <PackageReference Include="coverlet.collector" Version="3.1.0">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
@@ -33,14 +33,16 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\IdentityService\IdentityService.csproj" />
+        <ProjectReference Include="..\IdentityService\IdentityService.csproj" />
     </ItemGroup>
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <Version>0.1.1</Version>
         <IsPackable>false</IsPackable>
         <RootNamespace>IdentityService.Unit</RootNamespace>
+        <LangVersion>10</LangVersion>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
 </Project>

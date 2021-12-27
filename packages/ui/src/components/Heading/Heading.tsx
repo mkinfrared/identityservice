@@ -4,18 +4,12 @@ import React, { memo } from "react";
 import css from "./Heading.module.scss";
 import { HeadingProps } from "./Heading.type";
 
-const Heading = ({
-  className,
-  children,
-  onClick,
-  variant = "h3"
-}: HeadingProps) => {
+const Heading = ({ className, children, variant = "h3" }: HeadingProps) => {
   switch (variant) {
     case "h1":
       return (
         <h1
           className={classNames(css.Heading, className)}
-          onClick={onClick}
           data-testid="Heading"
         >
           {children}
@@ -25,7 +19,6 @@ const Heading = ({
       return (
         <h2
           className={classNames(css.Heading, className)}
-          onClick={onClick}
           data-testid="Heading"
         >
           {children}
@@ -35,7 +28,6 @@ const Heading = ({
       return (
         <h3
           className={classNames(css.Heading, className)}
-          onClick={onClick}
           data-testid="Heading"
         >
           {children}
@@ -45,7 +37,6 @@ const Heading = ({
       return (
         <h4
           className={classNames(css.Heading, className)}
-          onClick={onClick}
           data-testid="Heading"
         >
           {children}
@@ -55,7 +46,6 @@ const Heading = ({
       return (
         <h5
           className={classNames(css.Heading, className)}
-          onClick={onClick}
           data-testid="Heading"
         >
           {children}
@@ -65,7 +55,6 @@ const Heading = ({
       return (
         <h6
           className={classNames(css.Heading, className)}
-          onClick={onClick}
           data-testid="Heading"
         >
           {children}

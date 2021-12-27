@@ -1,4 +1,4 @@
-import { createEvent, fireEvent, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import React from "react";
 
 import { TextField } from "./TextField";
@@ -46,7 +46,7 @@ describe("<TextField />", () => {
     const prefix = <div data-testid={testId}>Marklar</div>;
 
     const { getByTestId, queryByTestId } = render(
-      <TextField prefix={prefix} />
+      <TextField prefix={prefix} />,
     );
 
     const textField = getByTestId("TextField");
@@ -62,7 +62,7 @@ describe("<TextField />", () => {
     const suffix = <div data-testid={testId}>Marklar</div>;
 
     const { getByTestId, queryByTestId } = render(
-      <TextField suffix={suffix} />
+      <TextField suffix={suffix} />,
     );
 
     const textField = getByTestId("TextField");
@@ -71,15 +71,5 @@ describe("<TextField />", () => {
     expect(textField.classList).toContain("hasSuffix");
 
     expect(prefixElement).toBeInTheDocument();
-  });
-
-  it("should call preventDefault from event object on click", () => {
-    const { getByTestId } = render(<TextField label="marklar" />);
-    const heading = getByTestId("Heading");
-    const event = createEvent.click(heading);
-
-    fireEvent(heading, event);
-
-    expect(event.defaultPrevented).toBe(true);
   });
 });

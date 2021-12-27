@@ -22,7 +22,7 @@ describe("registerMutation", () => {
       phoneNumber: "42",
       password: "foobar",
       passwordConfirmation: "foobar",
-      redirectUrl: "/foo/bar"
+      redirectUrl: "/foo/bar",
     };
 
     registerMutation(formData);

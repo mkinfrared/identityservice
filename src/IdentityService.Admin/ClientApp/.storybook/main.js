@@ -4,6 +4,6 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/preset-create-react-app",
-    "storybook-design-token"
-  ]
+    "storybook-design-token",
+  ],
 };

@@ -11,7 +11,7 @@ describe("classNames", () => {
       "foo",
       0 && "marklar",
       false && "bar",
-      1 && "bar"
+      1 && "bar",
     ];
 
     const result = classNames(...classes);

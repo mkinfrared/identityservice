@@ -17,7 +17,7 @@ describe("loginMutation", () => {
     const formData = {
       username: "marklar",
       password: "foobar",
-      returnUrl: "/foo/bar"
+      returnUrl: "/foo/bar",
     };
 
     loginMutation(formData);

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unused-modules */
 import "./index.scss";
 
 export { default as Button } from "components/Button";
@@ -15,6 +16,14 @@ export * from "components/FakeButton";
 export { default as Heading } from "components/Heading";
 
 export * from "components/Heading";
+
+export { default as Loading } from "components/Loading";
+
+export * from "components/Loading";
+
+export { default as Portal } from "components/Portal";
+
+export * from "components/Portal";
 
 export { default as Text } from "components/Text";
 

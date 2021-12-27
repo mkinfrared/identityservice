@@ -7,7 +7,7 @@ import { HeadingProps } from "./Heading.type";
 
 export default {
   title: "UI/Heading",
-  component: Heading
+  component: Heading,
 } as Meta;
 
 const Template: Story<HeadingProps> = (args) => (

@@ -1,5 +1,5 @@
 import { classNames, mergeRefs } from "@identity-service/core";
-import React, { memo, useCallback, useRef } from "react";
+import React, { memo } from "react";
 
 import FakeButton from "components/FakeButton";
 import Heading from "components/Heading";
@@ -9,6 +9,7 @@ import css from "./TextField.module.scss";
 import { TextFieldProps } from "./TextField.type";
 
 const TextField = ({
+  autoComplete,
   className,
   error,
   inputRef,
@@ -20,57 +21,41 @@ const TextField = ({
   onSuffixClick,
   prefix,
   suffix,
-  value
+  value,
 }: TextFieldProps) => {
   const classes = [
     css.TextField,
     className,
     !!error && css.hasError,
     !!prefix && css.hasPrefix,
-    !!suffix && css.hasSuffix
+    !!suffix && css.hasSuffix,
   ];
 
-  const ref = useRef<HTMLInputElement | null>(null);
-  const mergedRefs = mergeRefs(inputRef, ref);
-
-  const handleHeadingClick = useCallback(() => {
-    const { current } = ref;
-
-    current?.focus();
-  }, []);
-
-  const handleLabelClick = (event: React.MouseEvent) => {
-    event.preventDefault();
-  };
+  const mergedRefs = mergeRefs(inputRef);
 
   return (
-    <label
-      className={classNames(...classes)}
-      onClick={handleLabelClick}
-      data-testid="TextField"
-    >
+    <label className={classNames(...classes)} data-testid="TextField">
       {label && (
-        <Heading
-          variant="h5"
-          className={css.label}
-          onClick={handleHeadingClick}
-        >
+        <Heading variant="h5" className={css.label}>
           {label}
         </Heading>
       )}
       <div className={css.input}>
+        {prefix && <FakeButton className={css.prefix}>{prefix}</FakeButton>}
         <input
+          autoComplete={autoComplete}
           name={name}
-          onChange={onChange}
           onBlur={onBlur}
-          type={type}
+          onChange={onChange}
           ref={mergedRefs}
+          type={type}
           value={value}
         />
-        <FakeButton className={css.prefix}>{prefix}</FakeButton>
-        <FakeButton className={css.suffix} onClick={onSuffixClick}>
-          {suffix}
-        </FakeButton>
+        {suffix && (
+          <FakeButton className={css.suffix} onClick={onSuffixClick}>
+            {suffix}
+          </FakeButton>
+        )}
       </div>
       <Text className={css.error}>{error}</Text>
     </label>

@@ -5,19 +5,18 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace IdentityService.Services
-{
-    public class DbService : ISerivce
-    {
-        public void InstallServices(IServiceCollection service, IConfiguration configuration,
-            IWebHostEnvironment env)
-        {
-            var connectionString = configuration.GetValue<string>("Postgres");
+namespace IdentityService.Services;
 
-            service.AddDbContext<AppDbContext>(builder =>
-            {
-                builder.UseNpgsql(connectionString);
-            });
-        }
+public class DbService : ISerivce
+{
+    public void InstallServices(IServiceCollection service, IConfiguration configuration,
+        IWebHostEnvironment env)
+    {
+        var connectionString = configuration.GetValue<string>("Postgres");
+
+        service.AddDbContext<AppDbContext>(builder =>
+        {
+            builder.UseNpgsql(connectionString);
+        });
     }
 }

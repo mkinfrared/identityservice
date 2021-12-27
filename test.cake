@@ -2,7 +2,7 @@ var target = Argument("target", "Open");
 
 #addin nuget:?package=Cake.Coverlet&version=2.5.4
 #addin nuget:?package=Cake.Yarn&version=0.4.8
-#tool nuget:?package=ReportGenerator&version=4.8.9
+#tool nuget:?package=ReportGenerator&version=4.8.13
 
 /*  Specify the relative paths to your tests projects here. */
 var testProjectsRelativePaths = new string[]
@@ -11,7 +11,7 @@ var testProjectsRelativePaths = new string[]
 };
 
 /*  Change the output artifacts and their configuration here. */
-uint threshold = 61;
+uint threshold = 80;
 var unitTestDirectory = Directory("./src/IdentityService.UnitTest/");
 var rootDirectory = Directory(".");
 var coverageDirectory = unitTestDirectory + Directory("coverage");
@@ -58,7 +58,8 @@ Task("TestNet")
         CoverletOutputDirectory = coverageDirectory,
         CoverletOutputName = cuberturaFileName,
         Exclude = new List<string> {
-            "[*Views]*"
+            "[*Views]*",
+            "[*]AspNetCoreGeneratedDocument.*"
         },
         ExcludeByFile = new List<string> {
             "**/DbContexts/*",

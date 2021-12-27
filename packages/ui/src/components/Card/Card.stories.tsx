@@ -9,7 +9,7 @@ import { CardProps } from "./Card.type";
 
 export default {
   title: "UI/Card",
-  component: Card
+  component: Card,
 } as Meta;
 
 const Template: Story<CardProps> = (args) => <Card {...args} />;
@@ -23,7 +23,7 @@ Default.args = {
       assumenda ea ipsam laboriosam nam quasi voluptatibus? Qui, repellat.
     </Text>
   ),
-  className: css.Story
+  className: css.Story,
 };
 
 export { Default };

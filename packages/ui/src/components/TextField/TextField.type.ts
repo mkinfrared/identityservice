@@ -1,13 +1,19 @@
 import { FakeButtonProps } from "components/FakeButton";
 
-export type TextFieldProps = {
+type InputAttributes = Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  "prefix"
+>;
+
+export type TextFieldProps = InputAttributes & {
+  autoComplete?: string;
   className?: string;
   error?: string;
   name?: string;
   inputRef?: React.Ref<HTMLInputElement | null | undefined>;
   label?: string;
-  onBlur?: (event: React.ChangeEvent) => any;
-  onChange?: (event: React.ChangeEvent) => any;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onSuffixClick?: FakeButtonProps["onClick"];
   prefix?: React.ReactElement<SVGSVGElement>;
   suffix?: React.ReactElement<SVGSVGElement>;
@@ -21,5 +27,4 @@ export type TextFieldProps = {
     | "tel"
     | "text"
     | "url";
-  value?: string;
 };
