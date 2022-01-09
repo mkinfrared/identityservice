@@ -1,7 +1,7 @@
 import { Meta, Story } from "@storybook/react";
-import { ConfirmEmailForm } from "components/ConfirmEmail/ConfirmEmailForm";
 
-import css from "./ConfirmEmail.module.scss";
+import { ConfirmEmailForm } from "./ConfirmEmailForm";
+import css from "./ConfirmEmailForm.module.scss";
 import { ConfirmEmailFormProps } from "./ConfirmEmailForm.type";
 
 export default {

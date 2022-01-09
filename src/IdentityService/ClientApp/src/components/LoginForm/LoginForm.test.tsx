@@ -48,7 +48,7 @@ describe("<LoginForm />", () => {
   });
 
   it("should call loginMutation on submit", async () => {
-    mutationsMock.loginMutation.mockResolvedValueOnce("");
+    mutationsMock.loginMutation.mockResolvedValueOnce("" as any);
 
     const data = {
       username: "marklar",

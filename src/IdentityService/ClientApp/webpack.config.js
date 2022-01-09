@@ -12,135 +12,134 @@ const cssModuleRegex = /\.module\.css$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
 
+const rules = [
+  {
+    test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+    type: "asset/resource",
+  },
+  {
+    test: cssRegex,
+    exclude: cssModuleRegex,
+    use: [
+      MiniCssExtractPlugin.loader,
+      "css-loader",
+      {
+        loader: "postcss-loader",
+        options: {
+          postcssOptions: {
+            plugins: ["autoprefixer"],
+          },
+        },
+      },
+    ],
+  },
+  {
+    test: cssModuleRegex,
+    use: [
+      MiniCssExtractPlugin,
+      {
+        loader: "css-loader",
+        options: {
+          esModule: true,
+          importLoaders: 2,
+          modules: {
+            auto: true,
+            getLocalIdent,
+          },
+        },
+      },
+      {
+        loader: "postcss-loader",
+        options: {
+          postcssOptions: {
+            plugins: ["autoprefixer"],
+          },
+        },
+      },
+    ],
+  },
+  {
+    test: sassModuleRegex,
+    use: [
+      MiniCssExtractPlugin.loader,
+      {
+        loader: "css-loader",
+        options: {
+          esModule: true,
+          importLoaders: 2,
+          modules: {
+            auto: true,
+            getLocalIdent,
+          },
+        },
+      },
+      {
+        loader: "postcss-loader",
+        options: {
+          postcssOptions: {
+            plugins: ["autoprefixer"],
+          },
+        },
+      },
+      {
+        loader: "resolve-url-loader",
+      },
+      {
+        loader: "sass-loader",
+        options: {
+          sassOptions: {
+            sourceMap: true,
+            sourceMapContents: false,
+          },
+        },
+      },
+    ],
+  },
+  {
+    test: sassRegex,
+    exclude: sassModuleRegex,
+    use: [
+      MiniCssExtractPlugin.loader,
+      "css-loader",
+      {
+        loader: "postcss-loader",
+        options: {
+          postcssOptions: {
+            plugins: ["autoprefixer"],
+          },
+        },
+      },
+      {
+        loader: "resolve-url-loader",
+      },
+      {
+        loader: "sass-loader",
+        options: {
+          sassOptions: {
+            sourceMap: true,
+            sourceMapContents: false,
+          },
+        },
+      },
+    ],
+  },
+  {
+    test: /\.(js|mjs|jsx|ts|tsx)$/,
+    use: ["babel-loader"],
+  },
+  {
+    test: /\.svg$/,
+    use: ["@svgr/webpack", "url-loader"],
+  },
+];
+
 const config = {
   mode: "production",
   entry: {
     main: path.resolve("./src/pages/Main/index.tsx"),
   },
   module: {
-    rules: [
-      {
-        test: cssRegex,
-        exclude: cssModuleRegex,
-        use: [
-          MiniCssExtractPlugin.loader,
-          "css-loader",
-          {
-            loader: "postcss-loader",
-            options: {
-              postcssOptions: {
-                plugins: ["autoprefixer"],
-              },
-            },
-          },
-        ],
-      },
-      {
-        test: cssModuleRegex,
-        use: [
-          MiniCssExtractPlugin,
-          {
-            loader: "css-loader",
-            options: {
-              esModule: true,
-              importLoaders: 2,
-              modules: {
-                auto: true,
-                getLocalIdent,
-              },
-            },
-          },
-          {
-            loader: "postcss-loader",
-            options: {
-              postcssOptions: {
-                plugins: ["autoprefixer"],
-              },
-            },
-          },
-        ],
-      },
-      {
-        test: sassModuleRegex,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: "css-loader",
-            options: {
-              esModule: true,
-              importLoaders: 2,
-              modules: {
-                auto: true,
-                getLocalIdent,
-              },
-            },
-          },
-          {
-            loader: "postcss-loader",
-            options: {
-              postcssOptions: {
-                plugins: ["autoprefixer"],
-              },
-            },
-          },
-          {
-            loader: "resolve-url-loader",
-          },
-          {
-            loader: "sass-loader",
-            options: {
-              sassOptions: {
-                sourceMap: true,
-                sourceMapContents: false,
-              },
-            },
-          },
-        ],
-      },
-      {
-        test: sassRegex,
-        exclude: sassModuleRegex,
-        use: [
-          MiniCssExtractPlugin.loader,
-          "css-loader",
-          {
-            loader: "postcss-loader",
-            options: {
-              postcssOptions: {
-                plugins: ["autoprefixer"],
-              },
-            },
-          },
-          {
-            loader: "resolve-url-loader",
-          },
-          {
-            loader: "sass-loader",
-            options: {
-              sassOptions: {
-                sourceMap: true,
-                sourceMapContents: false,
-              },
-            },
-          },
-        ],
-      },
-      {
-        test: /\.(js|mjs|jsx|ts|tsx)$/,
-        use: ["babel-loader"],
-      },
-      {
-        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-        loader: require.resolve("file-loader"),
-        options: {
-          name: "static/media/[name].[hash].[ext]",
-        },
-      },
-      {
-        test: /\.svg$/,
-        use: ["@svgr/webpack", "url-loader"],
-      },
-    ],
+    rules,
   },
   resolve: {
     modules: [path.resolve(__dirname, "./src"), "node_modules"],
@@ -148,7 +147,8 @@ const config = {
   },
   output: {
     path: path.resolve("../wwwroot"),
-    filename: "[name].[hash].js",
+    filename: "[name].[contenthash].js",
+    assetModuleFilename: "static/media/[name].[contenthash].[ext]",
   },
   optimization: {
     minimize: true,
@@ -157,7 +157,7 @@ const config = {
   devtool: "source-map",
   plugins: [
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({ filename: "[name].[hash].css" }),
+    new MiniCssExtractPlugin({ filename: "[name].[contenthash].css" }),
     new Dotenv(),
   ],
 };

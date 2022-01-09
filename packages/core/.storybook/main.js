@@ -6,4 +6,7 @@ module.exports = {
     "@storybook/preset-create-react-app",
     "storybook-design-token",
   ],
+  core: {
+    builder: "webpack5",
+  },
 };

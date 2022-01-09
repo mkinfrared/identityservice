@@ -2,10 +2,10 @@ import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 import url from "@rollup/plugin-url";
 import svgr from "@svgr/rollup";
-import ts from "@wessberg/rollup-plugin-ts";
 import del from "rollup-plugin-delete";
 import postcss from "rollup-plugin-postcss";
 import { terser } from "rollup-plugin-terser";
+import ts from "rollup-plugin-ts";
 import visualizer from "rollup-plugin-visualizer";
 import ttypescript from "ttypescript";
 

@@ -1,9 +1,9 @@
 import babel from "@rollup/plugin-babel";
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
+import typescript from "@rollup/plugin-typescript";
 import url from "@rollup/plugin-url";
 import svgr from "@svgr/rollup";
-import ts from "@wessberg/rollup-plugin-ts";
 import autoprefixer from "autoprefixer";
 import del from "rollup-plugin-delete";
 import postcss from "rollup-plugin-postcss";
@@ -27,7 +27,7 @@ export default {
     del({ targets: dir }),
     resolve(),
     commonjs(),
-    ts({
+    typescript({
       typescript: ttypescript,
       tsconfig: "./tsconfig.json",
     }),
