@@ -3,11 +3,11 @@
 exports[`<InputField /> match the snapshot 1`] = `
 <div>
   <label
-    class="TextField-module_TextField__3-bgB"
+    class="TextField-module_TextField__QtlJl"
     data-testid="TextField"
   >
     <div
-      class="TextField-module_input__3FXIK"
+      class="TextField-module_input__SPywc"
     >
       <input
         type="text"
@@ -15,7 +15,7 @@ exports[`<InputField /> match the snapshot 1`] = `
       />
     </div>
     <p
-      class="Text-module_Text__3EbTM TextField-module_error__3xz6q"
+      class="Text-module_Text__K8mLZ TextField-module_error__IGQzp"
       data-testid="Text"
     />
   </label>

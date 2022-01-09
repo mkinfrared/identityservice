@@ -28,12 +28,6 @@
     "media-feature-colon-space-before": "never",
     "media-feature-colon-space-after": "always",
     "order/order": ["custom-properties", "declarations"],
-    "order/properties-alphabetical-order": true,
-    "plugin/no-unsupported-browser-features": [
-      true,
-      {
-        "ignore": ["intrinsic-width"]
-      }
-    ]
+    "order/properties-alphabetical-order": true
   }
 }

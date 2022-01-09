@@ -62,7 +62,7 @@
     </ItemGroup>
 
     <Target Name="GenerateStaticFiles" BeforeTargets="BeforeBuild">
-        <Exec WorkingDirectory="ClientApp" Command="yarn build" />
+        <Exec Command="pnpm build" WorkingDirectory="ClientApp" />
     </Target>
 
 </Project>

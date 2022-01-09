@@ -3,7 +3,7 @@
 exports[`<ConfirmEmail /> should match the snapshot 1`] = `
 <div>
   <div
-    class="Card-module_Card__2zjDp ConfirmEmailForm"
+    class="Card-module_Card__BgTd3 ConfirmEmailForm"
     data-testid="Card"
   >
     <form
@@ -15,17 +15,17 @@ exports[`<ConfirmEmail /> should match the snapshot 1`] = `
         email-icon.svg
       </svg>
       <h3
-        class="Heading-module_Heading__iIC9P heading"
+        class="Heading-module_Heading__Wg8yB heading"
         data-testid="Heading"
       >
         Check your email
       </h3>
       <label
-        class="TextField-module_TextField__3-bgB"
+        class="TextField-module_TextField__QtlJl"
         data-testid="TextField"
       >
         <div
-          class="TextField-module_input__3FXIK"
+          class="TextField-module_input__SPywc"
         >
           <input
             autocomplete="off"
@@ -35,7 +35,7 @@ exports[`<ConfirmEmail /> should match the snapshot 1`] = `
           />
         </div>
         <p
-          class="Text-module_Text__3EbTM TextField-module_error__3xz6q"
+          class="Text-module_Text__K8mLZ TextField-module_error__IGQzp"
           data-testid="Text"
         />
       </label>
@@ -43,7 +43,7 @@ exports[`<ConfirmEmail /> should match the snapshot 1`] = `
         class="buttonWrapper"
       >
         <button
-          class="Button-module_Button__2YI99 Button-module_opaque__1DMAu"
+          class="Button-module_Button__0OJEu Button-module_opaque__O0DEF"
           data-testid="Button"
           disabled=""
           type="submit"

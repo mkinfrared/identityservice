@@ -10,10 +10,12 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "coverage": "open-cli coverage/lcov-report/index.html",
-    "updates": "ncu"
+    "updates": "ncu",
+    "clean": "rm -rf node_modules"
   },
   "dependencies": {
-    "@identity-service/ui": "*",
+    "@identity-service/core": "workspace:*",
+    "@identity-service/ui": "workspace:*",
     "axios": "^0.21.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

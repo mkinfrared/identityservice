@@ -3,8 +3,8 @@ image: mcr.microsoft.com/dotnet/sdk:6.0.101-bullseye-slim
 # ### Define variables
 #
 variables:
-  # Name of yarn cache directory
-  YARN_CACHE: ".yarn"
+  # Name of pnpm cache directory
+  PNPM_CACHE: ".pnpm-store"
   # NodeJS version
   NODE_VERSION: "16"
   # Name of directory where restore and build objects are stored.
@@ -25,16 +25,17 @@ before_script:
   - curl -sL https://deb.nodesource.com/setup_$NODE_VERSION.x |  bash -
   - apt-get install -y nodejs
   - node --version
-  - npm install --global yarn
-  - yarn --version
+  - npm install --global pnpm
+  - pnpm --version
+  - pnpm config set store-dir $PNPM_CACHE
   - dotnet restore --packages $NUGET_PACKAGES_DIRECTORY
-  - yarn install --cache-folder $YARN_CACHE
+  - pnpm install
 
 # Cache modules in between jobs
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
-    - $YARN_CACHE
+    - $PNPM_CACHE
     - node_modules/
     - "$SOURCE_CODE_PATH/$IDENTITY_SERVICE/ClientApp/node_modules/"
     - "$SOURCE_CODE_PATH/$IDENTITY_SERVICE_ADMIN/ClientApp/node_modules/"
@@ -59,18 +60,19 @@ stages:
 build:
   stage: build
   script:
-    - yarn build
+    - pnpm build
     - dotnet build --no-restore
 
 lint:
   stage: lint
   script:
-    - yarn lint
+    - pnpm lint
     - dotnet tool restore
     - dotnet format
 
 test:
   stage: test
   script:
+    - npm i -g yarn
     - dotnet tool restore
     - dotnet cake test.cake

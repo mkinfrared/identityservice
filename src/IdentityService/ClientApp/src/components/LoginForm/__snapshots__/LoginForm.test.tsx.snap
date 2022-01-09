@@ -3,30 +3,30 @@
 exports[`<LoginForm /> should match the snapshot 1`] = `
 <div>
   <div
-    class="Card-module_Card__2zjDp LoginForm"
+    class="Card-module_Card__BgTd3 LoginForm"
     data-testid="Card"
   >
     <form
       class="form"
     >
       <h3
-        class="Heading-module_Heading__iIC9P heading"
+        class="Heading-module_Heading__Wg8yB heading"
         data-testid="Heading"
       >
         Login
       </h3>
       <label
-        class="TextField-module_TextField__3-bgB input"
+        class="TextField-module_TextField__QtlJl input"
         data-testid="TextField"
       >
         <h5
-          class="Heading-module_Heading__iIC9P TextField-module_label__SBMQi"
+          class="Heading-module_Heading__Wg8yB TextField-module_label__OD4N8"
           data-testid="Heading"
         >
           Username
         </h5>
         <div
-          class="TextField-module_input__3FXIK"
+          class="TextField-module_input__SPywc"
         >
           <input
             name="username"
@@ -35,22 +35,22 @@ exports[`<LoginForm /> should match the snapshot 1`] = `
           />
         </div>
         <p
-          class="Text-module_Text__3EbTM TextField-module_error__3xz6q"
+          class="Text-module_Text__K8mLZ TextField-module_error__IGQzp"
           data-testid="Text"
         />
       </label>
       <label
-        class="TextField-module_TextField__3-bgB input TextField-module_hasSuffix__3ZA6e"
+        class="TextField-module_TextField__QtlJl input TextField-module_hasSuffix__-bHtc"
         data-testid="TextField"
       >
         <h5
-          class="Heading-module_Heading__iIC9P TextField-module_label__SBMQi"
+          class="Heading-module_Heading__Wg8yB TextField-module_label__OD4N8"
           data-testid="Heading"
         >
           Password
         </h5>
         <div
-          class="TextField-module_input__3FXIK"
+          class="TextField-module_input__SPywc"
         >
           <input
             name="password"
@@ -58,7 +58,7 @@ exports[`<LoginForm /> should match the snapshot 1`] = `
             value=""
           />
           <div
-            class="FakeButton-module_FakeButton__3fGxh TextField-module_suffix__2X_LC"
+            class="FakeButton-module_FakeButton__-W3X5 TextField-module_suffix__SCuij"
             data-testid="FakeButton"
             role="button"
             tabindex="0"
@@ -78,7 +78,7 @@ exports[`<LoginForm /> should match the snapshot 1`] = `
           </div>
         </div>
         <p
-          class="Text-module_Text__3EbTM TextField-module_error__3xz6q"
+          class="Text-module_Text__K8mLZ TextField-module_error__IGQzp"
           data-testid="Text"
         />
       </label>
@@ -90,7 +90,7 @@ exports[`<LoginForm /> should match the snapshot 1`] = `
         value="?someUrl=Marklar"
       />
       <p
-        class="Text-module_Text__3EbTM text"
+        class="Text-module_Text__K8mLZ text"
         data-testid="Text"
       >
         No account yet? Consider
@@ -105,7 +105,7 @@ exports[`<LoginForm /> should match the snapshot 1`] = `
         class="buttonWrapper"
       >
         <button
-          class="Button-module_Button__2YI99 Button-module_opaque__1DMAu"
+          class="Button-module_Button__0OJEu Button-module_opaque__O0DEF"
           data-testid="Button"
           disabled=""
           type="submit"

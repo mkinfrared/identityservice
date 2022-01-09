@@ -16,7 +16,7 @@ public class IdentityServerService : ISerivce
         IWebHostEnvironment env)
     {
         var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
-        var connectionString = configuration.GetValue<string>("Postgres");
+        var connectionString = configuration.GetConnectionString("Postgres");
 
         var builder = service.AddIdentityServer(options =>
             {
