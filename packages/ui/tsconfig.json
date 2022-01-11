@@ -22,7 +22,7 @@
     "sourceMap": true,
     "declaration": true,
     "declarationDir": "lib",
-    "emitDeclarationOnly": true,
+    "declarationMap": true,
     "baseUrl": "src",
     "plugins": [
       {

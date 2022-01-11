@@ -19,7 +19,9 @@
     "strictBindCallApply": true,
     "strictNullChecks": true,
     "declaration": true,
+    "declarationDir": "lib",
     "declarationMap": true,
+    "removeComments": false,
     "baseUrl": "src",
     "plugins": [
       {

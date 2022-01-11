@@ -10,8 +10,7 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "build": "turbo run build",
-    "pretest": "pnpm build",
-    "test": "turbo run test --parallel",
+    "test": "turbo run test",
     "test:update": "pnpm build && turbo run test --parallel --only -- -- -u",
     "lint": "pnpm format && pnpm lint:styles && pnpm lint:ts",
     "lint:ts": "eslint --cache --fix --ext .ts,.tsx .",
@@ -23,8 +22,8 @@
     "prepare": "husky install"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.9.0",
-    "@typescript-eslint/parser": "^5.9.0",
+    "@typescript-eslint/eslint-plugin": "^5.9.1",
+    "@typescript-eslint/parser": "^5.9.1",
     "eslint": "^8.6.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
@@ -40,10 +39,11 @@
     "prettier": "^2.5.1",
     "standard-version": "^9.3.2",
     "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^22.0.0",
     "stylelint-no-unsupported-browser-features": "^5.0.2",
     "stylelint-order": "^4.1.0",
     "stylelint-prettier": "^1.2.0",
-    "turbo": "^1.0.24",
+    "turbo": "^1.0.25",
     "typescript": "^4.5.4"
   },
   "turbo": {
@@ -62,7 +62,9 @@
         "dependsOn": [
           "build"
         ],
-        "outputs": []
+        "outputs": [
+          "coverage/**"
+        ]
       },
       "updates": {
         "cache": false
