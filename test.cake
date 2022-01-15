@@ -7,12 +7,12 @@ var target = Argument("target", "Open");
 /*  Specify the relative paths to your tests projects here. */
 var testProjectsRelativePaths = new string[]
 {
-    "./src/IdentityService.UnitTest/IdentityService.UnitTest.csproj",
+    "./apps/IdentityService.UnitTest/IdentityService.UnitTest.csproj",
 };
 
 /*  Change the output artifacts and their configuration here. */
 uint threshold = 80;
-var unitTestDirectory = Directory("./src/IdentityService.UnitTest/");
+var unitTestDirectory = Directory("./apps/IdentityService.UnitTest/");
 var rootDirectory = Directory(".");
 var coverageDirectory = unitTestDirectory + Directory("coverage");
 var historyDirectory = unitTestDirectory + Directory("history");

@@ -3,7 +3,7 @@ var target = Argument("target", "Start");
 #addin nuget:?package=Cake.DotNetCoreEf&version=1.0.0
 
 /*  Change the output artifacts and their configuration here. */
-var parentDirectory = Directory("./src/IdentityService");
+var parentDirectory = Directory("./apps/IdentityService");
 var userDbContext = "AppDbContext";
 var configurationDbContext = "ConfigurationDbContext";
 var persistedGrantDbContext = "PersistedGrantDbContext";

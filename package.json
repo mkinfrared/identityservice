@@ -3,8 +3,8 @@
   "version": "0.1.1",
   "private": true,
   "workspaces": [
-    "src/IdentityService/ClientApp",
-    "src/IdentityService.Admin/ClientApp",
+    "apps/IdentityService/ClientApp",
+    "apps/IdentityService.Admin/ClientApp",
     "packages/*"
   ],
   "scripts": {
@@ -43,7 +43,7 @@
     "stylelint-no-unsupported-browser-features": "^5.0.2",
     "stylelint-order": "^4.1.0",
     "stylelint-prettier": "^1.2.0",
-    "turbo": "^1.0.25",
+    "turbo": "^1.0.28",
     "typescript": "^4.5.4"
   },
   "turbo": {

@@ -1,5 +1,5 @@
 ﻿packages:
   # all packages in subdirs of packages/ and components/
   - "packages/**"
-  - "src/IdentityService/ClientApp"
-  - "src/IdentityService.Admin/ClientApp"
+  - "apps/IdentityService/ClientApp"
+  - "apps/IdentityService.Admin/ClientApp"

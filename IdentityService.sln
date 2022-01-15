@@ -1,10 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService", "src\IdentityService\IdentityService.csproj", "{3DF4C496-4997-47FB-8568-5414D4C627DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService", "apps\IdentityService\IdentityService.csproj", "{3DF4C496-4997-47FB-8568-5414D4C627DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.UnitTest", "src\IdentityService.UnitTest\IdentityService.UnitTest.csproj", "{469A63A4-D0D4-42F2-87F5-3BD33C6AF64A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.UnitTest", "apps\IdentityService.UnitTest\IdentityService.UnitTest.csproj", "{469A63A4-D0D4-42F2-87F5-3BD33C6AF64A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.Admin", "src\IdentityService.Admin\IdentityService.Admin.csproj", "{353ED69A-FF04-4DBF-8A65-50FE153C34D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.Admin", "apps\IdentityService.Admin\IdentityService.Admin.csproj", "{353ED69A-FF04-4DBF-8A65-50FE153C34D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
