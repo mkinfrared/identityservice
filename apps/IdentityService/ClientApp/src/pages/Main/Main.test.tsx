@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 
 import { Routes } from "pages/Main/Main.type";
 
@@ -23,27 +23,47 @@ describe("<Main />", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("should render <LoginForm /> when path is 'login'", () => {
+  it("should render <LoginForm /> when path is 'login'", async () => {
     const testId = "LoginForm";
-    const { getByTestId } = render(<Main path={Routes.LOGIN} />);
-    const element = getByTestId(testId);
+    const { findByTestId } = render(<Main path={Routes.LOGIN} />);
 
-    expect(element).toBeDefined();
+    await waitFor(async () => {
+      const element = await findByTestId(testId);
+
+      expect(element).toBeDefined();
+    });
   });
 
-  it("should render <RegisterForm /> when path is 'register'", () => {
+  it("should render <RegisterForm /> when path is 'register'", async () => {
     const testId = "RegisterForm";
-    const { getByTestId } = render(<Main path={Routes.REGISTER} />);
-    const element = getByTestId(testId);
+    const { findByTestId } = render(<Main path={Routes.REGISTER} />);
 
-    expect(element).toBeDefined();
+    await waitFor(async () => {
+      const element = await findByTestId(testId);
+
+      expect(element).toBeDefined();
+    });
   });
 
-  it("should render <ConfirmEmailForm /> when path is 'confirmEmail'", () => {
+  it("should render <ConfirmEmailForm /> when path is 'confirmEmail'", async () => {
     const testId = "ConfirmEmailForm";
-    const { getByTestId } = render(<Main path={Routes.CONFIRM_EMAIL} />);
-    const element = getByTestId(testId);
+    const { findByTestId } = render(<Main path={Routes.CONFIRM_EMAIL} />);
 
-    expect(element).toBeDefined();
+    await waitFor(async () => {
+      const element = await findByTestId(testId);
+
+      expect(element).toBeDefined();
+    });
+  });
+
+  it("should render <LoginForm /> as the default value", async () => {
+    const testId = "LoginForm";
+    const { findByTestId } = render(<Main path={"marklar" as any} />);
+
+    await waitFor(async () => {
+      const element = await findByTestId(testId);
+
+      expect(element).toBeDefined();
+    });
   });
 });

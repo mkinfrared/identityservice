@@ -1,10 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ConfirmEmail /> should match the snapshot 1`] = `
+exports[`<ConfirmEmailForm /> should match the snapshot 1`] = `
 <div>
   <div
-    class="Card-module_Card__BgTd3 ConfirmEmailForm"
-    data-testid="Card"
+    class="ConfirmEmailForm"
   >
     <form
       class="form"

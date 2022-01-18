@@ -18,6 +18,13 @@
     "jsx": "react-jsx",
     "baseUrl": "src"
   },
-  "include": ["src"],
-  "exclude": []
+  "include": ["src", "webpack.config.ts"],
+  "exclude": [],
+  "ts-node": {
+    "compilerOptions": {
+      "esModuleInterop": true,
+      "module": "CommonJS",
+      "isolatedModules": false
+    }
+  }
 }

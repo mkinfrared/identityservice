@@ -4,4 +4,4 @@ import ReactDOM from "react-dom";
 
 import Main from "./Main.container";
 
-ReactDOM.render(<Main />, document.getElementById("client-app"));
+ReactDOM.render(<Main />, document.getElementById("app"));

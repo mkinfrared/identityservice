@@ -4,7 +4,7 @@ import {
   getFormErrors,
   usePasswordVisibility,
 } from "@identity-service/core";
-import { Button, Card, Heading, Text } from "@identity-service/ui";
+import { Button, Heading, Text } from "@identity-service/ui";
 import { MouseEventHandler, memo } from "react";
 import { useForm } from "react-hook-form";
 
@@ -87,7 +87,7 @@ const RegisterForm = ({ className, returnUrl }: RegisterFormProps) => {
   };
 
   return (
-    <Card className={classNames(css.RegisterForm, className)}>
+    <div className={classNames(css.RegisterForm, className)}>
       <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
         <Heading className={css.heading}>Register</Heading>
         <InputField
@@ -157,7 +157,7 @@ const RegisterForm = ({ className, returnUrl }: RegisterFormProps) => {
           </Button>
         </div>
       </form>
-    </Card>
+    </div>
   );
 };
 

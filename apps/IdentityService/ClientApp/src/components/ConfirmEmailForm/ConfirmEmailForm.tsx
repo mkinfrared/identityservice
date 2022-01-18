@@ -1,6 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { classNames } from "@identity-service/core";
-import { Button, Card, Heading } from "@identity-service/ui";
+import { Button, Heading } from "@identity-service/ui";
 import { memo } from "react";
 import { useForm } from "react-hook-form";
 
@@ -43,14 +43,14 @@ const ConfirmEmailForm = ({ className, returnUrl }: ConfirmEmailFormProps) => {
 
       await verifyEmailMutation(postData);
 
-      window.location.href = returnUrl;
+      window.location.assign(returnUrl);
     } catch (e) {
       console.error(e);
     }
   };
 
   return (
-    <Card className={classNames(css.ConfirmEmailForm, className)}>
+    <div className={classNames(css.ConfirmEmailForm, className)}>
       <form className={css.form} onSubmit={handleSubmit(submit)}>
         <Email className={css.icon} />
         <Heading className={css.heading}>Check your email</Heading>
@@ -64,7 +64,7 @@ const ConfirmEmailForm = ({ className, returnUrl }: ConfirmEmailFormProps) => {
           </Button>
         </div>
       </form>
-    </Card>
+    </div>
   );
 };
 

@@ -25,6 +25,10 @@ export { default as Portal } from "components/Portal";
 
 export * from "components/Portal";
 
+export { default as Spinner } from "components/Spinner";
+
+export * from "components/Spinner";
+
 export { default as Text } from "components/Text";
 
 export * from "components/Text";

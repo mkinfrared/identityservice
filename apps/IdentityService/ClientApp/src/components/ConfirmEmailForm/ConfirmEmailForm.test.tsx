@@ -6,8 +6,8 @@ import { ConfirmEmailForm } from "./ConfirmEmailForm";
 
 jest.mock("api/mutations");
 
-describe("<ConfirmEmail />", () => {
-  const { sessionStorage } = window;
+describe("<ConfirmEmailForm />", () => {
+  const { sessionStorage, location } = window;
   const returnUrl = "https://foobar.com/";
   const Component = <ConfirmEmailForm returnUrl={returnUrl} />;
   const mutationsMock = mutations as jest.Mocked<typeof mutations>;
@@ -20,12 +20,25 @@ describe("<ConfirmEmail />", () => {
         getItem: jest.fn(),
       },
     });
+
+    Object.defineProperty(window, "location", {
+      configurable: true,
+      value: {
+        ...location,
+        assign: jest.fn(),
+      },
+    });
   });
 
   afterAll(() => {
     Object.defineProperty(window, "sessionStorage", {
       configurable: true,
       value: sessionStorage,
+    });
+
+    Object.defineProperty(window, "location", {
+      configurable: true,
+      value: location,
     });
   });
 
@@ -98,6 +111,6 @@ describe("<ConfirmEmail />", () => {
       expect(mutationsMock.verifyEmailMutation).not.toHaveBeenCalled(),
     );
 
-    expect(window.location.href).not.toBe(returnUrl);
+    expect(window.location.assign).not.toHaveBeenCalled();
   });
 });

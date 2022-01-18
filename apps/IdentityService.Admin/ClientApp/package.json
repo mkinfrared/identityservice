@@ -10,8 +10,7 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "coverage": "open-cli coverage/lcov-report/index.html",
-    "updates": "ncu",
-    "clean": "rm -rf node_modules"
+    "updates": "ncu"
   },
   "dependencies": {
     "@identity-service/core": "workspace:*",

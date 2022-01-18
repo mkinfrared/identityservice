@@ -4,7 +4,7 @@ import {
   getFormErrors,
   usePasswordVisibility,
 } from "@identity-service/core";
-import { Button, Card, Heading, Text } from "@identity-service/ui";
+import { Button, Heading, Text } from "@identity-service/ui";
 import { AxiosError } from "axios";
 import { MouseEventHandler, memo } from "react";
 import { useForm } from "react-hook-form";
@@ -70,7 +70,7 @@ const LoginForm = ({ className, returnUrl }: LoginFormProps) => {
   };
 
   return (
-    <Card className={classNames(css.LoginForm, className)}>
+    <div className={classNames(css.LoginForm, className)}>
       <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
         <Heading className={css.heading}>Login</Heading>
         <InputField
@@ -101,7 +101,7 @@ const LoginForm = ({ className, returnUrl }: LoginFormProps) => {
           </Button>
         </div>
       </form>
-    </Card>
+    </div>
   );
 };
 
