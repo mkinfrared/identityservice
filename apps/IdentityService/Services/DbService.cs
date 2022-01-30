@@ -9,14 +9,14 @@ namespace IdentityService.Services;
 
 public class DbService : ISerivce
 {
-    public void InstallServices(IServiceCollection service, IConfiguration configuration,
-        IWebHostEnvironment env)
-    {
-      var connectionString = configuration.GetConnectionString("Postgres");
+  public void InstallServices(IServiceCollection service, IConfiguration configuration,
+    IWebHostEnvironment env)
+  {
+    var connectionString = configuration.GetConnectionString("Postgres");
 
-        service.AddDbContext<AppDbContext>(builder =>
-        {
-            builder.UseNpgsql(connectionString);
-        });
-    }
+    service.AddDbContext<AppDbContext>(builder =>
+    {
+      builder.UseNpgsql(connectionString);
+    });
+  }
 }

@@ -12,19 +12,19 @@ namespace IdentityService;
 
 public static class Config
 {
-    public static IEnumerable<IdentityResource> IdentityResources =>
-        new IdentityResource[] {new IdentityResources.OpenId(), new IdentityResources.Profile()};
+  public static IEnumerable<IdentityResource> IdentityResources =>
+    new IdentityResource[] {new IdentityResources.OpenId(), new IdentityResources.Profile()};
 
-    public static IEnumerable<ApiScope> ApiScopes =>
-        new[]
-        {
+  public static IEnumerable<ApiScope> ApiScopes =>
+    new[]
+    {
             new ApiScope("scope1"), new ApiScope("scope2"), new ApiScope("OrdersApi"),
             new ApiScope("ClientMvc")
-        };
+    };
 
-    public static IEnumerable<Client> Clients =>
-        new[]
-        {
+  public static IEnumerable<Client> Clients =>
+    new[]
+    {
             // m2m client credentials flow client
             new Client
             {
@@ -128,10 +128,10 @@ public static class Config
                 // IdentityTokenLifetime = 5
                 // AlwaysIncludeUserClaimsInIdToken = true
             }
-        };
+    };
 
-    public static IEnumerable<ApiResource> Resources => new[]
-    {
+  public static IEnumerable<ApiResource> Resources => new[]
+  {
         new ApiResource {Name = "OrdersApi", Scopes = {"OrdersApi"}},
         new ApiResource {Name = "ClientMvc", Scopes = {"ClientMvc"}}
     };

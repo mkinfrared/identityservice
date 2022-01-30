@@ -10,11 +10,11 @@ namespace IdentityService.Services;
 
 public class MediatrService : ISerivce
 {
-    public void InstallServices(IServiceCollection services, IConfiguration configuration,
-        IWebHostEnvironment env)
-    {
-        var assembly = Assembly.GetExecutingAssembly();
+  public void InstallServices(IServiceCollection services, IConfiguration configuration,
+    IWebHostEnvironment env)
+  {
+    var assembly = Assembly.GetExecutingAssembly();
 
-        services.AddMediatR(assembly);
-    }
+    services.AddMediatR(assembly);
+  }
 }

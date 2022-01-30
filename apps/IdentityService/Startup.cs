@@ -11,59 +11,59 @@ namespace IdentityService;
 
 public class Startup
 {
-    private readonly IWebHostEnvironment _env;
+  private readonly IWebHostEnvironment _env;
 
-    public Startup(IConfiguration configuration, IWebHostEnvironment env)
+  public Startup(IConfiguration configuration, IWebHostEnvironment env)
+  {
+    _env = env;
+    _configuration = configuration;
+  }
+
+  private IConfiguration _configuration { get; }
+
+  // This method gets called by the runtime. Use this method to add services to the container.
+  public void ConfigureServices(IServiceCollection services)
+  {
+    services.InstallServicesInAssembly(_configuration, _env);
+  }
+
+  // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+  public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+  {
+    if (env.IsDevelopment())
     {
-        _env = env;
-        _configuration = configuration;
+      app.UseDeveloperExceptionPage();
+    }
+    else
+    {
+      app.UseExceptionHandler("/Error");
+
+      // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+      app.UseHsts();
     }
 
-    private IConfiguration _configuration { get; }
+    app.UseHttpsRedirection();
 
-    // This method gets called by the runtime. Use this method to add services to the container.
-    public void ConfigureServices(IServiceCollection services)
+    var extensionProvider = new FileExtensionContentTypeProvider();
+    extensionProvider.Mappings.Add(".avif", "image/avif");
+
+    app.UseStaticFiles(new StaticFileOptions
     {
-        services.InstallServicesInAssembly(_configuration, _env);
-    }
+      ContentTypeProvider = extensionProvider, ServeUnknownFileTypes = true
+    });
 
-    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    app.UseRouting();
+
+    app.UseIdentityServer();
+
+    app.UseAuthorization();
+    app.UseAuthentication();
+
+    app.UseEndpoints(endpoints =>
     {
-        if (env.IsDevelopment())
-        {
-            app.UseDeveloperExceptionPage();
-        }
-        else
-        {
-            app.UseExceptionHandler("/Error");
-
-            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-            app.UseHsts();
-        }
-
-        app.UseHttpsRedirection();
-
-        var extensionProvider = new FileExtensionContentTypeProvider();
-        extensionProvider.Mappings.Add(".avif", "image/avif");
-
-        app.UseStaticFiles(new StaticFileOptions
-        {
-            ContentTypeProvider = extensionProvider, ServeUnknownFileTypes = true
-        });
-
-        app.UseRouting();
-
-        app.UseIdentityServer();
-
-        app.UseAuthorization();
-        app.UseAuthentication();
-
-        app.UseEndpoints(endpoints =>
-        {
-            endpoints.MapControllerRoute(
+      endpoints.MapControllerRoute(
                 "default",
                 "{controller}/{action=Index}/{id?}");
-        });
-    }
+    });
+  }
 }

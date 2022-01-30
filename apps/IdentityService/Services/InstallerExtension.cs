@@ -9,22 +9,22 @@ namespace IdentityService.Services;
 
 public static class InstallerExtension
 {
-    public static void InstallServicesInAssembly(this IServiceCollection services,
-        IConfiguration configuration, IWebHostEnvironment env)
-    {
-        var classesImplementingIInstaller = typeof(Startup).Assembly.ExportedTypes
-            .Where(installer =>
-            {
-                return typeof(ISerivce).IsAssignableFrom(installer) &&
-                       !installer.IsInterface && !installer.IsAbstract;
-            });
+  public static void InstallServicesInAssembly(this IServiceCollection services,
+    IConfiguration configuration, IWebHostEnvironment env)
+  {
+    var classesImplementingIInstaller = typeof(Startup).Assembly.ExportedTypes
+      .Where(installer =>
+      {
+        return typeof(ISerivce).IsAssignableFrom(installer) &&
+               !installer.IsInterface && !installer.IsAbstract;
+      });
 
-        var installers = classesImplementingIInstaller
-            .Select(Activator.CreateInstance)
-            .Cast<ISerivce>()
-            .ToList();
+    var installers = classesImplementingIInstaller
+      .Select(Activator.CreateInstance)
+      .Cast<ISerivce>()
+      .ToList();
 
-        installers.ForEach(installer =>
-            installer.InstallServices(services, configuration, env));
-    }
+    installers.ForEach(installer =>
+      installer.InstallServices(services, configuration, env));
+  }
 }
