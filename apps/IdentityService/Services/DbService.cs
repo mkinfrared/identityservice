@@ -1,3 +1,5 @@
+using System;
+
 using IdentityService.DbContexts;
 
 using Microsoft.AspNetCore.Hosting;
@@ -13,6 +15,12 @@ public class DbService : ISerivce
     IWebHostEnvironment env)
   {
     var connectionString = configuration.GetConnectionString("Postgres");
+
+    /**
+         * https://stackoverflow.com/questions/69961449/net6-and-datetime-problem-cannot-write-datetime-with-kind-utc-to-postgresql-ty
+         * https://github.com/npgsql/doc/blob/main/conceptual/Npgsql/types/datetime.md/
+         */
+    AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
     service.AddDbContext<AppDbContext>(builder =>
     {

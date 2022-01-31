@@ -1,16 +1,9 @@
 {
   "profiles": {
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
     "IdentityService.Client": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:10001;http://localhost:10000",
+      "applicationUrl": "https://localhost:4001;http://localhost:4000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

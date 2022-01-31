@@ -62,8 +62,9 @@ public class AuthController : ControllerBase
   }
 
   [HttpGet]
-  public async Task<IActionResult> Logout(Logout.Command command)
+  public async Task<IActionResult> Logout(string logoutId)
   {
+    var command = new Logout.Command(logoutId);
     var result = await _mediator.Send(command);
 
     if (string.IsNullOrEmpty(result))

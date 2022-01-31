@@ -18,7 +18,7 @@ public static class Config
   public static IEnumerable<ApiScope> ApiScopes =>
     new[]
     {
-            new ApiScope("scope1"), new ApiScope("scope2"), new ApiScope("OrdersApi"),
+      new ApiScope("scope1"), new ApiScope("scope2"), new ApiScope("OrdersApi"),
             new ApiScope("ClientMvc")
     };
 
@@ -87,7 +87,7 @@ public static class Config
             },
             new Client
             {
-                ClientId = "spa_client",
+              ClientId = "identity_admin_client",
                 AllowedGrantTypes = GrantTypes.Code,
 
                 // AllowedGrantTypes = GrantTypes.Implicit,

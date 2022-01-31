@@ -173,14 +173,12 @@ public class AuthControllerTest
   {
     var logoutId = "";
 
-    var command = new Logout.Command(logoutId);
-
     _mediatrMock
       .Setup(m =>
         m.Send(It.IsAny<Logout.Command>(), It.IsAny<CancellationToken>()))
       .ReturnsAsync("");
 
-    var result = await _controller.Logout(command);
+    var result = await _controller.Logout(logoutId);
 
     Assert.IsType<RedirectToActionResult>(result);
 
@@ -195,14 +193,12 @@ public class AuthControllerTest
     var logoutId = "valid-logout-id";
     var commandResult = "foobar";
 
-    var command = new Logout.Command(logoutId);
-
     _mediatrMock
       .Setup(m =>
         m.Send(It.IsAny<Logout.Command>(), It.IsAny<CancellationToken>()))
       .ReturnsAsync(commandResult);
 
-    var result = await _controller.Logout(command);
+    var result = await _controller.Logout(logoutId);
 
     Assert.IsType<RedirectResult>(result);
 

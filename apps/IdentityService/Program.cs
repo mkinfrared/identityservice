@@ -53,7 +53,14 @@ public class Program
       {
         Log.Information("Seeding database...");
         var config = host.Services.GetRequiredService<IConfiguration>();
-        var connectionString = config.GetValue<string>("Postgres");
+        var connectionString = config.GetConnectionString("Postgres");
+
+        /**
+         * https://stackoverflow.com/questions/69961449/net6-and-datetime-problem-cannot-write-datetime-with-kind-utc-to-postgresql-ty
+         * https://github.com/npgsql/doc/blob/main/conceptual/Npgsql/types/datetime.md/
+         */
+        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
         SeedData.EnsureSeedData(connectionString);
 
         using (var scope = host.Services.CreateScope())

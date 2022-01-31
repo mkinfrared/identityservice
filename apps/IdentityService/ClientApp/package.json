@@ -8,7 +8,7 @@
     "build:analyze": "cross-env webpack && webpack-bundle-analyzer ../wwwroot/stats.json",
     "build:watch": "cross-env NODE_ENV=development webpack",
     "test": "cross-env CI=true react-scripts test --collectCoverage",
-    "storybook": "start-storybook -p 6006 -s public",
+    "storybook": "start-storybook -p 6008 -s public",
     "build-storybook": "build-storybook -s public",
     "coverage": "open-cli coverage/lcov-report/index.html",
     "updates": "ncu"

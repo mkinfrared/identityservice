@@ -22,6 +22,7 @@ public class IdentityServerService : ISerivce
       {
         options.Authentication.CookieLifetime = TimeSpan.FromDays(30);
         options.Authentication.CookieSlidingExpiration = true;
+        options.UserInteraction.LogoutUrl = "/Auth/Logout";
       })
       .AddAspNetIdentity<User>()
       .AddConfigurationStore(options =>
