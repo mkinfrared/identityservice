@@ -32,4 +32,13 @@ public class AccountControllerTest
     Assert.NotNull(result);
     Assert.IsType<ViewResult>(result);
   }
+
+  [Fact]
+  public void ConfirmEmail_Should_Return_A_View()
+  {
+    var result = _controller.ConfirmEmail();
+
+    Assert.NotNull(result);
+    Assert.IsType<ViewResult>(result);
+  }
 }

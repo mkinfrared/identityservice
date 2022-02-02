@@ -12,7 +12,8 @@ public class UserTest
   public void Should_Have_Getters_And_Setters_For_DateOfBirth_Property()
   {
     var user = new User();
-    var date = DateTime.Now;
+    var date = DateOnly.FromDateTime(DateTime.Now);
+    ;
 
     user.DateOfBirth = date;
 

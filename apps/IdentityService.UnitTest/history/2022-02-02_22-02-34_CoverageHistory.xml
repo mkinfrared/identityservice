@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<coverage date="2022-02-02_22-02-34" tag="" version="1.0">
+    <assembly name="IdentityService">
+        <class name="IdentityService.Controllers.AccountController" coverablelines="9"
+            coveredbranches="0" coveredlines="9" totalbranches="0" totallines="24" />
+        <class name="IdentityService.Controllers.AuthController" coverablelines="33"
+            coveredbranches="8" coveredlines="33" totalbranches="8" totallines="77" />
+        <class name="IdentityService.Dto.LoginDto" coverablelines="3" coveredbranches="0"
+            coveredlines="3" totalbranches="0" totallines="10" />
+        <class name="IdentityService.Entities.User" coverablelines="3" coveredbranches="0"
+            coveredlines="3" totalbranches="0" totallines="12" />
+        <class name="IdentityService.Extensions.DistributedClassExtensions" coverablelines="15"
+            coveredbranches="0" coveredlines="0" totalbranches="4" totallines="37" />
+        <class name="IdentityService.Features.Auth.ConfirmEmail.ConfirmEmail" coverablelines="36"
+            coveredbranches="6" coveredlines="36" totalbranches="6" totallines="92" />
+        <class name="IdentityService.Features.Auth.Login.Login" coverablelines="32"
+            coveredbranches="2" coveredlines="32" totalbranches="2" totallines="84" />
+        <class name="IdentityService.Features.Auth.Logout.Logout" coverablelines="16"
+            coveredbranches="0" coveredlines="16" totalbranches="0" totallines="53" />
+        <class name="IdentityService.Features.Auth.Register.Register" coverablelines="118"
+            coveredbranches="2" coveredlines="118" totalbranches="2" totallines="214" />
+        <class name="IdentityService.Utils.RandomNumberGenerator" coverablelines="9"
+            coveredbranches="2" coveredlines="9" totalbranches="2" totallines="20" />
+    </assembly>
+</coverage>

@@ -121,7 +121,7 @@ public class SeedData
   {
     var userManager = serviceProvider.GetService<UserManager<User>>();
 
-    var user = new User {UserName = "admin", DateOfBirth = new DateTime(1988, 9, 18)};
+    var user = new User {UserName = "admin", DateOfBirth = new DateOnly(1988, 9, 18)};
 
     var result = userManager.CreateAsync(user, "Pass123#").GetAwaiter().GetResult();
 

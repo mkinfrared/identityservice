@@ -2,7 +2,7 @@ var target = Argument("target", "Open");
 
 #addin nuget:?package=Cake.Coverlet&version=2.5.4
 #addin nuget:?package=Cake.Yarn&version=0.4.8
-#tool nuget:?package=ReportGenerator&version=4.8.13
+#tool nuget:?package=ReportGenerator&version=5.0.3
 
 /*  Specify the relative paths to your tests projects here. */
 var testProjectsRelativePaths = new string[]
@@ -104,7 +104,7 @@ Task("Report")
     .IsDependentOn("TestNet")
     .Does(() =>
 {
-    if (IsRunningOnWindows()) {
+    if (IsRunningOnWindows() || IsRunningOnMacOs()) {
         var reportSettings = new ReportGeneratorSettings
         {
             ReportTypes = { ReportGeneratorReportType.HtmlInline_AzurePipelines_Dark },
@@ -118,13 +118,23 @@ Task("Open")
     .IsDependentOn("Report")
     .Does(() =>
     {
+        var netReportPath = coverageDirectory + File("index.html");
+
         if (IsRunningOnWindows())
         {
-            Information("Windows!");
-            var netReportPath = coverageDirectory + File("index.html");
+            Information("Windows");
 
             StartProcess("cmd", new ProcessSettings {
                 Arguments = $"/C start \"\" {netReportPath}"
+            });
+        }
+
+        if (IsRunningOnMacOs())
+        {
+            Information("macOS");
+
+            StartProcess("open", new ProcessSettings {
+                Arguments = $"{netReportPath}"
             });
         }
     });

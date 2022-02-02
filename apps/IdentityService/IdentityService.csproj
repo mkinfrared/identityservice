@@ -32,7 +32,7 @@
         <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="6.0.1" />
         <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.1" />
         <PackageReference Include="NETCore.MailKit" Version="2.0.3" />
-        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.2" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.3" />
         <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
         <PackageReference Include="StackExchange.Redis" Version="2.2.88" />
     </ItemGroup>
@@ -40,6 +40,7 @@
     <ItemGroup>
         <None Include="ClientApp\webpack.config.js" />
         <Content Include="Emails\*" CopyToOutputDirectory="Always" />
+        <Content Remove="Views\Shared\_Layout.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
@@ -82,6 +83,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Folder Include="apps\IdentityService\Migrations\IdentityDb" />
         <Folder Include="wwwroot" />
     </ItemGroup>
 
@@ -89,6 +91,13 @@
         <None Include="ClientApp\.storybook\main.js" />
         <None Include="ClientApp\.storybook\manager.js" />
         <None Include="ClientApp\.storybook\preview.js" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="apps\IdentityService\Migrations\IdentityDb\20220201160334_marklar.cs" />
+        <Compile Remove="apps\IdentityService\Migrations\IdentityDb\20220201160334_marklar.Designer.cs" />
+        <Compile Remove="apps\IdentityService\Migrations\20220201164531_January.cs" />
+        <Compile Remove="apps\IdentityService\Migrations\20220201164531_January.Designer.cs" />
     </ItemGroup>
 
     <Target Name="GenerateStaticFiles" BeforeTargets="BeforeBuild">
