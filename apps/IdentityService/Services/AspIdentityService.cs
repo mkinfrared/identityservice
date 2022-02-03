@@ -10,10 +10,14 @@ namespace IdentityService.Services;
 
 public class AspIdentityService : ISerivce
 {
-  public void InstallServices(IServiceCollection service, IConfiguration configuration,
-    IWebHostEnvironment env)
+  public void InstallServices(
+    IServiceCollection service,
+    IConfiguration configuration,
+    IWebHostEnvironment env
+  )
   {
-    service.AddIdentity<User, IdentityRole>()
+    service
+      .AddIdentity<User, IdentityRole>()
       .AddEntityFrameworkStores<AppDbContext>()
       .AddDefaultTokenProviders();
   }

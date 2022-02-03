@@ -47,10 +47,9 @@ public class Startup
     var extensionProvider = new FileExtensionContentTypeProvider();
     extensionProvider.Mappings.Add(".avif", "image/avif");
 
-    app.UseStaticFiles(new StaticFileOptions
-    {
-      ContentTypeProvider = extensionProvider, ServeUnknownFileTypes = true
-    });
+    app.UseStaticFiles(
+      new StaticFileOptions {ContentTypeProvider = extensionProvider, ServeUnknownFileTypes = true}
+    );
 
     app.UseRouting();
 
@@ -59,11 +58,11 @@ public class Startup
     app.UseAuthorization();
     app.UseAuthentication();
 
-    app.UseEndpoints(endpoints =>
-    {
-      endpoints.MapControllerRoute(
-                "default",
-                "{controller}/{action=Index}/{id?}");
-    });
+    app.UseEndpoints(
+      endpoints =>
+      {
+        endpoints.MapControllerRoute("default", "{controller}/{action=Index}/{id?}");
+      }
+    );
   }
 }

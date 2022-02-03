@@ -8,8 +8,13 @@ namespace IdentityService.Extensions;
 
 public static class DistributedClassExtensions
 {
-  public static async Task SetRecordAsync<T>(this IDistributedCache cache, string key, T data,
-    TimeSpan? absoluteExpireTime = null, TimeSpan? slidingExpiration = null)
+  public static async Task SetRecordAsync<T>(
+    this IDistributedCache cache,
+    string key,
+    T data,
+    TimeSpan? absoluteExpireTime = null,
+    TimeSpan? slidingExpiration = null
+  )
   {
     var options = new DistributedCacheEntryOptions();
 

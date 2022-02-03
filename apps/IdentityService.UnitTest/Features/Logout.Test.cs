@@ -45,11 +45,14 @@ public class LogoutTest
 
     var command = new Logout.Command(logoutId);
 
-    _interactionServiceMock.Setup(service => service.GetLogoutContextAsync(command.LogoutId))
+    _interactionServiceMock
+      .Setup(service => service.GetLogoutContextAsync(command.LogoutId))
       .ReturnsAsync(logoutRequest);
 
-    var commandHandler =
-      new Logout.CommandHandler(_signInManagerMock.Object, _interactionServiceMock.Object);
+    var commandHandler = new Logout.CommandHandler(
+      _signInManagerMock.Object,
+      _interactionServiceMock.Object
+    );
 
     var result = await commandHandler.Handle(command, new CancellationToken());
 

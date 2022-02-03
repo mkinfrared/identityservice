@@ -22,10 +22,12 @@ public class Startup
     services.AddControllersWithViews();
 
     // In production, the React files will be served from this directory
-    services.AddSpaStaticFiles(configuration =>
-    {
-      configuration.RootPath = "ClientApp/build";
-    });
+    services.AddSpaStaticFiles(
+      configuration =>
+      {
+        configuration.RootPath = "ClientApp/build";
+      }
+    );
   }
 
   // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,21 +51,23 @@ public class Startup
 
     app.UseRouting();
 
-    app.UseEndpoints(endpoints =>
-    {
-      endpoints.MapControllerRoute(
-                "default",
-                "{controller}/{action=Index}/{id?}");
-    });
-
-    app.UseSpa(spa =>
-    {
-      spa.Options.SourcePath = "ClientApp";
-
-      if (env.IsDevelopment())
+    app.UseEndpoints(
+      endpoints =>
       {
-        spa.UseReactDevelopmentServer("start");
+        endpoints.MapControllerRoute("default", "{controller}/{action=Index}/{id?}");
       }
-    });
+    );
+
+    app.UseSpa(
+      spa =>
+      {
+        spa.Options.SourcePath = "ClientApp";
+
+        if (env.IsDevelopment())
+        {
+          spa.UseReactDevelopmentServer("start");
+        }
+      }
+    );
   }
 }

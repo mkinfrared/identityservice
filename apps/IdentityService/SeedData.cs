@@ -25,22 +25,31 @@ public class SeedData
   {
     var services = new ServiceCollection();
 
-    services.AddOperationalDbContext(options =>
-    {
-      options.ConfigureDbContext = db => db.UseNpgsql(connectionString,
-                sql => sql.MigrationsAssembly(typeof(SeedData).Assembly.FullName));
-    });
+    services.AddOperationalDbContext(
+      options =>
+      {
+        options.ConfigureDbContext = db =>
+          db.UseNpgsql(
+            connectionString,
+            sql => sql.MigrationsAssembly(typeof(SeedData).Assembly.FullName)
+          );
+      }
+    );
 
-    services.AddConfigurationDbContext(options =>
-    {
-      options.ConfigureDbContext = db => db.UseNpgsql(connectionString,
-                sql => sql.MigrationsAssembly(typeof(SeedData).Assembly.FullName));
-    });
+    services.AddConfigurationDbContext(
+      options =>
+      {
+        options.ConfigureDbContext = db =>
+          db.UseNpgsql(
+            connectionString,
+            sql => sql.MigrationsAssembly(typeof(SeedData).Assembly.FullName)
+          );
+      }
+    );
 
     var serviceProvider = services.BuildServiceProvider();
 
-    using (var scope = serviceProvider.GetRequiredService<IServiceScopeFactory>()
-             .CreateScope())
+    using (var scope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
     {
       scope.ServiceProvider.GetService<PersistedGrantDbContext>().Database.Migrate();
 

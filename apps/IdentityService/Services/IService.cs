@@ -6,6 +6,9 @@ namespace IdentityService.Services;
 
 public interface ISerivce
 {
-  void InstallServices(IServiceCollection serviceCollection, IConfiguration configuration,
-    IWebHostEnvironment env);
+  void InstallServices(
+    IServiceCollection serviceCollection,
+    IConfiguration configuration,
+    IWebHostEnvironment env
+  );
 }

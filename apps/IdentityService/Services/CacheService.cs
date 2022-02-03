@@ -31,8 +31,11 @@ public class CacheService
 
 public class CacheServiceInstaller : ISerivce
 {
-  public void InstallServices(IServiceCollection services, IConfiguration configuration,
-    IWebHostEnvironment env)
+  public void InstallServices(
+    IServiceCollection services,
+    IConfiguration configuration,
+    IWebHostEnvironment env
+  )
   {
     services.AddSingleton<CacheService>();
   }

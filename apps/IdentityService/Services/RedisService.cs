@@ -6,16 +6,21 @@ namespace IdentityService.Services;
 
 public class RedisService : ISerivce
 {
-  public void InstallServices(IServiceCollection service, IConfiguration configuration,
-    IWebHostEnvironment env)
+  public void InstallServices(
+    IServiceCollection service,
+    IConfiguration configuration,
+    IWebHostEnvironment env
+  )
   {
-    service.AddStackExchangeRedisCache(options =>
-    {
-      var connection = configuration.GetConnectionString("Redis");
-      var instanceName = "IdentityService_";
+    service.AddStackExchangeRedisCache(
+      options =>
+      {
+        var connection = configuration.GetConnectionString("Redis");
+        var instanceName = "IdentityService_";
 
-      options.Configuration = connection;
-      options.InstanceName = instanceName;
-    });
+        options.Configuration = connection;
+        options.InstanceName = instanceName;
+      }
+    );
   }
 }

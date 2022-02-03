@@ -18,8 +18,10 @@ public partial class Logout
     private readonly SignInManager<User> _signInManager;
     private readonly IIdentityServerInteractionService _interactionService;
 
-    public CommandHandler(SignInManager<User> signInManager,
-      IIdentityServerInteractionService interactionService)
+    public CommandHandler(
+      SignInManager<User> signInManager,
+      IIdentityServerInteractionService interactionService
+    )
     {
       _signInManager = signInManager;
       _interactionService = interactionService;

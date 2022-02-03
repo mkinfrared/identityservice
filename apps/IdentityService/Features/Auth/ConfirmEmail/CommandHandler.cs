@@ -18,16 +18,21 @@ public partial class ConfirmEmail
     private readonly SignInManager<User> _signInManager;
     private readonly CacheService _cache;
 
-    public CommandHandler(UserManager<User> userManager, SignInManager<User> signInManager,
-      CacheService cache)
+    public CommandHandler(
+      UserManager<User> userManager,
+      SignInManager<User> signInManager,
+      CacheService cache
+    )
     {
       _userManager = userManager;
       _signInManager = signInManager;
       _cache = cache;
     }
 
-    public async Task<IdentityResult> Handle(Command request,
-      CancellationToken cancellationToken)
+    public async Task<IdentityResult> Handle(
+      Command request,
+      CancellationToken cancellationToken
+    )
     {
       var user = await _userManager.FindByIdAsync(request.UserId);
       var actualCode = await _cache.GetRecordAsync<int>(request.Token);

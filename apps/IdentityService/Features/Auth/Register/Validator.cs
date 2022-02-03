@@ -46,20 +46,13 @@ public partial class Register
         .MaximumLength(20)
         .Matches(NoSpecialCharacters);
 
-      RuleFor(command => command.FirstName)
-        .Matches(HasLetterOrWhiteSpace)
-        .MaximumLength(50);
+      RuleFor(command => command.FirstName).Matches(HasLetterOrWhiteSpace).MaximumLength(50);
 
-      RuleFor(command => command.LastName)
-        .Matches(HasLetterOrWhiteSpace)
-        .MaximumLength(50);
+      RuleFor(command => command.LastName).Matches(HasLetterOrWhiteSpace).MaximumLength(50);
 
-      RuleFor(command => command.Email)
-        .NotEmpty()
-        .EmailAddress();
+      RuleFor(command => command.Email).NotEmpty().EmailAddress();
 
-      RuleFor(command => command.PhoneNumber)
-        .NotEmpty();
+      RuleFor(command => command.PhoneNumber).NotEmpty();
 
       RuleFor(command => command.Password)
         .NotEmpty()
@@ -74,7 +67,8 @@ public partial class Register
 
       RuleFor(command => command.PasswordConfirmation)
         .NotEmpty()
-        .Equal(command => command.Password).WithMessage(ShouldMatchMessage);
+        .Equal(command => command.Password)
+        .WithMessage(ShouldMatchMessage);
     }
   }
 }

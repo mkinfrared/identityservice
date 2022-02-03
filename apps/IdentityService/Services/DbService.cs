@@ -1,5 +1,3 @@
-using System;
-
 using IdentityService.DbContexts;
 
 using Microsoft.AspNetCore.Hosting;
@@ -11,14 +9,19 @@ namespace IdentityService.Services;
 
 public class DbService : ISerivce
 {
-  public void InstallServices(IServiceCollection service, IConfiguration configuration,
-    IWebHostEnvironment env)
+  public void InstallServices(
+    IServiceCollection service,
+    IConfiguration configuration,
+    IWebHostEnvironment env
+  )
   {
     var connectionString = configuration.GetConnectionString("Postgres");
 
-    service.AddDbContext<AppDbContext>(builder =>
-    {
-      builder.UseNpgsql(connectionString);
-    });
+    service.AddDbContext<AppDbContext>(
+      builder =>
+      {
+        builder.UseNpgsql(connectionString);
+      }
+    );
   }
 }

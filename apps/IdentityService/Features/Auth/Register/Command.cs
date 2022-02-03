@@ -8,9 +8,16 @@ public partial class Register
 {
   public class Command : IRequest<ConfirmEmailCommand?>
   {
-    public Command(string username, string firstName, string lastName, string email,
-      string phoneNumber, string password, string passwordConfirmation,
-      string redirectUrl)
+    public Command(
+      string username,
+      string firstName,
+      string lastName,
+      string email,
+      string phoneNumber,
+      string password,
+      string passwordConfirmation,
+      string redirectUrl
+    )
     {
       Username = username;
       FirstName = firstName;

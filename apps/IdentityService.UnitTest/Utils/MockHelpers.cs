@@ -24,8 +24,17 @@ public class MockHelpers
   {
     var store = new Mock<IUserStore<TUser>>();
 
-    var mgr = new Mock<UserManager<TUser>>(store.Object, null, null, null, null, null, null,
-      null, null);
+    var mgr = new Mock<UserManager<TUser>>(
+      store.Object,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    );
 
     mgr.Object.UserValidators.Add(new UserValidator<TUser>());
     mgr.Object.PasswordValidators.Add(new PasswordValidator<TUser>());
@@ -33,15 +42,20 @@ public class MockHelpers
     return mgr;
   }
 
-  public static Mock<RoleManager<TRole>> MockRoleManager<TRole>(
-    IRoleStore<TRole>? store = null) where TRole : class
+  public static Mock<RoleManager<TRole>> MockRoleManager<TRole>(IRoleStore<TRole>? store = null)
+    where TRole : class
   {
     store = store ?? new Mock<IRoleStore<TRole>>().Object;
     var roles = new List<IRoleValidator<TRole>>();
     roles.Add(new RoleValidator<TRole>());
 
-    return new Mock<RoleManager<TRole>>(store, roles, new UpperInvariantLookupNormalizer(),
-      new IdentityErrorDescriber(), null);
+    return new Mock<RoleManager<TRole>>(
+      store,
+      roles,
+      new UpperInvariantLookupNormalizer(),
+      new IdentityErrorDescriber(),
+      null
+    );
   }
 
   public static Mock<SignInManager<TUser>> MockSignInManger<TUser>() where TUser : class
@@ -50,8 +64,15 @@ public class MockHelpers
     var context = new Mock<IHttpContextAccessor>();
     var claimsFactory = new Mock<IUserClaimsPrincipalFactory<TUser>>();
 
-    var manager = new Mock<SignInManager<TUser>>(userManager.Object, context.Object,
-      claimsFactory.Object, null, null, null, null);
+    var manager = new Mock<SignInManager<TUser>>(
+      userManager.Object,
+      context.Object,
+      claimsFactory.Object,
+      null,
+      null,
+      null,
+      null
+    );
 
     return manager;
   }
@@ -70,14 +91,22 @@ public class MockHelpers
     var pwdValidators = new List<PasswordValidator<TUser>>();
     pwdValidators.Add(new PasswordValidator<TUser>());
 
-    var userManager = new UserManager<TUser>(store, options.Object,
+    var userManager = new UserManager<TUser>(
+      store,
+      options.Object,
       new PasswordHasher<TUser>(),
-      userValidators, pwdValidators, new UpperInvariantLookupNormalizer(),
-      new IdentityErrorDescriber(), null,
-      new Mock<ILogger<UserManager<TUser>>>().Object);
+      userValidators,
+      pwdValidators,
+      new UpperInvariantLookupNormalizer(),
+      new IdentityErrorDescriber(),
+      null,
+      new Mock<ILogger<UserManager<TUser>>>().Object
+    );
 
-    validator.Setup(v => v.ValidateAsync(userManager, It.IsAny<TUser>()))
-      .Returns(Task.FromResult(IdentityResult.Success)).Verifiable();
+    validator
+      .Setup(v => v.ValidateAsync(userManager, It.IsAny<TUser>()))
+      .Returns(Task.FromResult(IdentityResult.Success))
+      .Verifiable();
 
     return userManager;
   }
@@ -89,10 +118,13 @@ public class MockHelpers
     var roles = new List<IRoleValidator<TRole>>();
     roles.Add(new RoleValidator<TRole>());
 
-    return new RoleManager<TRole>(store, roles,
+    return new RoleManager<TRole>(
+      store,
+      roles,
       new UpperInvariantLookupNormalizer(),
       new IdentityErrorDescriber(),
-      null);
+      null
+    );
   }
 
   public static Mock<IHttpContextAccessor> MockHttpContextAccessor()

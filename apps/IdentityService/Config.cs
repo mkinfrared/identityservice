@@ -34,7 +34,6 @@ public static class Config
                 ClientSecrets = {new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256())},
                 AllowedScopes = {"scope1"}
             },
-
             // interactive client using code flow + pkce
             new Client
             {
@@ -75,10 +74,8 @@ public static class Config
                 PostLogoutRedirectUris = {"https://localhost:2001/signout-callback-oidc"},
                 FrontChannelLogoutUri = "http://localhost:2001",
                 RequireConsent = false,
-
                 // Token lifetime in seconds
                 AccessTokenLifetime = 10,
-
                 // Sets refresh token
                 AllowOfflineAccess = true
 
@@ -89,7 +86,6 @@ public static class Config
             {
               ClientId = "identity_admin_client",
                 AllowedGrantTypes = GrantTypes.Code,
-
                 // AllowedGrantTypes = GrantTypes.Implicit,
                 RedirectUris =
                 {
@@ -100,13 +96,12 @@ public static class Config
                 },
                 PostLogoutRedirectUris =
                 {
-                    "https://localhost:4001/logout", "http://localhost:3000/logout"
+                  "https://localhost:4001/logout", "http://localhost:3000/logout"
                 },
                 AllowedCorsOrigins = new List<string>
                 {
-                    "https://localhost:4001", "http://localhost:3000", "https://localhost:10001"
+                  "https://localhost:4001", "http://localhost:3000", "https://localhost:10001"
                 },
-
                 // ClientUri =
                 AllowedScopes =
                 {
@@ -130,9 +125,10 @@ public static class Config
             }
     };
 
-  public static IEnumerable<ApiResource> Resources => new[]
-  {
-        new ApiResource {Name = "OrdersApi", Scopes = {"OrdersApi"}},
-        new ApiResource {Name = "ClientMvc", Scopes = {"ClientMvc"}}
+  public static IEnumerable<ApiResource> Resources =>
+    new[]
+    {
+      new ApiResource {Name = "OrdersApi", Scopes = {"OrdersApi"}},
+      new ApiResource {Name = "ClientMvc", Scopes = {"ClientMvc"}}
     };
 }

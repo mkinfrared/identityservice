@@ -8,14 +8,11 @@ public partial class Login
   {
     public Validator()
     {
-      RuleFor(command => command.Username)
-        .NotEmpty();
+      RuleFor(command => command.Username).NotEmpty();
 
-      RuleFor(command => command.Password)
-        .NotEmpty();
+      RuleFor(command => command.Password).NotEmpty();
 
-      RuleFor(command => command.ReturnUrl)
-        .NotEmpty();
+      RuleFor(command => command.ReturnUrl).NotEmpty();
     }
   }
 }

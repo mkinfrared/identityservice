@@ -22,8 +22,7 @@ public partial class Login
       _signInManager = signInManager;
     }
 
-    public async Task<SignInResult> Handle(Command request,
-      CancellationToken cancellationToken)
+    public async Task<SignInResult> Handle(Command request, CancellationToken cancellationToken)
     {
       var user = await _userManager.FindByNameAsync(request.Username);
 
@@ -32,8 +31,12 @@ public partial class Login
         return SignInResult.Failed;
       }
 
-      var signInResult = await
-        _signInManager.PasswordSignInAsync(user, request.Password, true, false);
+      var signInResult = await _signInManager.PasswordSignInAsync(
+        user,
+        request.Password,
+        true,
+        false
+      );
 
       return signInResult;
     }

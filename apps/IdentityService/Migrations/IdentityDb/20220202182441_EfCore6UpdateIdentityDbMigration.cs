@@ -16,7 +16,8 @@ public partial class EfCore6UpdateIdentityDbMigration : Migration
       "date",
       nullable: false,
       oldClrType: typeof(DateTime),
-      oldType: "timestamp without time zone");
+      oldType: "timestamp without time zone"
+    );
   }
 
   protected override void Down(MigrationBuilder migrationBuilder)
@@ -27,6 +28,7 @@ public partial class EfCore6UpdateIdentityDbMigration : Migration
       "timestamp without time zone",
       nullable: false,
       oldClrType: typeof(DateOnly),
-      oldType: "date");
+      oldType: "date"
+    );
   }
 }

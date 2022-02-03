@@ -50,8 +50,16 @@ public class RegisterTest
     var passwordConfirmation = "Foobar2@";
     var returnUrl = "/foo/bar";
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, returnUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      returnUrl
+    );
 
     Assert.Equal(username, command.Username);
     Assert.Equal(firstName, command.FirstName);
@@ -76,8 +84,16 @@ public class RegisterTest
     var redirectUrl = "/foo/bar";
     var token = "security-token";
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, redirectUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      redirectUrl
+    );
 
     _userManagerMock
       .Setup(manager => manager.CreateAsync(It.IsAny<User>(), command.Password))
@@ -89,19 +105,31 @@ public class RegisterTest
 
     _hostEnvironmentMock.Setup(environment => environment.ContentRootPath).Returns("root");
 
-    _fileMock.Setup(fileSystem => fileSystem.ReadAllText(It.IsAny<string>()))
-      .Returns("foobar");
+    _fileMock.Setup(fileSystem => fileSystem.ReadAllText(It.IsAny<string>())).Returns("foobar");
 
-    var commandHandler =
-      new Register.CommandHandler(_userManagerMock.Object, _emailServiceMock.Object,
-        _cacheMock.Object, _hostEnvironmentMock.Object, _fileMock.Object);
+    var commandHandler = new Register.CommandHandler(
+      _userManagerMock.Object,
+      _emailServiceMock.Object,
+      _cacheMock.Object,
+      _hostEnvironmentMock.Object,
+      _fileMock.Object
+    );
 
     var result = await commandHandler.Handle(command, new CancellationToken());
 
     Assert.IsType<ConfirmEmailCommand>(result);
 
-    _emailServiceMock.Verify(service => service.SendAsync(It.IsAny<string>(),
-      It.IsAny<string>(), It.IsAny<string>(), true, null), Times.Once);
+    _emailServiceMock.Verify(
+      service =>
+        service.SendAsync(
+          It.IsAny<string>(),
+          It.IsAny<string>(),
+          It.IsAny<string>(),
+          true,
+          null
+        ),
+      Times.Once
+    );
   }
 
   [Fact]
@@ -116,23 +144,44 @@ public class RegisterTest
     const string passwordConfirmation = "Foobar2@";
     const string redirectUrl = "/foo/bar";
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, redirectUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      redirectUrl
+    );
 
     _userManagerMock
       .Setup(manager => manager.CreateAsync(It.IsAny<User>(), command.Password))
       .ReturnsAsync(IdentityResult.Failed());
 
-    var commandHandler =
-      new Register.CommandHandler(_userManagerMock.Object, _emailServiceMock.Object,
-        _cacheMock.Object, _hostEnvironmentMock.Object, _fileMock.Object);
+    var commandHandler = new Register.CommandHandler(
+      _userManagerMock.Object,
+      _emailServiceMock.Object,
+      _cacheMock.Object,
+      _hostEnvironmentMock.Object,
+      _fileMock.Object
+    );
 
     var result = await commandHandler.Handle(command, new CancellationToken());
 
     Assert.Null(result);
 
-    _emailServiceMock.Verify(service => service.SendAsync(It.IsAny<string>(),
-      It.IsAny<string>(), It.IsAny<string>(), true, null), Times.Never);
+    _emailServiceMock.Verify(
+      service =>
+        service.SendAsync(
+          It.IsAny<string>(),
+          It.IsAny<string>(),
+          It.IsAny<string>(),
+          true,
+          null
+        ),
+      Times.Never
+    );
   }
 
   [Fact]
@@ -149,8 +198,16 @@ public class RegisterTest
 
     var validator = new Register.Validator();
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, redirectUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      redirectUrl
+    );
 
     var result = validator.TestValidate(command);
 
@@ -171,8 +228,16 @@ public class RegisterTest
 
     var validator = new Register.Validator();
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, redirectUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      redirectUrl
+    );
 
     var result = validator.TestValidate(command);
 
@@ -193,8 +258,16 @@ public class RegisterTest
 
     var validator = new Register.Validator();
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, redirectUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      redirectUrl
+    );
 
     var result = validator.TestValidate(command);
 
@@ -215,8 +288,16 @@ public class RegisterTest
 
     var validator = new Register.Validator();
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, redirectUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      redirectUrl
+    );
 
     var result = validator.TestValidate(command);
 
@@ -237,8 +318,16 @@ public class RegisterTest
 
     var validator = new Register.Validator();
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, redirectUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      redirectUrl
+    );
 
     var result = validator.TestValidate(command);
 
@@ -259,8 +348,16 @@ public class RegisterTest
 
     var validator = new Register.Validator();
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, redirectUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      redirectUrl
+    );
 
     var result = validator.TestValidate(command);
 
@@ -281,8 +378,16 @@ public class RegisterTest
 
     var validator = new Register.Validator();
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, redirectUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      redirectUrl
+    );
 
     var result = validator.TestValidate(command);
 
@@ -303,8 +408,16 @@ public class RegisterTest
 
     var validator = new Register.Validator();
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, redirectUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      redirectUrl
+    );
 
     var result = validator.TestValidate(command);
 
@@ -325,8 +438,16 @@ public class RegisterTest
 
     var validator = new Register.Validator();
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, redirectUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      redirectUrl
+    );
 
     var result = validator.TestValidate(command);
 
@@ -347,8 +468,16 @@ public class RegisterTest
 
     var validator = new Register.Validator();
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, redirectUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      redirectUrl
+    );
 
     var result = validator.TestValidate(command);
 
@@ -369,8 +498,16 @@ public class RegisterTest
 
     var validator = new Register.Validator();
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, redirectUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      redirectUrl
+    );
 
     var result = validator.TestValidate(command);
 
@@ -391,8 +528,16 @@ public class RegisterTest
 
     var validator = new Register.Validator();
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, redirectUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      redirectUrl
+    );
 
     var result = validator.TestValidate(command);
 
@@ -413,8 +558,16 @@ public class RegisterTest
 
     var validator = new Register.Validator();
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, redirectUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      redirectUrl
+    );
 
     var result = validator.TestValidate(command);
 
@@ -435,8 +588,16 @@ public class RegisterTest
 
     var validator = new Register.Validator();
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, redirectUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      redirectUrl
+    );
 
     var result = validator.TestValidate(command);
 
@@ -457,8 +618,16 @@ public class RegisterTest
 
     var validator = new Register.Validator();
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, redirectUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      redirectUrl
+    );
 
     var result = validator.TestValidate(command);
 
@@ -479,8 +648,16 @@ public class RegisterTest
 
     var validator = new Register.Validator();
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, redirectUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      redirectUrl
+    );
 
     var result = validator.TestValidate(command);
 
@@ -501,8 +678,16 @@ public class RegisterTest
 
     var validator = new Register.Validator();
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, redirectUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      redirectUrl
+    );
 
     var result = validator.TestValidate(command);
 
@@ -523,8 +708,16 @@ public class RegisterTest
 
     var validator = new Register.Validator();
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, redirectUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      redirectUrl
+    );
 
     var result = validator.TestValidate(command);
 
@@ -545,8 +738,16 @@ public class RegisterTest
 
     var validator = new Register.Validator();
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, redirectUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      redirectUrl
+    );
 
     var result = validator.TestValidate(command);
 
@@ -567,8 +768,16 @@ public class RegisterTest
 
     var validator = new Register.Validator();
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, redirectUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      redirectUrl
+    );
 
     var result = validator.TestValidate(command);
 
@@ -589,8 +798,16 @@ public class RegisterTest
 
     var validator = new Register.Validator();
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, redirectUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      redirectUrl
+    );
 
     var result = validator.TestValidate(command);
 
@@ -611,8 +828,16 @@ public class RegisterTest
 
     var validator = new Register.Validator();
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, redirectUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      redirectUrl
+    );
 
     var result = validator.TestValidate(command);
 
@@ -633,8 +858,16 @@ public class RegisterTest
 
     var validator = new Register.Validator();
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, redirectUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      redirectUrl
+    );
 
     var result = validator.TestValidate(command);
 

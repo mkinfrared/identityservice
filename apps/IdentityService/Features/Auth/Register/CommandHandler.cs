@@ -45,7 +45,8 @@ public partial class Register
     }
 
     public async Task<ConfirmEmailCommand?> Handle(
-      Command request, CancellationToken cancellationToken
+      Command request,
+      CancellationToken cancellationToken
     )
     {
       var user = new User

@@ -50,14 +50,15 @@ public class ConfirmEmailTest
     var code = 999999;
     var command = new ConfirmEmail.Command(userId, token, code);
 
-    _userManagerMock.Setup(manager => manager.FindByIdAsync(userId))
-      .ReturnsAsync(() => null);
+    _userManagerMock.Setup(manager => manager.FindByIdAsync(userId)).ReturnsAsync(() => null);
 
-    _cacheMock.Setup(cache => cache.GetRecordAsync<int>(token))
-      .ReturnsAsync(code);
+    _cacheMock.Setup(cache => cache.GetRecordAsync<int>(token)).ReturnsAsync(code);
 
-    var commandHandler = new ConfirmEmail.CommandHandler(_userManagerMock.Object,
-      _signInManagerMock.Object, _cacheMock.Object);
+    var commandHandler = new ConfirmEmail.CommandHandler(
+      _userManagerMock.Object,
+      _signInManagerMock.Object,
+      _cacheMock.Object
+    );
 
     var result = await commandHandler.Handle(command, new CancellationToken());
 
@@ -73,16 +74,21 @@ public class ConfirmEmailTest
     var user = new Mock<User>();
     var command = new ConfirmEmail.Command(userId, token, code);
 
-    _userManagerMock.Setup(manager => manager.FindByIdAsync(userId))
+    _userManagerMock
+      .Setup(manager => manager.FindByIdAsync(userId))
       .ReturnsAsync(() => user.Object);
 
-    _userManagerMock.Setup(manager => manager.ConfirmEmailAsync(user.Object, token))
+    _userManagerMock
+      .Setup(manager => manager.ConfirmEmailAsync(user.Object, token))
       .ReturnsAsync(() => IdentityResult.Success);
 
     _cacheMock.Setup(cache => cache.GetRecordAsync<int>(token)).ReturnsAsync(code);
 
-    var commandHandler = new ConfirmEmail.CommandHandler(_userManagerMock.Object,
-      _signInManagerMock.Object, _cacheMock.Object);
+    var commandHandler = new ConfirmEmail.CommandHandler(
+      _userManagerMock.Object,
+      _signInManagerMock.Object,
+      _cacheMock.Object
+    );
 
     var result = await commandHandler.Handle(command, new CancellationToken());
 

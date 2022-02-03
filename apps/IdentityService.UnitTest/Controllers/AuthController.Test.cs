@@ -42,8 +42,7 @@ public class AuthControllerTest
     var command = new Login.Command(username, password, returnUrl);
 
     _mediatrMock
-      .Setup(m =>
-        m.Send(It.IsAny<Login.Command>(), It.IsAny<CancellationToken>()))
+      .Setup(m => m.Send(It.IsAny<Login.Command>(), It.IsAny<CancellationToken>()))
       .ReturnsAsync(signInResult);
 
     var result = await _controller.Login(command);
@@ -62,8 +61,7 @@ public class AuthControllerTest
     var command = new Login.Command(username, password, returnUrl);
 
     _mediatrMock
-      .Setup(m =>
-        m.Send(It.IsAny<Login.Command>(), It.IsAny<CancellationToken>()))
+      .Setup(m => m.Send(It.IsAny<Login.Command>(), It.IsAny<CancellationToken>()))
       .ReturnsAsync(signInResult);
 
     var result = await _controller.Login(command);
@@ -88,12 +86,19 @@ public class AuthControllerTest
 
     var registerResult = new Mock<ConfirmEmail.Command>(userId, token, code);
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, returnUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      returnUrl
+    );
 
     _mediatrMock
-      .Setup(m =>
-        m.Send(It.IsAny<Register.Command>(), It.IsAny<CancellationToken>()))
+      .Setup(m => m.Send(It.IsAny<Register.Command>(), It.IsAny<CancellationToken>()))
       .ReturnsAsync(registerResult.Object);
 
     var result = await _controller.Register(command);
@@ -115,12 +120,19 @@ public class AuthControllerTest
     var returnUrl = "/foo/bar";
     ConfirmEmail.Command? registerResult = null;
 
-    var command = new Register.Command(username, firstName, lastName, email, phoneNumber,
-      password, passwordConfirmation, returnUrl);
+    var command = new Register.Command(
+      username,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      passwordConfirmation,
+      returnUrl
+    );
 
     _mediatrMock
-      .Setup(m =>
-        m.Send(It.IsAny<Register.Command>(), It.IsAny<CancellationToken>()))
+      .Setup(m => m.Send(It.IsAny<Register.Command>(), It.IsAny<CancellationToken>()))
       .ReturnsAsync(registerResult);
 
     var result = await _controller.Register(command);
@@ -139,8 +151,7 @@ public class AuthControllerTest
     var command = new ConfirmEmail.Command(userId, token, code);
 
     _mediatrMock
-      .Setup(m =>
-        m.Send(It.IsAny<ConfirmEmail.Command>(), It.IsAny<CancellationToken>()))
+      .Setup(m => m.Send(It.IsAny<ConfirmEmail.Command>(), It.IsAny<CancellationToken>()))
       .ReturnsAsync(verificationResult);
 
     var result = await _controller.VerifyEmail(command);
@@ -159,8 +170,7 @@ public class AuthControllerTest
     var command = new ConfirmEmail.Command(userId, token, code);
 
     _mediatrMock
-      .Setup(m =>
-        m.Send(It.IsAny<ConfirmEmail.Command>(), It.IsAny<CancellationToken>()))
+      .Setup(m => m.Send(It.IsAny<ConfirmEmail.Command>(), It.IsAny<CancellationToken>()))
       .ReturnsAsync(verificationResult);
 
     var result = await _controller.VerifyEmail(command);
@@ -174,8 +184,7 @@ public class AuthControllerTest
     var logoutId = "";
 
     _mediatrMock
-      .Setup(m =>
-        m.Send(It.IsAny<Logout.Command>(), It.IsAny<CancellationToken>()))
+      .Setup(m => m.Send(It.IsAny<Logout.Command>(), It.IsAny<CancellationToken>()))
       .ReturnsAsync("");
 
     var result = await _controller.Logout(logoutId);
@@ -194,8 +203,7 @@ public class AuthControllerTest
     var commandResult = "foobar";
 
     _mediatrMock
-      .Setup(m =>
-        m.Send(It.IsAny<Logout.Command>(), It.IsAny<CancellationToken>()))
+      .Setup(m => m.Send(It.IsAny<Logout.Command>(), It.IsAny<CancellationToken>()))
       .ReturnsAsync(commandResult);
 
     var result = await _controller.Logout(logoutId);

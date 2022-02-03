@@ -46,11 +46,14 @@ public class LoginTest
     var returnUrl = "/foo/bar";
     var command = new Login.Command(username, password, returnUrl);
 
-    _userManagerMock.Setup(manager => manager.FindByNameAsync(username))
+    _userManagerMock
+      .Setup(manager => manager.FindByNameAsync(username))
       .ReturnsAsync(() => null);
 
-    var commandHandler =
-      new Login.CommandHandler(_userManagerMock.Object, _signInManagerMock.Object);
+    var commandHandler = new Login.CommandHandler(
+      _userManagerMock.Object,
+      _signInManagerMock.Object
+    );
 
     var result = await commandHandler.Handle(command, new CancellationToken());
 
@@ -66,15 +69,16 @@ public class LoginTest
     var command = new Login.Command(username, password, returnUrl);
     var user = new User();
 
-    _userManagerMock.Setup(manager => manager.FindByNameAsync(username))
-      .ReturnsAsync(user);
+    _userManagerMock.Setup(manager => manager.FindByNameAsync(username)).ReturnsAsync(user);
 
-    _signInManagerMock.Setup(manager =>
-        manager.PasswordSignInAsync(user, password, true, false))
+    _signInManagerMock
+      .Setup(manager => manager.PasswordSignInAsync(user, password, true, false))
       .ReturnsAsync(SignInResult.Success);
 
-    var commandHandler =
-      new Login.CommandHandler(_userManagerMock.Object, _signInManagerMock.Object);
+    var commandHandler = new Login.CommandHandler(
+      _userManagerMock.Object,
+      _signInManagerMock.Object
+    );
 
     var result = await commandHandler.Handle(command, new CancellationToken());
 

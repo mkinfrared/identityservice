@@ -77,7 +77,10 @@
     }
   },
   "lint-staged": {
-    "*.cs": "dotnet format --include",
+    "*.cs": [
+      "dotnet csharpier",
+      "dotnet format --include"
+    ],
     "*.json": [
       "prettier --write"
     ],

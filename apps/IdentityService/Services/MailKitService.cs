@@ -9,12 +9,14 @@ namespace IdentityService.Services;
 
 public class MailKitService : ISerivce
 {
-  public void InstallServices(IServiceCollection services, IConfiguration configuration,
-    IWebHostEnvironment env)
+  public void InstallServices(
+    IServiceCollection services,
+    IConfiguration configuration,
+    IWebHostEnvironment env
+  )
   {
     var options = configuration.GetSection("Email").Get<MailKitOptions>();
 
-    services.AddMailKit(config =>
-      config.UseMailKit(options));
+    services.AddMailKit(config => config.UseMailKit(options));
   }
 }

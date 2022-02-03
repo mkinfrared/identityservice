@@ -8,11 +8,9 @@ public partial class ConfirmEmail
   {
     public Validator()
     {
-      RuleFor(command => command.UserId)
-        .NotEmpty();
+      RuleFor(command => command.UserId).NotEmpty();
 
-      RuleFor(command => command.Token)
-        .NotEmpty();
+      RuleFor(command => command.Token).NotEmpty();
     }
   }
 }

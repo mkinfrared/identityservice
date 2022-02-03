@@ -7,8 +7,11 @@ namespace IdentityService.Services;
 
 public class FileSystemService : ISerivce
 {
-  public void InstallServices(IServiceCollection services, IConfiguration configuration,
-    IWebHostEnvironment env)
+  public void InstallServices(
+    IServiceCollection services,
+    IConfiguration configuration,
+    IWebHostEnvironment env
+  )
   {
     services.AddScoped<IFileSystem, DefaultFileSystem>();
   }
