@@ -69,7 +69,6 @@ public class RegisterTest
     var password = "Foobar";
     var passwordConfirmation = "Foobar2@";
     var redirectUrl = "/foo/bar";
-    var token = "security-token";
 
     var command = new Register.Command(
       username,

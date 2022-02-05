@@ -1,13 +1,13 @@
-import { classNames } from "@identity-service/core";
+import { classNames, lazyImport } from "@identity-service/core";
 import { Card, Spinner } from "@identity-service/ui";
-import { Suspense, lazy, memo } from "react";
+import { Suspense, memo } from "react";
 
 import { useReturnUrl } from "hooks";
 
 import css from "./Main.module.scss";
 import { MainProps } from "./Main.type";
 
-const ConfirmEmail = lazy(
+const ConfirmEmail = lazyImport(
   () =>
     import(
       /* webpackChunkName: "ConfirmEmail" */
@@ -16,7 +16,7 @@ const ConfirmEmail = lazy(
     ),
 );
 
-const LoginForm = lazy(
+const LoginForm = lazyImport(
   () =>
     import(
       /* webpackChunkName: "LoginForm" */
@@ -25,7 +25,7 @@ const LoginForm = lazy(
     ),
 );
 
-const RegisterForm = lazy(
+const RegisterForm = lazyImport(
   () =>
     import(
       /* webpackChunkName: "RegisterForm" */
