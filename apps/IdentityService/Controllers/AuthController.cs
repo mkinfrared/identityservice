@@ -1,9 +1,11 @@
+using System.Linq;
 using System.Threading.Tasks;
 
 using IdentityService.Features.Auth.ConfirmEmail;
 using IdentityService.Features.Auth.Login;
 using IdentityService.Features.Auth.Logout;
 using IdentityService.Features.Auth.Register;
+using IdentityService.Features.Auth.SendConfirmEmail;
 
 using MediatR;
 
@@ -38,14 +40,19 @@ public class AuthController : ControllerBase
   [HttpPost]
   public async Task<IActionResult> Register(Register.Command command)
   {
-    var result = await _mediator.Send(command);
+    var registerResult = await _mediator.Send(command);
 
-    if (result is null)
+    if (!registerResult.Succeeded)
     {
-      return BadRequest();
+      var errors = registerResult.Errors.Select(error => error.Description);
+
+      return BadRequest(new {username = errors});
     }
 
-    return Ok(result);
+    var sendEmailCommand = new SendConfirmEmail.Command(command.Username);
+    var sendEmailResult = await _mediator.Send(sendEmailCommand);
+
+    return Ok(sendEmailResult);
   }
 
   [HttpPost]

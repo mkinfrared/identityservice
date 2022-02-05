@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<coverage date="2022-02-04_23-14-36" tag="" version="1.0">
+    <assembly name="IdentityService">
+        <class name="IdentityService.Controllers.AccountController" coverablelines="9"
+            coveredbranches="0" coveredlines="9" totalbranches="0" totallines="24" />
+        <class name="IdentityService.Controllers.AuthController" coverablelines="36"
+            coveredbranches="8" coveredlines="36" totalbranches="8" totallines="84" />
+        <class name="IdentityService.Dto.LoginDto" coverablelines="3" coveredbranches="0"
+            coveredlines="3" totalbranches="0" totallines="10" />
+        <class name="IdentityService.Entities.User" coverablelines="3" coveredbranches="0"
+            coveredlines="3" totalbranches="0" totallines="12" />
+        <class name="IdentityService.Extensions.DistributedClassExtensions" coverablelines="15"
+            coveredbranches="0" coveredlines="0" totalbranches="4" totallines="42" />
+        <class name="IdentityService.Features.Auth.ConfirmEmail.ConfirmEmail" coverablelines="37"
+            coveredbranches="6" coveredlines="37" totalbranches="6" totallines="95" />
+        <class name="IdentityService.Features.Auth.Login.Login" coverablelines="33"
+            coveredbranches="2" coveredlines="33" totalbranches="2" totallines="84" />
+        <class name="IdentityService.Features.Auth.Logout.Logout" coverablelines="18"
+            coveredbranches="0" coveredlines="18" totalbranches="0" totallines="55" />
+        <class name="IdentityService.Features.Auth.Register.Register" coverablelines="91"
+            coveredbranches="0" coveredlines="91" totalbranches="0" totallines="167" />
+        <class name="IdentityService.Features.Auth.SendConfirmEmail.SendConfirmEmail"
+            coverablelines="31" coveredbranches="0" coveredlines="31" totalbranches="0"
+            totallines="93" />
+        <class name="IdentityService.Utils.RandomNumberGenerator" coverablelines="9"
+            coveredbranches="2" coveredlines="9" totalbranches="2" totallines="20" />
+    </assembly>
+</coverage>

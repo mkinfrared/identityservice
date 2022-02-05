@@ -4,16 +4,11 @@ using FluentValidation.TestHelper;
 
 using IdentityService.Entities;
 using IdentityService.Features.Auth.Register;
-using IdentityService.Services;
 using IdentityService.Unit.Utils;
 
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.VisualStudio.Web.CodeGeneration;
 
 using Moq;
-
-using NETCore.MailKit.Core;
 
 using Xunit;
 
@@ -23,19 +18,11 @@ namespace IdentityService.Unit.Features;
 
 public class RegisterTest
 {
-  private readonly Mock<IEmailService> _emailServiceMock;
   private readonly Mock<UserManager<User>> _userManagerMock;
-  private readonly Mock<CacheService> _cacheMock;
-  private readonly Mock<IWebHostEnvironment> _hostEnvironmentMock;
-  private readonly Mock<IFileSystem> _fileMock;
 
   public RegisterTest()
   {
-    _emailServiceMock = new Mock<IEmailService>();
     _userManagerMock = MockHelpers.MockUserManager<User>();
-    _cacheMock = MockHelpers.MockCacheService();
-    _hostEnvironmentMock = new Mock<IWebHostEnvironment>();
-    _fileMock = new Mock<IFileSystem>();
   }
 
   [Fact]
@@ -72,7 +59,7 @@ public class RegisterTest
   }
 
   [Fact]
-  public async void CommandHandler_Should_Return_ConfrimEmailCommand()
+  public async void CommandHandler_Should_Return_IdentityResult()
   {
     var username = "marklar";
     var firstName = "Kyle";
@@ -99,89 +86,13 @@ public class RegisterTest
       .Setup(manager => manager.CreateAsync(It.IsAny<User>(), command.Password))
       .ReturnsAsync(IdentityResult.Success);
 
-    _userManagerMock
-      .Setup(manager => manager.GenerateEmailConfirmationTokenAsync(It.IsAny<User>()))
-      .ReturnsAsync(token);
-
-    _hostEnvironmentMock.Setup(environment => environment.ContentRootPath).Returns("root");
-
-    _fileMock.Setup(fileSystem => fileSystem.ReadAllText(It.IsAny<string>())).Returns("foobar");
-
     var commandHandler = new Register.CommandHandler(
-      _userManagerMock.Object,
-      _emailServiceMock.Object,
-      _cacheMock.Object,
-      _hostEnvironmentMock.Object,
-      _fileMock.Object
+      _userManagerMock.Object
     );
 
     var result = await commandHandler.Handle(command, new CancellationToken());
 
-    Assert.IsType<ConfirmEmailCommand>(result);
-
-    _emailServiceMock.Verify(
-      service =>
-        service.SendAsync(
-          It.IsAny<string>(),
-          It.IsAny<string>(),
-          It.IsAny<string>(),
-          true,
-          null
-        ),
-      Times.Once
-    );
-  }
-
-  [Fact]
-  public async void CommandHandler_Should_Return_Null()
-  {
-    const string username = "marklar";
-    const string firstName = "Kyle";
-    const string lastName = "Broflowski";
-    const string email = "kyle@coons.com";
-    const string phoneNumber = "+19519413344";
-    const string password = "Foobar";
-    const string passwordConfirmation = "Foobar2@";
-    const string redirectUrl = "/foo/bar";
-
-    var command = new Register.Command(
-      username,
-      firstName,
-      lastName,
-      email,
-      phoneNumber,
-      password,
-      passwordConfirmation,
-      redirectUrl
-    );
-
-    _userManagerMock
-      .Setup(manager => manager.CreateAsync(It.IsAny<User>(), command.Password))
-      .ReturnsAsync(IdentityResult.Failed());
-
-    var commandHandler = new Register.CommandHandler(
-      _userManagerMock.Object,
-      _emailServiceMock.Object,
-      _cacheMock.Object,
-      _hostEnvironmentMock.Object,
-      _fileMock.Object
-    );
-
-    var result = await commandHandler.Handle(command, new CancellationToken());
-
-    Assert.Null(result);
-
-    _emailServiceMock.Verify(
-      service =>
-        service.SendAsync(
-          It.IsAny<string>(),
-          It.IsAny<string>(),
-          It.IsAny<string>(),
-          true,
-          null
-        ),
-      Times.Never
-    );
+    Assert.IsType<IdentityResult>(result);
   }
 
   [Fact]

@@ -1,12 +1,12 @@
 using MediatR;
 
-using ConfirmEmailCommand = IdentityService.Features.Auth.ConfirmEmail.ConfirmEmail.Command;
+using Microsoft.AspNetCore.Identity;
 
 namespace IdentityService.Features.Auth.Register;
 
 public partial class Register
 {
-  public class Command : IRequest<ConfirmEmailCommand?>
+  public class Command : IRequest<IdentityResult>
   {
     public Command(
       string username,

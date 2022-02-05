@@ -6,6 +6,7 @@ using IdentityService.Features.Auth.ConfirmEmail;
 using IdentityService.Features.Auth.Login;
 using IdentityService.Features.Auth.Logout;
 using IdentityService.Features.Auth.Register;
+using IdentityService.Features.Auth.SendConfirmEmail;
 
 using MediatR;
 
@@ -84,7 +85,8 @@ public class AuthControllerTest
     var token = "secret-token";
     var code = 424242;
 
-    var registerResult = new Mock<ConfirmEmail.Command>(userId, token, code);
+    var registerResult = IdentityResult.Success;
+    var sendEmailResult = new Mock<ConfirmEmail.Command>(userId, token, code);
 
     var command = new Register.Command(
       username,
@@ -99,12 +101,16 @@ public class AuthControllerTest
 
     _mediatrMock
       .Setup(m => m.Send(It.IsAny<Register.Command>(), It.IsAny<CancellationToken>()))
-      .ReturnsAsync(registerResult.Object);
+      .ReturnsAsync(registerResult);
+
+    _mediatrMock
+      .Setup(m => m.Send(It.IsAny<SendConfirmEmail.Command>(), It.IsAny<CancellationToken>()))
+      .ReturnsAsync(sendEmailResult.Object);
 
     var result = await _controller.Register(command);
 
     Assert.IsType<OkObjectResult>(result);
-    Assert.Equal(registerResult.Object, ((OkObjectResult)result).Value);
+    Assert.Equal(sendEmailResult.Object, ((OkObjectResult)result).Value);
   }
 
   [Fact]
@@ -118,7 +124,7 @@ public class AuthControllerTest
     var password = "Foobar";
     var passwordConfirmation = "Foobar2@";
     var returnUrl = "/foo/bar";
-    ConfirmEmail.Command? registerResult = null;
+    var registerResult = IdentityResult.Failed();
 
     var command = new Register.Command(
       username,
@@ -137,7 +143,7 @@ public class AuthControllerTest
 
     var result = await _controller.Register(command);
 
-    Assert.IsType<BadRequestResult>(result);
+    Assert.IsType<BadRequestObjectResult>(result);
   }
 
   [Fact]
