@@ -2,12 +2,15 @@
 import { classNames } from "@identity-service/core";
 import React, { memo } from "react";
 
+import Spinner from "components/Spinner";
+
 import css from "./Button.module.scss";
 import { ButtonProps } from "./Button.type";
 
 const Button = ({
   children,
   className,
+  loading = false,
   type = "button",
   variant = "opaque",
   ...rest
@@ -24,6 +27,10 @@ const Button = ({
       classes.push(css.opaque);
   }
 
+  if (loading) {
+    classes.push(css.loading);
+  }
+
   return (
     <button
       className={classNames(...classes)}
@@ -31,6 +38,7 @@ const Button = ({
       type={type}
       {...rest}
     >
+      <Spinner type="bars" />
       {children}
     </button>
   );

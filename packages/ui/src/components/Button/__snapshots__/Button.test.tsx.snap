@@ -6,6 +6,12 @@ exports[`<Button /> should match the snapshot 1`] = `
     class="Button opaque"
     data-testid="Button"
     type="button"
-  />
+  >
+    <svg
+      class="Spinner"
+    >
+      bars.svg
+    </svg>
+  </button>
 </div>
 `;

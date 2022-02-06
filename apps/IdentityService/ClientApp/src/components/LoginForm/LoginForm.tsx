@@ -96,7 +96,11 @@ const LoginForm = ({ className, returnUrl }: LoginFormProps) => {
           </a>
         </Text>
         <div className={css.buttonWrapper}>
-          <Button disabled={!isValid || isSubmitting} type="submit">
+          <Button
+            disabled={!isValid || isSubmitting}
+            type="submit"
+            loading={isSubmitting}
+          >
             Login
           </Button>
         </div>

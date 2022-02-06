@@ -152,7 +152,11 @@ const RegisterForm = ({ className, returnUrl }: RegisterFormProps) => {
           </a>
         </Text>
         <div className={css.buttonWrapper}>
-          <Button disabled={!isValid || isSubmitting} type="submit">
+          <Button
+            disabled={!isValid || isSubmitting}
+            type="submit"
+            loading={isSubmitting}
+          >
             Register
           </Button>
         </div>

@@ -26,6 +26,8 @@ const ConfirmEmailForm = ({ className, returnUrl }: ConfirmEmailFormProps) => {
     resolver: yupResolver(confirmEmailSchema),
   });
 
+  const { isSubmitting, isValid } = formState;
+
   const submit = async ({ code }: ConfirmEmailFormData) => {
     try {
       const userId = sessionStorage.getItem("userId");
@@ -58,7 +60,8 @@ const ConfirmEmailForm = ({ className, returnUrl }: ConfirmEmailFormProps) => {
         <div className={css.buttonWrapper}>
           <Button
             type="submit"
-            disabled={formState.isSubmitting || !formState.isValid}
+            disabled={isSubmitting || !isValid}
+            loading={isSubmitting}
           >
             Submit
           </Button>

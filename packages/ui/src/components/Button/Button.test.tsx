@@ -52,4 +52,14 @@ describe("<Button />", () => {
 
     expect(element).toHaveClass(classname);
   });
+
+  it("should add 'loading' class name to button", () => {
+    const classname = "loading";
+    const { getByTestId } = render(<Button className={classname} loading />);
+    const element = getByTestId("Button");
+
+    expect(element).toBeDefined();
+
+    expect(element).toHaveClass(classname);
+  });
 });
