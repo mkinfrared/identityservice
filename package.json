@@ -7,9 +7,11 @@
     "apps/IdentityService.Admin/ClientApp",
     "packages/*"
   ],
+  "packageManager": "pnpm@6.29.1",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "build": "turbo run build",
+    "build-storybook": "turbo run build-storybook",
     "test": "turbo run test",
     "test:update": "pnpm build && turbo run test --parallel --only -- -- -u",
     "lint": "pnpm format && pnpm lint:styles && pnpm lint:ts",
@@ -43,33 +45,8 @@
     "stylelint-no-unsupported-browser-features": "^5.0.2",
     "stylelint-order": "^4.1.0",
     "stylelint-prettier": "^1.2.0",
-    "turbo": "^1.0.28",
+    "turbo": "^1.1.2",
     "typescript": "^4.5.4"
-  },
-  "turbo": {
-    "npmClient": "pnpm",
-    "pipeline": {
-      "build": {
-        "dependsOn": [
-          "^build"
-        ],
-        "outputs": [
-          "lib/**",
-          "build/**"
-        ]
-      },
-      "test": {
-        "dependsOn": [
-          "build"
-        ],
-        "outputs": [
-          "coverage/**"
-        ]
-      },
-      "updates": {
-        "cache": false
-      }
-    }
   },
   "husky": {
     "hooks": {

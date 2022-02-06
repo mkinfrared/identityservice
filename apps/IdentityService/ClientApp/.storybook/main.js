@@ -3,7 +3,12 @@ module.exports = {
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/preset-create-react-app",
+    {
+      name: "@storybook/preset-create-react-app",
+      options: {
+        scriptsPackageName: "../node_modules/react-scripts",
+      },
+    },
   ],
   core: {
     builder: "webpack5",

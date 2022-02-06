@@ -383,6 +383,7 @@ coverage
 # production
 build
 lib
+storybook-static
 
 # misc
 .DS_Store

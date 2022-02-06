@@ -4,13 +4,14 @@ import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 import url from "@rollup/plugin-url";
 import svgr from "@svgr/rollup";
+import transformPath from "@zerollup/ts-transform-paths";
 import autoprefixer from "autoprefixer";
 import del from "rollup-plugin-delete";
 import postcss from "rollup-plugin-postcss";
 import { terser } from "rollup-plugin-terser";
-import typescript from "rollup-plugin-ts";
+import ts from "rollup-plugin-ts";
 import visualizer from "rollup-plugin-visualizer";
-import ttypescript from "ttypescript";
+import typescript from "typescript";
 
 const buildDir = "lib";
 const input = "./src/index.tsx";
@@ -31,9 +32,10 @@ const getPlugins = () => {
   const plugins = [
     resolve(),
     commonjs(),
-    typescript({
-      typescript: ttypescript,
+    ts({
+      typescript,
       tsconfig: "./tsconfig.json",
+      transformers: [transformPath],
     }),
     babel({
       exclude: "node_modules/**",
