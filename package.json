@@ -12,6 +12,7 @@
     "preinstall": "npx only-allow pnpm",
     "build": "turbo run build",
     "build-storybook": "turbo run build-storybook",
+    "storybook": "turbo run storybook",
     "test": "turbo run test",
     "test:update": "pnpm build && turbo run test --parallel --only -- -- -u",
     "lint": "pnpm format && pnpm lint:styles && pnpm lint:ts",

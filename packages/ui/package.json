@@ -8,7 +8,7 @@
   "scripts": {
     "build": "rollup --config rollup.config.js",
     "test": "cross-env CI=true DISABLE_NEW_JSX_TRANSFORM=true react-scripts test --collectCoverage",
-    "storybook": "start-storybook -p 6007 -s public",
+    "storybook": "DISABLE_ESLINT_PLUGIN=true start-storybook -p 6007 -s public",
     "build-storybook": "build-storybook -s public",
     "coverage": "open-cli coverage/lcov-report/index.html",
     "updates": "ncu",

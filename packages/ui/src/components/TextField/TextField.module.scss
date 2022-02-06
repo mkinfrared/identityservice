@@ -48,10 +48,29 @@
     input {
       background-color: transparent;
       border: none;
-      color: #ffffff;
+      caret-color: var(--orange);
+      color: var(--white);
+      font-size: 100%;
       height: 100%;
       padding: 15px 20px;
       width: 100%;
+
+      &:-webkit-autofill,
+      &:-webkit-autofill:active,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus {
+        background-color: var(--background-color);
+        border: none;
+        -webkit-box-shadow: 0 0 0 1000px var(--background-color) inset;
+        caret-color: var(--orange);
+        font-size: 100%;
+        -webkit-text-fill-color: var(--white);
+        // it's not possible to use transparent background color
+        // to override chrome autofill styles, so background needs
+        // to be set to a certain color, to keep the initial background
+        // transparent the transition delay can be used
+        transition: background-color 7200s ease-in-out 0s; // 2 hr delay
+      }
 
       &::selection {
         background-color: var(--cyan);

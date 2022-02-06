@@ -33,6 +33,15 @@ const MultiFields: Story<TextFieldProps> = (args) => (
   </div>
 );
 
+const Form: Story<TextFieldProps> = () => (
+  <div className={css.Story}>
+    <div>
+      <TextField name="username" />
+      <TextField name="password" suffix={<Eye />} />
+    </div>
+  </div>
+);
+
 const Uncontrolled = Template.bind({});
 const Controlled = Template.bind({});
 const WithError = Template.bind({});
@@ -40,6 +49,7 @@ const WithPrefix = Template.bind({});
 const WithSuffix = Template.bind({});
 const WithPrefixSuffix = Template.bind({});
 const MultipleFields = MultiFields.bind({});
+const ExampleForm = Form.bind({});
 
 Uncontrolled.args = {};
 
@@ -83,4 +93,5 @@ export {
   WithSuffix,
   WithPrefixSuffix,
   MultipleFields,
+  ExampleForm,
 };
