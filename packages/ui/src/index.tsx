@@ -40,3 +40,7 @@ export * from "components/Text";
 export { default as TextField } from "components/TextField";
 
 export * from "components/TextField";
+
+export { default as Toggle } from "components/Toggle";
+
+export * from "components/Toggle";

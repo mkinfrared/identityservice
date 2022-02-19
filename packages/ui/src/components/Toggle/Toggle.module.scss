@@ -1,0 +1,58 @@
+.Toggle {
+  --padding: 2px;
+  --size: 24px;
+
+  align-items: center;
+  display: flex;
+
+  &.error {
+
+    .container {
+      outline: 1px solid var(--red);
+    }
+
+    .text {
+      color: var(--red);
+    }
+  }
+
+  .container {
+    align-items: center;
+    background: var(--grey);
+    border-radius: 50px;
+    display: flex;
+    height: var(--size);
+    padding: var(--padding);
+    transition: all 0.25s ease-in-out;
+    width: calc(var(--size) * 2 - var(--padding) * 2);
+
+    .ball {
+      aspect-ratio: 1/1;
+      background-color: var(--white);
+      border-radius: 50%;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      display: block;
+      height: 100%;
+      transition: all 0.25s;
+    }
+  }
+
+  .text {
+    margin-left: 10px;
+  }
+
+  .input {
+    display: none;
+
+    &:checked + .container {
+      background: var(--purple);
+    }
+
+    &:checked + .container .ball {
+      transform: translateX(100%);
+    }
+  }
+}
+
+.Story {
+}

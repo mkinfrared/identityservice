@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Toggle /> should match the snapshot 1`] = `
+<div>
+  <label
+    class="Toggle"
+    data-testid="Toggle"
+  >
+    <input
+      class="input"
+      type="checkbox"
+    />
+    <div
+      class="container"
+    >
+      <span
+        class="ball"
+      />
+    </div>
+  </label>
+</div>
+`;
