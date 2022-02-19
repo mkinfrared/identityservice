@@ -1,0 +1,5 @@
+:root {
+  --line-height: 1.8;
+  --text-height: calc(var(--text-size) * var(--line-height));
+  --text-size: 16px;
+}

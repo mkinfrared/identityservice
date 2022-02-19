@@ -1,0 +1,107 @@
+.Checkbox {
+  --border-radius: 5px;
+  --transition-time: 150ms;
+  --border-width: 5px;
+
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+
+  &.error {
+
+    .checkmark {
+
+      &::before,
+      &::after {
+        background: var(--red);
+      }
+    }
+
+    .text {
+      color: var(--red);
+    }
+  }
+
+  .input {
+    height: 0;
+    margin: 0;
+    opacity: 0;
+    width: 0;
+  }
+
+  .input:checked ~ .checkmark {
+
+    &::before {
+      opacity: 0;
+      transition-delay: var(--transition-time);
+    }
+
+    &::after {
+      border-radius: var(--border-radius);
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .tick {
+      opacity: 1;
+    }
+  }
+
+  .text {
+    margin-left: 10px;
+  }
+
+  .checkmark {
+    align-items: baseline;
+    aspect-ratio: 1/1;
+    background: transparent;
+    border-radius: var(--border-radius);
+    display: flex;
+    height: 28px;
+    justify-content: center;
+    padding: 5px;
+    position: relative;
+    transition: all var(--transition-time) ease-in-out;
+
+    &::before,
+    &::after {
+      background-image: var(--purple-gradient);
+      content: "";
+      inset: 0;
+      padding: 3px;
+      position: absolute;
+    }
+
+    &::before {
+      border-radius: var(--border-radius);
+      mask: linear-gradient(#ffffff 0 0) content-box,
+        linear-gradient(#ffffff 0 0);
+      mask-composite: exclude;
+      transition: all 1ms ease-in-out;
+      transition-delay: 0s;
+      z-index: -1;
+    }
+
+    &::after {
+      border-radius: 50%;
+      opacity: 0;
+      transform: scale(0);
+      transition: all var(--transition-time) ease-in-out;
+      z-index: -1;
+    }
+
+    .tick {
+      height: 100%;
+      opacity: 0;
+      transition: opacity var(--transition-time) ease-in-out;
+      width: 100%;
+
+      path {
+        fill: var(--white);
+      }
+    }
+  }
+}
+
+.Story {
+}

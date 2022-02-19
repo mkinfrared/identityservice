@@ -9,6 +9,10 @@ export { default as Card } from "components/Card";
 
 export * from "components/Card";
 
+export { default as Checkbox } from "components/Checkbox";
+
+export * from "components/Checkbox";
+
 export { default as FakeButton } from "components/FakeButton";
 
 export * from "components/FakeButton";
