@@ -17,6 +17,10 @@ export { default as FakeButton } from "components/FakeButton";
 
 export * from "components/FakeButton";
 
+export { default as Fieldset } from "components/Fieldset";
+
+export * from "components/Fieldset";
+
 export { default as Heading } from "components/Heading";
 
 export * from "components/Heading";

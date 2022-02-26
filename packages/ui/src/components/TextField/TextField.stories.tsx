@@ -51,7 +51,10 @@ const WithPrefixSuffix = Template.bind({});
 const MultipleFields = MultiFields.bind({});
 const ExampleForm = Form.bind({});
 
-Uncontrolled.args = {};
+Uncontrolled.args = {
+  disabled: false,
+  value: "foobar",
+};
 
 Controlled.args = {
   value: "marklar",

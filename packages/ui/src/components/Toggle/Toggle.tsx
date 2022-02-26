@@ -10,13 +10,14 @@ import { ToggleProps } from "./Toggle.type";
  * renders a an iOS like toggle
  */
 const Toggle = ({
-  className,
-  name,
-  label,
-  error,
-  onChange,
-  inputRef,
   checked,
+  className,
+  disabled = false,
+  error,
+  inputRef,
+  label,
+  name,
+  onChange,
 }: ToggleProps) => {
   const mergedRefs = mergeRefs(inputRef);
 
@@ -28,6 +29,7 @@ const Toggle = ({
       <input
         type="checkbox"
         className={css.input}
+        disabled={disabled}
         ref={mergedRefs}
         checked={checked}
         onChange={onChange}

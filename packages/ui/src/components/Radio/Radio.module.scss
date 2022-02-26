@@ -35,6 +35,21 @@
     }
   }
 
+  .input:disabled {
+
+    ~ .circle {
+
+      &::after,
+      &::before {
+        background: var(--snow-again);
+      }
+    }
+
+    ~ .text {
+      color: var(--grey);
+    }
+  }
+
   .circle {
     aspect-ratio: 1/1;
     height: var(--text-height);

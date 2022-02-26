@@ -1,4 +1,5 @@
 import "../src/index.scss";
+import "../src/styles/colors.css";
 
 const tokenContext = require.context(
   "!!raw-loader!../src",

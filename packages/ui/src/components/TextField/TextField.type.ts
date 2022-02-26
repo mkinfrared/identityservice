@@ -8,6 +8,7 @@ type InputAttributes = Omit<
 export type TextFieldProps = InputAttributes & {
   autoComplete?: string;
   className?: string;
+  disabled?: boolean;
   error?: string;
   name?: string;
   inputRef?: React.Ref<HTMLInputElement | null | undefined>;

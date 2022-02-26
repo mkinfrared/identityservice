@@ -13,6 +13,7 @@ import { CheckboxProps } from "./Checkbox.type";
 const Checkbox = ({
   className,
   checked,
+  disabled = false,
   error = false,
   inputRef,
   label,
@@ -30,6 +31,7 @@ const Checkbox = ({
       <input
         className={css.input}
         checked={checked}
+        disabled={disabled}
         name={name}
         onChange={onChange}
         ref={mergedRefs}

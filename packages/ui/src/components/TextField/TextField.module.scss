@@ -4,6 +4,22 @@
   display: block;
   width: 100%;
 
+  &.disabled {
+
+    .label {
+      color: var(--grey);
+      cursor: default;
+    }
+
+    .input {
+      border-color: var(--grey);
+
+      input {
+        color: var(--grey);
+      }
+    }
+  }
+
   &.hasError {
 
     .input {

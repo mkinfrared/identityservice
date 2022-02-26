@@ -18,7 +18,7 @@
 
   .container {
     align-items: center;
-    background: var(--grey);
+    background: var(--orange);
     border-radius: 50px;
     display: flex;
     height: var(--size);
@@ -50,6 +50,17 @@
 
     &:checked + .container .ball {
       transform: translateX(100%);
+    }
+
+    &:disabled {
+
+      ~ .container {
+        background: var(--grey);
+      }
+
+      ~ .text {
+        color: var(--grey);
+      }
     }
   }
 }

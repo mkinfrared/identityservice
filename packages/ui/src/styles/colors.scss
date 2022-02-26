@@ -1,20 +1,35 @@
+@function gethsl($color) {
+  @return unquote(
+    "hsl(#{hue($color)}, #{saturation($color)}, #{lightness($color)})"
+  );
+}
+
+$colors: (
+  black: #000000,
+  blue: #0071b2,
+  cyan: #00b2ad,
+  green: #6edc5f,
+  grey: #909090,
+  orange: #e67100,
+  purple: #8743ff,
+  red: #e61800,
+  white: #ffffff,
+  yellow: #e6c400,
+);
+
 :root {
 
   /**
   * @tokens Colors
   * @presenter Color
   */
-  --black: #000000;
-  --blue: #0071b2;
-  --cyan: #00b2ad;
-  --green: #6edc5f;
-  --grey: #dddddd;
-  --orange: #e67100;
-  --purple: #8743ff;
-  --red: #e61800;
-  --redRgb: 230, 24, 0;
-  --white: #ffffff;
-  --yellow: #e6c400;
+  @each $name, $value in $colors {
+    --#{$name}: #{gethsl($value)};
+    --#{$name}-hue: #{hue($value)};
+    --#{$name}-sat: #{saturation($value)};
+    --#{$name}-lit: #{lightness($value)};
+  }
+
   --snow-again: linear-gradient(
     to right,
     rgba(230, 233, 240, 0.5),

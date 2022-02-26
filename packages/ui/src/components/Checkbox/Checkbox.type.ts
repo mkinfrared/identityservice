@@ -4,6 +4,7 @@ export type CheckboxProps = {
    */
   className?: string;
   checked?: boolean;
+  disabled?: boolean;
   error?: boolean;
   name?: string;
   inputRef?: React.Ref<HTMLInputElement | null | undefined>;

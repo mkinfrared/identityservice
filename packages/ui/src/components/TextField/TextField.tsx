@@ -11,6 +11,7 @@ import { TextFieldProps } from "./TextField.type";
 const TextField = ({
   autoComplete,
   className,
+  disabled = false,
   error,
   inputRef,
   name,
@@ -29,6 +30,7 @@ const TextField = ({
     !!error && css.hasError,
     !!prefix && css.hasPrefix,
     !!suffix && css.hasSuffix,
+    disabled && css.disabled,
   ];
 
   const mergedRefs = mergeRefs(inputRef);
@@ -44,6 +46,7 @@ const TextField = ({
         {prefix && <FakeButton className={css.prefix}>{prefix}</FakeButton>}
         <input
           autoComplete={autoComplete}
+          disabled={disabled}
           name={name}
           onBlur={onBlur}
           onChange={onChange}

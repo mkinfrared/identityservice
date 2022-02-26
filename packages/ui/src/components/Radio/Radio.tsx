@@ -7,12 +7,13 @@ import css from "./Radio.module.scss";
 import { RadioProps } from "./Radio.type";
 
 const Radio = ({
+  checked,
   className,
-  name,
-  label,
+  disabled = false,
   error,
   inputRef,
-  checked,
+  label,
+  name,
   onChange,
   value,
 }: RadioProps) => {
@@ -25,6 +26,7 @@ const Radio = ({
     >
       <input
         className={css.input}
+        disabled={disabled}
         ref={refs}
         name={name}
         checked={checked}
