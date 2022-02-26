@@ -18,6 +18,7 @@ const Checkbox = ({
   label,
   name,
   onChange,
+  value,
 }: CheckboxProps) => {
   const mergedRefs = mergeRefs(inputRef);
 
@@ -33,6 +34,7 @@ const Checkbox = ({
         onChange={onChange}
         ref={mergedRefs}
         type="checkbox"
+        value={value}
       />
       <div className={css.checkmark}>
         <Tick className={css.tick} />

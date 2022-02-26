@@ -1,0 +1,83 @@
+.Radio {
+  --transition-time: 150ms;
+
+  display: flex;
+
+  &.error {
+    color: var(--red);
+
+    .circle {
+
+      &::before,
+      &::after {
+        background: var(--red);
+      }
+    }
+  }
+
+  .input {
+    height: 0;
+    margin: 0;
+    opacity: 0;
+    width: 0;
+  }
+
+  .input:checked ~ .circle {
+
+    &::after {
+      opacity: 1;
+
+      /**
+        google chrome has an issue rendering before and after
+        elements when height is a float number
+      */
+      //transform: scale(0.6);
+    }
+  }
+
+  .circle {
+    aspect-ratio: 1/1;
+    height: var(--text-height);
+    position: relative;
+
+    &::before,
+    &::after {
+      background-image: var(--purple-gradient);
+      border-radius: 50%;
+      content: "";
+      inset: 0;
+      padding: 3px;
+      position: absolute;
+    }
+
+    &::before {
+      border-radius: 50%;
+      mask: linear-gradient(#ffffff 0 0) content-box,
+        linear-gradient(#ffffff 0 0);
+      mask-composite: exclude;
+      transition: all 1ms ease-in-out;
+      transition-delay: 0s;
+      z-index: -1;
+    }
+
+    &::after {
+      border-radius: 50%;
+      opacity: 0;
+
+      /**
+        google chrome has an issue rendering before and after
+        elements when height is a float number
+      */
+      transform: scale(0.6);
+      transition: all var(--transition-time) ease-in-out;
+      z-index: -1;
+    }
+  }
+
+  .text {
+    margin-left: 10px;
+  }
+}
+
+.Story {
+}

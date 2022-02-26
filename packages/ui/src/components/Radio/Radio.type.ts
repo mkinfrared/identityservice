@@ -1,4 +1,4 @@
-export type CheckboxProps = {
+export type RadioProps = {
   /**
    * a string that will be applied as a css class to parent element
    */

@@ -29,6 +29,10 @@ export { default as Portal } from "components/Portal";
 
 export * from "components/Portal";
 
+export { default as Radio } from "components/Radio";
+
+export * from "components/Radio";
+
 export { default as Spinner } from "components/Spinner";
 
 export * from "components/Spinner";

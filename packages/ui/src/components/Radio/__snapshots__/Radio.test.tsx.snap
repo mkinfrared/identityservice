@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Radio /> should match the snapshot 1`] = `
+<div>
+  <label
+    class="Radio"
+    data-testid="Radio"
+  >
+    <input
+      class="input"
+      type="radio"
+      value=""
+    />
+    <div
+      class="circle"
+    />
+  </label>
+</div>
+`;
