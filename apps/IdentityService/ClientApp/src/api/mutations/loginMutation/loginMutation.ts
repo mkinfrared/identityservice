@@ -1,8 +1,7 @@
+import { LoginCommand } from "api/types";
 import api from "utils/api";
 
-import { LoginFormData } from "./loginMutation.type";
-
-const loginMutation = (formData: LoginFormData) =>
-  api.post<LoginFormData>("/auth/login", formData);
+const loginMutation = (formData: LoginCommand) =>
+  api.post("/auth/login", formData);
 
 export { loginMutation };

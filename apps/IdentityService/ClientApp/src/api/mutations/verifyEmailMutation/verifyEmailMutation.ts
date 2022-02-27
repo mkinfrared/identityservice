@@ -1,8 +1,7 @@
-﻿import api from "utils/api";
+﻿import { ConfirmEmailCommand } from "api/types";
+import api from "utils/api";
 
-import { VerifyEmailData } from "./verifyEmailMutation.type";
-
-const verifyEmailMutation = (data: VerifyEmailData) =>
-  api.post<VerifyEmailData>("/auth/verifyEmail", data);
+const verifyEmailMutation = (data: ConfirmEmailCommand) =>
+  api.post("/auth/verifyEmail", data);
 
 export { verifyEmailMutation };

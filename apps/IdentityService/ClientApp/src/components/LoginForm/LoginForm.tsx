@@ -9,7 +9,8 @@ import { AxiosError } from "axios";
 import { MouseEventHandler, memo } from "react";
 import { useForm } from "react-hook-form";
 
-import { LoginFormData, loginMutation } from "api/mutations";
+import { loginMutation } from "api/mutations";
+import { LoginCommand } from "api/types";
 import InputField from "components/InputField";
 import { Routes } from "pages/Main/Main.type";
 import { isAxiosError } from "utils/api";
@@ -19,18 +20,19 @@ import css from "./LoginForm.module.scss";
 import { LoginFormProps } from "./LoginForm.type";
 
 const LoginForm = ({ className, returnUrl }: LoginFormProps) => {
-  const defaultValues: LoginFormData = {
+  const defaultValues: LoginCommand = {
     username: "",
     password: "",
     returnUrl,
   };
 
-  const { register, formState, handleSubmit, setError } =
-    useForm<LoginFormData>({
+  const { register, formState, handleSubmit, setError } = useForm<LoginCommand>(
+    {
       resolver: yupResolver(loginSchema),
       mode: "onChange",
       defaultValues,
-    });
+    },
+  );
 
   const { errors, isValid, isSubmitting } = formState;
   const { togglePasswordVisibility, Icon, fieldType } = usePasswordVisibility();
@@ -47,7 +49,7 @@ const LoginForm = ({ className, returnUrl }: LoginFormProps) => {
     history.replaceState({}, "", url.toString());
   };
 
-  const onSubmit = async (formData: LoginFormData) => {
+  const onSubmit = async (formData: LoginCommand) => {
     try {
       await loginMutation(formData);
 
@@ -57,7 +59,7 @@ const LoginForm = ({ className, returnUrl }: LoginFormProps) => {
         const { response } = e as AxiosError;
 
         const submitErrors = getFormErrors(
-          response?.data as BadRequest<LoginFormData>,
+          response?.data as BadRequest<LoginCommand>,
         );
 
         submitErrors.forEach(({ name, message, type }) => {

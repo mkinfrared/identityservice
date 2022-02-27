@@ -3,6 +3,7 @@ const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { StatsWriterPlugin } = require("webpack-stats-plugin");
@@ -138,6 +139,7 @@ const rules = [
 
 const plugins = [
   new CleanWebpackPlugin(),
+  new ForkTsCheckerWebpackPlugin(),
   new HtmlWebpackPlugin({
     filename: path.resolve("../Views/Shared/_Layout.cshtml"),
     inject: "body",

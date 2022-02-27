@@ -9,7 +9,7 @@ import { MouseEventHandler, memo } from "react";
 import { useForm } from "react-hook-form";
 
 import { registerMutation } from "api/mutations";
-import { RegisterFormData } from "api/mutations/registerMutation/registerMutation.type";
+import { RegisterCommand } from "api/types";
 import InputField from "components/InputField";
 import { Routes } from "pages/Main/Main.type";
 import { isAxiosError } from "utils/api";
@@ -31,7 +31,7 @@ const RegisterForm = ({ className, returnUrl }: RegisterFormProps) => {
   };
 
   const { register, formState, handleSubmit, setError } =
-    useForm<RegisterFormData>({
+    useForm<RegisterCommand>({
       defaultValues,
       mode: "onChange",
       resolver: yupResolver(registerSchema),
@@ -52,7 +52,7 @@ const RegisterForm = ({ className, returnUrl }: RegisterFormProps) => {
     history.replaceState({}, "", url.toString());
   };
 
-  const onSubmit = async (formData: RegisterFormData) => {
+  const onSubmit = async (formData: RegisterCommand) => {
     try {
       const { token, userId } = await registerMutation(formData);
 
@@ -74,7 +74,7 @@ const RegisterForm = ({ className, returnUrl }: RegisterFormProps) => {
         const { response } = e;
 
         const submitErrors = getFormErrors(
-          response?.data as BadRequest<RegisterFormData>,
+          response?.data as BadRequest<RegisterCommand>,
         );
 
         submitErrors.forEach(({ name, message, type }) => {
