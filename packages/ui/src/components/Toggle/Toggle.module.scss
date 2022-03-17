@@ -51,16 +51,21 @@
     &:checked + .container .ball {
       transform: translateX(100%);
     }
+  }
 
-    &:disabled {
+  &.readOnly {
+    pointer-events: none;
+  }
 
-      ~ .container {
-        background: var(--grey);
-      }
+  &.readOnly .input,
+  .input:disabled {
 
-      ~ .text {
-        color: var(--grey);
-      }
+    ~ .container {
+      background: var(--grey);
+    }
+
+    ~ .text {
+      color: var(--grey);
     }
   }
 }

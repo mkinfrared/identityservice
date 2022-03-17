@@ -47,6 +47,11 @@
     }
   }
 
+  &.readOnly {
+    pointer-events: none;
+  }
+
+  &.readOnly .input,
   .input:disabled {
 
     ~ .checkmark {

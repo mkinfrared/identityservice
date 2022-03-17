@@ -7,6 +7,15 @@ import { useReturnUrl } from "hooks";
 import css from "./Main.module.scss";
 import { MainProps } from "./Main.type";
 
+const ConsentForm = lazyImport(
+  () =>
+    import(
+      /* webpackChunkName: "ConfirmEmail" */
+      /* webpackPrefetch: true */
+      "components/ConsentForm"
+    ),
+);
+
 const ConfirmEmail = lazyImport(
   () =>
     import(
@@ -56,6 +65,14 @@ const Main = ({ className, path }: MainProps) => {
       );
 
       break;
+
+    case "consent":
+      child = (
+        <ConsentForm className={css.formContainer} returnUrl={returnUrl} />
+      );
+
+      break;
+
     default:
       child = <LoginForm className={css.formContainer} returnUrl={returnUrl} />;
   }

@@ -162,7 +162,7 @@ const config = {
   mode: "production",
   devtool: "source-map",
   entry: {
-    main: path.resolve("./src/pages/Main/index.tsx"),
+    main: path.resolve("./src/index.tsx"),
   },
   module: {
     rules,

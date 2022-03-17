@@ -13,4 +13,12 @@ module.exports = {
   core: {
     builder: "webpack5",
   },
+  webpackFinal: (config) => {
+    return {
+      ...config,
+      plugins: config.plugins.filter((plugin) => {
+        return plugin.constructor.name !== "ESLintWebpackPlugin";
+      }),
+    };
+  },
 };

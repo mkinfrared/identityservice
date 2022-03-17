@@ -1,6 +1,7 @@
 import { render, waitFor } from "@testing-library/react";
 
 import { Routes } from "pages/Main/Main.type";
+import { withQuery } from "utils/testUtils";
 
 import { Main } from "./Main";
 
@@ -48,6 +49,20 @@ describe("<Main />", () => {
   it("should render <ConfirmEmailForm /> when path is 'confirmEmail'", async () => {
     const testId = "ConfirmEmailForm";
     const { findByTestId } = render(<Main path={Routes.CONFIRM_EMAIL} />);
+
+    await waitFor(async () => {
+      const element = await findByTestId(testId);
+
+      expect(element).toBeDefined();
+    });
+  });
+
+  it("should render <ConsentForm /> when path is 'consent'", async () => {
+    const testId = "ConsentForm";
+
+    const { findByTestId } = render(<Main path={Routes.CONSENT} />, {
+      wrapper: withQuery,
+    });
 
     await waitFor(async () => {
       const element = await findByTestId(testId);

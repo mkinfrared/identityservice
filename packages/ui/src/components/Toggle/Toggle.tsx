@@ -12,28 +12,37 @@ import { ToggleProps } from "./Toggle.type";
 const Toggle = ({
   checked,
   className,
+  defaultChecked,
   disabled = false,
   error,
   inputRef,
   label,
   name,
   onChange,
+  readOnly = false,
 }: ToggleProps) => {
   const mergedRefs = mergeRefs(inputRef);
 
   return (
     <label
-      className={classNames(css.Toggle, error && css.error, className)}
+      className={classNames(
+        css.Toggle,
+        error && css.error,
+        readOnly && css.readOnly,
+        className,
+      )}
       data-testid="Toggle"
     >
       <input
-        type="checkbox"
-        className={css.input}
-        disabled={disabled}
-        ref={mergedRefs}
         checked={checked}
-        onChange={onChange}
+        className={css.input}
+        defaultChecked={defaultChecked}
+        disabled={disabled}
         name={name}
+        ref={mergedRefs}
+        onChange={onChange}
+        readOnly={readOnly}
+        type="checkbox"
       />
       <div className={css.container}>
         <span className={css.ball} />

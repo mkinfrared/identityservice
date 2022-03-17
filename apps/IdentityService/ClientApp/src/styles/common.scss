@@ -8,19 +8,33 @@
   }
 
   .heading {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     text-align: center;
   }
 
+  .fieldset {
+    margin-top: 20px;
+
+    .input {
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+  }
+
   .input {
-    margin-bottom: 20px;
+    margin-top: 10px;
   }
 
   .text {
-    margin-bottom: 20px;
+    margin-top: 10px;
   }
 
   .buttonWrapper {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
     text-align: center;
   }
 }

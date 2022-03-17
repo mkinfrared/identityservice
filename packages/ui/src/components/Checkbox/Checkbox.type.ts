@@ -4,6 +4,7 @@ export type CheckboxProps = {
    */
   className?: string;
   checked?: boolean;
+  defaultChecked?: boolean;
   disabled?: boolean;
   error?: boolean;
   name?: string;
@@ -13,5 +14,6 @@ export type CheckboxProps = {
    */
   label?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  readOnly?: boolean;
   value?: string;
 };

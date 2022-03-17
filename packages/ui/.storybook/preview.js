@@ -1,10 +1,9 @@
-import "../src/index.scss";
 import "../src/styles/colors.css";
 
 const tokenContext = require.context(
   "!!raw-loader!../src",
   true,
-  /.\.(css|less|scss|svg)$/,
+  /.\.(css|less|svg)$/,
 );
 
 const tokenFiles = tokenContext.keys().map(function (filename) {

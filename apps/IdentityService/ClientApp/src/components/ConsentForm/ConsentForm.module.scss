@@ -1,0 +1,12 @@
+@import "../../styles/common";
+
+.ConsentForm {
+  @extend %loginRegisterForm;
+
+  .description {
+    margin-top: 5px;
+  }
+}
+
+.Story {
+}

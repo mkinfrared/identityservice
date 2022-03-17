@@ -13,28 +13,47 @@ import { CheckboxProps } from "./Checkbox.type";
 const Checkbox = ({
   className,
   checked,
+  defaultChecked,
   disabled = false,
   error = false,
   inputRef,
   label,
   name,
   onChange,
+  readOnly = false,
   value,
 }: CheckboxProps) => {
   const mergedRefs = mergeRefs(inputRef);
 
+  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (readOnly) {
+  //     event.preventDefault();
+  //
+  //     return;
+  //   }
+  //
+  //   onChange?.(event);
+  // };
+
   return (
     <label
-      className={classNames(css.Checkbox, error && css.error, className)}
+      className={classNames(
+        css.Checkbox,
+        error && css.error,
+        readOnly && css.readOnly,
+        className,
+      )}
       data-testid="Checkbox"
     >
       <input
-        className={css.input}
+        className={classNames(css.input)}
         checked={checked}
+        defaultChecked={defaultChecked}
         disabled={disabled}
         name={name}
         onChange={onChange}
         ref={mergedRefs}
+        readOnly={readOnly}
         type="checkbox"
         value={value}
       />

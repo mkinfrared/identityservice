@@ -1,5 +1,9 @@
 /* eslint-disable no-console */
-import Oidc, { UserManager, UserManagerSettings } from "oidc-client";
+import Oidc, {
+  UserManager,
+  UserManagerSettings,
+  WebStorageStateStore,
+} from "oidc-client";
 
 Oidc.Log.logger = console;
 
@@ -12,7 +16,8 @@ const settings: UserManagerSettings = {
   post_logout_redirect_uri: "https://localhost:4001/logout",
   silent_redirect_uri: "https://localhost:4001/silent-renew.html",
   automaticSilentRenew: true,
-  // userStore: new WebStorageStateStore({ store: window.localStorage }),
+  // userStore should match the store with signin callback and silent signin
+  userStore: new WebStorageStateStore({ store: window.localStorage }),
   // Make sure this is not added to settings
   // loadUserInfo: true,
   // Should be in callbacks

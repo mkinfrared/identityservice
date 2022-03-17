@@ -9,12 +9,48 @@
  * ---------------------------------------------------------------
  */
 
+export type ApiScopeReadDto = {
+  name?: string;
+  displayName?: string;
+  description?: string;
+  emphasize?: boolean;
+  required?: boolean;
+};
+
+export type ApiScopeUpdateDto = {
+  name?: string;
+  displayName?: string;
+  description?: string;
+  emphasize?: boolean;
+  required?: boolean;
+  isPermitted?: boolean;
+};
+
 export type ConfirmEmailCommand = {
   userId: string;
   token: string;
 
   /** @format int32 */
   code?: number | null;
+};
+
+export type ConsentReadDto = {
+  clientName?: string;
+  clientUrl?: string;
+  clientLogoUrl?: string;
+  returnUrl?: string;
+  allowRememberConsent?: boolean;
+  identityScopes?: ApiScopeReadDto[];
+  apiScopes?: ApiScopeReadDto[];
+};
+
+export type ConsentUpdateDto = {
+  redirectUrl: string;
+  description: string;
+  rememberConsent: boolean;
+  permissionGranted: boolean;
+  identityScopes: ApiScopeUpdateDto[];
+  apiScopes: ApiScopeUpdateDto[];
 };
 
 export type LoginCommand = {
@@ -88,6 +124,37 @@ export namespace Auth {
     export type RequestParams = {};
     export type RequestQuery = { logoutId?: string };
     export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = string;
+  }
+}
+
+export namespace Consent {
+  /**
+   * No description
+   * @tags Consent
+   * @name GetConsentList
+   * @request GET:/Consent/GetConsent
+   * @response `200` `ConsentReadDto` Success
+   */
+  export namespace GetConsentList {
+    export type RequestParams = {};
+    export type RequestQuery = { returnUrl?: string };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = ConsentReadDto;
+  }
+  /**
+   * No description
+   * @tags Consent
+   * @name SubmitConsentCreate
+   * @request POST:/Consent/SubmitConsent
+   * @response `200` `string` Success
+   */
+  export namespace SubmitConsentCreate {
+    export type RequestParams = {};
+    export type RequestQuery = {};
+    export type RequestBody = ConsentUpdateDto;
     export type RequestHeaders = {};
     export type ResponseBody = string;
   }

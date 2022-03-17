@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ToggleField /> should match the snapshot 1`] = `
+<div>
+  <label
+    class="Toggle-module_Toggle__l-SWp"
+    data-testid="Toggle"
+  >
+    <input
+      class="Toggle-module_input__9vPu1"
+      type="checkbox"
+    />
+    <div
+      class="Toggle-module_container__FoqlF"
+    >
+      <span
+        class="Toggle-module_ball__bF3bD"
+      />
+    </div>
+  </label>
+</div>
+`;

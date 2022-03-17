@@ -12,44 +12,46 @@ namespace IdentityService;
 
 public static class Config
 {
-  public static IEnumerable<IdentityResource> IdentityResources =>
-    new IdentityResource[] {new IdentityResources.OpenId(), new IdentityResources.Profile()};
+    public static IEnumerable<IdentityResource> IdentityResources =>
+        new IdentityResource[] { new IdentityResources.OpenId(), new IdentityResources.Profile() };
 
-  public static IEnumerable<ApiScope> ApiScopes =>
-    new[]
-    {
-      new ApiScope("scope1"), new ApiScope("scope2"), new ApiScope("OrdersApi"),
+    public static IEnumerable<ApiScope> ApiScopes =>
+        new[]
+        {
+            new ApiScope("scope1"),
+            new ApiScope("scope2"),
+            new ApiScope("OrdersApi"),
             new ApiScope("ClientMvc")
-    };
+        };
 
-  public static IEnumerable<Client> Clients =>
-    new[]
-    {
+    public static IEnumerable<Client> Clients =>
+        new[]
+        {
             // m2m client credentials flow client
             new Client
             {
                 ClientId = "m2m.client",
                 ClientName = "Client Credentials Client",
                 AllowedGrantTypes = GrantTypes.ClientCredentials,
-                ClientSecrets = {new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256())},
-                AllowedScopes = {"scope1"}
+                ClientSecrets = { new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256()) },
+                AllowedScopes = { "scope1" }
             },
             // interactive client using code flow + pkce
             new Client
             {
                 ClientId = "interactive",
-                ClientSecrets = {new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256())},
+                ClientSecrets = { new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256()) },
                 AllowedGrantTypes = GrantTypes.Code,
-                RedirectUris = {"https://localhost:44300/signin-oidc"},
+                RedirectUris = { "https://localhost:44300/signin-oidc" },
                 FrontChannelLogoutUri = "https://localhost:44300/signout-oidc",
-                PostLogoutRedirectUris = {"https://localhost:44300/signout-callback-oidc"},
+                PostLogoutRedirectUris = { "https://localhost:44300/signout-callback-oidc" },
                 AllowOfflineAccess = true,
-                AllowedScopes = {"openid", "profile", "scope2"}
+                AllowedScopes = { "openid", "profile", "scope2" }
             },
             new Client
             {
                 ClientId = "client_id",
-                ClientSecrets = {new Secret("client_secret".ToSha256())},
+                ClientSecrets = { new Secret("client_secret".ToSha256()) },
                 AllowedGrantTypes = GrantTypes.ClientCredentials,
                 AllowedScopes =
                 {
@@ -61,7 +63,7 @@ public static class Config
             new Client
             {
                 ClientId = "client_id_mvc",
-                ClientSecrets = {new Secret("client_secret_mvc".ToSha256())},
+                ClientSecrets = { new Secret("client_secret_mvc".ToSha256()) },
                 AllowedGrantTypes = GrantTypes.Code,
                 AllowedScopes =
                 {
@@ -70,8 +72,8 @@ public static class Config
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile
                 },
-                RedirectUris = {"https://localhost:2001/signin-oidc"},
-                PostLogoutRedirectUris = {"https://localhost:2001/signout-callback-oidc"},
+                RedirectUris = { "https://localhost:2001/signin-oidc" },
+                PostLogoutRedirectUris = { "https://localhost:2001/signout-callback-oidc" },
                 FrontChannelLogoutUri = "http://localhost:2001",
                 RequireConsent = false,
                 // Token lifetime in seconds
@@ -84,7 +86,7 @@ public static class Config
             },
             new Client
             {
-              ClientId = "identity_admin_client",
+                ClientId = "identity_admin_client",
                 AllowedGrantTypes = GrantTypes.Code,
                 // AllowedGrantTypes = GrantTypes.Implicit,
                 RedirectUris =
@@ -96,11 +98,14 @@ public static class Config
                 },
                 PostLogoutRedirectUris =
                 {
-                  "https://localhost:4001/logout", "http://localhost:3000/logout"
+                    "https://localhost:4001/logout",
+                    "http://localhost:3000/logout"
                 },
                 AllowedCorsOrigins = new List<string>
                 {
-                  "https://localhost:4001", "http://localhost:3000", "https://localhost:10001"
+                    "https://localhost:4001",
+                    "http://localhost:3000",
+                    "https://localhost:10001"
                 },
                 // ClientUri =
                 AllowedScopes =
@@ -123,12 +128,12 @@ public static class Config
                 // IdentityTokenLifetime = 5
                 // AlwaysIncludeUserClaimsInIdToken = true
             }
-    };
+        };
 
-  public static IEnumerable<ApiResource> Resources =>
-    new[]
-    {
-      new ApiResource {Name = "OrdersApi", Scopes = {"OrdersApi"}},
-      new ApiResource {Name = "ClientMvc", Scopes = {"ClientMvc"}}
-    };
+    public static IEnumerable<ApiResource> Resources =>
+        new[]
+        {
+            new ApiResource { Name = "OrdersApi", Scopes = { "OrdersApi" } },
+            new ApiResource { Name = "ClientMvc", Scopes = { "ClientMvc" } }
+        };
 }

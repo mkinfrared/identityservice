@@ -7,7 +7,8 @@ export type MainProps = {
 };
 
 export enum Routes {
+  CONSENT = "consent",
+  CONFIRM_EMAIL = "confirmEmail",
   LOGIN = "login",
   REGISTER = "register",
-  CONFIRM_EMAIL = "confirmEmail",
 }

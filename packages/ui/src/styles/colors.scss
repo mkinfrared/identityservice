@@ -1,7 +1,11 @@
-@function gethsl($color) {
-  @return unquote(
-    "hsl(#{hue($color)}, #{saturation($color)}, #{lightness($color)})"
-  );
+@function toRGB($color) {
+  @return "rgb(" + red($color) + ", " + green($color) + ", " + blue($color) +
+    ")";
+}
+
+@function toHSL($color) {
+  @return "hsl(" + hue($color) + ", " + saturation($color) + ", " +
+    lightness($color) + ")";
 }
 
 $colors: (
@@ -24,10 +28,9 @@ $colors: (
   * @presenter Color
   */
   @each $name, $value in $colors {
-    --#{$name}: #{gethsl($value)};
-    --#{$name}-hue: #{hue($value)};
-    --#{$name}-sat: #{saturation($value)};
-    --#{$name}-lit: #{lightness($value)};
+    --#{$name}: #{tohsl($value)};
+    --#{$name}-light: #{tohsl(lighten($value, 15))};
+    --#{$name}-dark: #{tohsl(darken($value, 15))};
   }
 
   --snow-again: linear-gradient(
