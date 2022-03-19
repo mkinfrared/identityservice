@@ -22,15 +22,14 @@ $colors: (
 );
 
 :root {
-
   /**
   * @tokens Colors
   * @presenter Color
   */
   @each $name, $value in $colors {
-    --#{$name}: #{tohsl($value)};
-    --#{$name}-light: #{tohsl(lighten($value, 15))};
-    --#{$name}-dark: #{tohsl(darken($value, 15))};
+    --#{$name}: #{toHSL($value)};
+    --#{$name}-light: #{toHSL(lighten($value, 15))};
+    --#{$name}-dark: #{toHSL(darken($value, 15))};
   }
 
   --snow-again: linear-gradient(
