@@ -53,6 +53,11 @@ export type ConsentUpdateDto = {
   apiScopes: ApiScopeUpdateDto[];
 };
 
+export type ForgotPasswordDto = {
+  email: string;
+  returnUrl: string;
+};
+
 export type LoginCommand = {
   username: string;
   password: string;
@@ -68,6 +73,13 @@ export type RegisterCommand = {
   password?: string;
   passwordConfirmation?: string;
   redirectUrl?: string;
+};
+
+export type ResetPasswordCommand = {
+  userId?: string;
+  token?: string;
+  password?: string;
+  confirmPassword?: string;
 };
 
 export namespace Auth {
@@ -126,6 +138,34 @@ export namespace Auth {
     export type RequestBody = never;
     export type RequestHeaders = {};
     export type ResponseBody = string;
+  }
+  /**
+   * No description
+   * @tags Auth
+   * @name ForgotPasswordCreate
+   * @request POST:/Auth/ForgotPassword
+   * @response `200` `void` Success
+   */
+  export namespace ForgotPasswordCreate {
+    export type RequestParams = {};
+    export type RequestQuery = {};
+    export type RequestBody = ForgotPasswordDto;
+    export type RequestHeaders = {};
+    export type ResponseBody = void;
+  }
+  /**
+   * No description
+   * @tags Auth
+   * @name ResetPasswordCreate
+   * @request POST:/Auth/ResetPassword
+   * @response `200` `void` Success
+   */
+  export namespace ResetPasswordCreate {
+    export type RequestParams = {};
+    export type RequestQuery = {};
+    export type RequestBody = ResetPasswordCommand;
+    export type RequestHeaders = {};
+    export type ResponseBody = void;
   }
 }
 

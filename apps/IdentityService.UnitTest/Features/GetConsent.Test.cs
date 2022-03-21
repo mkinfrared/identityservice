@@ -1,10 +1,7 @@
 using System.Threading;
 
-using IdentityServer4.Models;
 using IdentityServer4.Services;
-using IdentityServer4.Validation;
 
-using IdentityService.Features.Auth.Login;
 using IdentityService.Unit.Utils;
 
 using Moq;

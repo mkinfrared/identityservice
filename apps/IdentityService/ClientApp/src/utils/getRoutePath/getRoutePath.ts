@@ -6,6 +6,8 @@ const getRoutePath = (pathname: string) => {
   const consentReg = /\/Consent/i;
   const confirmEmailReg = /\/ConfirmEmail/i;
   const registerReg = /\/Register/i;
+  const forgotPasswordReg = /\/ForgotPassword/i;
+  const resetPasswordReg = /\/ResetPassword/i;
 
   if (registerReg.test(pathname)) {
     path = Routes.REGISTER;
@@ -17,6 +19,14 @@ const getRoutePath = (pathname: string) => {
 
   if (consentReg.test(pathname)) {
     path = Routes.CONSENT;
+  }
+
+  if (forgotPasswordReg.test(pathname)) {
+    path = Routes.FORGOT_PASSWORD;
+  }
+
+  if (resetPasswordReg.test(pathname)) {
+    path = Routes.PASSWORD_RESET;
   }
 
   return path;

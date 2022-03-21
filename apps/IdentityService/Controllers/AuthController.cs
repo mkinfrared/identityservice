@@ -1,10 +1,13 @@
 using System.Linq;
 using System.Threading.Tasks;
 
+using IdentityService.Dto;
 using IdentityService.Features.Auth.ConfirmEmail;
+using IdentityService.Features.Auth.ForgotPassword;
 using IdentityService.Features.Auth.Login;
 using IdentityService.Features.Auth.Logout;
 using IdentityService.Features.Auth.Register;
+using IdentityService.Features.Auth.ResetPassword;
 using IdentityService.Features.Auth.SendConfirmEmail;
 
 using MediatR;
@@ -80,5 +83,32 @@ public class AuthController : ControllerBase
         }
 
         return Redirect(result);
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> ForgotPassword(ForgotPasswordDto dto)
+    {
+        var (email, returnUrl) = dto;
+        var url = Url.Action("ResetPassword", "Account", null, HttpContext.Request.Scheme);
+        var command = new ForgotPassword.Command(email, returnUrl, url);
+
+        await _mediator.Send(command);
+
+        return Ok();
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> ResetPassword(ResetPassword.Command command)
+    {
+        var result = await _mediator.Send(command);
+
+        if (result.Succeeded)
+        {
+            return Ok();
+        }
+
+        var errors = result.Errors.Select(error => error.Description);
+
+        return BadRequest(new { password = errors });
     }
 }

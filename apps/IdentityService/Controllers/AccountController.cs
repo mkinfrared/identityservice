@@ -21,4 +21,10 @@ public class AccountController : Controller
     {
         return View("Login");
     }
+
+    [HttpGet]
+    public IActionResult ResetPassword()
+    {
+        return View("Login");
+    }
 }

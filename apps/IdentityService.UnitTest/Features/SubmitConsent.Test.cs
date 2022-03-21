@@ -3,7 +3,6 @@ using System.Security.Claims;
 using System.Threading;
 
 using IdentityServer4.Events;
-using IdentityServer4.Extensions;
 using IdentityServer4.Services;
 
 using IdentityService.Dto;

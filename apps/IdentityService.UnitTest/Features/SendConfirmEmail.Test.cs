@@ -1,6 +1,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 
+using FluentValidation.TestHelper;
+
 using IdentityService.Entities;
 using IdentityService.Features.Auth.SendConfirmEmail;
 using IdentityService.Services;
@@ -22,78 +24,104 @@ namespace IdentityService.Unit.Features;
 
 public class SendConfirmEmailTest
 {
-  private readonly Mock<CacheService> _cacheMock;
-  private readonly Mock<IEmailService> _emailServiceMock;
-  private readonly Mock<IFileSystem> _fileMock;
-  private readonly Mock<IWebHostEnvironment> _hostEnvironmentMock;
-  private readonly Mock<UserManager<User>> _userManagerMock;
+    private readonly Mock<CacheService> _cacheMock;
+    private readonly Mock<IEmailService> _emailServiceMock;
+    private readonly Mock<IFileSystem> _fileMock;
+    private readonly Mock<IWebHostEnvironment> _hostEnvironmentMock;
+    private readonly Mock<UserManager<User>> _userManagerMock;
 
-  public SendConfirmEmailTest()
-  {
-    _cacheMock = MockHelpers.MockCacheService();
-    _emailServiceMock = new Mock<IEmailService>();
-    _fileMock = new Mock<IFileSystem>();
-    _hostEnvironmentMock = new Mock<IWebHostEnvironment>();
-    _userManagerMock = MockHelpers.MockUserManager<User>();
-  }
+    public SendConfirmEmailTest()
+    {
+        _cacheMock = MockHelpers.MockCacheService();
+        _emailServiceMock = new Mock<IEmailService>();
+        _fileMock = new Mock<IFileSystem>();
+        _hostEnvironmentMock = new Mock<IWebHostEnvironment>();
+        _userManagerMock = MockHelpers.MockUserManager<User>();
+    }
 
-  [Fact]
-  public void Command_Should_Have_Correct_Properties()
-  {
-    var username = "marklar";
-    var command = new SendConfirmEmail.Command(username);
+    [Fact]
+    public void Command_Should_Have_Correct_Properties()
+    {
+        var username = "marklar";
+        var command = new SendConfirmEmail.Command(username);
 
-    Assert.Equal(username, command.Username);
-  }
+        Assert.Equal(username, command.Username);
+    }
 
-  [Fact]
-  public async Task CommandHandler_Should_Return_ConfirmEmailCommand()
-  {
-    var username = "marklar";
-    var emailToken = "foobar";
-    var email = "marklar@coons.com";
-    var userMock = new Mock<User>();
+    [Fact]
+    public async Task CommandHandler_Should_Return_ConfirmEmailCommand()
+    {
+        var username = "marklar";
+        var emailToken = "foobar";
+        var email = "marklar@coons.com";
+        var userMock = new Mock<User>();
 
-    userMock.Setup(user => user.Email).Returns(email);
+        userMock.Setup(user => user.Email).Returns(email);
 
-    var command = new SendConfirmEmail.Command(
-      username
-    );
+        var command = new SendConfirmEmail.Command(username);
 
-    _userManagerMock
-      .Setup(manager => manager.FindByNameAsync(username))
-      .ReturnsAsync(userMock.Object);
+        _userManagerMock
+            .Setup(manager => manager.FindByNameAsync(username))
+            .ReturnsAsync(userMock.Object);
 
-    _userManagerMock
-      .Setup(manager => manager.GenerateEmailConfirmationTokenAsync(userMock.Object))
-      .ReturnsAsync(emailToken);
+        _userManagerMock
+            .Setup(manager => manager.GenerateEmailConfirmationTokenAsync(userMock.Object))
+            .ReturnsAsync(emailToken);
 
-    _hostEnvironmentMock.Setup(environment => environment.ContentRootPath).Returns("root");
+        _hostEnvironmentMock.Setup(environment => environment.ContentRootPath).Returns("root");
 
-    _fileMock.Setup(fileSystem => fileSystem.ReadAllText(It.IsAny<string>())).Returns("foobar");
+        _fileMock.Setup(fileSystem => fileSystem.ReadAllText(It.IsAny<string>())).Returns("foobar");
 
-    var commandHandler = new SendConfirmEmail.CommandHandler(
-      _userManagerMock.Object,
-      _cacheMock.Object,
-      _fileMock.Object,
-      _emailServiceMock.Object,
-      _hostEnvironmentMock.Object
-    );
+        var commandHandler = new SendConfirmEmail.CommandHandler(
+            _userManagerMock.Object,
+            _cacheMock.Object,
+            _fileMock.Object,
+            _emailServiceMock.Object,
+            _hostEnvironmentMock.Object
+        );
 
-    var result = await commandHandler.Handle(command, new CancellationToken());
+        var result = await commandHandler.Handle(command, new CancellationToken());
 
-    Assert.IsType<ConfirmEmailCommand>(result);
+        Assert.IsType<ConfirmEmailCommand>(result);
 
-    _emailServiceMock.Verify(
-      service =>
-        service.SendAsync(
-          It.IsAny<string>(),
-          It.IsAny<string>(),
-          It.IsAny<string>(),
-          true,
-          null
-        ),
-      Times.Once
-    );
-  }
+        _emailServiceMock.Verify(
+            service =>
+                service.SendAsync(
+                    It.IsAny<string>(),
+                    It.IsAny<string>(),
+                    It.IsAny<string>(),
+                    true,
+                    null
+                ),
+            Times.Once
+        );
+    }
+
+    [Fact]
+    public void Should_Return_An_Error_When_Fields_Are_Invalid()
+    {
+        string username = null;
+
+        var validator = new SendConfirmEmail.Validator();
+
+        var command = new SendConfirmEmail.Command(username);
+
+        var result = validator.TestValidate(command);
+
+        result.ShouldHaveValidationErrorFor(c => c.Username);
+    }
+
+    [Fact]
+    public void Should_Not_Return_An_Error_When_Fields_Are_Valid()
+    {
+        string username = "marklar";
+
+        var validator = new SendConfirmEmail.Validator();
+
+        var command = new SendConfirmEmail.Command(username);
+
+        var result = validator.TestValidate(command);
+
+        result.ShouldNotHaveValidationErrorFor(c => c.Username);
+    }
 }

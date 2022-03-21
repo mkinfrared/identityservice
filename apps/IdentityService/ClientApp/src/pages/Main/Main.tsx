@@ -10,7 +10,7 @@ import { MainProps } from "./Main.type";
 const ConsentForm = lazyImport(
   () =>
     import(
-      /* webpackChunkName: "ConfirmEmail" */
+      /* webpackChunkName: "ConsentForm" */
       /* webpackPrefetch: true */
       "components/ConsentForm"
     ),
@@ -25,12 +25,30 @@ const ConfirmEmail = lazyImport(
     ),
 );
 
+const ForgotPasswordForm = lazyImport(
+  () =>
+    import(
+      /* webpackChunkName: "ForgotPasswordForm */
+      /* webpackPrefetch: true */
+      "components/ForgotPasswordForm"
+    ),
+);
+
 const LoginForm = lazyImport(
   () =>
     import(
       /* webpackChunkName: "LoginForm" */
       /* webpackPrefetch: true */
       "components/LoginForm"
+    ),
+);
+
+const PasswordResetForm = lazyImport(
+  () =>
+    import(
+      /* webpackChunkName: "PasswordResetForm" */
+      /* webpackPrefetch: true */
+      "components/PasswordResetForm"
     ),
 );
 
@@ -69,6 +87,21 @@ const Main = ({ className, path }: MainProps) => {
     case "consent":
       child = (
         <ConsentForm className={css.formContainer} returnUrl={returnUrl} />
+      );
+
+      break;
+
+    case "resetPassword":
+      child = <PasswordResetForm className={css.formContainer} />;
+
+      break;
+
+    case "forgotPassword":
+      child = (
+        <ForgotPasswordForm
+          className={css.formContainer}
+          returnUrl={returnUrl}
+        />
       );
 
       break;

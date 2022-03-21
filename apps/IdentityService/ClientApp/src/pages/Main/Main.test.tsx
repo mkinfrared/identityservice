@@ -7,9 +7,13 @@ import { Main } from "./Main";
 
 jest.mock("components/ConfirmEmailForm");
 
+jest.mock("components/ForgotPasswordForm");
+
 jest.mock("components/LoginForm");
 
 jest.mock("components/RegisterForm");
+
+jest.mock("components/PasswordResetForm");
 
 describe("<Main />", () => {
   it("should match the snapshot", () => {
@@ -61,6 +65,34 @@ describe("<Main />", () => {
     const testId = "ConsentForm";
 
     const { findByTestId } = render(<Main path={Routes.CONSENT} />, {
+      wrapper: withQuery,
+    });
+
+    await waitFor(async () => {
+      const element = await findByTestId(testId);
+
+      expect(element).toBeDefined();
+    });
+  });
+
+  it("should render <ForgotPasswordForm /> when path is 'forgotPassword'", async () => {
+    const testId = "ForgotPasswordForm";
+
+    const { findByTestId } = render(<Main path={Routes.FORGOT_PASSWORD} />, {
+      wrapper: withQuery,
+    });
+
+    await waitFor(async () => {
+      const element = await findByTestId(testId);
+
+      expect(element).toBeDefined();
+    });
+  });
+
+  it("should render <PasswordResetForm /> when path is 'resetPassword'", async () => {
+    const testId = "PasswordResetForm";
+
+    const { findByTestId } = render(<Main path={Routes.PASSWORD_RESET} />, {
       wrapper: withQuery,
     });
 

@@ -1,9 +1,6 @@
 using System.Threading.Tasks;
 
-using IdentityServer4.Extensions;
-
 using IdentityService.Dto;
-using IdentityService.Entities;
 using IdentityService.Features.Consent.GetConsent;
 using IdentityService.Features.Consent.SubmitConsent;
 

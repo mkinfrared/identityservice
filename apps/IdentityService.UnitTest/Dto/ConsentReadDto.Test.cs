@@ -2,8 +2,6 @@ using System.Collections.Generic;
 
 using IdentityService.Dto;
 
-using Moq;
-
 using Xunit;
 
 namespace IdentityService.Unit.Dto;

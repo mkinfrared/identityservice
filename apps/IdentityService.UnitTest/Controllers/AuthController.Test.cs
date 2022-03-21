@@ -2,14 +2,19 @@ using System;
 using System.Threading;
 
 using IdentityService.Controllers;
+using IdentityService.Dto;
 using IdentityService.Features.Auth.ConfirmEmail;
+using IdentityService.Features.Auth.ForgotPassword;
 using IdentityService.Features.Auth.Login;
 using IdentityService.Features.Auth.Logout;
 using IdentityService.Features.Auth.Register;
+using IdentityService.Features.Auth.ResetPassword;
 using IdentityService.Features.Auth.SendConfirmEmail;
+using IdentityService.Unit.Utils;
 
 using MediatR;
 
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -218,5 +223,72 @@ public class AuthControllerTest
         Assert.IsType<RedirectResult>(result.Result);
 
         Assert.Equal(commandResult, ((RedirectResult)result.Result)?.Url);
+    }
+
+    [Fact]
+    public async void ForgotPassword_Should_Return_Ok_Action_Result()
+    {
+        var urlHelperMock = MockHelpers.MockUrlHelper();
+
+        _controller.Url = urlHelperMock.Object;
+        _controller.ControllerContext.HttpContext = new DefaultHttpContext();
+
+        var forgotPasswordDto = new ForgotPasswordDto();
+
+        _mediatrMock
+            .Setup(m => m.Send(It.IsAny<ForgotPassword.Command>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(() => null);
+
+        var result = await _controller.ForgotPassword(forgotPasswordDto);
+
+        Assert.IsType<OkResult>(result);
+    }
+
+    [Fact]
+    public async void ResetPassword_Should_Return_Ok_Action_Result()
+    {
+        var userId = "userId";
+        var token = "token";
+        var password = "password";
+        var confirmPassword = "password";
+
+        var resetPasswordCommand = new ResetPassword.Command(
+            userId,
+            token,
+            password,
+            confirmPassword
+        );
+
+        _mediatrMock
+            .Setup(m => m.Send(It.IsAny<ResetPassword.Command>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(IdentityResult.Success);
+
+        var result = await _controller.ResetPassword(resetPasswordCommand);
+
+        Assert.IsType<OkResult>(result);
+    }
+
+    [Fact]
+    public async void ResetPassword_Should_Return_BadRequest_Action_Result()
+    {
+        var userId = "userId";
+        var token = "token";
+        var password = "password";
+        var confirmPassword = "password";
+
+        var resetPasswordCommand = new ResetPassword.Command(
+            userId,
+            token,
+            password,
+            confirmPassword
+        );
+
+        _mediatrMock
+            .Setup(m => m.Send(It.IsAny<ResetPassword.Command>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(IdentityResult.Failed());
+
+        var result = await _controller.ResetPassword(resetPasswordCommand);
+
+        Assert.IsType<BadRequestObjectResult>(result);
     }
 }

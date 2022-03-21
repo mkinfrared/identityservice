@@ -2,6 +2,10 @@
 
 .LoginForm {
   @extend %loginRegisterForm;
+
+  .forgotPassword {
+    text-align: center;
+  }
 }
 
 .Story {

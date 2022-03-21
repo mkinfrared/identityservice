@@ -1,5 +1,9 @@
-export * from "./confirmEmailSchema";
+export * from "./schemas/confirmEmailSchema";
 
-export * from "./loginSchema";
+export * from "./schemas/forgotPasswordSchema";
 
-export * from "./registerSchema";
+export * from "./schemas/loginSchema";
+
+export * from "./schemas/registerSchema";
+
+export * from "./schemas/passwordResetSchema";

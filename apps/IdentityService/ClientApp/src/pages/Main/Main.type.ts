@@ -11,4 +11,6 @@ export enum Routes {
   CONFIRM_EMAIL = "confirmEmail",
   LOGIN = "login",
   REGISTER = "register",
+  FORGOT_PASSWORD = "forgotPassword",
+  PASSWORD_RESET = "resetPassword",
 }

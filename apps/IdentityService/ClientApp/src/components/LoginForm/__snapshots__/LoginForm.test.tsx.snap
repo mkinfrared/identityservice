@@ -89,6 +89,16 @@ exports[`<LoginForm /> should match the snapshot 1`] = `
         value="?someUrl=Marklar"
       />
       <p
+        class="Text-module_Text__K8mLZ text forgotPassword"
+        data-testid="Text"
+      >
+        <a
+          href="/account/forgotPassword"
+        >
+          Forgot password?
+        </a>
+      </p>
+      <p
         class="Text-module_Text__K8mLZ text"
         data-testid="Text"
       >

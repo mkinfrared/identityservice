@@ -1,13 +1,11 @@
 // unset
 
 using System.Collections.Generic;
-using System.IO;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
-using IdentityServer4.Extensions;
 using IdentityServer4.Models;
 using IdentityServer4.Validation;
 
@@ -15,6 +13,8 @@ using IdentityService.Services;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -187,5 +187,17 @@ public class MockHelpers
         IPrincipal principal = new ClaimsPrincipal(identityMock.Object);
 
         return principal;
+    }
+
+    public static Mock<IUrlHelper> MockUrlHelper()
+    {
+        var urlHelperMock = new Mock<IUrlHelper>(MockBehavior.Strict);
+
+        urlHelperMock
+            .Setup(x => x.Action(It.IsAny<UrlActionContext>()))
+            .Returns("callbackUrl")
+            .Verifiable();
+
+        return urlHelperMock;
     }
 }

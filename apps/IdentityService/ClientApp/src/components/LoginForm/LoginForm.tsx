@@ -49,6 +49,18 @@ const LoginForm = ({ className, returnUrl }: LoginFormProps) => {
     history.replaceState({}, "", url.toString());
   };
 
+  const handleForgotPasswordClick: MouseEventHandler = (event) => {
+    event.preventDefault();
+
+    const { location, history } = window;
+    const pathname = `/account/${Routes.FORGOT_PASSWORD}`;
+    const url = new URL(location.toString());
+
+    url.pathname = pathname;
+
+    history.replaceState({}, "", url.toString());
+  };
+
   const onSubmit = async (formData: LoginCommand) => {
     try {
       await loginMutation(formData);
@@ -91,6 +103,11 @@ const LoginForm = ({ className, returnUrl }: LoginFormProps) => {
           error={errors.password?.message}
         />
         <input type="text" value={returnUrl} hidden name="returnUrl" readOnly />
+        <Text className={classNames(css.text, css.forgotPassword)}>
+          <a href="/account/forgotPassword" onClick={handleForgotPasswordClick}>
+            Forgot password?
+          </a>
+        </Text>
         <Text className={css.text}>
           No account yet? Consider{" "}
           <a href="/account/login" onClick={handleRegisterClick}>

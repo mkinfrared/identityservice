@@ -48,6 +48,14 @@ const expressMiddleWare = (router) => {
 
     res.send(data);
   });
+
+  router.post("/auth/forgotPassword", (req, res) => {
+    if (req.body.returnUrl === "error") {
+      return res.status(500).send("Something went wrong");
+    }
+
+    res.status(200).send();
+  });
 };
 
 module.exports = expressMiddleWare;
