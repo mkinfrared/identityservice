@@ -92,11 +92,11 @@ exports[`<LoginForm /> should match the snapshot 1`] = `
         class="Text-module_Text__K8mLZ text forgotPassword"
         data-testid="Text"
       >
-        <a
-          href="/account/forgotPassword"
+        <div
+          data-testid="AppLink"
         >
-          Forgot password?
-        </a>
+          {"to":"/account/forgotPassword","children":"Forgot password?"}
+        </div>
       </p>
       <p
         class="Text-module_Text__K8mLZ text"
@@ -104,11 +104,11 @@ exports[`<LoginForm /> should match the snapshot 1`] = `
       >
         No account yet? Consider
          
-        <a
-          href="/account/login"
+        <div
+          data-testid="AppLink"
         >
-          register
-        </a>
+          {"to":"/account/register","children":"register"}
+        </div>
       </p>
       <div
         class="buttonWrapper"

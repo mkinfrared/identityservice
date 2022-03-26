@@ -1,3 +1,3 @@
-export { default } from "./ConfirmEmailForm";
+export { default } from "./ConfirmEmailForm.container";
 
 export * from "./ConfirmEmailForm.type";

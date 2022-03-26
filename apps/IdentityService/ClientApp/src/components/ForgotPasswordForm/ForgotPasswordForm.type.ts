@@ -5,3 +5,8 @@ export type ForgotPasswordFormProps = {
   className?: string;
   returnUrl: string;
 };
+
+export type ForgotPasswordFormContainerProps = Omit<
+  ForgotPasswordFormProps,
+  "returnUrl"
+>;

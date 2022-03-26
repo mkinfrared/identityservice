@@ -15,8 +15,7 @@ const ConsentForm = ({
   className,
   clientName,
   defaultValues,
-}: // returnUrl,
-ConsentFormProps) => {
+}: ConsentFormProps) => {
   const { isLoading, mutateAsync } = useConsentSubmitMutation();
 
   const { getValues, register, control } = useForm({

@@ -11,7 +11,4 @@ export type ConsentFormProps = {
   returnUrl: string;
 };
 
-export type ConsentFormContainerProps = Omit<
-  ConsentFormProps,
-  "defaultValues" | "allowRememberConsent" | "clientName"
->;
+export type ConsentFormContainerProps = Pick<ConsentFormProps, "className">;

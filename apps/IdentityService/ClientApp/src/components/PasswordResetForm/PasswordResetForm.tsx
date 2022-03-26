@@ -7,7 +7,8 @@ import { useForm } from "react-hook-form";
 import { submitPasswordChange } from "api/mutations";
 import { ResetPasswordCommand } from "api/types";
 import InputField from "components/InputField";
-import { Routes } from "pages/Main/Main.type";
+import { useAppNavigate } from "hooks";
+import { MainRoutes } from "routes/MainRoute";
 import { passwordResetSchema } from "utils/validationSchemas";
 
 import css from "./PasswordResetForm.module.scss";
@@ -30,6 +31,7 @@ const PasswordResetForm = ({
       mode: "onChange",
     });
 
+  const navigate = useAppNavigate();
   const { togglePasswordVisibility, Icon, fieldType } = usePasswordVisibility();
   const { errors, isSubmitting, isValid } = formState;
 
@@ -37,13 +39,7 @@ const PasswordResetForm = ({
     try {
       await submitPasswordChange(data);
 
-      const { location, history } = window;
-      const pathname = `/account/${Routes.LOGIN}`;
-      const url = new URL(location.href);
-
-      url.pathname = pathname;
-
-      history.replaceState({}, "", url.toString());
+      navigate(MainRoutes.LOGIN);
     } catch (e) {
       console.error(e);
     }

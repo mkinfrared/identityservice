@@ -6,6 +6,8 @@ import { LoginForm } from "./LoginForm";
 
 jest.mock("api/mutations");
 
+jest.mock("components/AppLink");
+
 describe("<LoginForm />", () => {
   const mutationsMock = mutations as jest.Mocked<typeof mutations>;
   const returnUrl = "?someUrl=Marklar";
@@ -107,18 +109,5 @@ describe("<LoginForm />", () => {
     await waitFor(() => expect(mutationsMock.loginMutation).toHaveBeenCalled());
 
     expect(getByText(errorMessage)).toBeInTheDocument();
-  });
-
-  it("should redirect to register page", () => {
-    const replaceState = jest.spyOn(window.history, "replaceState");
-    const url = "http://localhost/account/register";
-    const { getByText } = render(Component);
-    const link = getByText(/register/);
-
-    fireEvent.click(link);
-
-    expect(replaceState).toHaveBeenCalled();
-
-    expect(replaceState).toHaveBeenCalledWith({}, "", url);
   });
 });

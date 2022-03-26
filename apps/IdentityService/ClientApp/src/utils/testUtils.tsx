@@ -1,9 +1,14 @@
 import { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { MemoryRouter } from "react-router-dom";
 
 type WithQueryProps = {
   children?: ReactNode;
 };
+
+const withRouter = ({ children }: WithQueryProps) => (
+  <MemoryRouter>{children}</MemoryRouter>
+);
 
 const withQuery = ({ children }: WithQueryProps) => {
   const queryClient = new QueryClient({
@@ -19,4 +24,4 @@ const withQuery = ({ children }: WithQueryProps) => {
   );
 };
 
-export { withQuery };
+export { withRouter, withQuery };

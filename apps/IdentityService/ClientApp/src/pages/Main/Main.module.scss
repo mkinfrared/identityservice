@@ -42,4 +42,13 @@
 }
 
 .Story {
+
+  .buttonContainer {
+    background-color: palegoldenrod;
+    padding: 10px;
+
+    .storyButton {
+      margin-right: 10px;
+    }
+  }
 }

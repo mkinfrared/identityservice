@@ -1,4 +1,4 @@
-import { useLocation } from "react-use";
+import { useSearchParams } from "react-router-dom";
 
 import PasswordResetFormFC from "./PasswordResetForm";
 import { PasswordResetFormContainerProps } from "./PasswordResetForm.type";
@@ -6,8 +6,7 @@ import { PasswordResetFormContainerProps } from "./PasswordResetForm.type";
 const PasswordResetFormContainer = ({
   className,
 }: PasswordResetFormContainerProps) => {
-  const { search } = useLocation();
-  const params = new URLSearchParams(search);
+  const [params] = useSearchParams();
   const token = params.get("token");
   const userId = params.get("userId");
 

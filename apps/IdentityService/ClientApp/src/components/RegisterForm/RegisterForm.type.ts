@@ -5,3 +5,5 @@ export type RegisterFormProps = {
   className?: string;
   returnUrl: string;
 };
+
+export type RegisterFormContainerProps = Omit<RegisterFormProps, "returnUrl">;

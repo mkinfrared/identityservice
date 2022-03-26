@@ -6,6 +6,11 @@ export type ConfirmEmailFormProps = {
   returnUrl: string;
 };
 
+export type ConfirmEmailFormContainerProps = Omit<
+  ConfirmEmailFormProps,
+  "returnUrl"
+>;
+
 export type ConfirmEmailFormData = {
   code: string;
 };

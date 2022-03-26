@@ -5,7 +5,7 @@ const expressMiddleWare = (router) => {
   router.use(bodyParser.urlencoded({ extended: false }));
   router.use(bodyParser.json());
 
-  router.get("/getConsent", (req, res) => {
+  router.get("/consent/getConsent", (req, res) => {
     if (req.params.orderId === "error") {
       res.status(500).send("Something broke!");
     }
@@ -54,6 +54,10 @@ const expressMiddleWare = (router) => {
       return res.status(500).send("Something went wrong");
     }
 
+    res.status(200).send();
+  });
+
+  router.post("/auth/resetPassword", (req, res) => {
     res.status(200).send();
   });
 };

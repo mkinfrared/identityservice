@@ -1,12 +1,14 @@
 import { memo } from "react";
 
 import { ApiScopeUpdateDto, ConsentUpdateDto } from "api/types";
+import { useReturnUrl } from "hooks";
 import { useConsentQuery } from "hooks/useConsentQuery";
 
 import ConsentFormFC from "./ConsentForm";
 import { ConsentFormContainerProps } from "./ConsentForm.type";
 
-const ConsentFormContainer = ({ returnUrl }: ConsentFormContainerProps) => {
+const ConsentFormContainer = (props: ConsentFormContainerProps) => {
+  const returnUrl = useReturnUrl();
   const { data } = useConsentQuery(returnUrl);
 
   const mapScope = (scope: ApiScopeUpdateDto) => ({
@@ -25,6 +27,7 @@ const ConsentFormContainer = ({ returnUrl }: ConsentFormContainerProps) => {
 
   return (
     <ConsentFormFC
+      {...props}
       allowRememberConsent={!!data?.allowRememberConsent}
       clientName={data?.clientName ?? ""}
       defaultValues={defaultValues}

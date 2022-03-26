@@ -1,10 +1,18 @@
 import { fireEvent, render, waitFor } from "@testing-library/react";
 
 import * as mutations from "api/mutations";
+import { MainRoutes } from "routes/MainRoute";
+import { withRouter } from "utils/testUtils";
 
 import { PasswordResetForm } from "./PasswordResetForm";
 
+const mockAppNavigate = jest.fn();
+
 jest.mock("api/mutations");
+
+jest.mock("hooks", () => ({
+  useAppNavigate: () => mockAppNavigate,
+}));
 
 describe("<PasswordResetForm />", () => {
   const { location } = window;
@@ -35,27 +43,30 @@ describe("<PasswordResetForm />", () => {
   });
 
   it("should match the snapshot", () => {
-    const { container } = render(Component);
+    const { container } = render(Component, { wrapper: withRouter });
 
     expect(container).toMatchSnapshot();
   });
 
   it("should contain a data test id", () => {
-    const { getByTestId } = render(Component);
+    const { getByTestId } = render(Component, { wrapper: withRouter });
     const element = getByTestId("PasswordResetForm");
 
     expect(element).toBeDefined();
   });
 
   it("should have a disabled button if fields are empty", () => {
-    const { getByTestId } = render(Component);
+    const { getByTestId } = render(Component, { wrapper: withRouter });
     const submitButton = getByTestId("Button");
 
     expect(submitButton).toBeDisabled();
   });
 
   it("should have a disabled button if fields are invalid", async () => {
-    const { getByTestId, container } = render(Component);
+    const { getByTestId, container } = render(Component, {
+      wrapper: withRouter,
+    });
+
     const passwordValue = "marklar";
     const passwordField = container.querySelector('input[name="password"]');
 
@@ -77,7 +88,10 @@ describe("<PasswordResetForm />", () => {
   });
 
   it("should have an enabled button if fields are filled and valid", async () => {
-    const { getByTestId, container } = render(Component);
+    const { getByTestId, container } = render(Component, {
+      wrapper: withRouter,
+    });
+
     const passwordValue = "Marklar42$";
     const passwordField = container.querySelector('input[name="password"]');
 
@@ -99,7 +113,10 @@ describe("<PasswordResetForm />", () => {
   });
 
   it("should set confirmPassword value to the value of password field", async () => {
-    const { getAllByTestId, container } = render(Component);
+    const { getAllByTestId, container } = render(Component, {
+      wrapper: withRouter,
+    });
+
     const passwordValue = "Marklar42$";
 
     const passwordField = container.querySelector(
@@ -121,12 +138,13 @@ describe("<PasswordResetForm />", () => {
     );
   });
 
-  it("should call submitPasswordChange on apiMock and call replaceState on history", async () => {
+  it("should call submitPasswordChange on apiMock and call mockAppNavigate", async () => {
     mutationsMock.submitPasswordChange.mockResolvedValueOnce({});
 
-    const replaceState = jest.spyOn(window.history, "replaceState");
-    const url = "http://localhost/account/login";
-    const { getByTestId, container } = render(Component);
+    const { getByTestId, container } = render(Component, {
+      wrapper: withRouter,
+    });
+
     const passwordValue = "Marklar42$";
     const passwordField = container.querySelector('input[name="password"]');
 
@@ -151,9 +169,9 @@ describe("<PasswordResetForm />", () => {
     await waitFor(() => {
       expect(mutationsMock.submitPasswordChange).toHaveBeenCalled();
 
-      expect(replaceState).toHaveBeenCalled();
+      expect(mockAppNavigate).toHaveBeenCalled();
 
-      expect(replaceState).toHaveBeenCalledWith({}, "", url);
+      expect(mockAppNavigate).toHaveBeenCalledWith(MainRoutes.LOGIN);
     });
   });
 });

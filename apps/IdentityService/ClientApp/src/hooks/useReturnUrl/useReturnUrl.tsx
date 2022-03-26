@@ -1,13 +1,12 @@
-import { useLocation } from "react-use";
+import { useSearchParams } from "react-router-dom";
 
 const useReturnUrl = () => {
-  const { search } = useLocation();
+  const [searchParams] = useSearchParams();
   const pascalCaseName = "ReturnUrl";
   const camelCaseName = "returnUrl";
-  const params = new URLSearchParams(search);
 
   const returnUrl =
-    params.get(pascalCaseName) ?? params.get(camelCaseName) ?? "";
+    searchParams.get(pascalCaseName) ?? searchParams.get(camelCaseName) ?? "";
 
   return returnUrl;
 };

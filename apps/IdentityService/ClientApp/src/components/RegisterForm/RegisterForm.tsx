@@ -5,13 +5,15 @@ import {
   usePasswordVisibility,
 } from "@identity-service/core";
 import { Button, Heading, Text } from "@identity-service/ui";
-import { MouseEventHandler, memo } from "react";
+import { memo } from "react";
 import { useForm } from "react-hook-form";
 
 import { registerMutation } from "api/mutations";
 import { RegisterCommand } from "api/types";
+import AppLink from "components/AppLink";
 import InputField from "components/InputField";
 import { Routes } from "pages/Main/Main.type";
+import { MainRoutes } from "routes/MainRoute";
 import { isAxiosError } from "utils/api";
 import { registerSchema } from "utils/validationSchemas";
 
@@ -39,18 +41,6 @@ const RegisterForm = ({ className, returnUrl }: RegisterFormProps) => {
 
   const { errors, isValid, isSubmitting } = formState;
   const { togglePasswordVisibility, fieldType, Icon } = usePasswordVisibility();
-
-  const handleLoginClick: MouseEventHandler = (event) => {
-    event.preventDefault();
-
-    const { location, history } = window;
-    const pathname = `/account/${Routes.LOGIN}`;
-    const url = new URL(location.href);
-
-    url.pathname = pathname;
-
-    history.replaceState({}, "", url.toString());
-  };
 
   const onSubmit = async (formData: RegisterCommand) => {
     try {
@@ -147,9 +137,7 @@ const RegisterForm = ({ className, returnUrl }: RegisterFormProps) => {
         />
         <Text className={css.text}>
           Already have an account. Consider{" "}
-          <a href="/account/login" onClick={handleLoginClick}>
-            login
-          </a>
+          <AppLink to={MainRoutes.LOGIN}>login</AppLink>
         </Text>
         <div className={css.buttonWrapper}>
           <Button

@@ -13,7 +13,7 @@ variables:
   NUGET_PACKAGES_DIRECTORY: ".nuget"
   # A relative path to the source code from project repository root.
   # NOTE: Please edit this path so it matches the structure of your project!
-  SOURCE_CODE_PATH: "src"
+  SOURCE_CODE_PATH: "apps"
   PACKAGES_CODE_PATH: "packages"
   CORE: "core"
   UI: "ui"

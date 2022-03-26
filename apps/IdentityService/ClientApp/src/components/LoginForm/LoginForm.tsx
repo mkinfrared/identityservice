@@ -6,13 +6,14 @@ import {
 } from "@identity-service/core";
 import { Button, Heading, Text } from "@identity-service/ui";
 import { AxiosError } from "axios";
-import { MouseEventHandler, memo } from "react";
+import { memo } from "react";
 import { useForm } from "react-hook-form";
 
 import { loginMutation } from "api/mutations";
 import { LoginCommand } from "api/types";
+import AppLink from "components/AppLink";
 import InputField from "components/InputField";
-import { Routes } from "pages/Main/Main.type";
+import { MainRoutes } from "routes/MainRoute";
 import { isAxiosError } from "utils/api";
 import { loginSchema } from "utils/validationSchemas";
 
@@ -36,30 +37,6 @@ const LoginForm = ({ className, returnUrl }: LoginFormProps) => {
 
   const { errors, isValid, isSubmitting } = formState;
   const { togglePasswordVisibility, Icon, fieldType } = usePasswordVisibility();
-
-  const handleRegisterClick: MouseEventHandler = (event) => {
-    event.preventDefault();
-
-    const { location, history } = window;
-    const pathname = `/account/${Routes.REGISTER}`;
-    const url = new URL(location.toString());
-
-    url.pathname = pathname;
-
-    history.replaceState({}, "", url.toString());
-  };
-
-  const handleForgotPasswordClick: MouseEventHandler = (event) => {
-    event.preventDefault();
-
-    const { location, history } = window;
-    const pathname = `/account/${Routes.FORGOT_PASSWORD}`;
-    const url = new URL(location.toString());
-
-    url.pathname = pathname;
-
-    history.replaceState({}, "", url.toString());
-  };
 
   const onSubmit = async (formData: LoginCommand) => {
     try {
@@ -104,15 +81,11 @@ const LoginForm = ({ className, returnUrl }: LoginFormProps) => {
         />
         <input type="text" value={returnUrl} hidden name="returnUrl" readOnly />
         <Text className={classNames(css.text, css.forgotPassword)}>
-          <a href="/account/forgotPassword" onClick={handleForgotPasswordClick}>
-            Forgot password?
-          </a>
+          <AppLink to={MainRoutes.FORGOT_PASSWORD}>Forgot password?</AppLink>
         </Text>
         <Text className={css.text}>
           No account yet? Consider{" "}
-          <a href="/account/login" onClick={handleRegisterClick}>
-            register
-          </a>
+          <AppLink to={MainRoutes.REGISTER}>register</AppLink>
         </Text>
         <div className={css.buttonWrapper}>
           <Button

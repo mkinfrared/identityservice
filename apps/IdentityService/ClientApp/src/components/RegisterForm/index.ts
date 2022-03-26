@@ -1,3 +1,3 @@
-export { default } from "./RegisterForm";
+export { default } from "./RegisterForm.container";
 
 export * from "./RegisterForm.type";

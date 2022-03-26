@@ -9,68 +9,11 @@ exports[`<Main /> should match the snapshot 1`] = `
       class="Card-module_Card__BgTd3 card"
       data-testid="Card"
     >
-      <svg
-        class="spinner"
-        preserveAspectRatio="xMidYMid"
-        viewBox="0 0 100 100"
-        xmlns="http://www.w3.org/2000/svg"
+      <div
+        data-testid="MainRoute"
       >
-        <path
-          d="M24.3 30C11.4 30 5 43.3 5 50s6.4 20 19.3 20c19.3 0 32.1-40 51.4-40C88.6 30 95 43.3 95 50s-6.4 20-19.3 20c-19.3 0-32.1-40-51.4-40z"
-          fill="none"
-          stroke="#e90c59"
-          stroke-dasharray="42.76482137044271 42.76482137044271"
-          stroke-linecap="round"
-          stroke-width="8"
-          style="transform: scale(.8); transform-origin: 50px 50px;"
-        >
-          <animate
-            attributeName="stroke-dashoffset"
-            dur="1s"
-            keyTimes="0;1"
-            repeatCount="indefinite"
-            values="0;256.58892822265625"
-          />
-        </path>
-      </svg>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`<Main /> should match the snapshot 2`] = `
-<div>
-  <div
-    class="Main"
-  >
-    <div
-      class="Card-module_Card__BgTd3 card"
-      data-testid="Card"
-    >
-      <svg
-        class="spinner"
-        preserveAspectRatio="xMidYMid"
-        viewBox="0 0 100 100"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M24.3 30C11.4 30 5 43.3 5 50s6.4 20 19.3 20c19.3 0 32.1-40 51.4-40C88.6 30 95 43.3 95 50s-6.4 20-19.3 20c-19.3 0-32.1-40-51.4-40z"
-          fill="none"
-          stroke="#e90c59"
-          stroke-dasharray="42.76482137044271 42.76482137044271"
-          stroke-linecap="round"
-          stroke-width="8"
-          style="transform: scale(.8); transform-origin: 50px 50px;"
-        >
-          <animate
-            attributeName="stroke-dashoffset"
-            dur="1s"
-            keyTimes="0;1"
-            repeatCount="indefinite"
-            values="0;256.58892822265625"
-          />
-        </path>
-      </svg>
+        {"className":"formContainer"}
+      </div>
     </div>
   </div>
 </div>

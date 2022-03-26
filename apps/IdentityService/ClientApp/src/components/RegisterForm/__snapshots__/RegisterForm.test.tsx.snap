@@ -233,11 +233,11 @@ exports[`<RegisterForm /> should match the snapshot 1`] = `
       >
         Already have an account. Consider
          
-        <a
-          href="/account/login"
+        <div
+          data-testid="AppLink"
         >
-          login
-        </a>
+          {"to":"/account/login","children":"login"}
+        </div>
       </p>
       <div
         class="buttonWrapper"

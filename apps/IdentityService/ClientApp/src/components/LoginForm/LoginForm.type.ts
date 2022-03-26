@@ -5,3 +5,5 @@ export type LoginFormProps = {
   className?: string;
   returnUrl: string;
 };
+
+export type LoginFormContainerProps = Omit<LoginFormProps, "returnUrl">;
