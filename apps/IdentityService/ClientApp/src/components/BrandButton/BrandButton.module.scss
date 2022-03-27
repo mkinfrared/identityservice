@@ -1,0 +1,94 @@
+.BrandButton {
+  --apple: hsl(0, 0%, 0%);
+  --appleText: hsl(0, 100%, 100%);
+  --epic: hsl(0, 0%, 29%);
+  --epicText: hsl(330, 2%, 18%);
+  --facebook: hsl(221, 43%, 42%);
+  --facebookText: hsl(0, 100%, 100%);
+  --google: hsl(0, 33%, 99%);
+  --googleText: hsl(240, 2%, 39%);
+  --microsoft: hsl(0, 0%, 98%);
+  --microsoftText: hsl(300, 0%, 45%);
+  --steam: hsl(222, 18%, 11%);
+  --steamText: hsl(30, 3%, 71%);
+  --vk: hsl(212, 39%, 46%);
+  --vkText: hsl(300, 100%, 100%);
+
+  &.apple {
+    --button-spinner-color: var(--appleText);
+
+    background: var(--apple);
+    color: var(--appleText);
+
+    .brandIcon {
+      fill: var(--appleText);
+    }
+  }
+
+  &.epic {
+    background: var(--epic);
+  }
+
+  &.facebook {
+    --button-spinner-color: var(--facebookText);
+
+    background: var(--facebook);
+    color: var(--facebookText);
+
+    .brandIcon {
+      border: 1px solid var(--facebookText);
+      border-radius: 4px;
+    }
+  }
+
+  &.google {
+    --button-spinner-color: var(--googleText);
+
+    background: var(--google);
+    color: var(--googleText);
+  }
+
+  &.microsoft {
+    --button-spinner-color: var(--microsoftText);
+
+    background: var(--microsoft);
+    color: var(--microsoftText);
+  }
+
+  &.steam {
+    --button-spinner-color: var(--steamText);
+
+    background: var(--steam);
+    color: var(--steamText);
+
+    .brandIcon {
+
+      path {
+        fill: var(--steamText);
+      }
+    }
+  }
+
+  &.vk {
+    background: var(--vk);
+    color: var(--vkText);
+
+    .brandIcon {
+
+      path {
+        fill: var(--vkText);
+      }
+    }
+  }
+
+  .brandIcon {
+    fill: initial;
+  }
+}
+
+.Story {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 300px;
+}

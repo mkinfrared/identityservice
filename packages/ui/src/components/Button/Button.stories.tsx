@@ -60,13 +60,13 @@ const WithIconAndTextTemplate: Story<ButtonProps> = (args) => (
     <div>
       <Button {...args}>
         <Eye />
-        Lorem ipsum
+        🙈 Lorem ipsum
       </Button>
     </div>
     <div>
       <Button {...args}>
         <Eye />
-        Lorem ipsum
+        🚀 Lorem ipsum
         <Doc />
       </Button>
     </div>

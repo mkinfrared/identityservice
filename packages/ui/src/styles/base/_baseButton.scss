@@ -8,8 +8,9 @@
   @include buttonBorderRadius;
 
   --background: var(--button-background, var(--purple-gradient));
-  --color: var(--button-color, var(--white));
   --border-color: var(--button-border-color, var(--purple));
+  --color: var(--button-color, var(--white));
+  --spinner-color: var(--button-spinner-color, var(--white));
 
   align-items: center;
   border: none;
@@ -41,6 +42,7 @@
 
   &:active {
     filter: brightness(0.8);
+    transform: scale(0.97);
   }
 
   &:disabled {

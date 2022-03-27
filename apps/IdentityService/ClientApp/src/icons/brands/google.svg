@@ -1,0 +1,29 @@
+<svg viewBox="0 0 43.052 44" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <clipPath id="clip-path" transform="translate(2 2)">
+            <path class="cls-1"
+                d="M42.5,18H22v8.5H33.8C32.7,31.9,28.1,35,22,35A13,13,0,0,1,22,9a12.72,12.72,0,0,1,8.1,2.9l6.4-6.4A22,22,0,1,0,22,44c11,0,21-8,21-22A18.25,18.25,0,0,0,42.5,18Z"
+                style="fill: none;" />
+        </clipPath>
+    </defs>
+    <g class="cls-2" style="clip-path: url(#clip-path);"
+        transform="matrix(1, 0, 0, 1, -1.948436, -2.000061)">
+        <path class="cls-3" d="M-2,35V9L15,22Z" transform="translate(2 2)"
+            style="fill: rgb(251, 188, 5);" />
+    </g>
+    <g class="cls-2" style="clip-path: url(#clip-path);"
+        transform="matrix(1, 0, 0, 1, -1.948436, -2.000061)">
+        <path class="cls-4" d="M-2,9,15,22l7-6.1L46,12V-2H-2Z" transform="translate(2 2)"
+            style="fill: rgb(234, 67, 53);" />
+    </g>
+    <g class="cls-2" style="clip-path: url(#clip-path);"
+        transform="matrix(1, 0, 0, 1, -1.947999, -2.000061)">
+        <path class="cls-5" d="M-2,35,28,12l7.9,1L46-2V46H-2Z" transform="translate(2 2)"
+            style="fill: rgb(52, 168, 83);" />
+    </g>
+    <g class="cls-2" style="clip-path: url(#clip-path);"
+        transform="matrix(1, 0, 0, 1, -1.948436, -2.000061)">
+        <path class="cls-6" d="M46,46,15,22l-4-3L46,9Z" transform="translate(2 2)"
+            style="fill: rgb(66, 133, 244);" />
+    </g>
+</svg>

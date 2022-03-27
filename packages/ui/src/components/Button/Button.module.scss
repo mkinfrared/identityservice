@@ -21,7 +21,7 @@
 
   svg {
     fill: var(--color);
-    height: var(--text-height);
+    height: var(--text-size);
   }
 
   .content {
@@ -33,6 +33,8 @@
   }
 
   > .spinner {
+    fill: var(--spinner-color);
+    height: var(--text-height);
     left: 50%;
     opacity: 0;
     position: absolute;
