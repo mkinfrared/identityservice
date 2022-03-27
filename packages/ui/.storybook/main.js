@@ -9,6 +9,8 @@ module.exports = {
         scriptsPackageName: "../node_modules/react-scripts",
       },
     },
+    "@storybook/addon-a11y",
+    "aria-live-storybook-addon",
     "storybook-design-token",
   ],
   core: {

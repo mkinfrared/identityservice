@@ -1,0 +1,65 @@
+import { action } from "@storybook/addon-actions";
+import { Meta, Story } from "@storybook/react";
+import React from "react";
+
+import Button from "components/Button";
+import IconButton from "components/IconButton";
+import { ReactComponent as Doc } from "icons/description.svg";
+import { ReactComponent as Eye } from "icons/visibility.svg";
+
+import { ButtonGroup } from "./ButtonGroup";
+import css from "./ButtonGroup.module.scss";
+import { ButtonGroupProps } from "./ButtonGroup.type";
+
+export default {
+  title: "UI/ButtonGroup",
+  component: ButtonGroup,
+  parameters: {
+    componentSubtitle: "Subtitle goes here",
+  },
+} as Meta;
+
+const Template: Story<ButtonGroupProps> = () => (
+  <div className={css.Story}>
+    <ButtonGroup>
+      <Button onClick={action("click")}>Lorem</Button>
+      <Button onClick={action("click")}>doloribus</Button>
+      <Button onClick={action("click")}>elit</Button>
+      <Button onClick={action("click")}>consectetur</Button>
+    </ButtonGroup>
+  </div>
+);
+
+const WithIconTemplate: Story<ButtonGroupProps> = () => (
+  <div className={css.Story}>
+    <div className={css.container}>
+      <ButtonGroup>
+        <IconButton onClick={action("click")}>
+          <Doc />
+        </IconButton>
+        <Button onClick={action("click")}>consectetur</Button>
+      </ButtonGroup>
+    </div>
+    <div className={css.container}>
+      <ButtonGroup>
+        <Button onClick={action("click")}>Lorem ipsum</Button>
+        <IconButton onClick={action("click")}>
+          <Eye />
+        </IconButton>
+      </ButtonGroup>
+    </div>
+  </div>
+);
+
+const Default = Template.bind({});
+const WithIcon = WithIconTemplate.bind({});
+
+Default.args = {};
+
+Default.parameters = {
+  docs: {
+    storyDescription: "Story description",
+  },
+};
+
+export { Default, WithIcon };

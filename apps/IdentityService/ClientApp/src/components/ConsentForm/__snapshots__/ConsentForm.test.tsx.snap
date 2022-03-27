@@ -166,7 +166,7 @@ exports[`<ConsentForm /> should match the snapshot 1`] = `
           type="button"
         >
           <svg
-            class=""
+            class="Button-module_spinner__kVZYq"
             fill="#fff"
             viewBox="0 0 135 140"
             xmlns="http://www.w3.org/2000/svg"
@@ -290,7 +290,11 @@ exports[`<ConsentForm /> should match the snapshot 1`] = `
               />
             </rect>
           </svg>
-          Allow
+          <span
+            class="Button-module_content__PpYVU"
+          >
+            Allow
+          </span>
         </button>
         <button
           class="Button-module_Button__0OJEu Button-module_opaque__O0DEF"
@@ -298,7 +302,7 @@ exports[`<ConsentForm /> should match the snapshot 1`] = `
           type="button"
         >
           <svg
-            class=""
+            class="Button-module_spinner__kVZYq"
             fill="#fff"
             viewBox="0 0 135 140"
             xmlns="http://www.w3.org/2000/svg"
@@ -422,7 +426,11 @@ exports[`<ConsentForm /> should match the snapshot 1`] = `
               />
             </rect>
           </svg>
-          Deny
+          <span
+            class="Button-module_content__PpYVU"
+          >
+            Deny
+          </span>
         </button>
       </div>
     </form>

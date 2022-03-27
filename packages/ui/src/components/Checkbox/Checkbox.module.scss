@@ -1,11 +1,16 @@
+@import "../../styles/common";
+
 .Checkbox {
+  --color: var(--checkbox-text-color, var(--white));
   --border-radius: 5px;
   --transition-time: 150ms;
   --border-width: 5px;
 
   align-items: center;
+  color: var(--color);
   cursor: pointer;
   display: flex;
+  width: fit-content;
 
   &.error {
 
@@ -20,6 +25,10 @@
     .text {
       color: var(--red);
     }
+  }
+
+  &:focus-within {
+    @include focusVisible;
   }
 
   .input {

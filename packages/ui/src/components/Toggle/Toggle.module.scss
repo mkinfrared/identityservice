@@ -1,4 +1,5 @@
 .Toggle {
+  --color: var(--toggle-text-color, var(--white));
   --padding: 2px;
   --size: 24px;
 
@@ -38,6 +39,7 @@
   }
 
   .text {
+    color: var(--color);
     margin-left: 10px;
   }
 

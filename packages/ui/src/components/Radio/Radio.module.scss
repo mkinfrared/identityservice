@@ -1,4 +1,7 @@
+@import "../../styles/common";
+
 .Radio {
+  --color: var(--radio-text-color, var(--white));
   --transition-time: 150ms;
 
   display: flex;
@@ -13,6 +16,10 @@
         background: var(--red);
       }
     }
+  }
+
+  &:focus-within {
+    @include focusVisible;
   }
 
   .input {
@@ -95,9 +102,14 @@
   }
 
   .text {
+    color: var(--color);
     margin-left: 10px;
   }
 }
 
 .Story {
+
+  .radioGroup {
+    margin-bottom: 10px;
+  }
 }

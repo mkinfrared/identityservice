@@ -38,10 +38,18 @@ const ControlledTemplate: Story<RadioProps> = () => {
 const MultipleUncontrolledTemplate: Story<RadioProps> = () => (
   <div className={css.Story}>
     <form>
-      <Radio name="color" label="red" />
-      <Radio name="color" label="green" />
-      <Radio name="color" label="blue" />
-      <Radio name="color" label="rainbow" />
+      <div className={css.radioGroup}>
+        <Radio name="color" label="red" />
+        <Radio name="color" label="green" />
+        <Radio name="color" label="blue" />
+        <Radio name="color" label="rainbow" />
+      </div>
+      <div className={css.radioGroup}>
+        <Radio name="name" label="Timmy" />
+        <Radio name="name" label="Jimmy" />
+        <Radio name="name" label="Kenny" />
+        <Radio name="name" label="Randy" />
+      </div>
     </form>
   </div>
 );

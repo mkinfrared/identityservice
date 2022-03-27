@@ -15,13 +15,13 @@
     "clean": "rm -rf node_modules",
     "build:colors": "sass src/styles/colors.scss src/styles/colors.css"
   },
-  "dependencies": {},
   "devDependencies": {
     "@identity-service/core": "workspace:*",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.1.3",
     "@rollup/plugin-url": "^6.1.0",
+    "@storybook/addon-a11y": "^6.4.19",
     "@storybook/addon-actions": "^6.4.13",
     "@storybook/addon-docs": "^6.4.13",
     "@storybook/addon-essentials": "^6.4.13",
@@ -41,6 +41,7 @@
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "@zerollup/ts-transform-paths": "^1.7.18",
+    "aria-live-storybook-addon": "^0.0.6",
     "autoprefixer": "^10.4.2",
     "babel-loader": "^8.2.3",
     "cross-env": "^7.0.3",

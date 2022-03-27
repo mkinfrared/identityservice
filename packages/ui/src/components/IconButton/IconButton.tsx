@@ -4,10 +4,10 @@ import React, { memo } from "react";
 
 import Spinner from "components/Spinner";
 
-import css from "./Button.module.scss";
-import { ButtonProps } from "./Button.type";
+import css from "./IconButton.module.scss";
+import { IconButtonProps } from "./IconButton.type";
 
-const Button = ({
+const IconButton = ({
   children,
   className,
   disabled = false,
@@ -15,7 +15,7 @@ const Button = ({
   type = "button",
   variant = "opaque",
   ...rest
-}: ButtonProps) => {
+}: IconButtonProps) => {
   const classes = [css.Button, className];
 
   switch (variant) {
@@ -34,18 +34,18 @@ const Button = ({
 
   return (
     <button
-      className={classNames(...classes)}
+      className={classNames(css.IconButton, ...classes)}
       disabled={disabled}
-      data-testid="Button"
+      data-testid="IconButton"
       type={type}
       {...rest}
     >
-      <Spinner className={css.spinner} type="bars" />
-      <span className={css.content}>{children}</span>
+      <Spinner className={css.spinner} type="oval" />
+      {children}
     </button>
   );
 };
 
-export { Button };
+export { IconButton };
 
-export default memo(Button);
+export default memo(IconButton);

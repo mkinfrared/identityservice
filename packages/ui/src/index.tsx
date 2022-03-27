@@ -5,6 +5,10 @@ export { default as Button } from "components/Button";
 
 export * from "components/Button";
 
+export { default as ButtonGroup } from "components/ButtonGroup";
+
+export * from "components/ButtonGroup";
+
 export { default as Card } from "components/Card";
 
 export * from "components/Card";

@@ -25,16 +25,6 @@ const Checkbox = ({
 }: CheckboxProps) => {
   const mergedRefs = mergeRefs(inputRef);
 
-  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (readOnly) {
-  //     event.preventDefault();
-  //
-  //     return;
-  //   }
-  //
-  //   onChange?.(event);
-  // };
-
   return (
     <label
       className={classNames(

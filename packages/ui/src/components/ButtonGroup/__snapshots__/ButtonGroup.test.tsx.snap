@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ButtonGroup /> should match the snapshot 1`] = `
+<div>
+  <div
+    class="ButtonGroup"
+    data-testid="ButtonGroup"
+  >
+    <div
+      data-testid="Button"
+    >
+      {"className":"button"}
+    </div>
+    <div
+      data-testid="Button"
+    >
+      {"className":"button"}
+    </div>
+    <div
+      data-testid="Button"
+    >
+      {"className":"button"}
+    </div>
+  </div>
+</div>
+`;

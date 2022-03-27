@@ -249,7 +249,7 @@ exports[`<RegisterForm /> should match the snapshot 1`] = `
           type="submit"
         >
           <svg
-            class=""
+            class="Button-module_spinner__kVZYq"
             fill="#fff"
             viewBox="0 0 135 140"
             xmlns="http://www.w3.org/2000/svg"
@@ -373,7 +373,11 @@ exports[`<RegisterForm /> should match the snapshot 1`] = `
               />
             </rect>
           </svg>
-          Register
+          <span
+            class="Button-module_content__PpYVU"
+          >
+            Register
+          </span>
         </button>
       </div>
     </form>

@@ -1,0 +1,59 @@
+@use "../common";
+
+@mixin buttonBorderRadius {
+  --border-radius: 40px;
+}
+
+%buttonBase {
+  @include buttonBorderRadius;
+
+  --background: var(--button-background, var(--purple-gradient));
+  --color: var(--button-color, var(--white));
+  --border-color: var(--button-border-color, var(--purple));
+
+  align-items: center;
+  border: none;
+  border-radius: var(--border-radius);
+  color: var(--color);
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: 600;
+  justify-content: center;
+  overflow: hidden;
+  padding: 10px;
+  position: relative;
+  white-space: nowrap;
+
+  &.opaque {
+    background: var(--background);
+    color: var(--white);
+  }
+
+  &.transparent {
+    background-color: transparent;
+    border: 2px solid var(--border-color);
+    color: var(--color);
+  }
+
+  &:hover {
+    filter: brightness(1.2);
+  }
+
+  &:active {
+    filter: brightness(0.8);
+  }
+
+  &:disabled {
+    cursor: auto;
+    filter: grayscale(0.9);
+  }
+
+  &:focus-visible {
+    @include common.focusVisible;
+  }
+
+  &,
+  > * {
+    transition: all 100ms ease-in, filter 150ms ease-in;
+  }
+}
