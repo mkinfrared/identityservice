@@ -64,7 +64,7 @@ public class LogoutTest
     [Fact]
     public void Should_Return_An_Error_When_Fields_Are_Invalid()
     {
-        string logoutId = null;
+        string? logoutId = null;
 
         var validator = new Logout.Validator();
 

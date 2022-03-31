@@ -3,7 +3,8 @@
 .Button {
   @extend %buttonBase;
 
-  min-width: 52px;
+  min-width: 100px;
+  padding: 10px 20px;
 
   &.loading {
     color: transparent;
@@ -50,5 +51,11 @@
     &:not(:last-child) {
       margin-bottom: 20px;
     }
+  }
+
+  .sameWidthList {
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-auto-flow: column;
   }
 }

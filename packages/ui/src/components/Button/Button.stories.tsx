@@ -1,7 +1,7 @@
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 
-import Text from "components/Text";
+import Heading from "components/Heading";
 import { ReactComponent as Doc } from "icons/description.svg";
 import { ReactComponent as Eye } from "icons/visibility.svg";
 
@@ -23,13 +23,35 @@ const Template: Story<ButtonProps> = (args) => (
       <Button {...args}>I am a button</Button>
     </div>
     <div>
-      <Button {...args}>
-        <Text>I am a button with paragraph</Text>
+      <Button variant="opaque">Opaque</Button>
+      <Button variant="transparent">Transparent</Button>
+    </div>
+    <div>
+      <Button>
+        <a
+          href="https://en.wikipedia.org/wiki/Fleetwood_Mac"
+          target="_blank"
+          rel="noreferrer"
+        >
+          With Link Inside
+        </a>
       </Button>
     </div>
     <div>
-      <Button variant="opaque">Opaque</Button>
-      <Button variant="transparent">Transparent</Button>
+      <Heading>Button List</Heading>
+      <div>
+        <Button variant="opaque">Lorem</Button>
+        <Button variant="transparent">Lorem Ipsum</Button>
+        <Button variant="transparent">Lorem Ipsum Dolor</Button>
+      </div>
+    </div>
+    <div>
+      <Heading>Button List with the same width</Heading>
+      <div className={css.sameWidthList}>
+        <Button variant="opaque">Lorem</Button>
+        <Button variant="transparent">Lorem Ipsum</Button>
+        <Button variant="transparent">Lorem Ipsum Dolor</Button>
+      </div>
     </div>
   </div>
 );

@@ -6,10 +6,10 @@ namespace IdentityService.Dto;
 public class ConsentUpdateDto
 {
     [Required]
-    public string RedirectUrl { get; set; }
+    public string? RedirectUrl { get; set; }
 
     [Required]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     [Required]
     public bool RememberConsent { get; set; }
@@ -18,8 +18,8 @@ public class ConsentUpdateDto
     public bool PermissionGranted { get; set; }
 
     [Required]
-    public IEnumerable<ApiScopeUpdateDto> IdentityScopes { get; set; }
+    public IEnumerable<ApiScopeUpdateDto>? IdentityScopes { get; set; }
 
     [Required]
-    public IEnumerable<ApiScopeUpdateDto> ApiScopes { get; set; }
+    public IEnumerable<ApiScopeUpdateDto>? ApiScopes { get; set; }
 }

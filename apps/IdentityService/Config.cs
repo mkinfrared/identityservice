@@ -120,7 +120,7 @@ public static class Config
                 AllowOfflineAccess = true,
                 RequireConsent = false,
                 RequireClientSecret = false,
-                AccessTokenLifetime = 3600
+                AccessTokenLifetime = 3600,
 
                 // Token lifetime in seconds
                 // Sets refresh token

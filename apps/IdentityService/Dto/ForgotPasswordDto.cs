@@ -5,10 +5,10 @@ namespace IdentityService.Dto;
 public class ForgotPasswordDto
 {
     [Required]
-    public string Email { get; set; }
+    public string? Email { get; set; }
 
     [Required]
-    public string ReturnUrl { get; set; }
+    public string? ReturnUrl { get; set; }
 
     public void Deconstruct(out string email, out string returnUrl)
     {

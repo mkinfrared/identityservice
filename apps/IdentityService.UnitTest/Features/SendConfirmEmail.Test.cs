@@ -100,7 +100,7 @@ public class SendConfirmEmailTest
     [Fact]
     public void Should_Return_An_Error_When_Fields_Are_Invalid()
     {
-        string username = null;
+        string? username = null;
 
         var validator = new SendConfirmEmail.Validator();
 

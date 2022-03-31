@@ -1,5 +1,5 @@
 import { classNames } from "@identity-service/core";
-import { Button } from "@identity-service/ui";
+import { LinkButton } from "@identity-service/ui";
 import { FunctionComponent, HTMLAttributes, createElement, memo } from "react";
 
 import { ReactComponent as Apple } from "icons/brands/apple.svg";
@@ -26,7 +26,12 @@ const brandIcons: Record<
   [Brand.VK]: Vk,
 };
 
-const BrandButton = ({ className, brand, ...rest }: BrandButtonProps) => {
+const BrandButton = ({
+  className,
+  brand,
+  children,
+  ...rest
+}: BrandButtonProps) => {
   let brandClass: string;
 
   switch (brand) {
@@ -63,13 +68,13 @@ const BrandButton = ({ className, brand, ...rest }: BrandButtonProps) => {
   });
 
   return (
-    <Button
+    <LinkButton
       className={classNames(css.BrandButton, brandClass, className)}
       {...rest}
     >
       {brandIcon}
-      {brand}
-    </Button>
+      {children}
+    </LinkButton>
   );
 };
 

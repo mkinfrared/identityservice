@@ -29,6 +29,10 @@ export { default as Heading } from "components/Heading";
 
 export * from "components/Heading";
 
+export { default as LinkButton } from "components/LinkButton";
+
+export * from "components/LinkButton";
+
 export { default as Loading } from "components/Loading";
 
 export * from "components/Loading";

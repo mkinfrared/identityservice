@@ -1,6 +1,6 @@
-import { ButtonProps } from "@identity-service/ui";
+import { LinkButtonProps } from "@identity-service/ui";
 
-export type BrandButtonProps = ButtonProps & {
+export type BrandButtonProps = LinkButtonProps & {
   /**
    * a string that will be applied as a css class to parent element
    */

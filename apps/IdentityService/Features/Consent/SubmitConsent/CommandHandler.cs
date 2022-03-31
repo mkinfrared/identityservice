@@ -42,7 +42,7 @@ public partial class SubmitConsent
                 return null;
             }
 
-            ConsentResponse grantedConsent = null;
+            ConsentResponse? grantedConsent = null;
 
             if (consent.PermissionGranted)
             {

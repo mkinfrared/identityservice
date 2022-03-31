@@ -27,8 +27,7 @@
     }
   }
 
-  &:focus-within {
-    @include focusVisible;
+  @media (pointer: "") {
   }
 
   .input {
@@ -54,6 +53,10 @@
     .tick {
       opacity: 1;
     }
+  }
+
+  .input:focus-visible ~ .checkmark {
+    outline: 2px solid red;
   }
 
   &.readOnly {

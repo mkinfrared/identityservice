@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { registerMutation } from "api/mutations";
 import { RegisterCommand } from "api/types";
 import AppLink from "components/AppLink";
+import BrandButton, { Brand } from "components/BrandButton";
 import InputField from "components/InputField";
 import { Routes } from "pages/Main/Main.type";
 import { MainRoutes } from "routes/MainRoute";
@@ -74,6 +75,19 @@ const RegisterForm = ({ className, returnUrl }: RegisterFormProps) => {
 
       console.error(e);
     }
+  };
+
+  const getExternalProviderLink = (brand: Brand) => {
+    const url = new URL(`${window.location.origin}/auth/externalRegister`);
+
+    const params = new URLSearchParams({
+      provider: brand,
+      returnUrl: encodeURIComponent(returnUrl),
+    });
+
+    url.search = params.toString();
+
+    return url.toString();
   };
 
   return (
@@ -147,6 +161,12 @@ const RegisterForm = ({ className, returnUrl }: RegisterFormProps) => {
           >
             Register
           </Button>
+          <BrandButton
+            href={getExternalProviderLink(Brand.GOOGLE)}
+            brand={Brand.GOOGLE}
+          >
+            Register with Google
+          </BrandButton>
         </div>
       </form>
     </div>

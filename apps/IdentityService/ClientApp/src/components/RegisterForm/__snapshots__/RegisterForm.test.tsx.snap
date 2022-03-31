@@ -379,6 +379,18 @@ exports[`<RegisterForm /> should match the snapshot 1`] = `
             Register
           </span>
         </button>
+        <a
+          class="LinkButton-module_LinkButton__x1Ppn BrandButton google LinkButton-module_opaque__DFeur"
+          data-testid="LinkButton"
+          href="http://localhost/auth/externalRegister?provider=Google&returnUrl=https%253A%252F%252Fmarklar.com"
+        >
+          <svg
+            class="brandIcon"
+          >
+            google.svg
+          </svg>
+          Register with Google
+        </a>
       </div>
     </form>
   </div>

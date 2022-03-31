@@ -1,8 +1,11 @@
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 using IdentityService.Dto;
 using IdentityService.Features.Auth.ConfirmEmail;
+using IdentityService.Features.Auth.ExternalProviderRedirect;
+using IdentityService.Features.Auth.ExternalProviderRegister;
 using IdentityService.Features.Auth.ForgotPassword;
 using IdentityService.Features.Auth.Login;
 using IdentityService.Features.Auth.Logout;
@@ -110,5 +113,36 @@ public class AuthController : ControllerBase
         var errors = result.Errors.Select(error => error.Description);
 
         return BadRequest(new { password = errors });
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ExternalRegister(Providers provider, string returnUrl)
+    {
+        var redirectUri = Url.Action(
+            nameof(ExternalCallback),
+            "Auth",
+            new { returnUrl },
+            HttpContext.Request.Scheme
+        );
+
+        var command = new ExternalProviderRedirect.Command(provider, redirectUri);
+        var result = await _mediator.Send(command);
+
+        return Challenge(result.Properties, result.Provider);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ExternalCallback(string returnUrl)
+    {
+        var command = new ExternalProviderRegister.Command(returnUrl);
+
+        var result = await _mediator.Send(command);
+
+        if (result.Succeeded)
+        {
+            return Redirect(WebUtility.UrlDecode(returnUrl));
+        }
+
+        return RedirectToAction("Login", "Account", new { returnUrl });
     }
 }

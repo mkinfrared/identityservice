@@ -39,6 +39,8 @@
 
   .buttonWrapper {
     display: flex;
+    flex-direction: column;
+    gap: 10px;
     justify-content: space-around;
     margin-top: 10px;
     text-align: center;

@@ -4,6 +4,8 @@ using System.Threading;
 using IdentityService.Controllers;
 using IdentityService.Dto;
 using IdentityService.Features.Auth.ConfirmEmail;
+using IdentityService.Features.Auth.ExternalProviderRedirect;
+using IdentityService.Features.Auth.ExternalProviderRegister;
 using IdentityService.Features.Auth.ForgotPassword;
 using IdentityService.Features.Auth.Login;
 using IdentityService.Features.Auth.Logout;
@@ -14,6 +16,7 @@ using IdentityService.Unit.Utils;
 
 using MediatR;
 
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -290,5 +293,76 @@ public class AuthControllerTest
         var result = await _controller.ResetPassword(resetPasswordCommand);
 
         Assert.IsType<BadRequestObjectResult>(result);
+    }
+
+    [Fact]
+    public async void ExternalRegister_Should_Return_ChallengeResult()
+    {
+        var urlHelperMock = MockHelpers.MockUrlHelper();
+
+        _controller.Url = urlHelperMock.Object;
+        _controller.ControllerContext.HttpContext = new DefaultHttpContext();
+        var provider = Providers.Google;
+        var returnUrl = "/foo/bar";
+        var externalRegisterDtoMock = new ExternalRegisterDto();
+        externalRegisterDtoMock.Properties = new AuthenticationProperties();
+        externalRegisterDtoMock.Provider = provider.ToString();
+
+        _mediatrMock
+            .Setup(
+                m =>
+                    m.Send(
+                        It.IsAny<ExternalProviderRedirect.Command>(),
+                        It.IsAny<CancellationToken>()
+                    )
+            )
+            .ReturnsAsync(externalRegisterDtoMock);
+
+        var result = await _controller.ExternalRegister(provider, returnUrl);
+
+        Assert.IsType<ChallengeResult>(result);
+    }
+
+    [Fact]
+    public async void ExternalCallback_Should_Return_RedirectToActionResult()
+    {
+        var returnUrl = "/foo/bar";
+
+        _mediatrMock
+            .Setup(
+                m =>
+                    m.Send(
+                        It.IsAny<ExternalProviderRegister.Command>(),
+                        It.IsAny<CancellationToken>()
+                    )
+            )
+            .ReturnsAsync(IdentityResult.Failed());
+
+        var result = await _controller.ExternalCallback(returnUrl);
+
+        Assert.IsType<RedirectToActionResult>(result);
+        Assert.Equal("Login", ((RedirectToActionResult)result).ActionName);
+        Assert.Equal("Account", ((RedirectToActionResult)result).ControllerName);
+    }
+
+    [Fact]
+    public async void ExternalCallback_Should_Return_RedirectResult()
+    {
+        var returnUrl = "/foo/bar";
+
+        _mediatrMock
+            .Setup(
+                m =>
+                    m.Send(
+                        It.IsAny<ExternalProviderRegister.Command>(),
+                        It.IsAny<CancellationToken>()
+                    )
+            )
+            .ReturnsAsync(IdentityResult.Success);
+
+        var result = await _controller.ExternalCallback(returnUrl);
+
+        Assert.IsType<RedirectResult>(result);
+        Assert.Equal(returnUrl, ((RedirectResult)result).Url);
     }
 }

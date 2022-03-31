@@ -14,13 +14,27 @@ export default {
 
 const Template: Story<BrandButtonProps> = (args) => (
   <div className={css.Story}>
-    <BrandButton {...args} brand={Brand.APPLE} />
-    <BrandButton {...args} brand={Brand.EPIC_GAMES} />
-    <BrandButton {...args} brand={Brand.FACEBOOK} />
-    <BrandButton {...args} brand={Brand.GOOGLE} />
-    <BrandButton {...args} brand={Brand.MICROSOFT} />
-    <BrandButton {...args} brand={Brand.STEAM} />
-    <BrandButton {...args} brand={Brand.VK} />
+    <BrandButton {...args} brand={Brand.APPLE}>
+      Register with Apple
+    </BrandButton>
+    <BrandButton {...args} brand={Brand.EPIC_GAMES}>
+      Register with Epic Games
+    </BrandButton>
+    <BrandButton {...args} brand={Brand.FACEBOOK}>
+      Register with Facebook
+    </BrandButton>
+    <BrandButton {...args} brand={Brand.GOOGLE}>
+      Register with Google
+    </BrandButton>
+    <BrandButton {...args} brand={Brand.MICROSOFT}>
+      Register with Microsoft
+    </BrandButton>
+    <BrandButton {...args} brand={Brand.STEAM}>
+      Register with Steam
+    </BrandButton>
+    <BrandButton {...args} brand={Brand.VK}>
+      Register with VK
+    </BrandButton>
   </div>
 );
 

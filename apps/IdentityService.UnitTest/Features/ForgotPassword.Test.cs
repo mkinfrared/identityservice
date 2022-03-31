@@ -183,9 +183,9 @@ public class ForgotPasswordTest
     [Fact]
     public void Validator_Should_Have_Errors()
     {
-        string email = null;
-        string returnUrl = null;
-        string url = null;
+        string? email = null;
+        string? returnUrl = null;
+        string? url = null;
 
         var validator = new ForgotPassword.Validator();
         var command = new ForgotPassword.Command(email, returnUrl, url);

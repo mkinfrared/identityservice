@@ -1,5 +1,7 @@
 import { Meta, Story } from "@storybook/react";
 
+import { withRouter } from "utils/storybookDecorators";
+
 import { RegisterForm } from "./RegisterForm";
 import css from "./RegisterForm.module.scss";
 import { RegisterFormProps } from "./RegisterForm.type";
@@ -10,6 +12,7 @@ export default {
   parameters: {
     componentSubtitle: "Subtitle goes here",
   },
+  decorators: [withRouter],
 } as Meta;
 
 const Template: Story<RegisterFormProps> = (args) => (
