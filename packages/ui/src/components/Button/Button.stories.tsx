@@ -1,3 +1,4 @@
+import { action } from "@storybook/addon-actions";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 
@@ -21,6 +22,14 @@ const Template: Story<ButtonProps> = (args) => (
   <div className={css.Story}>
     <div>
       <Button {...args}>I am a button</Button>
+    </div>
+    <div>
+      <Button {...args} type="submit">
+        Submit
+      </Button>
+      <Button {...args} type="reset">
+        Reset
+      </Button>
     </div>
     <div>
       <Button variant="opaque">Opaque</Button>
@@ -102,6 +111,7 @@ const WithIconAndText = WithIconAndTextTemplate.bind({});
 Default.args = {
   disabled: false,
   variant: "opaque",
+  onClick: action("Click"),
 };
 
 export { Default, WithIcon, WithIconAndText };

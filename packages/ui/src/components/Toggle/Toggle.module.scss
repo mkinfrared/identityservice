@@ -1,14 +1,22 @@
+@import "../../styles/common";
+
 .Toggle {
   --color: var(--toggle-text-color, var(--white));
-  --padding: 2px;
-  --size: 24px;
+  --padding: 0.2rem;
+  --size: 2.4rem;
 
   align-items: center;
   display: flex;
 
+  .container {
+    align-items: center;
+    border-radius: 0.4rem;
+    display: flex;
+  }
+
   &.error {
 
-    .container {
+    .switch {
       outline: 1px solid var(--red);
     }
 
@@ -17,10 +25,10 @@
     }
   }
 
-  .container {
+  .switch {
     align-items: center;
     background: var(--orange);
-    border-radius: 50px;
+    border-radius: 5rem;
     display: flex;
     height: var(--size);
     padding: var(--padding);
@@ -31,7 +39,7 @@
       aspect-ratio: 1/1;
       background-color: var(--white);
       border-radius: 50%;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
       display: block;
       height: 100%;
       transition: all 0.25s;
@@ -40,19 +48,29 @@
 
   .text {
     color: var(--color);
-    margin-left: 10px;
+    margin-left: 1rem;
   }
 
   .input {
-    display: none;
+    height: 0;
+    margin: 0;
+    width: 0;
 
-    &:checked + .container {
+    &:checked + .container .switch {
       background: var(--purple);
     }
 
-    &:checked + .container .ball {
+    &:checked + .container .switch .ball {
       transform: translateX(100%);
     }
+
+    &:focus ~ .container {
+      border-radius: 0.4rem;
+    }
+  }
+
+  input:focus-visible ~ .container {
+    @include focusVisible;
   }
 
   &.readOnly {
@@ -62,7 +80,7 @@
   &.readOnly .input,
   .input:disabled {
 
-    ~ .container {
+    ~ .switch {
       background: var(--grey);
     }
 

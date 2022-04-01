@@ -1,5 +1,7 @@
 import { Meta, Story } from "@storybook/react";
 
+import { withRouter } from "utils/storybookDecorators";
+
 import { PasswordResetForm } from "./PasswordResetForm";
 import css from "./PasswordResetForm.module.scss";
 import { PasswordResetFormProps } from "./PasswordResetForm.type";
@@ -10,6 +12,7 @@ export default {
   parameters: {
     componentSubtitle: "Subtitle goes here",
   },
+  decorators: [withRouter],
 } as Meta;
 
 const Template: Story<PasswordResetFormProps> = (args) => (

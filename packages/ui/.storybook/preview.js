@@ -1,5 +1,5 @@
 import "../src/styles/colors.css";
-import "../src/styles/global.scss";
+import "../src/story.scss";
 
 const tokenContext = require.context(
   "!!raw-loader!../src",

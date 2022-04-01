@@ -42,7 +42,9 @@ const Default = Template.bind({
   loading: false,
 });
 
-Default.args = {};
+Default.args = {
+  href: "https://en.wikipedia.org/wiki/Fleetwood_Mac",
+};
 
 Default.parameters = {
   docs: {

@@ -12,8 +12,12 @@ exports[`<Radio /> should match the snapshot 1`] = `
       value=""
     />
     <div
-      class="circle"
-    />
+      class="container"
+    >
+      <div
+        class="circle"
+      />
+    </div>
   </label>
 </div>
 `;

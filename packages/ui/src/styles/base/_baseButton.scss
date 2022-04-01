@@ -1,7 +1,7 @@
 @use "../common";
 
 @mixin buttonBorderRadius {
-  --border-radius: 40px;
+  --border-radius: 4rem;
 }
 
 %buttonBase {
@@ -18,10 +18,12 @@
   color: var(--color);
   cursor: pointer;
   display: inline-flex;
+  font-size: var(--text-size);
   font-weight: 600;
   justify-content: center;
+  line-height: var(--line-height);
   overflow: hidden;
-  padding: 10px 20px;
+  padding: 0.5rem 2rem;
   position: relative;
   white-space: nowrap;
 

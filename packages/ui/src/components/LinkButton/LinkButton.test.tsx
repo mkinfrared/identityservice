@@ -22,4 +22,22 @@ describe("<LinkButton />", () => {
 
     expect(element).toBeDefined();
   });
+
+  it("should render an opaque button by default", () => {
+    const { getByTestId } = render(Component);
+    const element = getByTestId("LinkButton");
+
+    expect(element).toBeDefined();
+
+    expect(element).toHaveClass("opaque");
+  });
+
+  it("should render a transparent button when variant prop is transparent", () => {
+    const { getByTestId } = render(<LinkButton variant="transparent" />);
+    const element = getByTestId("LinkButton");
+
+    expect(element).toBeDefined();
+
+    expect(element).toHaveClass("transparent");
+  });
 });

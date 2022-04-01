@@ -41,20 +41,25 @@ exports[`<ConsentForm /> should match the snapshot 1`] = `
             name="identityScopes.0.isPermitted"
             readonly=""
             type="checkbox"
+            value=""
           />
           <div
             class="Toggle-module_container__FoqlF"
           >
-            <span
-              class="Toggle-module_ball__bF3bD"
-            />
+            <div
+              class="Toggle-module_switch__F7NhF"
+            >
+              <span
+                class="Toggle-module_ball__bF3bD"
+              />
+            </div>
+            <p
+              class="Text-module_Text__K8mLZ Toggle-module_text__bqo8g"
+              data-testid="Text"
+            >
+              Your user identifier
+            </p>
           </div>
-          <p
-            class="Text-module_Text__K8mLZ Toggle-module_text__bqo8g"
-            data-testid="Text"
-          >
-            Your user identifier
-          </p>
         </label>
         <h6
           class="Heading-module_Heading__Wg8yB description"
@@ -68,20 +73,25 @@ exports[`<ConsentForm /> should match the snapshot 1`] = `
             class="Toggle-module_input__9vPu1"
             name="identityScopes.1.isPermitted"
             type="checkbox"
+            value=""
           />
           <div
             class="Toggle-module_container__FoqlF"
           >
-            <span
-              class="Toggle-module_ball__bF3bD"
-            />
+            <div
+              class="Toggle-module_switch__F7NhF"
+            >
+              <span
+                class="Toggle-module_ball__bF3bD"
+              />
+            </div>
+            <p
+              class="Text-module_Text__K8mLZ Toggle-module_text__bqo8g"
+              data-testid="Text"
+            >
+              User profile
+            </p>
           </div>
-          <p
-            class="Text-module_Text__K8mLZ Toggle-module_text__bqo8g"
-            data-testid="Text"
-          >
-            User profile
-          </p>
         </label>
         <h6
           class="Heading-module_Heading__Wg8yB description"
@@ -107,20 +117,25 @@ exports[`<ConsentForm /> should match the snapshot 1`] = `
             class="Toggle-module_input__9vPu1"
             name="apiScopes.0.isPermitted"
             type="checkbox"
+            value=""
           />
           <div
             class="Toggle-module_container__FoqlF"
           >
-            <span
-              class="Toggle-module_ball__bF3bD"
-            />
+            <div
+              class="Toggle-module_switch__F7NhF"
+            >
+              <span
+                class="Toggle-module_ball__bF3bD"
+              />
+            </div>
+            <p
+              class="Text-module_Text__K8mLZ Toggle-module_text__bqo8g"
+              data-testid="Text"
+            >
+              OrdersApi
+            </p>
           </div>
-          <p
-            class="Text-module_Text__K8mLZ Toggle-module_text__bqo8g"
-            data-testid="Text"
-          >
-            OrdersApi
-          </p>
         </label>
         <h6
           class="Heading-module_Heading__Wg8yB description"
@@ -138,24 +153,28 @@ exports[`<ConsentForm /> should match the snapshot 1`] = `
           value=""
         />
         <div
-          class="Checkbox-module_checkmark__pjJT2"
+          class="Checkbox-module_container__pUY-s"
         >
-          <svg
-            class="Checkbox-module_tick__-Yp8y"
-            viewBox="0 0 1280 1186"
-            xmlns="http://www.w3.org/2000/svg"
+          <div
+            class="Checkbox-module_checkmark__pjJT2"
           >
-            <path
-              d="M1253 5.4c-3 1.8-14.5 8.6-25.5 15.1C1114 87.6 990.7 180.8 869 291.4c-64.7 58.9-140.3 134.2-203 202.1-108.5 117.6-218 252.3-311.3 382.9l-4.8 6.7-3.2-1.9c-1.8-1.1-75.8-43-164.6-93.2-130.9-73.9-161.6-90.9-162.6-89.8-6.2 6.8-15.6 19.1-15.3 20 .2.6 90.8 106.1 201.4 234.4l200.9 233.3h7.5l7.6.1 15.3-30.8c174.3-350.6 357.9-626.1 584-876.7 66-73.1 162.4-170.1 238.1-239.4 8.5-7.8 15.4-14.8 15.4-15.6-.2-1.5-14.5-21.4-15.4-21.4-.3 0-3 1.4-6 3.3z"
-            />
-          </svg>
+            <svg
+              class="Checkbox-module_tick__-Yp8y"
+              viewBox="0 0 1280 1186"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1253 5.4c-3 1.8-14.5 8.6-25.5 15.1C1114 87.6 990.7 180.8 869 291.4c-64.7 58.9-140.3 134.2-203 202.1-108.5 117.6-218 252.3-311.3 382.9l-4.8 6.7-3.2-1.9c-1.8-1.1-75.8-43-164.6-93.2-130.9-73.9-161.6-90.9-162.6-89.8-6.2 6.8-15.6 19.1-15.3 20 .2.6 90.8 106.1 201.4 234.4l200.9 233.3h7.5l7.6.1 15.3-30.8c174.3-350.6 357.9-626.1 584-876.7 66-73.1 162.4-170.1 238.1-239.4 8.5-7.8 15.4-14.8 15.4-15.6-.2-1.5-14.5-21.4-15.4-21.4-.3 0-3 1.4-6 3.3z"
+              />
+            </svg>
+          </div>
+          <p
+            class="Text-module_Text__K8mLZ Checkbox-module_text__usAwV"
+            data-testid="Text"
+          >
+            Remember my choice
+          </p>
         </div>
-        <p
-          class="Text-module_Text__K8mLZ Checkbox-module_text__usAwV"
-          data-testid="Text"
-        >
-          Remember my choice
-        </p>
       </label>
       <div
         class="buttonWrapper"

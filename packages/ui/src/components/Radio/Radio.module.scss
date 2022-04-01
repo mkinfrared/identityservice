@@ -18,8 +18,10 @@
     }
   }
 
-  &:focus-within {
-    @include focusVisible;
+  .container {
+    align-items: center;
+    border-radius: 0.4rem;
+    display: flex;
   }
 
   .input {
@@ -29,7 +31,7 @@
     width: 0;
   }
 
-  .input:checked ~ .circle {
+  .input:checked ~ .container .circle {
 
     &::after {
       opacity: 1;
@@ -42,6 +44,10 @@
     }
   }
 
+  .input:focus-visible ~ .container {
+    @include focusVisible;
+  }
+
   &.readOnly {
     pointer-events: none;
   }
@@ -49,7 +55,7 @@
   &.readOnly .input,
   .input:disabled {
 
-    ~ .circle {
+    ~ .container .circle {
 
       &::after,
       &::before {
@@ -73,7 +79,7 @@
       border-radius: 50%;
       content: "";
       inset: 0;
-      padding: 3px;
+      padding: 0.3rem;
       position: absolute;
     }
 
@@ -103,13 +109,13 @@
 
   .text {
     color: var(--color);
-    margin-left: 10px;
+    margin-left: 1rem;
   }
 }
 
 .Story {
 
   .radioGroup {
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
   }
 }

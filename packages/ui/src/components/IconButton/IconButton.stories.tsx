@@ -29,6 +29,10 @@ const Template: Story<IconButtonProps> = (args) => (
     <IconButton {...args}>
       <Clear />
     </IconButton>
+    <Button>
+      <Doc />
+      Button
+    </Button>
     <Button>Button</Button>
   </div>
 );

@@ -1,6 +1,6 @@
 %loginRegisterForm {
   color: var(--white);
-  max-width: 500px;
+  max-width: 50rem;
   width: 100%;
 
   .form {
@@ -8,12 +8,12 @@
   }
 
   .heading {
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
     text-align: center;
   }
 
   .fieldset {
-    margin-top: 20px;
+    margin-top: 2rem;
 
     .input {
 
@@ -24,25 +24,25 @@
   }
 
   .input {
-    margin-top: 5px;
+    margin-top: 0.5rem;
   }
 
   .text {
-    margin-top: 10px;
+    margin-top: 1rem;
   }
 
   .icon {
     display: block;
-    margin: 0 auto 20px;
+    margin: 0 auto 2rem;
     width: 60%;
   }
 
   .buttonWrapper {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 1rem;
     justify-content: space-around;
-    margin-top: 10px;
+    margin-top: 1rem;
     text-align: center;
   }
 }
@@ -53,7 +53,7 @@
   width: 100%;
 
   .card {
-    width: 300px;
+    width: 30rem;
   }
 
   .formContainer {

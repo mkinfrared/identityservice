@@ -24,34 +24,34 @@
 
     .input {
       border-color: var(--red);
-      box-shadow: 0 0 5px 0 rgba(var(--redRgb), 0.8);
+      box-shadow: 0 0 0.5rem 0 rgba(var(--redRgb), 0.8);
     }
   }
 
   &.hasSuffix {
 
     .input {
-      padding-right: 30px;
+      padding-right: 3rem;
     }
   }
 
   &.hasPrefix {
 
     .input {
-      padding-left: 30px;
+      padding-left: 3rem;
     }
   }
 
   .label {
     cursor: pointer;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
     text-transform: capitalize;
   }
 
   .input {
     border: 1px solid transparent;
     font-family: Roboto, sans-serif;
-    font-size: 16px;
+    font-size: var(--text-size);
     font-style: normal;
     font-weight: 500;
     line-height: 1.8;
@@ -68,7 +68,7 @@
       color: var(--white);
       font-size: 100%;
       height: 100%;
-      padding: 15px 20px;
+      padding: 1.5rem 2rem;
       width: 100%;
 
       &:-webkit-autofill,
@@ -100,11 +100,12 @@
 
     .prefix,
     .suffix {
-      height: 30px;
+      aspect-ratio: 1/1;
+      height: calc(var(--text-size) * 1.5);
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 30px;
+      width: calc(var(--text-size) * 1.5);
 
       svg {
         fill: currentColor;
@@ -114,22 +115,22 @@
     }
 
     .prefix {
-      left: 10px;
+      left: 1rem;
     }
 
     .suffix {
       cursor: pointer;
-      right: 10px;
+      right: 1rem;
     }
   }
 
   .error {
     color: var(--red);
-    font-size: 14px;
-    height: 25px;
-    margin-top: 5px;
+    font-size: 1.4rem;
+    height: 2.5rem;
+    margin-top: 0.5rem;
     overflow: hidden;
-    padding-left: 21px;
+    padding: 0;
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 100%;
@@ -140,10 +141,10 @@
   @include dark;
 
   border-radius: 0;
-  min-height: 300px;
-  padding: 40px;
+  min-height: 30rem;
+  padding: 4rem;
 
   > div {
-    width: 400px;
+    width: 40rem;
   }
 }

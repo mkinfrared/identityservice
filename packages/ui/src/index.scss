@@ -1,20 +1,3 @@
+@import "styles/reset";
 @import "styles/colors";
 @import "styles/global";
-
-body {
-
-  * {
-    box-sizing: border-box;
-    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
-    scrollbar-width: thin; // width is ~8-10px
-
-    &::-webkit-scrollbar {
-      background-color: rgba(255, 255, 255, 0.1);
-      width: 8px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: rgba(255, 255, 255, 0.3);
-    }
-  }
-}

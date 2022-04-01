@@ -36,13 +36,13 @@ const ControlledTemplate: Story<CheckboxProps> = () => {
   );
 };
 
-const Uncontrolled = UncontrolledTemplate.bind({
-  onChange: action("change"),
-});
-
+const Uncontrolled = UncontrolledTemplate.bind({});
 const Controlled = ControlledTemplate.bind({});
 
-Uncontrolled.args = {};
+Uncontrolled.args = {
+  onChange: action("change"),
+  label: "marklar",
+};
 
 Uncontrolled.parameters = {
   docs: {

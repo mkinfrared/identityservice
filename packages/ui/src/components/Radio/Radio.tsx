@@ -43,8 +43,10 @@ const Radio = ({
         type="radio"
         value={value}
       />
-      <div className={css.circle} />
-      {label && <Text className={css.text}>{label}</Text>}
+      <div className={css.container}>
+        <div className={css.circle} />
+        {label && <Text className={css.text}>{label}</Text>}
+      </div>
     </label>
   );
 };

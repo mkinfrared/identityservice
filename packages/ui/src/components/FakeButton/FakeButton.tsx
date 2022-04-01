@@ -1,12 +1,14 @@
 import { classNames } from "@identity-service/core";
-import React, { memo } from "react";
+import React, { KeyboardEventHandler, memo } from "react";
 
 import css from "./FakeButton.module.scss";
 import { FakeButtonProps } from "./FakeButton.type";
 
 const FakeButton = ({ className, children, onClick }: FakeButtonProps) => {
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === "Enter") {
+  const handleKeyPress: KeyboardEventHandler = (event) => {
+    const { key } = event;
+
+    if (key === "Enter" || key === " ") {
       const { target } = event;
       const ev = new MouseEvent("click", { bubbles: true });
 

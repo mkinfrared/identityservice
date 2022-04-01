@@ -37,7 +37,7 @@
 
     .brandIcon {
       border: 1px solid var(--facebookText);
-      border-radius: 4px;
+      border-radius: 0.4rem;
     }
   }
 
@@ -89,6 +89,6 @@
 .Story {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  max-width: 300px;
+  gap: 1rem;
+  max-width: 30rem;
 }

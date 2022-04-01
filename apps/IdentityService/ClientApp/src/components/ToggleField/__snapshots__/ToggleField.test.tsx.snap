@@ -9,13 +9,18 @@ exports[`<ToggleField /> should match the snapshot 1`] = `
     <input
       class="Toggle-module_input__9vPu1"
       type="checkbox"
+      value=""
     />
     <div
       class="Toggle-module_container__FoqlF"
     >
-      <span
-        class="Toggle-module_ball__bF3bD"
-      />
+      <div
+        class="Toggle-module_switch__F7NhF"
+      >
+        <span
+          class="Toggle-module_ball__bF3bD"
+        />
+      </div>
     </div>
   </label>
 </div>

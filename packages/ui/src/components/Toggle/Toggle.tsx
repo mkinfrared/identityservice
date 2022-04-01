@@ -20,6 +20,7 @@ const Toggle = ({
   name,
   onChange,
   readOnly = false,
+  value,
 }: ToggleProps) => {
   const mergedRefs = mergeRefs(inputRef);
 
@@ -34,20 +35,23 @@ const Toggle = ({
       data-testid="Toggle"
     >
       <input
-        checked={checked}
         className={css.input}
+        checked={checked}
         defaultChecked={defaultChecked}
         disabled={disabled}
         name={name}
-        ref={mergedRefs}
         onChange={onChange}
+        ref={mergedRefs}
         readOnly={readOnly}
         type="checkbox"
+        value={value}
       />
       <div className={css.container}>
-        <span className={css.ball} />
+        <div className={css.switch}>
+          <span className={css.ball} />
+        </div>
+        {label && <Text className={css.text}>{label}</Text>}
       </div>
-      {label && <Text className={css.text}>{label}</Text>}
     </label>
   );
 };

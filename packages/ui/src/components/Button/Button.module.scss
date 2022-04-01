@@ -3,8 +3,8 @@
 .Button {
   @extend %buttonBase;
 
-  min-width: 100px;
-  padding: 10px 20px;
+  min-width: 10rem;
+  padding: 0.5rem 2rem;
 
   &.loading {
     color: transparent;
@@ -28,7 +28,7 @@
   .content {
     align-items: center;
     display: inline-flex;
-    gap: 10px;
+    gap: 1rem;
     max-height: var(--text-height);
     white-space: nowrap;
   }
@@ -49,7 +49,7 @@
   > div {
 
     &:not(:last-child) {
-      margin-bottom: 20px;
+      margin-bottom: 2rem;
     }
   }
 

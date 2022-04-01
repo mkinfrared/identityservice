@@ -23,23 +23,39 @@ const Template: Story<LinkButtonProps> = (args) => (
       <LinkButton {...args}>I am a button</LinkButton>
     </div>
     <div>
-      <LinkButton variant="opaque">Opaque</LinkButton>
-      <LinkButton variant="transparent">Transparent</LinkButton>
+      <LinkButton {...args} variant="opaque">
+        Opaque
+      </LinkButton>
+      <LinkButton {...args} variant="transparent">
+        Transparent
+      </LinkButton>
     </div>
     <div>
       <Heading>LinkButton List</Heading>
       <div>
-        <LinkButton variant="opaque">Lorem</LinkButton>
-        <LinkButton variant="transparent">Lorem Ipsum</LinkButton>
-        <LinkButton variant="transparent">Lorem Ipsum Dolor</LinkButton>
+        <LinkButton {...args} variant="opaque">
+          Lorem
+        </LinkButton>
+        <LinkButton {...args} variant="transparent">
+          Lorem Ipsum
+        </LinkButton>
+        <LinkButton {...args} variant="transparent">
+          Lorem Ipsum Dolor
+        </LinkButton>
       </div>
     </div>
     <div>
       <Heading>LinkButton List with the same width</Heading>
       <div className={css.sameWidthList}>
-        <LinkButton variant="opaque">Lorem</LinkButton>
-        <LinkButton variant="transparent">Lorem Ipsum</LinkButton>
-        <LinkButton variant="transparent">Lorem Ipsum Dolor</LinkButton>
+        <LinkButton {...args} variant="opaque">
+          Lorem
+        </LinkButton>
+        <LinkButton {...args} variant="transparent">
+          Lorem Ipsum
+        </LinkButton>
+        <LinkButton {...args} variant="transparent">
+          Lorem Ipsum Dolor
+        </LinkButton>
       </div>
     </div>
   </div>
@@ -90,6 +106,7 @@ const WithIconAndText = WithIconAndTextTemplate.bind({});
 
 Default.args = {
   variant: "opaque",
+  href: "https://en.wikipedia.org/wiki/Fleetwood_Mac",
 };
 
 export { Default, WithIcon, WithIconAndText };

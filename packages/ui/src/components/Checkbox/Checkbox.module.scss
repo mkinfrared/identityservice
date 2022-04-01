@@ -2,9 +2,9 @@
 
 .Checkbox {
   --color: var(--checkbox-text-color, var(--white));
-  --border-radius: 5px;
+  --border-radius: 0.5rem;
   --transition-time: 150ms;
-  --border-width: 5px;
+  --border-width: 0.5rem;
 
   align-items: center;
   color: var(--color);
@@ -27,7 +27,10 @@
     }
   }
 
-  @media (pointer: "") {
+  .container {
+    align-items: center;
+    border-radius: 0.4rem;
+    display: flex;
   }
 
   .input {
@@ -37,7 +40,7 @@
     width: 0;
   }
 
-  .input:checked ~ .checkmark {
+  .input:checked ~ .container .checkmark {
 
     &::before {
       opacity: 0;
@@ -55,8 +58,8 @@
     }
   }
 
-  .input:focus-visible ~ .checkmark {
-    outline: 2px solid red;
+  .input:focus-visible ~ .container {
+    @include focusVisible;
   }
 
   &.readOnly {
@@ -80,7 +83,7 @@
   }
 
   .text {
-    margin-left: 10px;
+    margin-left: 1rem;
   }
 
   .checkmark {
@@ -91,7 +94,7 @@
     display: flex;
     height: var(--text-height);
     justify-content: center;
-    padding: 5px;
+    padding: 0.5rem;
     position: relative;
     transition: all var(--transition-time) ease-in-out;
 
@@ -100,7 +103,7 @@
       background-image: var(--purple-gradient);
       content: "";
       inset: 0;
-      padding: 3px;
+      padding: 0.3rem;
       position: absolute;
     }
 

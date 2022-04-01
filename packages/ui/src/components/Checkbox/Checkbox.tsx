@@ -47,10 +47,12 @@ const Checkbox = ({
         type="checkbox"
         value={value}
       />
-      <div className={css.checkmark}>
-        <Tick className={css.tick} />
+      <div className={css.container}>
+        <div className={css.checkmark}>
+          <Tick className={css.tick} />
+        </div>
+        {label && <Text className={css.text}>{label}</Text>}
       </div>
-      {label && <Text className={css.text}>{label}</Text>}
     </label>
   );
 };
