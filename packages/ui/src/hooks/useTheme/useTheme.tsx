@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useLocalStorage } from "react-use";
 
 import { Theme } from "./useTheme.type";
@@ -12,16 +12,20 @@ const useTheme = (themeKey: string) => {
 
   const [savedTheme, setSavedTheme] = useLocalStorage<Theme>(themeKey);
 
+  const currentTheme = useMemo(
+    () => savedTheme ?? preferredTheme,
+    [preferredTheme, savedTheme],
+  );
+
   const handleColorPreferenceChange = (event: MediaQueryListEvent) => {
     setPreferredTheme(event.matches ? "dark" : "light");
   };
 
   const toggleTheme = useCallback(() => {
-    const prevTheme = savedTheme ?? preferredTheme;
-    const newTheme = prevTheme === "dark" ? "light" : "dark";
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
 
     setSavedTheme(newTheme);
-  }, [preferredTheme, savedTheme, setSavedTheme]);
+  }, [currentTheme, setSavedTheme]);
 
   useEffect(() => {
     darkSchemeQuery.addEventListener("change", handleColorPreferenceChange);
@@ -34,7 +38,13 @@ const useTheme = (themeKey: string) => {
     };
   }, []);
 
-  return { theme: savedTheme || preferredTheme, toggleTheme };
+  useEffect(() => {
+    const theme = savedTheme || preferredTheme;
+
+    document.body.setAttribute("data-theme", theme);
+  }, [savedTheme, preferredTheme]);
+
+  return { toggleTheme, setPreferredTheme, theme: currentTheme };
 };
 
 export { useTheme };

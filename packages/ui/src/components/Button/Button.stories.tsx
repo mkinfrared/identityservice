@@ -21,9 +21,11 @@ export default {
 const Template: Story<ButtonProps> = (args) => (
   <div className={css.Story}>
     <div>
+      <Heading>Default</Heading>
       <Button {...args}>I am a button</Button>
     </div>
     <div>
+      <Heading>Button type</Heading>
       <Button {...args} type="submit">
         Submit
       </Button>
@@ -32,34 +34,59 @@ const Template: Story<ButtonProps> = (args) => (
       </Button>
     </div>
     <div>
-      <Button variant="opaque">Opaque</Button>
-      <Button variant="transparent">Transparent</Button>
+      <Heading>Button variants</Heading>
+      <Button {...args} variant="contained">
+        Contained
+      </Button>
+      <Button {...args} variant="outlined">
+        Outlined
+      </Button>
     </div>
     <div>
-      <Button>
-        <a
-          href="https://en.wikipedia.org/wiki/Fleetwood_Mac"
-          target="_blank"
-          rel="noreferrer"
-        >
-          With Link Inside
-        </a>
-      </Button>
+      <Heading>Button colors</Heading>
+      <div>
+        <Button {...args} variant="contained" color="primary">
+          Primary
+        </Button>
+        <Button {...args} variant="contained" color="secondary">
+          Secondary
+        </Button>
+        <Button {...args} variant="contained" color="success">
+          Success
+        </Button>
+        <Button {...args} variant="contained" color="error">
+          Error
+        </Button>
+      </div>
+      <div>
+        <Button {...args} variant="outlined" color="primary">
+          Primary
+        </Button>
+        <Button {...args} variant="outlined" color="secondary">
+          Secondary
+        </Button>
+        <Button {...args} variant="outlined" color="success">
+          Success
+        </Button>
+        <Button {...args} variant="outlined" color="error">
+          Error
+        </Button>
+      </div>
     </div>
     <div>
       <Heading>Button List</Heading>
       <div>
-        <Button variant="opaque">Lorem</Button>
-        <Button variant="transparent">Lorem Ipsum</Button>
-        <Button variant="transparent">Lorem Ipsum Dolor</Button>
+        <Button variant="contained">Lorem</Button>
+        <Button variant="outlined">Lorem Ipsum</Button>
+        <Button variant="outlined">Lorem Ipsum Dolor</Button>
       </div>
     </div>
     <div>
       <Heading>Button List with the same width</Heading>
       <div className={css.sameWidthList}>
-        <Button variant="opaque">Lorem</Button>
-        <Button variant="transparent">Lorem Ipsum</Button>
-        <Button variant="transparent">Lorem Ipsum Dolor</Button>
+        <Button variant="contained">Lorem</Button>
+        <Button variant="outlined">Lorem Ipsum</Button>
+        <Button variant="outlined">Lorem Ipsum Dolor</Button>
       </div>
     </div>
   </div>
@@ -110,7 +137,7 @@ const WithIconAndText = WithIconAndTextTemplate.bind({});
 
 Default.args = {
   disabled: false,
-  variant: "opaque",
+  variant: "contained",
   onClick: action("Click"),
 };
 

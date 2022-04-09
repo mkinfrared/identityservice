@@ -1,11 +1,33 @@
 @import "../../styles/_common";
 
 .Card {
-  @include dark;
-
+  border-radius: 1rem;
   padding: 2rem;
+
+  @include theme("dark") {
+    @include dark;
+  }
+
+  @include theme("light") {
+    @include light;
+  }
 }
 
 .Story {
-  width: 30rem;
+  background-color: #00a2fe;
+  min-height: 100vh;
+  padding: 2rem;
+
+  .cardContainer {
+    width: 30rem;
+  }
+
+  .card {
+    margin-bottom: 4rem;
+  }
+
+  .emptyCard {
+    aspect-ratio: 1/1;
+    height: 30rem;
+  }
 }

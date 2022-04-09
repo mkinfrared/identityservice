@@ -3,7 +3,7 @@
 exports[`<LinkButton /> should match the snapshot 1`] = `
 <div>
   <a
-    class="LinkButton opaque"
+    class="LinkButton contained primary"
     data-testid="LinkButton"
   />
 </div>

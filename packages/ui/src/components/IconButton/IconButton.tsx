@@ -2,31 +2,43 @@
 import { classNames } from "@identity-service/core";
 import React, { memo } from "react";
 
+import { ButtonColors, ButtonVariants } from "components/Button";
 import Spinner from "components/Spinner";
 
 import css from "./IconButton.module.scss";
 import { IconButtonProps } from "./IconButton.type";
 
+const colors: Record<ButtonColors, string> = {
+  primary: css.primary,
+  secondary: css.secondary,
+  success: css.success,
+  error: css.error,
+};
+
+const variants: Record<ButtonVariants, string> = {
+  contained: css.contained,
+  outlined: css.outlined,
+};
+
+const getButtonColor = (color: ButtonColors) => colors[color];
+const getButtonVariant = (variant: ButtonVariants) => variants[variant];
+
 const IconButton = ({
   children,
   className,
+  color = "primary",
   disabled = false,
   loading = false,
   type = "button",
-  variant = "opaque",
+  variant = "contained",
   ...rest
 }: IconButtonProps) => {
-  const classes = [css.Button, className];
-
-  switch (variant) {
-    case "transparent":
-      classes.push(css.transparent);
-
-      break;
-
-    default:
-      classes.push(css.opaque);
-  }
+  const classes = [
+    css.Button,
+    className,
+    getButtonVariant(variant),
+    getButtonColor(color),
+  ];
 
   if (loading) {
     classes.push(css.loading);

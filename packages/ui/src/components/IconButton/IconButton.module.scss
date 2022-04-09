@@ -12,6 +12,16 @@
   padding: 1.1rem;
   position: relative;
 
+  &.outlined {
+    overflow: visible;
+    padding: calc(1.1rem - 2px);
+
+    .spinner {
+      height: calc(100% + 4px);
+      inset: -2px;
+    }
+  }
+
   &.loading {
 
     .spinner {
@@ -21,7 +31,7 @@
 
   svg {
     aspect-ratio: 1/1;
-    fill: var(--color);
+    fill: currentColor;
     height: var(--text-size);
   }
 

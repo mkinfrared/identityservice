@@ -1,4 +1,4 @@
-@use "../common";
+@use "../common" as c;
 
 @mixin buttonBorderRadius {
   --border-radius: 4rem;
@@ -9,7 +9,7 @@
 
   --background: var(--button-background, var(--purple-gradient));
   --border-color: var(--button-border-color, var(--purple));
-  --color: var(--button-color, var(--white));
+  --color: var(--button-color);
   --spinner-color: var(--button-spinner-color, var(--white));
 
   align-items: center;
@@ -25,17 +25,46 @@
   overflow: hidden;
   padding: 0.5rem 2rem;
   position: relative;
+  -webkit-tap-highlight-color: transparent; // removes blue highlight in mobile chrome
   white-space: nowrap;
 
-  &.opaque {
+  &.contained {
     background: var(--background);
     color: var(--white);
+
+    &.secondary {
+      background: linear-gradient(-45deg, var(--orange), var(--red-light));
+    }
+
+    &.success {
+      background: var(--green);
+    }
+
+    &.error {
+      background: var(--red-dark);
+    }
   }
 
-  &.transparent {
+  &.outlined {
     background-color: transparent;
     border: 2px solid var(--border-color);
-    color: var(--color);
+    color: var(--border-color);
+    padding: calc(0.5rem - 2px) calc(2rem - 2px);
+
+    &.secondary {
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+
+    &.success {
+      border-color: var(--green);
+      color: var(--green);
+    }
+
+    &.error {
+      border-color: var(--red-dark);
+      color: var(--red-dark);
+    }
   }
 
   &:hover {
@@ -53,7 +82,7 @@
   }
 
   &:focus-visible {
-    @include common.focusVisible;
+    @include c.focusVisible;
   }
 
   &,

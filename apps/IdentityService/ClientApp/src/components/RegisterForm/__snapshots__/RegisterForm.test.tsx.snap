@@ -243,7 +243,7 @@ exports[`<RegisterForm /> should match the snapshot 1`] = `
         class="buttonWrapper"
       >
         <button
-          class="Button-module_Button__0OJEu Button-module_opaque__O0DEF"
+          class="Button-module_Button__0OJEu Button-module_contained__B-47X"
           data-testid="Button"
           disabled=""
           type="submit"
@@ -380,7 +380,7 @@ exports[`<RegisterForm /> should match the snapshot 1`] = `
           </span>
         </button>
         <a
-          class="LinkButton-module_LinkButton__x1Ppn BrandButton google LinkButton-module_opaque__DFeur"
+          class="LinkButton-module_LinkButton__x1Ppn BrandButton google LinkButton-module_contained__JBh4n"
           data-testid="LinkButton"
           href="http://localhost/auth/externalRegister?provider=Google&returnUrl=https%253A%252F%252Fmarklar.com"
         >

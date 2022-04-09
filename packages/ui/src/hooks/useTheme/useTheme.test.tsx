@@ -1,5 +1,5 @@
-import { waitFor } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
+import { act } from "react-dom/test-utils";
 
 import { useTheme } from "./useTheme";
 
@@ -54,20 +54,16 @@ describe("useTheme", () => {
 
     expect(result.current.theme).toBe("dark");
 
-    waitFor(() => {
+    act(() => {
       result.current.toggleTheme();
-
-      expect(result.current.theme).toBe("light");
-
-      result.current.toggleTheme();
-
-      expect(result.current.theme).toBe("light");
     });
 
-    waitFor(() => {
-      result.current.toggleTheme();
+    expect(result.current.theme).toBe("light");
 
-      expect(result.current.theme).toBe("dark");
+    act(() => {
+      result.current.toggleTheme();
     });
+
+    expect(result.current.theme).toBe("dark");
   });
 });

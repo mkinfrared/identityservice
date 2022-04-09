@@ -1,10 +1,23 @@
+@mixin theme($value: "dark") {
+  @if ($value == "light") {
+    @at-root body[data-theme="light"] & {
+      @content;
+    }
+  }
+
+  @else if($value == "dark") {
+    @at-root body[data-theme="dark"] & {
+      @content;
+    }
+  }
+}
+
 @mixin dark {
   -webkit-backdrop-filter: blur(9px);
   backdrop-filter: blur(9px);
   background: rgba(19, 18, 18, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 10px;
-  box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.37);
+  box-shadow: 0 8px 16px 0 rgba(31, 38, 135, 0.37);
   color: var(--white);
 }
 
@@ -13,10 +26,9 @@
   backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 10px;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  box-shadow: 0 8px 16px 0 rgba(31, 38, 135, 0.37);
 }
 
 @mixin focusVisible {
-  outline: 2px solid var(--orange);
+  outline: 2px solid var(--orange-dark);
 }

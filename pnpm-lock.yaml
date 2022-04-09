@@ -301,7 +301,6 @@ importers:
       react: ^17.0.2
       react-dom: ^17.0.2
       react-scripts: ^5.0.0
-      react-use: ^17.3.2
       rollup: ^2.64.0
       rollup-plugin-delete: ^2.0.0
       rollup-plugin-postcss: ^4.0.2
@@ -314,8 +313,6 @@ importers:
       tslib: ^2.3.1
       ttypescript: ^1.5.13
       typescript: ^4.5.4
-    dependencies:
-      react-use: 17.3.2_react-dom@17.0.2+react@17.0.2
     devDependencies:
       '@rollup/plugin-babel': 5.3.1_rollup@2.70.1
       '@rollup/plugin-commonjs': 21.0.3_rollup@2.70.1
@@ -402,6 +399,7 @@ importers:
       react: ^17.0.2
       react-dom: ^17.0.2
       react-scripts: ^5.0.0
+      react-use: ^17.3.2
       rollup: ^2.64.0
       rollup-plugin-delete: ^2.0.0
       rollup-plugin-postcss: ^4.0.2
@@ -414,6 +412,8 @@ importers:
       tslib: ^2.3.1
       ttypescript: ^1.5.13
       typescript: ^4.5.4
+    dependencies:
+      react-use: 17.3.2_react-dom@17.0.2+react@17.0.2
     devDependencies:
       '@identity-service/core': link:../core
       '@rollup/plugin-babel': 5.3.1_rollup@2.70.1
@@ -7512,6 +7512,7 @@ packages:
 
   /bindings/1.5.0:
     resolution: {integrity: sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==}
+    requiresBuild: true
     dependencies:
       file-uri-to-path: 1.0.0
     dev: true
@@ -10486,6 +10487,7 @@ packages:
 
   /file-uri-to-path/1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -13967,6 +13969,7 @@ packages:
 
   /nan/2.15.0:
     resolution: {integrity: sha512-8ZtvEnA2c5aYCZYd1cvgdnU6cqwixRoYg70xPLWUws5ORTa/lnw+u4amixRS/Ac5U5mQVgp9pnlSUnbNWFaWZQ==}
+    requiresBuild: true
     dev: true
     optional: true
 

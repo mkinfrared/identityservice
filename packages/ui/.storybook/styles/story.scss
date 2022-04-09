@@ -1,0 +1,21 @@
+@import "../../src/styles/reset";
+@import "../../src/styles/fonts";
+@import "../../src/styles/global";
+
+body {
+  font-family: Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  &[data-theme="dark"] {
+    color: var(--white);
+  }
+
+  &[data-theme="light"] {
+    color: var(--black);
+  }
+}

@@ -14,9 +14,7 @@
     "coverage": "open-cli coverage/lcov-report/index.html",
     "updates": "ncu"
   },
-  "dependencies": {
-    "react-use": "^17.3.2"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^21.0.1",

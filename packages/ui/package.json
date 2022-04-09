@@ -100,5 +100,8 @@
         "statements": 80
       }
     }
+  },
+  "dependencies": {
+    "react-use": "^17.3.2"
   }
 }

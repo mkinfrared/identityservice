@@ -5,28 +5,46 @@ import React, { memo } from "react";
 import Spinner from "components/Spinner";
 
 import css from "./Button.module.scss";
-import { ButtonProps } from "./Button.type";
+import { ButtonColors, ButtonProps, ButtonVariants } from "./Button.type";
+
+/*
+  renders an html button
+
+  @example
+  see Button.stories.tsx
+ */
+
+const colors: Record<ButtonColors, string> = {
+  primary: css.primary,
+  secondary: css.secondary,
+  success: css.success,
+  error: css.error,
+};
+
+const variants: Record<ButtonVariants, string> = {
+  contained: css.contained,
+  outlined: css.outlined,
+};
+
+const getButtonColor = (color: ButtonColors) => colors[color];
+const getButtonVariant = (variant: ButtonVariants) => variants[variant];
 
 const Button = ({
   children,
   className,
+  color = "primary",
   disabled = false,
   loading = false,
   type = "button",
-  variant = "opaque",
+  variant = "contained",
   ...rest
 }: ButtonProps) => {
-  const classes = [css.Button, className];
-
-  switch (variant) {
-    case "transparent":
-      classes.push(css.transparent);
-
-      break;
-
-    default:
-      classes.push(css.opaque);
-  }
+  const classes = [
+    css.Button,
+    className,
+    getButtonVariant(variant),
+    getButtonColor(color),
+  ];
 
   if (loading) {
     classes.push(css.loading);

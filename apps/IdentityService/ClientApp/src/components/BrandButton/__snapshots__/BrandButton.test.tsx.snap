@@ -3,7 +3,7 @@
 exports[`<BrandButton /> should match the snapshot 1`] = `
 <div>
   <a
-    class="LinkButton-module_LinkButton__x1Ppn BrandButton steam LinkButton-module_opaque__DFeur"
+    class="LinkButton-module_LinkButton__x1Ppn BrandButton steam LinkButton-module_contained__JBh4n"
     data-testid="LinkButton"
   >
     <svg

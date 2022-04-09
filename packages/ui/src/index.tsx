@@ -1,6 +1,8 @@
 /* eslint-disable import/no-unused-modules */
 import "./index.scss";
 
+export * from "./hooks";
+
 export { default as Button } from "components/Button";
 
 export * from "components/Button";

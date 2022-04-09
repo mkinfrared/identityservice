@@ -13,7 +13,7 @@ import typescript from "ttypescript";
 
 const buildDir = "lib";
 const input = "src/index.ts";
-const external = ["react", "react-dom", "react-use"];
+const external = ["react", "react-dom"];
 const extensions = ["js", "jsx", "ts", "tsx"];
 
 const getOutput = (format) => {

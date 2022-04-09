@@ -1,3 +1,4 @@
+import { classNames } from "@identity-service/core";
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 
@@ -12,7 +13,15 @@ export default {
   component: Card,
 } as Meta;
 
-const Template: Story<CardProps> = (args) => <Card {...args} />;
+const Template: Story<CardProps> = (args) => (
+  <div className={css.Story}>
+    <div className={css.cardContainer}>
+      <Card className={classNames(css.card, css.emptyCard)} />
+      <Card className={css.card} {...args} />
+    </div>
+  </div>
+);
+
 const Default = Template.bind({});
 
 Default.args = {
@@ -23,7 +32,6 @@ Default.args = {
       assumenda ea ipsam laboriosam nam quasi voluptatibus? Qui, repellat.
     </Text>
   ),
-  className: css.Story,
 };
 
 export { Default };

@@ -12,7 +12,7 @@ $colors: (
   black: #000000,
   blue: #0071b2,
   cyan: #00b2ad,
-  green: #6edc5f,
+  green: #2a831c,
   grey: #909090,
   orange: #e67100,
   purple: #8743ff,
@@ -22,14 +22,15 @@ $colors: (
 );
 
 :root {
+
   /**
   * @tokens Colors
   * @presenter Color
   */
   @each $name, $value in $colors {
-    --#{$name}: #{toHSL($value)};
-    --#{$name}-light: #{toHSL(lighten($value, 15))};
-    --#{$name}-dark: #{toHSL(darken($value, 15))};
+    --#{$name}: #{tohsl($value)};
+    --#{$name}-light: #{tohsl(lighten($value, 10))};
+    --#{$name}-dark: #{tohsl(darken($value, 10))};
   }
 
   --snow-again: linear-gradient(

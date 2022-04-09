@@ -64,7 +64,7 @@ const getPlugins = () => {
   return plugins;
 };
 
-const external = ["react", "react-dom", "@identity-service/core"];
+const external = ["react", "react-dom", "react-use", "@identity-service/core"];
 
 const config = [
   // commonjs build

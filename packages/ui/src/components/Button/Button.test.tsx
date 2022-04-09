@@ -16,22 +16,22 @@ describe("<Button />", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("should render an opaque button by default", () => {
+  it("should render a contained button by default", () => {
     const { getByTestId } = render(Component);
     const element = getByTestId("Button");
 
     expect(element).toBeDefined();
 
-    expect(element).toHaveClass("opaque");
+    expect(element).toHaveClass("contained");
   });
 
-  it("should render a transparent button when variant prop is transparent", () => {
-    const { getByTestId } = render(<Button variant="transparent" />);
+  it("should render an outlined button when variant prop is outlined", () => {
+    const { getByTestId } = render(<Button variant="outlined" />);
     const element = getByTestId("Button");
 
     expect(element).toBeDefined();
 
-    expect(element).toHaveClass("transparent");
+    expect(element).toHaveClass("outlined");
   });
 
   it("should render a disabled button when disabled prop is true", () => {

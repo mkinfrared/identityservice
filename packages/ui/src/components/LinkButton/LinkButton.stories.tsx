@@ -20,42 +20,63 @@ export default {
 const Template: Story<LinkButtonProps> = (args) => (
   <div className={css.Story}>
     <div>
+      <Heading>Default</Heading>
       <LinkButton {...args}>I am a button</LinkButton>
     </div>
     <div>
-      <LinkButton {...args} variant="opaque">
-        Opaque
+      <Heading>LinkButton variants</Heading>
+      <LinkButton {...args} variant="contained">
+        Contained
       </LinkButton>
-      <LinkButton {...args} variant="transparent">
-        Transparent
+      <LinkButton {...args} variant="outlined">
+        Outlined
       </LinkButton>
+    </div>
+    <div>
+      <Heading>LinkButton colors</Heading>
+      <div>
+        <LinkButton {...args} variant="contained" color="primary">
+          Primary
+        </LinkButton>
+        <LinkButton {...args} variant="contained" color="secondary">
+          Secondary
+        </LinkButton>
+        <LinkButton {...args} variant="contained" color="success">
+          Success
+        </LinkButton>
+        <LinkButton {...args} variant="contained" color="error">
+          Error
+        </LinkButton>
+      </div>
+      <div>
+        <LinkButton {...args} variant="outlined" color="primary">
+          Primary
+        </LinkButton>
+        <LinkButton {...args} variant="outlined" color="secondary">
+          Secondary
+        </LinkButton>
+        <LinkButton {...args} variant="outlined" color="success">
+          Success
+        </LinkButton>
+        <LinkButton {...args} variant="outlined" color="error">
+          Error
+        </LinkButton>
+      </div>
     </div>
     <div>
       <Heading>LinkButton List</Heading>
       <div>
-        <LinkButton {...args} variant="opaque">
-          Lorem
-        </LinkButton>
-        <LinkButton {...args} variant="transparent">
-          Lorem Ipsum
-        </LinkButton>
-        <LinkButton {...args} variant="transparent">
-          Lorem Ipsum Dolor
-        </LinkButton>
+        <LinkButton variant="contained">Lorem</LinkButton>
+        <LinkButton variant="outlined">Lorem Ipsum</LinkButton>
+        <LinkButton variant="outlined">Lorem Ipsum Dolor</LinkButton>
       </div>
     </div>
     <div>
       <Heading>LinkButton List with the same width</Heading>
       <div className={css.sameWidthList}>
-        <LinkButton {...args} variant="opaque">
-          Lorem
-        </LinkButton>
-        <LinkButton {...args} variant="transparent">
-          Lorem Ipsum
-        </LinkButton>
-        <LinkButton {...args} variant="transparent">
-          Lorem Ipsum Dolor
-        </LinkButton>
+        <LinkButton variant="contained">Lorem</LinkButton>
+        <LinkButton variant="outlined">Lorem Ipsum</LinkButton>
+        <LinkButton variant="outlined">Lorem Ipsum Dolor</LinkButton>
       </div>
     </div>
   </div>
@@ -105,7 +126,7 @@ const WithIcon = WithIconTemplate.bind({});
 const WithIconAndText = WithIconAndTextTemplate.bind({});
 
 Default.args = {
-  variant: "opaque",
+  variant: "contained",
   href: "https://en.wikipedia.org/wiki/Fleetwood_Mac",
 };
 

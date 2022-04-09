@@ -180,7 +180,7 @@ exports[`<ConsentForm /> should match the snapshot 1`] = `
         class="buttonWrapper"
       >
         <button
-          class="Button-module_Button__0OJEu Button-module_opaque__O0DEF"
+          class="Button-module_Button__0OJEu Button-module_contained__B-47X"
           data-testid="Button"
           type="button"
         >
@@ -316,7 +316,7 @@ exports[`<ConsentForm /> should match the snapshot 1`] = `
           </span>
         </button>
         <button
-          class="Button-module_Button__0OJEu Button-module_opaque__O0DEF"
+          class="Button-module_Button__0OJEu Button-module_contained__B-47X"
           data-testid="Button"
           type="button"
         >
