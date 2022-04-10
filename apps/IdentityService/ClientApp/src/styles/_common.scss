@@ -1,5 +1,18 @@
+@mixin theme($value: "dark") {
+  @if ($value == "light") {
+    @at-root body[data-theme="light"] & {
+      @content;
+    }
+  }
+
+  @else if($value == "dark") {
+    @at-root body[data-theme="dark"] & {
+      @content;
+    }
+  }
+}
+
 %loginRegisterForm {
-  color: var(--white);
   max-width: 50rem;
   width: 100%;
 
@@ -44,25 +57,5 @@
     justify-content: space-around;
     margin-top: 1rem;
     text-align: center;
-  }
-}
-
-%loginRegisterPage {
-  background: url(../images/mountain.jpg);
-  background-size: cover;
-  width: 100%;
-
-  .card {
-    width: 30rem;
-  }
-
-  .formContainer {
-    border-radius: 0;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    justify-content: center;
-    margin-left: auto;
-    overflow-y: auto;
   }
 }

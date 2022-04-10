@@ -4,9 +4,7 @@
   border-radius: 1rem;
   padding: 2rem;
 
-  @include theme("dark") {
-    @include dark;
-  }
+  @include dark;
 
   @include theme("light") {
     @include light;

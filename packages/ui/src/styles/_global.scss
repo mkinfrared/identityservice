@@ -24,6 +24,10 @@ html {
   }
 }
 
+body {
+  color: var(--white);
+}
+
 a {
   color: var(--cyan);
   font-size: var(--text-size);

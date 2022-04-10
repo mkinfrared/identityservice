@@ -1,5 +1,7 @@
 import "@identity-service/ui/lib/esm/styles.min.css";
 import "../src/index.scss";
+import { useTheme } from "@identity-service/ui";
+import { useEffect } from "react";
 
 const tokenContext = require.context(
   "!!raw-loader!../src",
@@ -23,3 +25,29 @@ export const parameters = {
     files: tokenFiles,
   },
 };
+
+const getTheme = (backgroundColor) => {
+  switch (backgroundColor) {
+    case "#333333":
+      return "dark";
+    case "#F8F8F8":
+      return "light";
+    default:
+      return "dark";
+  }
+};
+
+export const decorators = [
+  (Story, context) => {
+    const { setPreferredTheme } = useTheme("app-story-theme");
+
+    useEffect(() => {
+      const { backgrounds } = context.globals;
+      const theme = getTheme(backgrounds?.value);
+
+      setPreferredTheme(theme);
+    }, [context]);
+
+    return <Story />;
+  },
+];
