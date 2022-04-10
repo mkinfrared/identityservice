@@ -1,7 +1,9 @@
 import { useEffect } from "react";
+
 import "../src/styles/colors.css";
-import "./styles/story.scss";
 import { useTheme } from "../src/hooks/useTheme";
+
+import "./styles/story.scss";
 
 const tokenContext = require.context(
   "!!raw-loader!../src",

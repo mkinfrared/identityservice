@@ -1,12 +1,39 @@
 import { classNames } from "@identity-service/core";
 import React, { ReactNode, memo } from "react";
 
-import { ButtonProps } from "components/Button";
+import { ButtonColors, ButtonProps, ButtonVariants } from "components/Button";
 
 import css from "./ButtonGroup.module.scss";
 import { ButtonGroupProps } from "./ButtonGroup.type";
 
-const ButtonGroup = ({ className, children }: ButtonGroupProps) => {
+const colors: Record<ButtonColors, string> = {
+  primary: css.primary,
+  secondary: css.secondary,
+  success: css.success,
+  error: css.error,
+};
+
+const variants: Record<ButtonVariants, string> = {
+  contained: css.contained,
+  outlined: css.outlined,
+};
+
+const getButtonColor = (color: ButtonColors) => colors[color];
+const getButtonVariant = (variant: ButtonVariants) => variants[variant];
+
+const ButtonGroup = ({
+  className,
+  children,
+  color = "primary",
+  variant = "contained",
+}: ButtonGroupProps) => {
+  const classes = [
+    css.ButtonGroup,
+    className,
+    getButtonVariant(variant),
+    getButtonColor(color),
+  ];
+
   const childrenWithProps = React.Children.map<ReactNode, ReactNode>(
     children,
     (child) => {
@@ -14,10 +41,12 @@ const ButtonGroup = ({ className, children }: ButtonGroupProps) => {
         return child;
       }
 
-      const classes = classNames(child.props.className, css.button);
+      const buttonClassNames = classNames(child.props.className, css.button);
 
       const clone = React.cloneElement<ButtonProps>(child, {
-        className: classes,
+        className: buttonClassNames,
+        variant: "contained",
+        color: "primary",
       });
 
       return clone;
@@ -25,10 +54,7 @@ const ButtonGroup = ({ className, children }: ButtonGroupProps) => {
   );
 
   return (
-    <div
-      className={classNames(css.ButtonGroup, className)}
-      data-testid="ButtonGroup"
-    >
+    <div className={classNames(...classes)} data-testid="ButtonGroup">
       {childrenWithProps}
     </div>
   );

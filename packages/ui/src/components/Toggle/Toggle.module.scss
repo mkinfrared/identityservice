@@ -3,7 +3,7 @@
 .Toggle {
   --color: var(--toggle-text-color, var(--white));
   --padding: 0.2rem;
-  --size: 2.4rem;
+  --size: var(--text-height);
 
   align-items: center;
   display: flex;
@@ -17,17 +17,17 @@
   &.error {
 
     .switch {
-      outline: 1px solid var(--red);
+      background: var(--error-gradient);
     }
 
     .text {
-      color: var(--red);
+      color: var(--error);
     }
   }
 
   .switch {
     align-items: center;
-    background: var(--orange);
+    background: var(--secondary-gradient);
     border-radius: 5rem;
     display: flex;
     height: var(--size);
@@ -47,7 +47,6 @@
   }
 
   .text {
-    color: var(--color);
     margin-left: 1rem;
   }
 
@@ -57,7 +56,7 @@
     width: 0;
 
     &:checked + .container .switch {
-      background: var(--purple);
+      background: var(--primary-gradient);
     }
 
     &:checked + .container .switch .ball {
@@ -80,12 +79,12 @@
   &.readOnly .input,
   .input:disabled {
 
-    ~ .switch {
-      background: var(--grey);
-    }
+    ~ .container {
+      @include disabled;
 
-    ~ .text {
-      color: var(--grey);
+      .text {
+        color: var(--grey);
+      }
     }
   }
 }

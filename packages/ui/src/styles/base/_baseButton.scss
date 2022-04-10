@@ -7,8 +7,8 @@
 %buttonBase {
   @include buttonBorderRadius;
 
-  --background: var(--button-background, var(--purple-gradient));
-  --border-color: var(--button-border-color, var(--purple));
+  --background: var(--button-background, var(--night-call));
+  --border-color: var(--button-border-color, var(--primary));
   --color: var(--button-color);
   --spinner-color: var(--button-spinner-color, var(--white));
 
@@ -33,15 +33,15 @@
     color: var(--white);
 
     &.secondary {
-      background: linear-gradient(-45deg, var(--orange), var(--red-light));
+      background: var(--secondary-gradient);
     }
 
     &.success {
-      background: var(--green);
+      background: var(--success-gradient);
     }
 
     &.error {
-      background: var(--red-dark);
+      background: var(--sugar-lollipop);
     }
   }
 
@@ -52,23 +52,23 @@
     padding: calc(0.5rem - 2px) calc(2rem - 2px);
 
     &.secondary {
-      border-color: var(--orange);
-      color: var(--orange);
+      border-color: var(--secondary);
+      color: var(--secondary);
     }
 
     &.success {
-      border-color: var(--green);
-      color: var(--green);
+      border-color: var(--success);
+      color: var(--success);
     }
 
     &.error {
-      border-color: var(--red-dark);
-      color: var(--red-dark);
+      border-color: var(--error);
+      color: var(--error);
     }
   }
 
   &:hover {
-    filter: brightness(1.2);
+    filter: brightness(1.1);
   }
 
   &:active {
@@ -77,8 +77,9 @@
   }
 
   &:disabled {
+    @include c.disabled;
+
     cursor: auto;
-    filter: grayscale(0.9);
   }
 
   &:focus-visible {

@@ -1,19 +1,18 @@
 @import "../../styles/common";
 
 .Radio {
-  --color: var(--radio-text-color, var(--white));
   --transition-time: 150ms;
 
   display: flex;
 
   &.error {
-    color: var(--red);
+    color: var(--error);
 
     .circle {
 
       &::before,
       &::after {
-        background: var(--red);
+        background: var(--error-gradient);
       }
     }
   }
@@ -55,16 +54,12 @@
   &.readOnly .input,
   .input:disabled {
 
-    ~ .container .circle {
+    ~ .container {
+      @include disabled;
 
-      &::after,
-      &::before {
-        background: var(--snow-again);
+      .text {
+        color: var(--grey);
       }
-    }
-
-    ~ .text {
-      color: var(--grey);
     }
   }
 
@@ -75,7 +70,7 @@
 
     &::before,
     &::after {
-      background-image: var(--purple-gradient);
+      background-image: var(--primary-gradient);
       border-radius: 50%;
       content: "";
       inset: 0;
@@ -108,7 +103,6 @@
   }
 
   .text {
-    color: var(--color);
     margin-left: 1rem;
   }
 }

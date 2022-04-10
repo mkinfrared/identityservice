@@ -1,5 +1,5 @@
 .Fieldset {
-  border: 2px solid var(--orange);
+  border: 2px solid var(--secondary);
   border-radius: 1rem;
   padding: 2rem;
 
@@ -12,7 +12,8 @@
   }
 
   .legend {
-    color: var(--orange);
+    color: var(--secondary);
+    font-size: 1.8rem;
     padding: 0 1rem;
     text-transform: uppercase;
   }

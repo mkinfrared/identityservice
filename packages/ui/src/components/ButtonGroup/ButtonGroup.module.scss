@@ -1,16 +1,66 @@
-@use "../../styles/base/baseButton";
+@use "../../styles/base/baseButton" as bb;
 
 .ButtonGroup {
-  @include baseButton.buttonBorderRadius;
+  @include bb.buttonBorderRadius;
 
   --button-border-color: var(--button-group-border-color, var(--white));
   --button-background: transparent;
 
-  background: var(--purple-gradient);
+  background: var(--night-call);
   border-radius: var(--border-radius);
   display: inline-flex;
   flex-wrap: nowrap;
   width: fit-content;
+
+  &.secondary {
+    background: var(--secondary-gradient);
+  }
+
+  &.success {
+    background: var(--success-gradient);
+  }
+
+  &.error {
+    background: var(--error-gradient);
+  }
+
+  &.outlined {
+    --button-border-color: var(--primary);
+
+    background: transparent;
+    border: 2px solid var(--button-border-color);
+    color: var(--primary);
+
+    &.secondary {
+      --button-border-color: var(--secondary);
+
+      color: var(--secondary);
+    }
+
+    &.success {
+      --button-border-color: var(--success);
+
+      color: var(--success);
+    }
+
+    &.error {
+      --button-border-color: var(--error);
+
+      color: var(--error);
+    }
+
+    .button {
+      color: inherit;
+
+      &:first-child {
+        padding-left: calc(2rem - 2px);
+      }
+
+      &:last-child {
+        padding-right: calc(2rem - 2px);
+      }
+    }
+  }
 
   .button {
     background: transparent;
@@ -43,6 +93,15 @@
       border-radius: 0 var(--border-radius) var(--border-radius) 0;
     }
 
+    &:active {
+      transform: scale(1);
+
+      > span {
+        filter: brightness(0.8);
+        transform: scale(0.97);
+      }
+    }
+
     &:hover {
 
       &::before {
@@ -55,6 +114,10 @@
 .Story {
 
   .container {
+    margin-bottom: 2rem;
+  }
+
+  .buttonContainer {
     margin-bottom: 1rem;
   }
 }

@@ -4,30 +4,6 @@
   display: block;
   width: 100%;
 
-  &.disabled {
-
-    .label {
-      color: var(--grey);
-      cursor: default;
-    }
-
-    .input {
-      border-color: var(--grey);
-
-      input {
-        color: var(--grey);
-      }
-    }
-  }
-
-  &.hasError {
-
-    .input {
-      border-color: var(--red);
-      box-shadow: 0 0 0.5rem 0 rgba(var(--redRgb), 0.8);
-    }
-  }
-
   &.hasSuffix {
 
     .input {
@@ -75,7 +51,7 @@
     input {
       background-color: transparent;
       border: none;
-      caret-color: var(--orange);
+      caret-color: var(--secondary);
       font-size: 100%;
       height: 100%;
       padding: 1.5rem 2rem;
@@ -96,7 +72,7 @@
         background-color: var(--background-color);
         border: none;
         -webkit-box-shadow: 0 0 0 1000px var(--background-color) inset;
-        caret-color: var(--orange);
+        caret-color: var(--secondary);
         font-size: 100%;
         -webkit-text-fill-color: var(--white);
         // it's not possible to use transparent background color
@@ -143,7 +119,7 @@
   }
 
   .error {
-    color: var(--red);
+    color: var(--error);
     font-size: 1.4rem;
     height: 2.5rem;
     margin-top: 0.5rem;
@@ -152,6 +128,40 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 100%;
+  }
+}
+
+// to override the dark/light theme css declaration
+
+label {
+
+  &.TextField {
+
+    &.hasError {
+
+      .input {
+        border-color: var(--error);
+        // todo replace with relative colors
+        // when browsers start to support it
+        box-shadow: 0 0 0.5rem 0 var(--error);
+      }
+    }
+
+    &.disabled {
+
+      .label {
+        color: var(--grey);
+        cursor: default;
+      }
+
+      .input {
+        border-color: var(--grey);
+      }
+
+      .input input {
+        color: var(--grey);
+      }
+    }
   }
 }
 

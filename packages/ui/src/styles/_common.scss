@@ -30,5 +30,9 @@
 }
 
 @mixin focusVisible {
-  outline: 2px solid var(--orange-dark);
+  outline: 2px solid var(--orange);
+}
+
+@mixin disabled {
+  filter: grayscale(0.9);
 }
