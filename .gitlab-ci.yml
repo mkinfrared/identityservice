@@ -57,6 +57,7 @@ stages:
   - build-storybook
   - lint
   - test
+  - e2e
 
 build:
   stage: build
@@ -82,3 +83,19 @@ test:
     - npm i -g yarn
     - dotnet tool restore
     - dotnet cake test.cake
+
+e2e:
+  stage: e2e
+  image: mcr.microsoft.com/playwright:focal
+  before_script:
+    - curl -sL https://deb.nodesource.com/setup_$NODE_VERSION.x |  bash -
+    - apt-get install -y nodejs
+    - node --version
+    - npm install --global pnpm
+    - pnpm --version
+    - pnpm config set store-dir $PNPM_CACHE
+    - pnpm install
+
+  script:
+    - pnpm build-storybook
+    - pnpm e2e

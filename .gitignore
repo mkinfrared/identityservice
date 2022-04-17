@@ -379,6 +379,7 @@ node_modules
 
 # testing
 coverage
+playwright-report
 
 # production
 build
@@ -412,3 +413,5 @@ packages/ui/src/styles/colors.css*
 # User-specific stuff
 .idea
 
+### Snapshots
+*-snapshots

@@ -13,10 +13,12 @@
     "coverage": "open-cli coverage/lcov-report/index.html",
     "updates": "ncu",
     "clean": "rm -rf node_modules",
-    "build:colors": "sass src/styles/colors.scss src/styles/colors.css"
+    "build:colors": "sass src/styles/colors.scss src/styles/colors.css",
+    "e2e": "pnpm dlx playwright test -c src/playwright.config.ts"
   },
   "devDependencies": {
     "@identity-service/core": "workspace:*",
+    "@playwright/test": "^1.21.0",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.1.3",
@@ -40,6 +42,7 @@
     "@types/node": "^16.11.19",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
+    "@types/resemblejs": "4.1.0",
     "@zerollup/ts-transform-paths": "^1.7.18",
     "aria-live-storybook-addon": "^0.0.6",
     "autoprefixer": "^10.4.2",
@@ -53,6 +56,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "^5.0.0",
+    "resemblejs": "^4.1.0",
     "rollup": "^2.64.0",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-postcss": "^4.0.2",
@@ -86,7 +90,8 @@
     "collectCoverageFrom": [
       "**/*.{ts,tsx}",
       "!**/*.stories.{ts,tsx}",
-      "!**/*.type.{ts,tsx}"
+      "!**/*.type.{ts,tsx}",
+      "!**/*.spec.{ts,tsx}"
     ],
     "coveragePathIgnorePatterns": [
       "index",
@@ -99,7 +104,10 @@
         "lines": 80,
         "statements": 80
       }
-    }
+    },
+    "testMatch": [
+      "**/?(*.)+(test).[jt]s?(x)"
+    ]
   },
   "dependencies": {
     "react-use": "^17.3.2"

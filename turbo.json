@@ -2,38 +2,26 @@
   "npmClient": "pnpm",
   "pipeline": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        "lib/**",
-        "build/**"
-      ]
+      "dependsOn": ["^build"],
+      "outputs": ["lib/**", "build/**"]
     },
     "test": {
-      "dependsOn": [
-        "build"
-      ],
-      "outputs": [
-        "coverage/**"
-      ]
+      "dependsOn": ["build"],
+      "outputs": ["coverage/**"]
+    },
+    "e2e": {
+      "dependsOn": ["build", "build-storybook"],
+      "outputs": ["playwright-report"]
     },
     "updates": {
       "cache": false
     },
     "build-storybook": {
-      "dependsOn": [
-        "build",
-        "^build-storybook"
-      ],
-      "outputs": [
-        "storybook-static/**"
-      ]
+      "dependsOn": ["build", "^build-storybook"],
+      "outputs": ["storybook-static/**"]
     },
     "storybook": {
-      "dependsOn": [
-        "build"
-      ],
+      "dependsOn": ["build"],
       "outputs": []
     }
   }
