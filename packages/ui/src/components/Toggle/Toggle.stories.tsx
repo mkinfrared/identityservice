@@ -35,17 +35,17 @@ const ControlledTemplate: Story<ToggleProps> = () => {
   );
 };
 
-const Uncontolled = UncontrolledTemplate.bind({});
+const Uncontrolled = UncontrolledTemplate.bind({});
 const Controlled = ControlledTemplate.bind({});
 
-Uncontolled.args = {
+Uncontrolled.args = {
   label: "marklar",
 };
 
-Uncontolled.parameters = {
+Uncontrolled.parameters = {
   docs: {
     storyDescription: "Story description",
   },
 };
 
-export { Uncontolled, Controlled };
+export { Uncontrolled, Controlled };

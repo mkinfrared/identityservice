@@ -4,6 +4,7 @@
   --transition-time: 150ms;
 
   display: flex;
+  width: fit-content;
 
   &.error {
     color: var(--error);

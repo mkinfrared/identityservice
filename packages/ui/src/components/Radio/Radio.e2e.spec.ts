@@ -5,7 +5,7 @@ import { test } from "@playwright/test";
 
 import { compareScreenshots } from "utils/testHelpers";
 
-test.describe("Checkbox", () => {
+test.describe("Radio", () => {
   test("compare with no label", async ({ page }, testInfo) => {
     const snapshotDir = "empty-label";
 
@@ -17,19 +17,19 @@ test.describe("Checkbox", () => {
 
     await page.goto("/");
 
-    const checkboxButton = page.locator("#ui-checkbox");
+    const radioButton = page.locator("#ui-radio");
 
-    await checkboxButton.click();
+    await radioButton.click();
 
-    const controlledButton = page.locator("#ui-checkbox--controlled");
+    const controlledButton = page.locator("#ui-radio--controlled");
 
     await controlledButton.click();
 
-    const checkbox = page
+    const radio = page
       .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=Checkbox");
+      .locator("data-testid=Radio");
 
-    await checkbox.screenshot({
+    await radio.screenshot({
       path: snapshotPath,
     });
 
@@ -47,23 +47,23 @@ test.describe("Checkbox", () => {
 
     await page.goto("/");
 
-    const checkboxButton = page.locator("#ui-checkbox");
+    const radioButton = page.locator("#ui-radio");
 
-    await checkboxButton.click();
+    await radioButton.click();
 
-    const controlledButton = page.locator("#ui-checkbox--controlled");
+    const controlledButton = page.locator("#ui-radio--controlled");
 
     await controlledButton.click();
 
-    const checkbox = page
+    const radio = page
       .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=Checkbox");
+      .locator("data-testid=Radio");
 
-    await checkbox.click();
+    await radio.click();
 
     await delay(500);
 
-    await checkbox.screenshot({
+    await radio.screenshot({
       path: snapshotPath,
     });
 
@@ -81,17 +81,17 @@ test.describe("Checkbox", () => {
 
     await page.goto("/");
 
-    const checkboxButton = page.locator("#ui-checkbox");
+    const radioButton = page.locator("#ui-radio");
 
-    await checkboxButton.click();
+    await radioButton.click();
 
-    const uncontrolledButton = page.locator("#ui-checkbox--uncontrolled");
+    const uncontrolledButton = page.locator("#ui-radio--uncontrolled");
 
     await uncontrolledButton.click();
 
     const checkbox = page
       .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=Checkbox");
+      .locator("data-testid=Radio");
 
     await checkbox.screenshot({
       path: snapshotPath,

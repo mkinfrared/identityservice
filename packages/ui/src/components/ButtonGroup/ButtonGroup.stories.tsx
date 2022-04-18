@@ -144,7 +144,9 @@ const WithIconTemplate: Story<ButtonGroupProps> = () => (
 const Default = Template.bind({});
 const WithIcon = WithIconTemplate.bind({});
 
-Default.args = {};
+Default.args = {
+  color: "primary",
+};
 
 Default.parameters = {
   docs: {

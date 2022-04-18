@@ -9,6 +9,11 @@ import compare from "resemblejs/compareImages";
 const compareScreenshots = async (...snapshotsPath: string[]) => {
   const snapshotsDir = path.resolve(...snapshotsPath);
   const files = fs.readdirSync(snapshotsDir);
+
+  if (!files.length) {
+    return;
+  }
+
   const compareResults: Promise<ComparisonResult>[] = [];
 
   for (let i = 0; i < files.length - 1; i++) {

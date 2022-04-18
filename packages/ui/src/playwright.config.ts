@@ -31,9 +31,11 @@ const config: PlaywrightTestConfig = {
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   testMatch: /.*(spec)\.ts/,
+  fullyParallel: true,
   webServer: {
     command: "pnpm dlx http-server storybook-static -p 8080",
     port: 8080,
+    reuseExistingServer: true,
   },
   use: {
     baseURL: "http://localhost:8080",

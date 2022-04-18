@@ -10,8 +10,12 @@
       "outputs": ["coverage/**"]
     },
     "e2e": {
-      "dependsOn": ["build", "build-storybook"],
+      "dependsOn": ["build", "build-storybook", "e2e:prepare"],
       "outputs": ["playwright-report"]
+    },
+    "e2e:prepare": {
+      "dependsOn": [],
+      "outputs": []
     },
     "updates": {
       "cache": false

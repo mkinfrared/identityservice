@@ -5,7 +5,7 @@ import { test } from "@playwright/test";
 
 import { compareScreenshots } from "utils/testHelpers";
 
-test.describe("Checkbox", () => {
+test.describe("Toggle", () => {
   test("compare with no label", async ({ page }, testInfo) => {
     const snapshotDir = "empty-label";
 
@@ -17,19 +17,19 @@ test.describe("Checkbox", () => {
 
     await page.goto("/");
 
-    const checkboxButton = page.locator("#ui-checkbox");
+    const toggleButton = page.locator("#ui-toggle");
 
-    await checkboxButton.click();
+    await toggleButton.click();
 
-    const controlledButton = page.locator("#ui-checkbox--controlled");
+    const controlledButton = page.locator("#ui-toggle--controlled");
 
     await controlledButton.click();
 
-    const checkbox = page
+    const toggle = page
       .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=Checkbox");
+      .locator("data-testid=Toggle");
 
-    await checkbox.screenshot({
+    await toggle.screenshot({
       path: snapshotPath,
     });
 
@@ -47,23 +47,23 @@ test.describe("Checkbox", () => {
 
     await page.goto("/");
 
-    const checkboxButton = page.locator("#ui-checkbox");
+    const toggleButton = page.locator("#ui-toggle");
 
-    await checkboxButton.click();
+    await toggleButton.click();
 
-    const controlledButton = page.locator("#ui-checkbox--controlled");
+    const controlledButton = page.locator("#ui-toggle--controlled");
 
     await controlledButton.click();
 
-    const checkbox = page
+    const toggle = page
       .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=Checkbox");
+      .locator("data-testid=Toggle");
 
-    await checkbox.click();
+    await toggle.click();
 
     await delay(500);
 
-    await checkbox.screenshot({
+    await toggle.screenshot({
       path: snapshotPath,
     });
 
@@ -81,19 +81,19 @@ test.describe("Checkbox", () => {
 
     await page.goto("/");
 
-    const checkboxButton = page.locator("#ui-checkbox");
+    const toggleButton = page.locator("#ui-toggle");
 
-    await checkboxButton.click();
+    await toggleButton.click();
 
-    const uncontrolledButton = page.locator("#ui-checkbox--uncontrolled");
+    const controlledButton = page.locator("#ui-toggle--controlled");
 
-    await uncontrolledButton.click();
+    await controlledButton.click();
 
-    const checkbox = page
+    const toggle = page
       .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=Checkbox");
+      .locator("data-testid=Toggle");
 
-    await checkbox.screenshot({
+    await toggle.screenshot({
       path: snapshotPath,
     });
 
