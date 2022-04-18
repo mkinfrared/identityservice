@@ -139,6 +139,7 @@ Default.args = {
   disabled: false,
   variant: "contained",
   onClick: action("Click"),
+  color: "primary",
 };
 
 export { Default, WithIcon, WithIconAndText };

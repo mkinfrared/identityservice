@@ -23,11 +23,16 @@ const Template: Story<IconButtonProps> = (args) => (
     <div>
       <Heading>Default</Heading>
       <IconButton {...args}>
-        <Eye />
+        <Doc />
       </IconButton>
-      <IconButton {...args}>
-        <Clear />
-      </IconButton>
+      <div style={{ marginTop: 20 }}>
+        <IconButton {...args}>
+          <Eye />
+        </IconButton>
+        <IconButton {...args}>
+          <Clear />
+        </IconButton>
+      </div>
     </div>
     <div>
       <Heading>Button variants</Heading>
@@ -77,6 +82,7 @@ const Default = Template.bind({});
 Default.args = {
   disabled: false,
   variant: "contained",
+  loading: false,
 };
 
 Default.parameters = {

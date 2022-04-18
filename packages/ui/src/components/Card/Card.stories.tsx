@@ -13,18 +13,26 @@ export default {
   component: Card,
 } as Meta;
 
-const Template: Story<CardProps> = (args) => (
+const Template: Story<CardProps> = () => (
   <div className={css.Story}>
     <div className={css.cardContainer}>
       <Card className={classNames(css.card, css.emptyCard)} />
+    </div>
+  </div>
+);
+
+const WithTextTemplate: Story<CardProps> = (args) => (
+  <div className={css.Story}>
+    <div className={css.cardContainer}>
       <Card className={css.card} {...args} />
     </div>
   </div>
 );
 
 const Default = Template.bind({});
+const WithText = WithTextTemplate.bind({});
 
-Default.args = {
+WithText.args = {
   children: (
     <Text>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad autem
@@ -34,4 +42,4 @@ Default.args = {
   ),
 };
 
-export { Default };
+export { Default, WithText };

@@ -14,7 +14,9 @@
     "updates": "ncu",
     "clean": "rm -rf node_modules",
     "build:colors": "sass src/styles/colors.scss src/styles/colors.css",
-    "e2e": "pnpm dlx playwright test -c src/playwright.config.ts"
+    "e2e": "pnpm dlx playwright test -c src/playwright.config.ts",
+    "e2e:debug": "cross-env PWDEBUG=console pnpm dlx playwright test -c src/playwright.config.ts",
+    "e2e:prepare": "npx playwright install --with-deps"
   },
   "devDependencies": {
     "@identity-service/core": "workspace:*",

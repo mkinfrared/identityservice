@@ -30,7 +30,7 @@ const ControlledTemplate: Story<RadioProps> = () => {
 
   return (
     <div className={css.Story}>
-      <Radio checked={checked} onChange={handleChange} label="foobar" />
+      <Radio checked={checked} onChange={handleChange} />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { action } from "@storybook/addon-actions";
 import { Meta, Story } from "@storybook/react";
-import React from "react";
+import React, { useState } from "react";
 
 import { ReactComponent as Doc } from "icons/description.svg";
 import { ReactComponent as Eye } from "icons/visibility.svg";
@@ -21,6 +21,21 @@ const Template: Story<TextFieldProps> = (args) => (
     </div>
   </div>
 );
+
+const ControlledTemplate: Story<TextFieldProps> = () => {
+  const [value, setValue] = useState("");
+
+  return (
+    <div className={css.Story}>
+      <div>
+        <TextField
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
+        />
+      </div>
+    </div>
+  );
+};
 
 const MultiFields: Story<TextFieldProps> = (args) => (
   <div className={css.Story}>
@@ -43,7 +58,7 @@ const Form: Story<TextFieldProps> = () => (
 );
 
 const Uncontrolled = Template.bind({});
-const Controlled = Template.bind({});
+const Controlled = ControlledTemplate.bind({});
 const WithError = Template.bind({});
 const WithPrefix = Template.bind({});
 const WithSuffix = Template.bind({});
@@ -54,11 +69,8 @@ const ExampleForm = Form.bind({});
 Uncontrolled.args = {
   disabled: false,
   value: "foobar",
-};
-
-Controlled.args = {
-  value: "marklar",
-  onChange: action("change"),
+  error: "",
+  label: "",
 };
 
 WithError.args = {

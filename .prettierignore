@@ -6,5 +6,7 @@ coverage
 lib
 node_modules
 obj
+playwright-report
+storybook-static
 tools
 wwwroot

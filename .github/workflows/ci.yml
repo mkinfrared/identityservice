@@ -92,7 +92,8 @@ jobs:
           dotnet restore
           
       - name: e2e
-        run: pnpm e2e
+        run: |
+          pnpm e2e
 
   e2e-macos:
     
@@ -127,7 +128,8 @@ jobs:
           dotnet restore
           
       - name: e2e
-        run: pnpm e2e
+        run: |
+          pnpm e2e
 
   e2e-win:
     
@@ -162,4 +164,5 @@ jobs:
           dotnet restore
 
       - name: e2e
-        run: pnpm e2e
+        run: |
+          pnpm e2e
