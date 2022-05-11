@@ -1,5 +1,26 @@
-/* eslint-disable */
+/* eslint-disable import/no-unused-modules */
 import { PlaywrightTestConfig, devices } from "@playwright/test";
+
+const projects = [
+  {
+    name: "chromium",
+    use: { ...devices["Desktop Chrome"], deviceScaleFactor: 1 },
+  },
+  {
+    name: "firefox",
+    use: { ...devices["Desktop Firefox"], deviceScaleFactor: 1 },
+  },
+];
+
+if (process.platform === "darwin") {
+  projects.push({
+    name: "webkit",
+    use: {
+      ...devices["Desktop Safari"],
+      deviceScaleFactor: 1,
+    },
+  });
+}
 
 const viewport = {
   width: 1920,
@@ -19,23 +40,7 @@ const config: PlaywrightTestConfig = {
     trace: "on-first-retry",
     viewport,
   },
-  projects: [
-    {
-      name: "chromium",
-      use: { ...devices["Desktop Chrome"], deviceScaleFactor: 1 },
-    },
-    {
-      name: "firefox",
-      use: { ...devices["Desktop Firefox"], deviceScaleFactor: 1 },
-    },
-    {
-      name: "webkit",
-      use: {
-        ...devices["Desktop Safari"],
-        deviceScaleFactor: 1,
-      },
-    },
-  ],
+  projects,
 };
 
 export default config;
