@@ -1,0 +1,165 @@
+name: CI
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        dotnet: [ '6.0.101' ]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.32.2
+            
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: ${{ matrix.dotnet }}
+
+      - name: Install dependencies
+        run: |
+          pnpm install
+          dotnet restore
+
+      - name: Build project
+        run: |
+          pnpm build
+          dotnet build
+      
+      - name: Build storybook
+        run: pnpm build-storybook
+      
+      - name: Lint
+        run: | 
+          pnpm lint
+          dotnet tool restore
+          dotnet format
+      
+      - name: Test
+        run: |
+          npm i -g yarn
+          dotnet tool restore
+          dotnet cake test.cake
+
+  e2e-linux:
+    
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [ 16.x ]
+        dotnet: [ '6.0.101' ]
+    
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.32.2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: ${{ matrix.dotnet }}
+
+      - name: Install dependencies
+        run: |
+          pnpm install
+          dotnet restore
+          
+      - name: e2e
+        run: pnpm e2e
+
+  e2e-macos:
+    
+    runs-on: macos-latest
+    
+    strategy:
+      matrix:
+        node-version: [ 16.x ]
+        dotnet: [ '6.0.101' ]
+    
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.32.2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: ${{ matrix.dotnet }}
+
+      - name: Install dependencies
+        run: |
+          pnpm install
+          dotnet restore
+          
+      - name: e2e
+        run: pnpm e2e
+
+  e2e-win:
+    
+    runs-on: windows-latest
+    
+    strategy:
+      matrix:
+        node-version: [ 16.x ]
+        dotnet: [ '6.0.101' ]
+    
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.32.2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: ${{ matrix.dotnet }}
+
+      - name: Install dependencies
+        run: |
+          pnpm install
+          dotnet restore
+
+      - name: e2e
+        run: pnpm e2e
