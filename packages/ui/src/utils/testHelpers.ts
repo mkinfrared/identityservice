@@ -10,7 +10,7 @@ const compareScreenshots = async (...snapshotsPath: string[]) => {
   const snapshotsDir = path.resolve(...snapshotsPath);
   const files = fs.readdirSync(snapshotsDir);
 
-  if (!files.length) {
+  if (files.length === 1) {
     return;
   }
 
