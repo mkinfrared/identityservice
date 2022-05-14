@@ -147,6 +147,11 @@ const plugins = [
     publicPath: "~",
     template: path.resolve("./public/Layout.template.html"),
   }),
+  new HtmlWebpackPlugin({
+    inject: "body",
+    minify: false,
+    publicPath: "~",
+  }),
   new MiniCssExtractPlugin({
     chunkFilename: "static/css/[name].[contenthash:8].chunk.css",
     filename: "static/css/[name].[contenthash:8].css",

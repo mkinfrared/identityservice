@@ -1,0 +1,5 @@
+@import "../Button/Story.module";
+
+.Story {
+  @extend %button-story;
+}

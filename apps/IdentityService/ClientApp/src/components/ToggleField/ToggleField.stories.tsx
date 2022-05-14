@@ -1,7 +1,7 @@
 import { Meta, Story } from "@storybook/react";
 
+import css from "./Story.module.scss";
 import { ToggleField } from "./ToggleField";
-import css from "./ToggleField.module.scss";
 import { ToggleFieldProps } from "./ToggleField.type";
 
 export default {

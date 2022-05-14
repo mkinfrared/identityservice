@@ -4,8 +4,8 @@ import { consentReadDtoMock } from "api/queries/getConsent/__mocks__";
 import { withQueryProvider } from "utils/storybookDecorators";
 
 import { ConsentForm } from "./ConsentForm";
-import css from "./ConsentForm.module.scss";
 import { ConsentFormProps } from "./ConsentForm.type";
+import css from "./Story.module.scss";
 
 export default {
   title: "COMPONENTS/ConsentForm",

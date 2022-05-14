@@ -6,8 +6,8 @@ import { ReactComponent as Doc } from "icons/description.svg";
 import { ReactComponent as Eye } from "icons/visibility.svg";
 
 import { LinkButton } from "./LinkButton";
-import css from "./LinkButton.module.scss";
 import { LinkButtonProps } from "./LinkButton.type";
+import css from "./Story.module.scss";
 
 export default {
   title: "UI/LinkButton",

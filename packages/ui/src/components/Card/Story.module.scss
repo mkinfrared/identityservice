@@ -1,0 +1,18 @@
+.Story {
+  background-color: #00a2fe;
+  min-height: 100vh;
+  padding: 2rem;
+
+  .cardContainer {
+    width: 30rem;
+  }
+
+  .card {
+    margin-bottom: 4rem;
+  }
+
+  .emptyCard {
+    aspect-ratio: 1/1;
+    height: 30rem;
+  }
+}

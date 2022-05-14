@@ -5,7 +5,7 @@ import Heading from "components/Heading";
 import Text from "components/Text";
 
 import { Portal } from "./Portal";
-import css from "./Portal.module.scss";
+import css from "./Story.module.scss";
 
 export default {
   title: "UI/Portal",

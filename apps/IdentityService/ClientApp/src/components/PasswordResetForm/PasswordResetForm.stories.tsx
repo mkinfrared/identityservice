@@ -3,8 +3,8 @@ import { Meta, Story } from "@storybook/react";
 import { withRouter } from "utils/storybookDecorators";
 
 import { PasswordResetForm } from "./PasswordResetForm";
-import css from "./PasswordResetForm.module.scss";
 import { PasswordResetFormProps } from "./PasswordResetForm.type";
+import css from "./Story.module.scss";
 
 export default {
   title: "COMPONENTS/PasswordResetForm",

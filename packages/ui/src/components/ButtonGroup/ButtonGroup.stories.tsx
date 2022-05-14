@@ -9,8 +9,8 @@ import { ReactComponent as Doc } from "icons/description.svg";
 import { ReactComponent as Eye } from "icons/visibility.svg";
 
 import { ButtonGroup } from "./ButtonGroup";
-import css from "./ButtonGroup.module.scss";
 import { ButtonGroupProps } from "./ButtonGroup.type";
+import css from "./Story.module.scss";
 
 export default {
   title: "UI/ButtonGroup",

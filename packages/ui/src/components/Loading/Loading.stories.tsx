@@ -4,8 +4,8 @@ import React, { useRef } from "react";
 import Text from "components/Text";
 
 import { Loading } from "./Loading";
-import css from "./Loading.module.scss";
 import { LoadingProps } from "./Loading.type";
+import css from "./Story.module.scss";
 
 export default {
   title: "UI/Loading",

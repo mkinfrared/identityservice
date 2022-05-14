@@ -3,8 +3,8 @@ import { Meta, Story } from "@storybook/react";
 import { withRouter } from "utils/storybookDecorators";
 
 import { RegisterForm } from "./RegisterForm";
-import css from "./RegisterForm.module.scss";
 import { RegisterFormProps } from "./RegisterForm.type";
+import css from "./Story.module.scss";
 
 export default {
   title: "COMPONENTS/RegisterForm",

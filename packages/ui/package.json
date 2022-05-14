@@ -5,6 +5,9 @@
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
   "types": "lib/index.d.ts",
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
     "build": "rollup --config rollup.config.js",
     "test": "cross-env CI=true DISABLE_NEW_JSX_TRANSFORM=true react-scripts test --collectCoverage",

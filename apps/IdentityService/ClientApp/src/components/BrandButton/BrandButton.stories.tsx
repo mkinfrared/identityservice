@@ -1,8 +1,8 @@
 import { Meta, Story } from "@storybook/react";
 
 import { BrandButton } from "./BrandButton";
-import css from "./BrandButton.module.scss";
 import { Brand, BrandButtonProps } from "./BrandButton.type";
+import css from "./Story.module.scss";
 
 export default {
   title: "COMPONENTS/BrandButton",

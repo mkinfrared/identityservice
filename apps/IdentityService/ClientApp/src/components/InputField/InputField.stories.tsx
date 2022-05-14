@@ -1,8 +1,8 @@
 import { Meta, Story } from "@storybook/react";
 
 import { InputField } from "./InputField";
-import css from "./InputField.module.scss";
 import { InputFieldProps } from "./InputField.type";
+import css from "./Story.module.scss";
 
 export default {
   title: "COMPONENTS/InputField",

@@ -15,8 +15,8 @@ const getLocalIdent = (context, localIdentName, localName, options) => {
   const hash = loaderUtils.getHashDigest(
     path.posix.relative(context.rootContext, context.resourcePath) + localName,
     "md5",
-    "base64",
-    5,
+    "base62",
+    10,
   );
 
   // Use loaderUtils to find the file or folder name

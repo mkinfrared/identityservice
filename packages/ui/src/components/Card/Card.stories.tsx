@@ -5,8 +5,8 @@ import React from "react";
 import Text from "components/Text";
 
 import { Card } from "./Card";
-import css from "./Card.module.scss";
 import { CardProps } from "./Card.type";
+import css from "./Story.module.scss";
 
 export default {
   title: "UI/Card",
