@@ -1,8 +1,8 @@
 import { Meta, Story } from "@storybook/react";
 import React, { useState } from "react";
 
+import css from "./Story.module.scss";
 import { Toggle } from "./Toggle";
-import css from "./Toggle.module.scss";
 import { ToggleProps } from "./Toggle.type";
 
 export default {

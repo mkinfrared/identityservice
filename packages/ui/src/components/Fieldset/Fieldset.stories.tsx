@@ -6,8 +6,8 @@ import Radio from "components/Radio";
 import TextField from "components/TextField";
 
 import { Fieldset } from "./Fieldset";
-import css from "./Fieldset.module.scss";
 import { FieldsetProps } from "./Fieldset.type";
+import css from "./Story.module.scss";
 
 export default {
   title: "UI/Fieldset",

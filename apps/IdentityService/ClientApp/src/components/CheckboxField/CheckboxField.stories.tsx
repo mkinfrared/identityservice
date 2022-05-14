@@ -1,8 +1,8 @@
 import { Meta, Story } from "@storybook/react";
 
 import { CheckboxField } from "./CheckboxField";
-import css from "./CheckboxField.module.scss";
 import { CheckboxFieldProps } from "./CheckboxField.type";
+import css from "./Story.module.scss";
 
 export default {
   title: "COMPONENTS/CheckboxField",

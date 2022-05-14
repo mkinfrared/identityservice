@@ -4,8 +4,8 @@ import React from "react";
 import Text from "components/Text";
 
 import { Spinner } from "./Spinner";
-import css from "./Spinner.module.scss";
 import { SpinnerProps } from "./Spinner.type";
+import css from "./Story.module.scss";
 
 export default {
   title: "UI/Spinner",

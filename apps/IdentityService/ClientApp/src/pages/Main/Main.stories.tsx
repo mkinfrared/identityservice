@@ -6,8 +6,8 @@ import { MainRoutes } from "routes/MainRoute";
 import { withQueryProvider, withRouter } from "utils/storybookDecorators";
 
 import { Main } from "./Main";
-import css from "./Main.module.scss";
 import { MainProps } from "./Main.type";
+import css from "./Story.module.scss";
 
 const searchParams = {
   [MainRoutes.LOGIN]: new URL(

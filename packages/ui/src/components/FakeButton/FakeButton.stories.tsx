@@ -6,8 +6,8 @@ import React from "react";
 import Text from "components/Text";
 
 import { FakeButton } from "./FakeButton";
-import css from "./FakeButton.module.scss";
 import { FakeButtonProps } from "./FakeButton.type";
+import css from "./Story.module.scss";
 
 export default {
   title: "UI/FakeButton",

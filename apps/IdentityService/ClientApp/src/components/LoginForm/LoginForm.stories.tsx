@@ -3,8 +3,8 @@ import { Meta, Story } from "@storybook/react";
 import { withRouter } from "utils/storybookDecorators";
 
 import { LoginForm } from "./LoginForm";
-import css from "./LoginForm.module.scss";
 import { LoginFormProps } from "./LoginForm.type";
+import css from "./Story.module.scss";
 
 export default {
   title: "COMPONENTS/LoginForm",

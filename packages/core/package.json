@@ -5,6 +5,7 @@
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
   "types": "lib/index.d.ts",
+  "sideEffects": false,
   "scripts": {
     "build": "rollup -c",
     "clean": "rm -rf node_modules",

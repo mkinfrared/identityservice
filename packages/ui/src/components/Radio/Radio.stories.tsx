@@ -2,8 +2,8 @@ import { Meta, Story } from "@storybook/react";
 import React, { useState } from "react";
 
 import { Radio } from "./Radio";
-import css from "./Radio.module.scss";
 import { RadioProps } from "./Radio.type";
+import css from "./Story.module.scss";
 
 export default {
   title: "UI/Radio",

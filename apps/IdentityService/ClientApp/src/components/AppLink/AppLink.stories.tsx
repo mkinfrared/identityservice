@@ -3,8 +3,8 @@ import { Meta, Story } from "@storybook/react";
 import { withRouter } from "utils/storybookDecorators";
 
 import { AppLink } from "./AppLink";
-import css from "./AppLink.module.scss";
 import { AppLinkProps } from "./AppLink.type";
+import css from "./Story.module.scss";
 
 export default {
   title: "COMPONENTS/AppLink",

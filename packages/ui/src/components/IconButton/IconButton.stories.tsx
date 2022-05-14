@@ -7,8 +7,8 @@ import { ReactComponent as Doc } from "icons/description.svg";
 import { ReactComponent as Eye } from "icons/visibility.svg";
 
 import { IconButton } from "./IconButton";
-import css from "./IconButton.module.scss";
 import { IconButtonProps } from "./IconButton.type";
+import css from "./Story.module.scss";
 
 export default {
   title: "UI/IconButton",

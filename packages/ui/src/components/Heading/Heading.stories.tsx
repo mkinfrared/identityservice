@@ -2,8 +2,8 @@ import { Meta, Story } from "@storybook/react";
 import React from "react";
 
 import { Heading } from "./Heading";
-import css from "./Heading.module.scss";
 import { HeadingProps } from "./Heading.type";
+import css from "./Story.module.scss";
 
 export default {
   title: "UI/Heading",
