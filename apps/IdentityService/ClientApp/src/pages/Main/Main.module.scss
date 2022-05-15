@@ -1,10 +1,10 @@
 @import "../../styles/common";
 
 .Main {
-  --light-fallback: hsl(195, 86%, 32%);
+  --light-fallback: hsl(195deg 86% 32%);
   --light-image: url(../../images/mountain.webp),
     url(../../images/mountain-@360.webp) var(--light-fallback);
-  --dark-fallback: hsl(216, 100%, 15%);
+  --dark-fallback: hsl(216deg 100% 15%);
   --dark-image: url(../../images/mountain-moonlight.webp),
     url(../../images/mountain-moonlight-@360.webp) var(--dark-fallback);
 
@@ -56,7 +56,6 @@
 }
 
 .Story {
-
   .buttonContainer {
     background-color: palegoldenrod;
     padding: 1rem;

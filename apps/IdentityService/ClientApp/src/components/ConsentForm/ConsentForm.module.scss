@@ -1,7 +1,7 @@
 @import "../../styles/common";
 
 .ConsentForm {
-  @extend %loginRegisterForm;
+  @extend %login-register-form;
 
   .description {
     margin-top: 0.5rem;

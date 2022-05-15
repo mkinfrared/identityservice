@@ -1,7 +1,7 @@
 @import "../../styles/base/baseButton";
 
-.Button {
-  @extend %buttonBase;
+%button {
+  @extend %button-base;
 
   min-width: 10rem;
   padding: 0.5rem 2rem;
@@ -21,7 +21,7 @@
   }
 
   svg {
-    fill: currentColor;
+    fill: currentcolor;
     height: var(--text-size);
   }
 
@@ -44,10 +44,12 @@
   }
 }
 
+.Button {
+  @extend %button;
+}
+
 .Story {
-
   > div {
-
     &:not(:last-child) {
       margin-bottom: 2rem;
     }

@@ -1,7 +1,7 @@
 @use "../../styles/base/baseButton" as bb;
 
 .ButtonGroup {
-  @include bb.buttonBorderRadius;
+  @include bb.button-border-radius;
 
   --button-border-color: var(--button-group-border-color, var(--white));
   --button-background: transparent;
@@ -103,7 +103,6 @@
     }
 
     &:hover {
-
       &::before {
         opacity: 0.1;
       }
@@ -112,7 +111,6 @@
 }
 
 .Story {
-
   .container {
     margin-bottom: 2rem;
   }

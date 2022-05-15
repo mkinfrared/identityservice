@@ -1,11 +1,9 @@
 @mixin theme($value: "dark") {
-  @if ($value == "light") {
+  @if $value == "light" {
     @at-root body[data-theme="light"] & {
       @content;
     }
-  }
-
-  @else if($value == "dark") {
+  } @else if $value == "dark" {
     @at-root body[data-theme="dark"] & {
       @content;
     }
@@ -13,22 +11,20 @@
 }
 
 @mixin dark {
-  -webkit-backdrop-filter: blur(9px);
   backdrop-filter: blur(9px);
-  background: rgba(19, 18, 18, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 8px 16px 0 rgba(31, 38, 135, 0.37);
+  background: rgb(19 18 18 / 30%);
+  border: 1px solid rgb(255 255 255 / 18%);
+  box-shadow: 0 8px 16px 0 rgb(31 38 135 / 37%);
 }
 
 @mixin light {
-  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 8px 16px 0 rgba(31, 38, 135, 0.37);
+  background: rgb(255 255 255 / 10%);
+  border: 1px solid rgb(255 255 255 / 18%);
+  box-shadow: 0 8px 16px 0 rgb(31 38 135 / 37%);
 }
 
-@mixin focusVisible {
+@mixin focus-visible {
   outline: 2px solid var(--orange);
   outline-offset: 0.2rem;
 }

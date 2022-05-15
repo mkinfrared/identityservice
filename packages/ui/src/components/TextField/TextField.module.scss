@@ -5,11 +5,10 @@
   width: 100%;
 
   &.TextField {
-
     &.hasError {
-
       .input {
         border-color: var(--error);
+
         // todo replace with relative colors
         // when browsers start to support it
         box-shadow: 0 0 0.5rem 0 var(--error);
@@ -17,7 +16,6 @@
     }
 
     &.disabled {
-
       .label {
         color: var(--grey);
         cursor: default;
@@ -34,14 +32,12 @@
   }
 
   &.hasSuffix {
-
     .input {
       padding-right: 3rem;
     }
   }
 
   &.hasPrefix {
-
     .input {
       padding-left: 3rem;
     }
@@ -88,10 +84,11 @@
       &:-webkit-autofill:focus {
         background-color: var(--background-color);
         border: none;
-        -webkit-box-shadow: 0 0 0 1000px var(--background-color) inset;
+        box-shadow: 0 0 0 1000px var(--background-color) inset;
         caret-color: var(--secondary);
         font-size: 100%;
         -webkit-text-fill-color: var(--white);
+
         // it's not possible to use transparent background color
         // to override chrome autofill styles, so background needs
         // to be set to a certain color, to keep the initial background
@@ -119,7 +116,7 @@
       width: calc(var(--text-size) * 1.5);
 
       svg {
-        fill: currentColor;
+        fill: currentcolor;
         height: 100%;
         width: 100%;
       }
@@ -154,7 +151,6 @@ label {
 }
 
 .Story {
-
   > div {
     width: 40rem;
   }

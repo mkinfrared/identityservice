@@ -1,7 +1,7 @@
-@import "../Button/Button.module";
+@use "../Button/Button.module";
 
 .LinkButton {
-  @extend .Button;
+  @extend %button;
 
   gap: 10px;
   text-decoration: none;

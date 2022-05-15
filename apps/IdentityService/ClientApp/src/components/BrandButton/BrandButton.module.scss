@@ -1,27 +1,27 @@
 .BrandButton {
-  --apple: hsl(0, 0%, 0%);
-  --appleText: hsl(0, 100%, 100%);
-  --epic: hsl(0, 0%, 29%);
-  --epicText: hsl(330, 2%, 18%);
-  --facebook: hsl(221, 43%, 42%);
-  --facebookText: hsl(0, 100%, 100%);
-  --google: hsl(0, 33%, 99%);
-  --googleText: hsl(240, 2%, 39%);
-  --microsoft: hsl(0, 0%, 98%);
-  --microsoftText: hsl(300, 0%, 45%);
-  --steam: hsl(222, 18%, 11%);
-  --steamText: hsl(30, 3%, 71%);
-  --vk: hsl(212, 39%, 46%);
-  --vkText: hsl(300, 100%, 100%);
+  --apple: hsl(0deg 0% 0%);
+  --apple-text: hsl(0deg 100% 100%);
+  --epic: hsl(0deg 0% 29%);
+  --epic-text: hsl(330deg 2% 18%);
+  --facebook: hsl(221deg 43% 42%);
+  --facebook-text: hsl(0deg 100% 100%);
+  --google: hsl(0deg 33% 99%);
+  --google-text: hsl(240deg 2% 39%);
+  --microsoft: hsl(0deg 0% 98%);
+  --microsoft-text: hsl(300deg 0% 45%);
+  --steam: hsl(222deg 18% 11%);
+  --steam-text: hsl(30deg 3% 71%);
+  --vk: hsl(212deg 39% 46%);
+  --vk-text: hsl(300deg 100% 100%);
 
   &.apple {
-    --button-spinner-color: var(--appleText);
+    --button-spinner-color: var(--apple-text);
 
     background: var(--apple);
-    color: var(--appleText);
+    color: var(--apple-text);
 
     .brandIcon {
-      fill: var(--appleText);
+      fill: var(--apple-text);
     }
   }
 
@@ -30,53 +30,51 @@
   }
 
   &.facebook {
-    --button-spinner-color: var(--facebookText);
+    --button-spinner-color: var(--facebook-text);
 
     background: var(--facebook);
-    color: var(--facebookText);
+    color: var(--facebook-text);
 
     .brandIcon {
-      border: 1px solid var(--facebookText);
+      border: 1px solid var(--facebook-text);
       border-radius: 0.4rem;
     }
   }
 
   &.google {
-    --button-spinner-color: var(--googleText);
+    --button-spinner-color: var(--google-text);
 
     background: var(--google);
-    color: var(--googleText);
+    color: var(--google-text);
   }
 
   &.microsoft {
-    --button-spinner-color: var(--microsoftText);
+    --button-spinner-color: var(--microsoft-text);
 
     background: var(--microsoft);
-    color: var(--microsoftText);
+    color: var(--microsoft-text);
   }
 
   &.steam {
-    --button-spinner-color: var(--steamText);
+    --button-spinner-color: var(--steam-text);
 
     background: var(--steam);
-    color: var(--steamText);
+    color: var(--steam-text);
 
     .brandIcon {
-
       path {
-        fill: var(--steamText);
+        fill: var(--steam-text);
       }
     }
   }
 
   &.vk {
     background: var(--vk);
-    color: var(--vkText);
+    color: var(--vk-text);
 
     .brandIcon {
-
       path {
-        fill: var(--vkText);
+        fill: var(--vk-text);
       }
     }
   }

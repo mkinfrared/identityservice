@@ -104,6 +104,7 @@
     "no-plusplus": "off",
     // handled by @typescript/no-shadow
     "no-shadow": "off",
+    "no-restricted-exports": "off",
     "no-use-before-define": "off",
     "no-unused-expressions": "error",
     "no-useless-constructor": "error",
@@ -171,6 +172,7 @@
     "prefer-promise-reject-errors": "error",
     "quotes": ["error", "double", "avoid-escape"],
     "react/button-has-type": "error",
+    "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-no-duplicate-props": [

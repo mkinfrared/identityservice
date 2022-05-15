@@ -7,7 +7,7 @@
     "apps/IdentityService.Admin/ClientApp",
     "packages/*"
   ],
-  "packageManager": "pnpm@6.29.1",
+  "packageManager": "pnpm@7.1.0",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "build": "turbo run build",
@@ -18,7 +18,7 @@
     "e2e": "turbo run e2e",
     "lint": "pnpm format && pnpm lint:styles && pnpm lint:ts",
     "lint:ts": "eslint --cache --fix --ext .ts,.tsx .",
-    "lint:styles": "stylelint \"**/*.scss\" --syntax scss --fix --cache",
+    "lint:styles": "stylelint \"**/*.scss\" --fix",
     "format": "prettier --write \".\"",
     "release": "standard-version && git commit -m",
     "clean": "pnpm -r exec -- rm -rf node_modules && rm -rf node_modules",
@@ -26,29 +26,35 @@
     "prepare": "husky install"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.9.1",
-    "@typescript-eslint/parser": "^5.9.1",
-    "eslint": "^8.6.0",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-import-resolver-typescript": "^2.5.0",
-    "eslint-plugin-import": "^2.25.4",
+    "@typescript-eslint/eslint-plugin": "^5.23.0",
+    "@typescript-eslint/parser": "^5.23.0",
+    "eslint": "^8.15.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^2.7.1",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.28.0",
-    "eslint-plugin-react-hooks": "^4.3.0",
-    "husky": "^7.0.4",
-    "lint-staged": "^12.1.7",
-    "npm-check-updates": "^12.1.0",
-    "prettier": "^2.5.1",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.5.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^12.4.1",
+    "npm-check-updates": "^12.5.11",
+    "prettier": "^2.6.2",
     "standard-version": "^9.3.2",
-    "stylelint": "^13.13.1",
-    "stylelint-config-standard": "^22.0.0",
-    "stylelint-no-unsupported-browser-features": "^5.0.2",
-    "stylelint-order": "^4.1.0",
-    "stylelint-prettier": "^1.2.0",
-    "turbo": "^1.1.2",
-    "typescript": "^4.5.4"
+    "stylelint": "^14.8.2",
+    "stylelint-config-prettier-scss": "^0.0.1",
+    "stylelint-config-standard": "^25.0.0",
+    "stylelint-config-standard-scss": "^3.0.0",
+    "stylelint-no-unsupported-browser-features": "^5.0.3",
+    "stylelint-order": "^5.0.0",
+    "turbo": "^1.2.9",
+    "typescript": "^4.6.4"
+  },
+  "pnpm": {
+    "overrides": {
+      "glob": "7.2.0"
+    }
   },
   "husky": {
     "hooks": {
