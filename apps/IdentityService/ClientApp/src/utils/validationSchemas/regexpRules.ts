@@ -1,8 +1,8 @@
 const password = {
-  upperCase: new RegExp("[A-Z]"),
-  lowerCase: new RegExp("[a-z]"),
-  number: new RegExp("[0-9]"),
-  special: new RegExp("[#?!@$%^&*-]"),
+  upperCase: /[A-Z]/,
+  lowerCase: /[a-z]/,
+  number: /\d/,
+  special: /[#?!@$%^&*-]/,
 };
 
 export { password };

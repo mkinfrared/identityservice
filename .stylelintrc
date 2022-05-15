@@ -1,5 +1,8 @@
 {
-  "extends": "stylelint-config-standard",
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-config-prettier-scss"
+  ],
   "plugins": ["stylelint-order", "stylelint-no-unsupported-browser-features"],
   "rules": {
     "at-rule-no-unknown": null,
@@ -34,7 +37,7 @@
     "number-leading-zero": "always",
     "order/order": ["custom-properties", "declarations"],
     "order/properties-alphabetical-order": true,
-    "rule-empty-line-before": "always",
+    "scss/at-import-partial-extension": null,
     "selector-attribute-brackets-space-inside": "never",
     "selector-attribute-operator-space-after": "never",
     "selector-attribute-operator-space-before": "never",

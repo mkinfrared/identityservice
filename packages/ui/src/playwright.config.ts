@@ -1,5 +1,9 @@
 /* eslint-disable import/no-unused-modules */
+import path from "path";
+
 import { PlaywrightTestConfig, devices } from "@playwright/test";
+
+const storybookFolder = path.resolve(__dirname, "../storybook-static");
 
 const projects = [
   {
@@ -33,7 +37,7 @@ const config: PlaywrightTestConfig = {
   testMatch: /.*(spec)\.ts/,
   fullyParallel: true,
   webServer: {
-    command: "pnpm dlx http-server storybook-static -p 8080",
+    command: `npx serve ${storybookFolder} -l 8080`,
     port: 8080,
     reuseExistingServer: true,
   },

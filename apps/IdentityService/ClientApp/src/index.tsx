@@ -1,8 +1,15 @@
 import "@identity-service/ui/lib/esm/styles.min.css";
-import ReactDOM from "react-dom";
+import React from "react";
+import { createRoot } from "react-dom/client";
 
 import App from "./App";
 
 import "./index.scss";
 
-ReactDOM.render(<App />, document.getElementById("app"));
+const root = createRoot(document.getElementById("app") as HTMLElement);
+
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+);

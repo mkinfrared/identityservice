@@ -11,16 +11,16 @@ html {
 }
 
 * {
-  scrollbar-color: hsla(0, 0%, 100%, 0.3) hsla(0, 0%, 100%, 0.1);
+  scrollbar-color: hsl(0deg 0% 100% / 30%) hsl(0deg 0% 100% / 10%);
   scrollbar-width: thin; // width is ~8-10px
 
   &::-webkit-scrollbar {
-    background-color: hsla(0, 0%, 100%, 0.1);
+    background-color: hsl(0deg 0% 100% / 10%);
     width: 8px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: hsla(0, 0%, 100%, 0.3);
+    background-color: hsl(0deg 0% 100% / 30%);
   }
 }
 
@@ -37,6 +37,6 @@ a {
   }
 
   &:focus-visible {
-    @include focusVisible;
+    @include focus-visible;
   }
 }

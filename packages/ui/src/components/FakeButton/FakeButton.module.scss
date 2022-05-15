@@ -1,11 +1,11 @@
-@import "../../styles/_common";
+@import "../../styles/common";
 
 .FakeButton {
   height: 100%;
   width: 100%;
 
   &:focus-visible {
-    @include focusVisible();
+    @include focus-visible;
   }
 }
 

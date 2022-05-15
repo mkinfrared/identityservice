@@ -1,11 +1,11 @@
 @use "../common" as c;
 
-@mixin buttonBorderRadius {
+@mixin button-border-radius {
   --border-radius: 4rem;
 }
 
-%buttonBase {
-  @include buttonBorderRadius;
+%button-base {
+  @include button-border-radius;
 
   --background: var(--button-background, var(--night-call));
   --border-color: var(--button-border-color, var(--primary));
@@ -83,7 +83,7 @@
   }
 
   &:focus-visible {
-    @include c.focusVisible;
+    @include c.focus-visible;
   }
 
   &,
