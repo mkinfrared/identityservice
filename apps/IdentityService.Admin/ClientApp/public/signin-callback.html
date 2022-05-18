@@ -5,12 +5,41 @@
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="#000000" name="theme-color" />
     <title>Sign in process</title>
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+        min-height: 100vh;
+        background-color: #ffffff;
+        text-align: center;
+        font-family: sans-serif;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #2a2a2a;
+          color: #ffffff;
+        }
+
+        a {
+          color: #8d5319;
+        }
+      }
+    </style>
   </head>
   <body>
     <noscript> You need to enable JavaScript to run this app.</noscript>
 
-    <h1>Authentification callback processing...</h1>
+    <h2>You are being redirected to the authorized application</h2>
 
+    <p>
+      If your browser doesn't redirect you back, <a href="/">click here</a> to
+      continue
+    </p>
     <script src="oidc-client.min.js"></script>
     <script>
       Oidc.Log.logger = console;
@@ -18,20 +47,33 @@
 
       const { UserManager, WebStorageStateStore } = Oidc;
 
-      new UserManager({
+      const userManager = new UserManager({
         userStore: new WebStorageStateStore({ store: window.localStorage }),
         response_mode: "query",
-      })
-        .signinRedirectCallback()
-        .then(function (user) {
-          console.log("signin response success", user);
-        })
-        .catch(function (err) {
-          console.error("signinRedirectCallback error");
+      });
+      const link = document.querySelector("a");
 
-          console.error(err);
-        })
-        .finally(() => (window.location = "/"));
+      const signInRedirect = () => {
+        userManager
+          .signinRedirectCallback()
+          .then(function (user) {
+            console.log("signin response success", user);
+          })
+          .catch(function (err) {
+            console.error("signinRedirectCallback error");
+
+            console.error(err);
+          })
+          .finally(() => (window.location = "/"));
+      };
+
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        signInRedirect();
+      });
+
+      signInRedirect();
     </script>
   </body>
 </html>
