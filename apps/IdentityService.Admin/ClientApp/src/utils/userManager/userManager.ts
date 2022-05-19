@@ -5,16 +5,27 @@ import Oidc, {
   WebStorageStateStore,
 } from "oidc-client";
 
+import {
+  AUTHORITY,
+  BASE_URL,
+  CLIENT_ID,
+  POST_LOGOUT_REDIRECT_URI,
+  REDIRECT_URI,
+  RESPONSE_TYPE,
+  SCOPE,
+  SILENT_REDIRECT_URI,
+} from "utils/secrets";
+
 Oidc.Log.logger = console;
 
 const settings: UserManagerSettings = {
-  authority: "https://localhost:2001",
-  client_id: "identity_admin_client",
-  redirect_uri: "https://localhost:4001/signin-callback.html",
-  response_type: "code",
-  scope: "openid profile OrdersApi",
-  post_logout_redirect_uri: "https://localhost:4001/logout",
-  silent_redirect_uri: "https://localhost:4001/silent-renew.html",
+  authority: AUTHORITY,
+  client_id: CLIENT_ID,
+  redirect_uri: BASE_URL + REDIRECT_URI,
+  response_type: RESPONSE_TYPE,
+  scope: SCOPE,
+  post_logout_redirect_uri: BASE_URL + POST_LOGOUT_REDIRECT_URI,
+  silent_redirect_uri: BASE_URL + SILENT_REDIRECT_URI,
   automaticSilentRenew: true,
   // userStore should match the store with signin callback and silent signin
   userStore: new WebStorageStateStore({ store: window.localStorage }),
