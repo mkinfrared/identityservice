@@ -3,6 +3,7 @@
   "version": "0.1.1",
   "private": true,
   "scripts": {
+    "postinstall": "cp ./node_modules/oidc-client/dist/oidc-client.min.js ./public",
     "start": "react-scripts start",
     "build": "cross-env CI=false react-scripts build",
     "test": "cross-env CI=true react-scripts test --collectCoverage",
