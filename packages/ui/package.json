@@ -21,6 +21,9 @@
     "e2e:debug": "cross-env PWDEBUG=console pnpm dlx playwright test -c src/playwright.config.ts",
     "e2e:prepare": "npx playwright install --with-deps"
   },
+  "dependencies": {
+    "react-use": "^17.3.2"
+  },
   "devDependencies": {
     "@identity-service/core": "workspace:*",
     "@playwright/test": "^1.22.0",
@@ -115,8 +118,5 @@
     "testMatch": [
       "**/?(*.)+(test).[jt]s?(x)"
     ]
-  },
-  "dependencies": {
-    "react-use": "^17.3.2"
   }
 }
