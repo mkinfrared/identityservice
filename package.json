@@ -4,7 +4,7 @@
   "private": true,
   "workspaces": [
     "apps/IdentityService/ClientApp",
-    "apps/IdentityService.Admin/ClientApp",
+    "apps/*",
     "packages/*"
   ],
   "packageManager": "pnpm@7.1.0",
@@ -17,7 +17,7 @@
     "test:update": "pnpm build && turbo run test --parallel --only -- -- -u",
     "e2e": "turbo run e2e",
     "lint": "pnpm format && pnpm lint:styles && pnpm lint:ts",
-    "lint:ts": "eslint --cache --fix --ext .ts,.tsx .",
+    "lint:ts": "eslint --cache --fix --ext .ts,.tsx",
     "lint:styles": "stylelint \"**/*.scss\" --fix",
     "format": "prettier --write \".\"",
     "release": "standard-version && git commit -m",
