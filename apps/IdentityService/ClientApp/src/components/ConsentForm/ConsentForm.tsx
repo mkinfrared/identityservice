@@ -38,7 +38,7 @@ const ConsentForm = ({
         <Fragment key={field.id}>
           <ToggleField
             {...register(`identityScopes.${index}.isPermitted` as const)}
-            label={field.displayName}
+            label={field.displayName ?? ""}
             className={css.input}
             defaultChecked={field.required}
             readOnly={field.required}
@@ -57,7 +57,7 @@ const ConsentForm = ({
         <Fragment key={id}>
           <ToggleField
             {...register(`apiScopes.${index}.isPermitted` as const)}
-            label={displayName}
+            label={displayName ?? ""}
             className={css.input}
             defaultChecked={required}
             readOnly={required}
