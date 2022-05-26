@@ -10,17 +10,17 @@
  */
 
 export type ApiScopeReadDto = {
-  name?: string | null;
-  displayName?: string | null;
-  description?: string | null;
+  name?: string;
+  displayName?: string;
+  description?: string;
   emphasize?: boolean;
   required?: boolean;
 };
 
 export type ApiScopeUpdateDto = {
-  name?: string | null;
-  displayName?: string | null;
-  description?: string | null;
+  name?: string;
+  displayName?: string;
+  description?: string;
   emphasize?: boolean;
   required?: boolean;
   isPermitted?: boolean;
@@ -35,13 +35,13 @@ export type ConfirmEmailCommand = {
 };
 
 export type ConsentReadDto = {
-  clientName?: string | null;
-  clientUrl?: string | null;
-  clientLogoUrl?: string | null;
-  returnUrl?: string | null;
+  clientName?: string;
+  clientUrl?: string;
+  clientLogoUrl?: string;
+  returnUrl?: string;
   allowRememberConsent?: boolean;
-  identityScopes?: ApiScopeReadDto[] | null;
-  apiScopes?: ApiScopeReadDto[] | null;
+  identityScopes?: ApiScopeReadDto[];
+  apiScopes?: ApiScopeReadDto[];
 };
 
 export type ConsentUpdateDto = {
@@ -63,11 +63,6 @@ export type LoginCommand = {
   password: string;
   returnUrl: string;
 };
-
-/**
- * @format int32
- */
-export type Providers = 0;
 
 export type RegisterCommand = {
   username?: string;
@@ -169,34 +164,6 @@ export namespace Auth {
     export type RequestParams = {};
     export type RequestQuery = {};
     export type RequestBody = ResetPasswordCommand;
-    export type RequestHeaders = {};
-    export type ResponseBody = void;
-  }
-  /**
-   * No description
-   * @tags Auth
-   * @name ExternalRegisterList
-   * @request GET:/Auth/ExternalRegister
-   * @response `200` `void` Success
-   */
-  export namespace ExternalRegisterList {
-    export type RequestParams = {};
-    export type RequestQuery = { provider?: Providers; returnUrl?: string };
-    export type RequestBody = never;
-    export type RequestHeaders = {};
-    export type ResponseBody = void;
-  }
-  /**
-   * No description
-   * @tags Auth
-   * @name ExternalCallbackList
-   * @request GET:/Auth/ExternalCallback
-   * @response `200` `void` Success
-   */
-  export namespace ExternalCallbackList {
-    export type RequestParams = {};
-    export type RequestQuery = { returnUrl?: string };
-    export type RequestBody = never;
     export type RequestHeaders = {};
     export type ResponseBody = void;
   }

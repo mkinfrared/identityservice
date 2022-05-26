@@ -377,10 +377,6 @@ node_modules
 .pnp
 .pnp.js
 
-# next.js
-.next
-out
-
 # testing
 coverage
 playwright-report
@@ -398,10 +394,6 @@ storybook-static
 .env.development.local
 .env.test.local
 .env.production.local
-*.pem
-
-# vercel
-.vercel
 
 ### Generated Code
 .eslintcache

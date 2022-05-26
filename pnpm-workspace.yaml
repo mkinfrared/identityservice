@@ -3,4 +3,3 @@
   - "packages/**"
   - "apps/IdentityService/ClientApp"
   - "apps/IdentityService.Admin/ClientApp"
-  - "apps/user-portal"
