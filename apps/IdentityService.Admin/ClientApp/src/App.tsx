@@ -1,41 +1,22 @@
+import { Spinner, useTheme } from "@identity-service/ui";
+import { Suspense } from "react";
 import { BrowserRouter } from "react-router-dom";
 
-import useUserSession from "hooks/useUserSession";
-import userManager from "utils/userManager";
+import AppRoutes from "routes/AppRoutes";
 
-import "./App.scss";
+import css from "./App.module.scss";
 
 const App = () => {
-  const user = useUserSession();
-
-  const logIn = () => {
-    userManager.signinRedirect();
-  };
-
-  const logOut = () => {
-    userManager.signoutRedirect();
-  };
-
-  const logToken = async () => {
-    const userData = await userManager.getUser();
-
-    // eslint-disable-next-line no-console
-    console.log("token", userData);
-  };
+  useTheme("app-theme");
 
   return (
     <BrowserRouter>
-      <div className="App">
-        <p>{user ? user.access_token : "logged out"}</p>
-        <button type="button" onClick={logIn}>
-          Login
-        </button>
-        <button type="button" onClick={logToken}>
-          Log User Data
-        </button>
-        <button type="button" onClick={logOut}>
-          Logout
-        </button>
+      <div className={css.App}>
+        <Suspense
+          fallback={<Spinner className={css.spinner} type="infinity" />}
+        >
+          <AppRoutes />
+        </Suspense>
       </div>
     </BrowserRouter>
   );
