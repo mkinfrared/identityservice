@@ -1,3 +1,4 @@
+import "@identity-service/ui/lib/esm/styles.min.css";
 import "../src/index.scss";
 
 const tokenContext = require.context(

@@ -5,7 +5,7 @@
   "scripts": {
     "postinstall": "cp ./node_modules/oidc-client/dist/oidc-client.min.js ./public",
     "start": "react-scripts start",
-    "build": "cross-env CI=false react-scripts build",
+    "build": "cross-env CI=false craco build --config ./config/craco.config.js",
     "test": "cross-env CI=true react-scripts test --collectCoverage",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6009 -s public",
@@ -26,6 +26,7 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@craco/craco": "^6.4.3",
     "@storybook/addon-actions": "^6.4.22",
     "@storybook/addon-docs": "^6.4.22",
     "@storybook/addon-essentials": "6.4.22",
@@ -46,6 +47,7 @@
     "@types/testing-library__jest-dom": "^5.14.3",
     "babel-loader": "^8.2.5",
     "cross-env": "^7.0.3",
+    "identity-obj-proxy": "^3.0.0",
     "open-cli": "^7.0.1",
     "raw-loader": "^4.0.2",
     "sass": "^1.51.0",
@@ -72,10 +74,10 @@
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 0,
-        "functions": 0,
-        "lines": 0,
-        "statements": 0
+        "branches": 70,
+        "functions": 64,
+        "lines": 80,
+        "statements": 80
       }
     },
     "coveragePathIgnorePatterns": [

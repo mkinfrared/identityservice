@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Home /> should match the snapshot 1`] = `
+<div>
+  <div
+    class="Home"
+    data-testid="Home"
+  >
+    <code>
+      logged out
+    </code>
+    <div>
+      <button
+        type="button"
+      >
+        Login
+      </button>
+      <button
+        type="button"
+      >
+        Log User Data
+      </button>
+      <button
+        type="button"
+      >
+        Logout
+      </button>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,31 @@
+@use "./styles/common" as c;
+
+.App {
+  :where(&) {
+    --background-light: var(--white);
+    --background-dark: var(--black-light);
+    --background: var(--background-dark);
+  }
+
+  align-items: center;
+  background-color: var(--background);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+
+  @include c.theme("light") {
+    --background: var(--background-light);
+  }
+
+  .spinner {
+    left: 50%;
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 33%;
+
+    path {
+      stroke: var(--primary);
+    }
+  }
+}
