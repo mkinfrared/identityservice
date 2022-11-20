@@ -4,28 +4,30 @@
   display: block;
   width: 100%;
 
-  &.hasError {
-    .input {
-      border-color: var(--error);
+  &.TextField {
+    &.hasError {
+      .input {
+        border-color: var(--error);
 
-      // todo replace with relative colors
-      // when browsers start to support it
-      box-shadow: 0 0 0.5rem 0 var(--error);
-    }
-  }
-
-  &.disabled {
-    .label {
-      color: var(--grey);
-      cursor: default;
+        // todo replace with relative colors
+        // when browsers start to support it
+        box-shadow: 0 0 0.5rem 0 var(--error);
+      }
     }
 
-    .input {
-      border-color: var(--grey);
-    }
+    &.disabled {
+      .label {
+        color: var(--grey);
+        cursor: default;
+      }
 
-    .input input {
-      color: var(--grey);
+      .input {
+        border-color: var(--grey);
+      }
+
+      .input input {
+        color: var(--grey);
+      }
     }
   }
 
@@ -59,12 +61,10 @@
     position: relative;
     width: 100%;
 
-    :where(&) {
-      @include dark;
+    @include dark;
 
-      @include theme("light") {
-        @include light;
-      }
+    @include theme("light") {
+      @include light;
     }
 
     input {
@@ -144,6 +144,8 @@
     width: 100%;
   }
 }
+
+// to override the dark/light theme css declaration
 
 label {
 }

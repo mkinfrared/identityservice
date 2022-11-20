@@ -1,8 +1,15 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+const path = require("path");
+
 module.exports = {
   webpack: {
-    configure: {
-      optimization: {
+    configure: (webpackConfig, { env, paths }) => {
+      const buildDirectory = path.resolve("../wwwroot");
+
+      paths.appBuild = buildDirectory;
+      webpackConfig.output.path = buildDirectory;
+
+      webpackConfig.optimization = {
         splitChunks: {
           chunks: "all",
           enforceSizeThreshold: 50000,
@@ -39,7 +46,9 @@ module.exports = {
             },
           },
         },
-      },
+      };
+
+      return webpackConfig;
     },
   },
 };

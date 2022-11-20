@@ -28,16 +28,16 @@ const AppRoutes = () => {
   if (!user) {
     return (
       <Routes>
-        <Route path={AppRoute.LOGIN} element={<Login />} />
-        <Route path="*" element={<Navigate to={AppRoute.LOGIN} />} />
+        <Route path={AppRoute.LOGIN.path} element={<Login />} />
+        <Route path="*" element={<Navigate to={AppRoute.LOGIN.path} />} />
       </Routes>
     );
   }
 
   return (
     <Routes>
-      <Route path={AppRoute.HOME} element={<Home />} />
-      <Route path="*" element={<Navigate to={AppRoute.HOME} />} />
+      <Route path={AppRoute.HOME.path} element={<Home />} />
+      <Route path="*" element={<Navigate to={AppRoute.HOME.path} replace />} />
     </Routes>
   );
 };

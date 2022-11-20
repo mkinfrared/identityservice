@@ -1,3 +1,5 @@
+import { route } from "react-router-typesafe-routes/dom";
+
 export type AppRoutesProps = {
   /**
    * a string that will be applied as a css class to parent element
@@ -5,7 +7,7 @@ export type AppRoutesProps = {
   className?: string;
 };
 
-export enum AppRoute {
-  HOME = "/",
-  LOGIN = "login",
-}
+export const AppRoute = {
+  HOME: route(""),
+  LOGIN: route("login"),
+};
