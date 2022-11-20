@@ -391,6 +391,7 @@ storybook-static
 .env
 !.env.example
 .env.local
+.env.development
 .env.development.local
 .env.test.local
 .env.production.local

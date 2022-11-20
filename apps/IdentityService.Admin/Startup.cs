@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -41,7 +40,7 @@ public class Startup
         services.AddSpaStaticFiles(
             configuration =>
             {
-                configuration.RootPath = "ClientApp/build";
+                configuration.RootPath = "wwwroot";
             }
         );
     }
@@ -79,14 +78,9 @@ public class Startup
         );
 
         app.UseSpa(
-            spa =>
+            builder =>
             {
-                spa.Options.SourcePath = "ClientApp";
-
-                if (env.IsDevelopment())
-                {
-                    spa.UseReactDevelopmentServer("start");
-                }
+                builder.Options.DefaultPageStaticFileOptions = null;
             }
         );
     }

@@ -6,6 +6,7 @@
     "postinstall": "cp ./node_modules/oidc-client/dist/oidc-client.min.js ./public",
     "start": "react-scripts start",
     "build": "cross-env CI=false craco build --config ./config/craco.config.js",
+    "serve": "npx serve -s build",
     "test": "cross-env CI=true react-scripts test --collectCoverage",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6009 -s public",
@@ -21,12 +22,13 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0",
+    "react-router-typesafe-routes": "^0.5.0",
     "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },
   "devDependencies": {
-    "@craco/craco": "^6.4.3",
+    "@craco/craco": "^7.0.0",
     "@storybook/addon-actions": "^6.4.22",
     "@storybook/addon-docs": "^6.4.22",
     "@storybook/addon-essentials": "6.4.22",
