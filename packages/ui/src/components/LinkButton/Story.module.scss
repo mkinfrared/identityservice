@@ -2,4 +2,9 @@
 
 .Story {
   @extend %button-story;
+
+  .buttonContainer {
+    display: flex;
+    gap: 20px;
+  }
 }

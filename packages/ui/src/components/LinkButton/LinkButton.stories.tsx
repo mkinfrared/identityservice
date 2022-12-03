@@ -25,12 +25,14 @@ const Template: Story<LinkButtonProps> = (args) => (
     </div>
     <div>
       <Heading>LinkButton variants</Heading>
-      <LinkButton {...args} variant="contained">
-        Contained
-      </LinkButton>
-      <LinkButton {...args} variant="outlined">
-        Outlined
-      </LinkButton>
+      <div className={css.buttonContainer}>
+        <LinkButton {...args} variant="contained">
+          Contained
+        </LinkButton>
+        <LinkButton {...args} variant="outlined">
+          Outlined
+        </LinkButton>
+      </div>
     </div>
     <div>
       <Heading>LinkButton colors</Heading>

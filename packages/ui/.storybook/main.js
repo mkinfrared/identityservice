@@ -14,6 +14,15 @@ module.exports = {
     "storybook-design-token",
   ],
   core: {
-    builder: "webpack5",
+    builder: "@storybook/builder-webpack5",
   },
+  // typescript: {
+  //   check: false,
+  //   checkOptions: {},
+  //   reactDocgen: "react-docgen-typescript",
+  //   reactDocgenTypescriptOptions: {
+  //     shouldExtractLiteralValuesFromEnum: true,
+  //     // propFilter: (prop) => true,
+  //   },
+  // },
 };

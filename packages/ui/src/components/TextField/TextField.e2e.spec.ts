@@ -5,6 +5,13 @@ import { test } from "@playwright/test";
 import { compareScreenshots } from "utils/testHelpers";
 
 test.describe("TextField", () => {
+  test.afterAll(async ({ screenshot }, testInfo) => {
+    // eslint-disable-next-line no-unused-expressions
+    screenshot;
+
+    await compareScreenshots(4.5, testInfo.snapshotDir);
+  });
+
   test("compare empty fields", async ({ page }, testInfo) => {
     const snapshotDir = "empty-fields";
 
@@ -35,8 +42,6 @@ test.describe("TextField", () => {
     await textField.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 
   test("compare filled fields", async ({ page }, testInfo) => {
@@ -65,8 +70,6 @@ test.describe("TextField", () => {
     await textField.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 
   test("compare error fields", async ({ page }, testInfo) => {
@@ -99,8 +102,6 @@ test.describe("TextField", () => {
     await textField.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 
   test("compare disabled fields", async ({ page }, testInfo) => {
@@ -133,8 +134,6 @@ test.describe("TextField", () => {
     await textField.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 
   test("compare with label fields", async ({ page }, testInfo) => {
@@ -167,8 +166,6 @@ test.describe("TextField", () => {
     await textField.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 
   test("compare with prefix", async ({ page }, testInfo) => {
@@ -197,8 +194,6 @@ test.describe("TextField", () => {
     await textField.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 
   test("compare with suffix", async ({ page }, testInfo) => {
@@ -227,8 +222,6 @@ test.describe("TextField", () => {
     await textField.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 
   test("compare with prefix and suffix", async ({ page }, testInfo) => {
@@ -259,7 +252,5 @@ test.describe("TextField", () => {
     await textField.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 });

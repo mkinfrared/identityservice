@@ -5,6 +5,13 @@ import { test } from "@playwright/test";
 import { compareScreenshots } from "utils/testHelpers";
 
 test.describe("ButtonGroup", () => {
+  test.afterAll(async ({ screenshot }, testInfo) => {
+    // eslint-disable-next-line no-unused-expressions
+    screenshot;
+
+    await compareScreenshots(13.5, testInfo.snapshotDir);
+  });
+
   test("compare contained group", async ({ page }, testInfo) => {
     const snapshotDir = "contained";
 
@@ -32,8 +39,6 @@ test.describe("ButtonGroup", () => {
     await buttonGroup.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 
   test("compare outlined variant", async ({ page }, testInfo) => {
@@ -55,7 +60,9 @@ test.describe("ButtonGroup", () => {
 
     await defaultButton.click();
 
-    const variantControl = page.locator("#control-variant-1");
+    const variantControl = page
+      .locator("label")
+      .filter({ hasText: "outlined" });
 
     await variantControl.click();
 
@@ -63,16 +70,14 @@ test.describe("ButtonGroup", () => {
 
     await colorControl.fill("secondary");
 
-    const button = page
+    const buttonGroup = page
       .frameLocator("#storybook-preview-iframe")
       .locator("data-testid=ButtonGroup")
       .first();
 
-    await button.screenshot({
+    await buttonGroup.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 
   test("compare with icon", async ({ page }, testInfo) => {
@@ -102,7 +107,5 @@ test.describe("ButtonGroup", () => {
     await button.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 });

@@ -1,22 +1,22 @@
+/* eslint-disable import/no-unused-modules */
 import babel from "@rollup/plugin-babel";
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 import url from "@rollup/plugin-url";
 import svgr from "@svgr/rollup";
-import transformPath from "@zerollup/ts-transform-paths";
+import autoprefixer from "autoprefixer";
+import { InputPluginOption, ModuleFormat, RollupOptions } from "rollup";
 import del from "rollup-plugin-delete";
 import postcss from "rollup-plugin-postcss";
 import { terser } from "rollup-plugin-terser";
 import ts from "rollup-plugin-ts";
-import visualizer from "rollup-plugin-visualizer";
-import typescript from "ttypescript";
+import { visualizer } from "rollup-plugin-visualizer";
+import typescript from "typescript";
 
 const buildDir = "lib";
-const input = "src/index.ts";
-const external = ["react", "react-dom"];
-const extensions = ["js", "jsx", "ts", "tsx"];
+const input = "./src/index.tsx";
 
-const getOutput = (format) => {
+const getOutput = (format: ModuleFormat) => {
   const output = {
     dir: `${buildDir}/${format}`,
     format,
@@ -29,13 +29,12 @@ const getOutput = (format) => {
 };
 
 const getPlugins = () => {
-  const plugins = [
+  const plugins: InputPluginOption = [
     resolve(),
     commonjs(),
     ts({
       typescript,
       tsconfig: "./tsconfig.json",
-      transformers: [transformPath],
     }),
     babel({
       exclude: "node_modules/**",
@@ -45,10 +44,11 @@ const getPlugins = () => {
     svgr(),
     postcss({
       inject: false,
-      extract: false,
+      extract: "styles.min.css",
       minimize: true,
       modules: true,
       use: ["sass"],
+      plugins: [autoprefixer()],
     }),
     terser(),
     visualizer({
@@ -63,7 +63,9 @@ const getPlugins = () => {
   return plugins;
 };
 
-const config = [
+const external = ["react", "react-dom", "react-use", "@identity-service/core"];
+
+const config: RollupOptions[] = [
   // commonjs build
   {
     input,
@@ -71,7 +73,7 @@ const config = [
     plugins: [del({ targets: buildDir }), ...getPlugins()],
     external,
   },
-  // esmodule build
+  // es module build
   {
     input,
     output: getOutput("esm"),

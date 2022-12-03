@@ -18,17 +18,13 @@
     "strictFunctionTypes": true,
     "strictBindCallApply": true,
     "strictNullChecks": true,
+    "strictPropertyInitialization": true,
     "declaration": true,
     "declarationDir": "lib",
     "declarationMap": true,
     "removeComments": false,
     "baseUrl": "src",
-    "plugins": [
-      {
-        "transform": "@zerollup/ts-transform-paths"
-      }
-    ],
     "noEmit": true
   },
-  "include": ["src"]
+  "include": ["src", "rollup.config.ts"]
 }

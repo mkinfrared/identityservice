@@ -1,3 +1,4 @@
+/* eslint-disable */
 import path from "path";
 
 import { delay } from "@identity-service/core";
@@ -6,6 +7,13 @@ import { test } from "@playwright/test";
 import { compareScreenshots } from "utils/testHelpers";
 
 test.describe("Toggle", () => {
+  test.afterAll(async ({ screenshot }, testInfo) => {
+    // eslint-disable-next-line no-unused-expressions
+    screenshot;
+
+    await compareScreenshots(1, testInfo.snapshotDir);
+  });
+
   test("compare with no label", async ({ page }, testInfo) => {
     const snapshotDir = "empty-label";
 
@@ -32,8 +40,6 @@ test.describe("Toggle", () => {
     await toggle.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 
   test("compare checked with no label", async ({ page }, testInfo) => {
@@ -66,8 +72,6 @@ test.describe("Toggle", () => {
     await toggle.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 
   test("compare with label", async ({ page }, testInfo) => {
@@ -96,7 +100,5 @@ test.describe("Toggle", () => {
     await toggle.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 });

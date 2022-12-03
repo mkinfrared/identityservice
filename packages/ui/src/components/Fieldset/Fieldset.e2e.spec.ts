@@ -5,6 +5,15 @@ import { test } from "@playwright/test";
 import { compareScreenshots } from "utils/testHelpers";
 
 test.describe("Fieldset", () => {
+  const newTabTitle = "Open canvas in new tab";
+
+  test.afterAll(async ({ screenshot }, testInfo) => {
+    // eslint-disable-next-line no-unused-expressions
+    screenshot;
+
+    await compareScreenshots(3, testInfo.snapshotDir);
+  });
+
   test("compare fieldsets", async ({ page }, testInfo) => {
     const snapshotDir = "default";
 
@@ -24,14 +33,15 @@ test.describe("Fieldset", () => {
 
     await defaultButton.click();
 
-    const fieldset = page
-      .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=Fieldset");
+    const newTabLink = page.getByTitle(newTabTitle);
+    const href = await newTabLink.getAttribute("href");
+
+    await page.goto(`/${href!}`);
+
+    const fieldset = page.getByTestId("Fieldset");
 
     await fieldset.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 });

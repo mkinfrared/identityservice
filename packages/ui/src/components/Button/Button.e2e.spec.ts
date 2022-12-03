@@ -5,6 +5,13 @@ import { test } from "@playwright/test";
 import { compareScreenshots } from "utils/testHelpers";
 
 test.describe("Button", () => {
+  test.afterAll(async ({ screenshot }, testInfo) => {
+    // eslint-disable-next-line no-unused-expressions
+    screenshot;
+
+    await compareScreenshots(10, testInfo.snapshotDir);
+  });
+
   test("compare default button", async ({ page }, testInfo) => {
     const snapshotDir = "default";
 
@@ -32,8 +39,6 @@ test.describe("Button", () => {
     await button.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 
   test("compare disabled state", async ({ page }, testInfo) => {
@@ -67,8 +72,6 @@ test.describe("Button", () => {
     await button.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 
   test("compare outlined variant", async ({ page }, testInfo) => {
@@ -94,6 +97,8 @@ test.describe("Button", () => {
 
     await variantControl.click();
 
+    await page.waitForTimeout(200);
+
     const button = page
       .frameLocator("#storybook-preview-iframe")
       .locator("data-testid=Button")
@@ -102,7 +107,5 @@ test.describe("Button", () => {
     await button.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 });

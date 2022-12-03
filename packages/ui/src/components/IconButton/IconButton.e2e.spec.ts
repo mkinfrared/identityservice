@@ -5,6 +5,13 @@ import { test } from "@playwright/test";
 import { compareScreenshots } from "utils/testHelpers";
 
 test.describe("IconButton", () => {
+  test.afterAll(async ({ screenshot }, testInfo) => {
+    // eslint-disable-next-line no-unused-expressions
+    screenshot;
+
+    await compareScreenshots(14, testInfo.snapshotDir);
+  });
+
   test("compare default", async ({ page }, testInfo) => {
     const snapshotDir = "default";
 
@@ -32,8 +39,6 @@ test.describe("IconButton", () => {
     await iconButton.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 
   test("compare outline variant", async ({ page }, testInfo) => {
@@ -67,8 +72,6 @@ test.describe("IconButton", () => {
     await iconButton.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 
   test("compare outline loading variant", async ({ page }, testInfo) => {
@@ -106,8 +109,6 @@ test.describe("IconButton", () => {
     await iconButton.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 
   test("compare contained loading variant", async ({ page }, testInfo) => {
@@ -141,7 +142,5 @@ test.describe("IconButton", () => {
     await iconButton.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 });
