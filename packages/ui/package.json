@@ -20,14 +20,14 @@
     "e2e": "pnpm e2e:prepare && pnpm e2e:run",
     "e2e:run": "pnpm dlx playwright test -c src/playwright.config.ts",
     "e2e:debug": "cross-env PWDEBUG=console pnpm dlx playwright test -c src/playwright.config.ts",
-    "e2e:prepare": "pnpm dlx playwright install --with-deps"
+    "e2e:prepare": "npx dlx playwright install --with-deps"
   },
   "dependencies": {
     "react-use": "^17.3.2"
   },
   "devDependencies": {
     "@identity-service/core": "workspace:*",
-    "@playwright/test": "^1.28.1",
+    "@playwright/test": "^1.30.0",
     "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-commonjs": "^21.0.3",
     "@rollup/plugin-node-resolve": "^13.3.0",
