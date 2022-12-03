@@ -5,7 +5,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "cross-env webpack && pnpm postbuild",
-    "postbuild": "purgecss --css ../wwwroot/static/css/*.css --content ../wwwroot/index.html \"../wwwroot/static/js/*.js\" --output ../wwwroot/static/css",
+    "postbuild": "purgecss --config ./config/purgecss.config.js",
     "build:analyze": "cross-env webpack && webpack-bundle-analyzer ../wwwroot/stats.json",
     "build:watch": "cross-env NODE_ENV=development webpack",
     "test": "cross-env CI=true react-scripts test --collectCoverage",
@@ -74,7 +74,9 @@
     "loader-utils": "^3.2.0",
     "mini-css-extract-plugin": "2.6.0",
     "open-cli": "^7.0.1",
+    "postcss": "^8.4.13",
     "postcss-loader": "^6.2.1",
+    "postcss-preset-env": "^7.8.3",
     "purgecss": "^5.0.0",
     "raw-loader": "^4.0.2",
     "react-scripts": "^5.0.1",

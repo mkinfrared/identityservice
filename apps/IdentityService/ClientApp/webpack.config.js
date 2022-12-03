@@ -8,7 +8,9 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { StatsWriterPlugin } = require("webpack-stats-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const postcssPresetEnv = require("postcss-preset-env");
 
+const { buildDir } = require("./config/appPaths");
 const getLocalIdent = require("./getLocalIdent");
 
 const cssRegex = /\.css$/;
@@ -81,7 +83,7 @@ const rules = [
         loader: "postcss-loader",
         options: {
           postcssOptions: {
-            plugins: ["autoprefixer"],
+            plugins: ["autoprefixer", postcssPresetEnv({ stage: 0 })],
           },
         },
       },
@@ -109,7 +111,7 @@ const rules = [
         loader: "postcss-loader",
         options: {
           postcssOptions: {
-            plugins: ["autoprefixer"],
+            plugins: ["autoprefixer", postcssPresetEnv({ stage: 0 })],
           },
         },
       },
@@ -180,7 +182,7 @@ const config = {
     assetModuleFilename: "static/media/[name].[contenthash:8][ext]",
     chunkFilename: "static/js/[name].[contenthash:8].chunk.js",
     filename: "static/js/[name].[contenthash:8].js",
-    path: path.resolve("../wwwroot"),
+    path: buildDir,
   },
   optimization: {
     chunkIds: "named",
