@@ -1,7 +1,9 @@
-type ButtonAttributes = React.ButtonHTMLAttributes<HTMLButtonElement>;
+import { ButtonHTMLAttributes, ReactNode } from "react";
+
+type ButtonAttributes = ButtonHTMLAttributes<HTMLButtonElement>;
 
 export type ButtonProps = ButtonAttributes & {
-  children?: React.ReactNode;
+  children?: ReactNode;
   /**
    * a string that will be applied as a css class to parent element
    */

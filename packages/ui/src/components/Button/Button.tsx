@@ -1,6 +1,6 @@
 /* eslint-disable react/button-has-type */
 import { classNames } from "@identity-service/core";
-import React, { memo } from "react";
+import React from "react";
 
 import Spinner from "components/Spinner";
 
@@ -66,4 +66,4 @@ const Button = ({
 
 export { Button };
 
-export default memo(Button);
+export default Button;

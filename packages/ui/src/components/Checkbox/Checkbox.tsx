@@ -2,7 +2,8 @@ import { classNames, mergeRefs } from "@identity-service/core";
 import React, { memo } from "react";
 
 import Text from "components/Text";
-import { ReactComponent as Tick } from "icons/tick.svg";
+
+import { ReactComponent as Tick } from "../../icons/tick.svg";
 
 import css from "./Checkbox.module.scss";
 import { CheckboxProps } from "./Checkbox.type";

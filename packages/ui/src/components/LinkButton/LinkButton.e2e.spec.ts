@@ -5,6 +5,13 @@ import { test } from "@playwright/test";
 import { compareScreenshots } from "utils/testHelpers";
 
 test.describe("LinkButton", () => {
+  test.afterAll(async ({ screenshot }, testInfo) => {
+    // eslint-disable-next-line no-unused-expressions
+    screenshot;
+
+    await compareScreenshots(14, testInfo.snapshotDir);
+  });
+
   test("compare contained group", async ({ page }, testInfo) => {
     const snapshotDir = "contained";
 
@@ -24,16 +31,15 @@ test.describe("LinkButton", () => {
 
     await defaultButton.click();
 
+    // const linkButton = await page.getByRole("link", { name: "Contained" });
     const linkButton = page
       .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=LinkButton")
-      .first();
+      .getByTestId("LinkButton")
+      .filter({ hasText: "Contained" });
 
     await linkButton.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 
   test("compare outlined variant", async ({ page }, testInfo) => {
@@ -55,19 +61,13 @@ test.describe("LinkButton", () => {
 
     await defaultButton.click();
 
-    const variantControl = page.locator("#control-variant-1");
-
-    await variantControl.click();
-
-    const button = page
+    const linkButton = page
       .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=LinkButton")
-      .first();
+      .getByTestId("LinkButton")
+      .filter({ hasText: "Outlined" });
 
-    await button.screenshot({
+    await linkButton.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 });

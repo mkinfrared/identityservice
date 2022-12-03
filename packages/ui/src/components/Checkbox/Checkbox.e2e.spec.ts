@@ -6,6 +6,13 @@ import { test } from "@playwright/test";
 import { compareScreenshots } from "utils/testHelpers";
 
 test.describe("Checkbox", () => {
+  test.afterAll(async ({ screenshot }, testInfo) => {
+    // eslint-disable-next-line no-unused-expressions
+    screenshot;
+
+    await compareScreenshots(8, testInfo.snapshotDir);
+  });
+
   test("compare with no label", async ({ page }, testInfo) => {
     const snapshotDir = "empty-label";
 
@@ -32,8 +39,6 @@ test.describe("Checkbox", () => {
     await checkbox.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 
   test("compare checked with no label", async ({ page }, testInfo) => {
@@ -66,8 +71,6 @@ test.describe("Checkbox", () => {
     await checkbox.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 
   test("compare with label", async ({ page }, testInfo) => {
@@ -96,7 +99,5 @@ test.describe("Checkbox", () => {
     await checkbox.screenshot({
       path: snapshotPath,
     });
-
-    await compareScreenshots(testInfo.snapshotDir, snapshotDir);
   });
 });

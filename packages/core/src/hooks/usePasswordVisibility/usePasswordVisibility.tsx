@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from "react";
 
-import { ReactComponent as Hidden } from "icons/visibility-off.svg";
-import { ReactComponent as Visible } from "icons/visibility.svg";
+import { ReactComponent as Hidden } from "../../icons/visibility-off.svg";
+import { ReactComponent as Visible } from "../../icons/visibility.svg";
 
 const usePasswordVisibility = () => {
   const [visible, setVisible] = useState(false);
