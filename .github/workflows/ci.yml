@@ -21,7 +21,7 @@ jobs:
 
       - uses: pnpm/action-setup@v2.0.1
         with:
-          version: 7.1.0
+          version: 7.17.1
             
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
@@ -73,7 +73,7 @@ jobs:
 
       - uses: pnpm/action-setup@v2.0.1
         with:
-          version: 6.32.2
+          version: 7.17.1
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
@@ -94,6 +94,9 @@ jobs:
       - name: Build storybook
         run: |
           pnpm build-storybook
+          
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps    
 
       - name: e2e
         run: |
@@ -113,7 +116,7 @@ jobs:
 
       - uses: pnpm/action-setup@v2.0.1
         with:
-          version: 6.32.2
+          version: 7.17.1
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
@@ -135,6 +138,9 @@ jobs:
         run: |
           pnpm build-storybook
 
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+        
       - name: e2e
         run: |
           pnpm e2e
@@ -153,7 +159,7 @@ jobs:
 
       - uses: pnpm/action-setup@v2.0.1
         with:
-          version: 6.32.2
+          version: 7.17.1
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
@@ -174,7 +180,7 @@ jobs:
       - name: Build storybook
         run: |
           pnpm build-storybook
-
+        
       - name: e2e
         run: |
           pnpm e2e

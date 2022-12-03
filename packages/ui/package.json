@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@identity-service/core": "workspace:*",
-    "@playwright/test": "^1.28.0",
+    "@playwright/test": "^1.28.1",
     "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-commonjs": "^21.0.3",
     "@rollup/plugin-node-resolve": "^13.3.0",
