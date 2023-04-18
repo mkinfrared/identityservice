@@ -1,7 +1,8 @@
 var target = Argument("target", "Open");
 
-#addin nuget:?package=Cake.Coverlet&version=2.5.4
-#addin nuget:?package=Cake.Yarn&version=0.4.8
+#addin nuget:?package=Cake.Coverlet&version=3.0.4
+#addin nuget:?package=Cake.Yarn&version=2.0.0
+#addin nuget:?package=Cake.Pnpm&version=1.0.0
 #tool nuget:?package=ReportGenerator&version=5.0.3
 
 /*  Specify the relative paths to your tests projects here. */
@@ -33,14 +34,14 @@ Task("Clean")
 Task("TestTS")
     .Does(() =>
 {
-    Yarn.FromPath(rootDirectory).RunScript("test");
+    PnpmTest();
 });
 
 Task("TestNet")
     .IsDependentOn("Clean")
     .Does(() =>
 {
-    var testSettings = new DotNetCoreTestSettings
+    var testSettings = new DotNetTestSettings
     {
         // 'trx' files will be used to publish the results of tests' execution in an Azure DevOps pipeline.
         ArgumentCustomization = args =>
@@ -80,11 +81,11 @@ Task("TestNet")
     if (testProjectsRelativePaths.Length == 1)
     {
         coverletSettings.CoverletOutputFormat  = CoverletOutputFormat.cobertura;
-        DotNetCoreTest(testProjectsRelativePaths[0], testSettings, coverletSettings);
+        DotNetTest(testProjectsRelativePaths[0], testSettings, coverletSettings);
     }
     else
     {
-        DotNetCoreTest(testProjectsRelativePaths[0], testSettings, coverletSettings);
+        DotNetTest(testProjectsRelativePaths[0], testSettings, coverletSettings);
 
         coverletSettings.MergeWithFile = jsonFilePath;
         for (int i = 1; i < testProjectsRelativePaths.Length; i++)
@@ -94,7 +95,7 @@ Task("TestNet")
                 coverletSettings.CoverletOutputFormat  = CoverletOutputFormat.cobertura;
             }
 
-            DotNetCoreTest(testProjectsRelativePaths[i], testSettings, coverletSettings);
+            DotNetTest(testProjectsRelativePaths[i], testSettings, coverletSettings);
         }
     }
 });
