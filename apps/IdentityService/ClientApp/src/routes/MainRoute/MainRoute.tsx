@@ -4,6 +4,8 @@ import { Route, Routes } from "react-router-dom";
 
 import { MainRouteProps, MainRoutes } from "./MainRoute.type";
 
+// https://localhost:3000/account/confirmEmail?ReturnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3Didentity_admin_client%26redirect_uri%3Dhttps%253A%252F%252Flocalhost%253A4001%252Fsignin-callback.html%26response_type%3Dcode%26scope%3Dopenid%2520profile%2520OrdersApi%26state%3D23df947e40ec4531a85e606db8da06e2%26code_challenge%3DG-bSPoO3MQgVVyKXGStqbpXDtn6GX9hE6ec69HYe1Sc%26code_challenge_method%3DS256%26response_mode%3Dquery
+
 const ConsentForm = lazyImport(
   () =>
     import(

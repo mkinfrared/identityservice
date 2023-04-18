@@ -1,4 +1,7 @@
 {
   "extends": ["../../../.eslintrc"],
-  "ignorePatterns": ["craco*"]
+  "ignorePatterns": ["craco*"],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
 }

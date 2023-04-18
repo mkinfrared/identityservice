@@ -64,6 +64,7 @@ public class Startup
         );
 
         app.UseRouting();
+        app.UseCors();
 
         app.UseIdentityServer();
 
@@ -73,7 +74,9 @@ public class Startup
         app.UseEndpoints(
             endpoints =>
             {
-                endpoints.MapControllerRoute("default", "{controller}/{action=Index}/{id?}");
+                endpoints
+                    .MapControllerRoute("default", "{controller}/{action=Index}/{id?}")
+                    .RequireCors("SafeOrigins");
             }
         );
     }

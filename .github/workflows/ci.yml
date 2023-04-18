@@ -2,32 +2,31 @@ name: CI
 
 on:
   push:
-    branches: [ develop ]
+    branches: [develop]
   pull_request:
-    branches: [ develop ]
+    branches: [develop]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [16.x]
-        dotnet: [ '6.0.x' ]
+        node-version: [18.x]
+        dotnet: ["6.0.x"]
 
     steps:
       - uses: actions/checkout@v3
 
       - uses: pnpm/action-setup@v2.0.1
         with:
-          version: 7.17.1
-            
+          version: 8.3.0
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
+          cache: "pnpm"
 
       - name: Setup dotnet
         uses: actions/setup-dotnet@v2
@@ -43,16 +42,16 @@ jobs:
         run: |
           pnpm build
           dotnet build
-      
+
       - name: Build storybook
         run: pnpm build-storybook
-      
+
       - name: Lint
-        run: | 
+        run: |
           pnpm lint
           dotnet tool restore
           dotnet format
-      
+
       - name: Test
         run: |
           npm i -g yarn
@@ -60,14 +59,13 @@ jobs:
           dotnet cake test.cake
 
   e2e-linux:
-    
     runs-on: ubuntu-latest
-    
+
     strategy:
       matrix:
-        node-version: [ 16.x ]
-        dotnet: [ '6.0.x' ]
-    
+        node-version: [18.x]
+        dotnet: ["6.0.x"]
+
     steps:
       - uses: actions/checkout@v3
 
@@ -79,7 +77,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
+          cache: "pnpm"
 
       - name: Setup dotnet
         uses: actions/setup-dotnet@v2
@@ -90,24 +88,23 @@ jobs:
         run: |
           pnpm install
           dotnet restore
-          
+
       - name: Build storybook
         run: |
-          pnpm build-storybook  
+          pnpm build-storybook
 
       - name: e2e
         run: |
           pnpm e2e
 
   e2e-macos:
-    
     runs-on: macos-latest
-    
+
     strategy:
       matrix:
-        node-version: [ 16.x ]
-        dotnet: [ '6.0.x' ]
-    
+        node-version: [18.x]
+        dotnet: ["6.0.x"]
+
     steps:
       - uses: actions/checkout@v3
 
@@ -119,7 +116,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
+          cache: "pnpm"
 
       - name: Setup dotnet
         uses: actions/setup-dotnet@v2
@@ -130,24 +127,23 @@ jobs:
         run: |
           pnpm install
           dotnet restore
-          
+
       - name: Build storybook
         run: |
           pnpm build-storybook
-        
+
       - name: e2e
         run: |
           pnpm e2e
 
   e2e-win:
-    
     runs-on: windows-latest
-    
+
     strategy:
       matrix:
-        node-version: [ 16.x ]
-        dotnet: [ '6.0.x' ]
-    
+        node-version: [18.x]
+        dotnet: ["6.0.x"]
+
     steps:
       - uses: actions/checkout@v3
 
@@ -159,7 +155,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
+          cache: "pnpm"
 
       - name: Setup dotnet
         uses: actions/setup-dotnet@v2
@@ -174,7 +170,7 @@ jobs:
       - name: Build storybook
         run: |
           pnpm build-storybook
-        
+
       - name: e2e
         run: |
           pnpm e2e

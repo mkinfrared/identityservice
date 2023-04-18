@@ -6,10 +6,10 @@ export type MainProps = {
 };
 
 export enum Routes {
-  CONSENT = "consent",
-  CONFIRM_EMAIL = "confirmEmail",
-  LOGIN = "login",
-  REGISTER = "register",
-  FORGOT_PASSWORD = "forgotPassword",
-  PASSWORD_RESET = "resetPassword",
+  LOGIN = "/account/login",
+  REGISTER = "/account/register",
+  CONFIRM_EMAIL = "/account/confirmEmail",
+  FORGOT_PASSWORD = "/account/forgotPassword",
+  RESET_PASSWORD = "/account/resetPassword",
+  CONSENT = "/consent",
 }

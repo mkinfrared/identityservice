@@ -18,7 +18,7 @@ const usePasswordVisibility = () => {
     return <Visible />;
   }, [visible]);
 
-  const fieldType: "text" | "password" = visible ? "text" : "password";
+  const fieldType: "password" | "text" = visible ? "text" : "password";
 
   return { togglePasswordVisibility, Icon, fieldType };
 };

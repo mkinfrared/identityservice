@@ -69,7 +69,7 @@ describe("<LoginForm />", () => {
 
     await waitFor(() => expect(submitButton).toBeEnabled());
 
-    await fireEvent.submit(submitButton);
+    fireEvent.submit(submitButton);
 
     await waitFor(() => expect(mutationsMock.loginMutation).toHaveBeenCalled());
 
@@ -104,7 +104,7 @@ describe("<LoginForm />", () => {
 
     await waitFor(() => expect(submitButton).toBeEnabled());
 
-    await fireEvent.submit(submitButton);
+    fireEvent.submit(submitButton);
 
     await waitFor(() => expect(mutationsMock.loginMutation).toHaveBeenCalled());
 
