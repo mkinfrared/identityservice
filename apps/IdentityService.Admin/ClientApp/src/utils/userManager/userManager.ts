@@ -29,6 +29,8 @@ const settings: UserManagerSettings = {
   automaticSilentRenew: true,
   // userStore should match the store with signin callback and silent signin
   userStore: new WebStorageStateStore({ store: window.localStorage }),
+  mergeClaims: true,
+  loadUserInfo: true,
   // Make sure this is not added to settings
   // loadUserInfo: true,
   // Should be in callbacks
@@ -48,5 +50,7 @@ userManager.events.addAccessTokenExpired((event) => {
 
   console.log(event);
 });
+
+(window as any).userManager = userManager;
 
 export default userManager;

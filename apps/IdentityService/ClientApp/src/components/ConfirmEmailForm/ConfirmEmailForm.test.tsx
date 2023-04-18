@@ -80,7 +80,7 @@ describe("<ConfirmEmailForm />", () => {
 
     await waitFor(() => expect(submitButton).toBeEnabled());
 
-    await fireEvent.submit(submitButton);
+    fireEvent.submit(submitButton);
 
     await waitFor(() =>
       expect(mutationsMock.verifyEmailMutation).toHaveBeenCalled(),
@@ -105,7 +105,7 @@ describe("<ConfirmEmailForm />", () => {
 
     await waitFor(() => expect(submitButton).toBeEnabled());
 
-    await fireEvent.submit(submitButton);
+    fireEvent.submit(submitButton);
 
     await waitFor(() =>
       expect(mutationsMock.verifyEmailMutation).not.toHaveBeenCalled(),

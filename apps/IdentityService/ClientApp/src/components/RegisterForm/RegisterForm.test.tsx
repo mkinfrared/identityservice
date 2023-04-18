@@ -1,4 +1,5 @@
 import { fireEvent, render, waitFor } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 
 import * as mutations from "api/mutations";
 
@@ -8,27 +9,25 @@ jest.mock("api/mutations");
 
 jest.mock("components/AppLink");
 
+const mockNavigate = jest.fn();
+
+jest.mock("react-router-dom", () => ({
+  ...(jest.requireActual("react-router-dom") as any),
+  useNavigate: () => mockNavigate,
+}));
+
 describe("<RegisterForm />", () => {
-  const { location } = window;
   const mutationsMock = mutations as jest.Mocked<typeof mutations>;
   const returnUrl = "https://marklar.com";
-  const Component = <RegisterForm returnUrl={returnUrl} />;
 
-  beforeAll(() => {
-    Object.defineProperty(window, "location", {
-      configurable: true,
-      value: {
-        ...location,
-        replace: jest.fn(),
-      },
-    });
-  });
+  const Component = (
+    <MemoryRouter>
+      <RegisterForm returnUrl={returnUrl} />
+    </MemoryRouter>
+  );
 
-  afterAll(() => {
-    Object.defineProperty(window, "location", {
-      configurable: true,
-      value: location,
-    });
+  beforeEach(() => {
+    jest.resetAllMocks();
   });
 
   it("should be defined", () => {
@@ -92,7 +91,6 @@ describe("<RegisterForm />", () => {
     const userId = "00000000-0000-0000-0000-000000000000";
     const token = "fake-token";
     const registerResponse = { userId, token, code: null };
-    const replaceState = jest.spyOn(window.history, "replaceState");
 
     mutationsMock.registerMutation.mockResolvedValueOnce(registerResponse);
 
@@ -145,7 +143,7 @@ describe("<RegisterForm />", () => {
 
     await waitFor(() => expect(submitButton).toBeEnabled());
 
-    await fireEvent.submit(submitButton);
+    fireEvent.submit(submitButton);
 
     await waitFor(() =>
       expect(mutationsMock.registerMutation).toHaveBeenCalled(),
@@ -155,7 +153,7 @@ describe("<RegisterForm />", () => {
 
     expect(mutationsMock.registerMutation).toHaveBeenCalledWith(data);
 
-    expect(replaceState).toHaveBeenCalled();
+    expect(mockNavigate).toHaveBeenCalled();
   });
 
   it("should display an error on bad network request", async () => {
@@ -222,7 +220,7 @@ describe("<RegisterForm />", () => {
 
     await waitFor(() => expect(submitButton).toBeEnabled());
 
-    await fireEvent.submit(submitButton);
+    fireEvent.submit(submitButton);
 
     await waitFor(() =>
       expect(mutationsMock.registerMutation).toHaveBeenCalled(),

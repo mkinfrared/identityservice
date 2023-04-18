@@ -7,6 +7,7 @@ import {
 import { Button, Heading, Text } from "@identity-service/ui";
 import { memo } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { registerMutation } from "api/mutations";
 import { RegisterCommand } from "api/types";
@@ -33,6 +34,9 @@ const RegisterForm = ({ className, returnUrl }: RegisterFormProps) => {
     redirectUrl: returnUrl,
   };
 
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+
   const { register, formState, handleSubmit, setError } =
     useForm<RegisterCommand>({
       defaultValues,
@@ -53,13 +57,10 @@ const RegisterForm = ({ className, returnUrl }: RegisterFormProps) => {
 
       sessionStorage.setItem("returnUrl", returnUrl);
 
-      const { location, history } = window;
-      const pathname = `/account/${Routes.CONFIRM_EMAIL}`;
-      const url = new URL(location.href);
-
-      url.pathname = pathname;
-
-      history.replaceState({}, "", url.toString());
+      navigate({
+        search: searchParams.toString(),
+        pathname: Routes.CONFIRM_EMAIL,
+      });
     } catch (e) {
       if (isAxiosError(e)) {
         const { response } = e;

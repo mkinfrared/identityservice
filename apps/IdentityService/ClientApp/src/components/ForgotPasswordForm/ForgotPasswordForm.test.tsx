@@ -42,7 +42,7 @@ describe("<ForgotPasswordForm />", () => {
 
     fireEvent.change(emailField!, { target: { value: data.email } });
 
-    await fireEvent.submit(submitButton);
+    fireEvent.submit(submitButton);
 
     await waitFor(async () => {
       expect(mutationsMock.submitForgotPassword).toHaveBeenCalled();
@@ -69,7 +69,7 @@ describe("<ForgotPasswordForm />", () => {
 
     fireEvent.change(emailField!, { target: { value: data.email } });
 
-    await fireEvent.submit(submitButton);
+    fireEvent.submit(submitButton);
 
     await waitFor(() => {
       expect(mutationsMock.submitForgotPassword).not.toHaveBeenCalled();
@@ -97,7 +97,7 @@ describe("<ForgotPasswordForm />", () => {
 
     fireEvent.change(emailField!, { target: { value: data.email } });
 
-    await fireEvent.submit(submitButton);
+    fireEvent.submit(submitButton);
 
     await waitFor(async () => {
       expect(mutationsMock.submitForgotPassword).toHaveBeenCalled();

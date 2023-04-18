@@ -8,7 +8,7 @@
  * classNames(false, "foo", undefined, "bar");
  */
 const classNames = (
-  ...args: (string | number | undefined | null | boolean)[]
+  ...args: (boolean | number | string | null | undefined)[]
 ) => args.filter((arg) => !!arg).join(" ");
 
 export { classNames };

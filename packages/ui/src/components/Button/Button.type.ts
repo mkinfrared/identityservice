@@ -19,6 +19,6 @@ export type ButtonProps = ButtonAttributes & {
   variant?: ButtonVariants;
 };
 
-export type ButtonColors = "primary" | "secondary" | "success" | "error";
+export type ButtonColors = "error" | "primary" | "secondary" | "success";
 
 export type ButtonVariants = "contained" | "outlined";

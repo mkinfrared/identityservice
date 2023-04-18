@@ -18,7 +18,7 @@ Templates:
   locations: [base](https://github.com/acacode/swagger-typescript-api/tree/next/templates/base/route-docs.eta))
 - `route-name.eta` - route name for route in Api class (
   locations: [base](https://github.com/acacode/swagger-typescript-api/tree/next/templates/base/route-name.eta))
-- `route-type.eta` - *(`--route-types` option)* (
+- `route-type.eta` - _(`--route-types` option)_ (
   locations: [base](https://github.com/acacode/swagger-typescript-api/tree/next/templates/base/route-type.eta))
-- `route-types.eta` - *(`--route-types` option)* (
-  locations: [base](https://github.com/acacode/swagger-typescript-api/tree/next/templates/base/route-types.eta))  
+- `route-types.eta` - _(`--route-types` option)_ (
+  locations: [base](https://github.com/acacode/swagger-typescript-api/tree/next/templates/base/route-types.eta))

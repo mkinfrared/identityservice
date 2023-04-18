@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { verifyEmailMutation } from "api/mutations";
 import InputField from "components/InputField";
 import { ReactComponent as Email } from "icons/email-icon.svg";
+import { BASE_URL } from "utils/secrets";
 import { confirmEmailSchema } from "utils/validationSchemas";
 
 import css from "./ConfirmEmailForm.module.scss";
@@ -45,7 +46,7 @@ const ConfirmEmailForm = ({ className, returnUrl }: ConfirmEmailFormProps) => {
 
       await verifyEmailMutation(postData);
 
-      window.location.assign(returnUrl);
+      window.location.replace(BASE_URL + returnUrl);
     } catch (e) {
       console.error(e);
     }
