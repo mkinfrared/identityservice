@@ -1,8 +1,7 @@
 import { lazyImport } from "@identity-service/core";
-import { memo } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import useUserSession from "hooks/useUserSession";
+import { useUserSession } from "shared/lib/hooks";
 
 import { AppRoute } from "./AppRoutes.type";
 
@@ -37,11 +36,10 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path={AppRoute.HOME.path} element={<Home />} />
+      <Route path={AppRoute.CLIENTS.path} element={<div>Client</div>} />
       <Route path="*" element={<Navigate to={AppRoute.HOME.path} replace />} />
     </Routes>
   );
 };
 
-export { AppRoutes };
-
-export default memo(AppRoutes);
+export default AppRoutes;

@@ -383,7 +383,8 @@ playwright-report
 
 # production
 build
-lib
+**/core/lib
+**/ui/lib
 storybook-static
 
 # misc

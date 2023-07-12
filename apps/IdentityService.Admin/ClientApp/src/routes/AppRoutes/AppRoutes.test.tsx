@@ -1,11 +1,13 @@
 import { render, waitFor } from "@testing-library/react";
 
-import useUserSession from "hooks/useUserSession";
-import { withRouter } from "utils/testUtils";
+import { withRouter } from "shared/lib/helpers/testUtils";
+import { useUserSession } from "shared/lib/hooks";
 
-import { AppRoutes } from "./AppRoutes";
+import AppRoutes from "./AppRoutes";
 
-jest.mock("hooks/useUserSession");
+jest.mock("shared/lib/hooks", () => ({
+  useUserSession: jest.fn(),
+}));
 
 describe("<AppRoutes />", () => {
   const useUserSessionMock = jest.mocked(useUserSession);

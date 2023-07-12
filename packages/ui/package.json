@@ -18,10 +18,9 @@
     "updates": "ncu",
     "clean": "rm -rf node_modules",
     "build:colors": "sass src/styles/colors.scss src/styles/colors.css",
-    "e2e": "pnpm e2e:prepare && pnpm e2e:run",
-    "e2e:run": "pnpm dlx playwright test -c src/playwright.config.ts",
-    "e2e:debug": "cross-env PWDEBUG=console pnpm dlx playwright test -c src/playwright.config.ts",
-    "e2e:prepare": "pnpm dlx playwright install --with-deps",
+    "e2e": "pnpm e2e:prepare && pnpm exec playwright test -c src/playwright.config.ts",
+    "e2e:debug": "npx playwright test -c src/playwright.config.ts --debug",
+    "e2e:prepare": "npx playwright install --with-deps",
     "readdir": "ts-node src/utils/readDir.ts"
   },
   "dependencies": {
@@ -29,7 +28,7 @@
   },
   "devDependencies": {
     "@identity-service/core": "workspace:*",
-    "@playwright/test": "^1.28.1",
+    "@playwright/test": "^1.36.0",
     "@rollup/plugin-babel": "^6.0.3",
     "@rollup/plugin-commonjs": "^23.0.3",
     "@rollup/plugin-node-resolve": "^15.0.1",

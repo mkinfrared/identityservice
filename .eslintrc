@@ -47,6 +47,7 @@
     "@typescript-eslint/sort-type-constituents": "error",
     "arrow-parens": ["error", "always"],
     "camelcase": "error",
+    "class-methods-use-this": "off",
     "comma-dangle": [
       "error",
       {

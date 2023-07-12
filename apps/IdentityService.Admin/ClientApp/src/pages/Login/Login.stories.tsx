@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react";
 
-import { Login } from "./Login";
+import Login from "./Login";
 import { LoginProps } from "./Login.type";
 import css from "./Story.module.scss";
 

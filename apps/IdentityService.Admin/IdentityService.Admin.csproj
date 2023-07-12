@@ -38,6 +38,11 @@
 
     <ItemGroup>
         <Folder Include="$(SpaRoot)\src\images" />
+        <Folder Include="ClientApp\src\app\providers\" />
+        <Folder Include="ClientApp\src\entities\" />
+        <Folder Include="ClientApp\src\features\" />
+        <Folder Include="ClientApp\src\shared\config\" />
+        <Folder Include="ClientApp\src\widgets\main\ui\" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
