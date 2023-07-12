@@ -58,6 +58,7 @@
     "rollup-plugin-ts-treeshaking": "^1.0.2",
     "rollup-plugin-visualizer": "^5.8.3",
     "sass": "^1.56.1",
+    "storybook-addon-turbo-build": "^2.0.1",
     "storybook-design-token": "^2.8.0",
     "tslib": "^2.4.1",
     "typescript": "^4.9.3"

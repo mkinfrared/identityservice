@@ -80,6 +80,7 @@
     "rollup-plugin-visualizer": "^5.8.3",
     "sass": "^1.56.1",
     "storybook-addon-react-docgen": "^1.2.42",
+    "storybook-addon-turbo-build": "^2.0.1",
     "storybook-design-token": "^2.8.0",
     "ts-node": "^10.9.1",
     "tslib": "^2.4.1",

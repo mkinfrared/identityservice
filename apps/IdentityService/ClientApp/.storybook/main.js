@@ -9,6 +9,13 @@ module.exports = {
         scriptsPackageName: "../node_modules/react-scripts",
       },
     },
+    {
+      name: "storybook-addon-turbo-build",
+      options: {
+        // Please refer below tables for available options
+        optimizationLevel: 2,
+      },
+    },
   ],
   core: {
     builder: "webpack5",
