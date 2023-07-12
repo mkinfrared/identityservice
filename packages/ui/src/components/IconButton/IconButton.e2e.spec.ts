@@ -5,13 +5,6 @@ import { test } from "@playwright/test";
 import { compareScreenshots } from "utils/testHelpers";
 
 test.describe("IconButton", () => {
-  test.afterAll(async ({ screenshot }, testInfo) => {
-    // eslint-disable-next-line no-unused-expressions
-    screenshot;
-
-    await compareScreenshots(14, testInfo.snapshotDir);
-  });
-
   test("compare default", async ({ page }, testInfo) => {
     const snapshotDir = "default";
 
@@ -21,24 +14,19 @@ test.describe("IconButton", () => {
       `${testInfo.project.name}.png`,
     );
 
-    await page.goto("/");
+    await page.goto(
+      "/iframe.html?args=&id=ui-iconbutton--default&viewMode=story",
+    );
 
-    const storyButton = page.locator("#ui-iconbutton");
+    const iconButton = page.locator("data-testid=IconButton").first();
 
-    await storyButton.click();
-
-    const defaultButton = page.locator("#ui-iconbutton--default");
-
-    await defaultButton.click();
-
-    const iconButton = page
-      .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=IconButton")
-      .first();
+    await page.waitForTimeout(500);
 
     await iconButton.screenshot({
       path: snapshotPath,
     });
+
+    await compareScreenshots([testInfo.snapshotDir, snapshotDir], 9);
   });
 
   test("compare outline variant", async ({ page }, testInfo) => {
@@ -50,28 +38,19 @@ test.describe("IconButton", () => {
       `${testInfo.project.name}.png`,
     );
 
-    await page.goto("/");
+    await page.goto(
+      "/iframe.html?args=variant:outlined&id=ui-iconbutton--default&viewMode=story",
+    );
 
-    const storyButton = page.locator("#ui-iconbutton");
+    const iconButton = page.locator("data-testid=IconButton").first();
 
-    await storyButton.click();
-
-    const defaultButton = page.locator("#ui-iconbutton--default");
-
-    await defaultButton.click();
-
-    const variantControl = page.locator("#control-variant-1");
-
-    await variantControl.click();
-
-    const iconButton = page
-      .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=IconButton")
-      .first();
+    await page.waitForTimeout(500);
 
     await iconButton.screenshot({
       path: snapshotPath,
     });
+
+    await compareScreenshots([testInfo.snapshotDir, snapshotDir], 12);
   });
 
   test("compare outline loading variant", async ({ page }, testInfo) => {
@@ -83,32 +62,19 @@ test.describe("IconButton", () => {
       `${testInfo.project.name}.png`,
     );
 
-    await page.goto("/");
+    await page.goto(
+      "/iframe.html?args=variant:outlined;loading:true&id=ui-iconbutton--default&viewMode=story",
+    );
 
-    const storyButton = page.locator("#ui-iconbutton");
+    const iconButton = page.locator("data-testid=IconButton").first();
 
-    await storyButton.click();
-
-    const defaultButton = page.locator("#ui-iconbutton--default");
-
-    await defaultButton.click();
-
-    const variantControl = page.locator("#control-variant-1");
-
-    await variantControl.click();
-
-    const loadingControl = page.locator("#control-loading");
-
-    await loadingControl.click();
-
-    const iconButton = page
-      .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=IconButton")
-      .first();
+    await page.waitForTimeout(500);
 
     await iconButton.screenshot({
       path: snapshotPath,
     });
+
+    await compareScreenshots([testInfo.snapshotDir, snapshotDir], 14);
   });
 
   test("compare contained loading variant", async ({ page }, testInfo) => {
@@ -120,27 +86,18 @@ test.describe("IconButton", () => {
       `${testInfo.project.name}.png`,
     );
 
-    await page.goto("/");
+    await page.goto(
+      "/iframe.html?args=loading:true&id=ui-iconbutton--default&viewMode=story",
+    );
 
-    const storyButton = page.locator("#ui-iconbutton");
+    const iconButton = page.locator("data-testid=IconButton").first();
 
-    await storyButton.click();
-
-    const defaultButton = page.locator("#ui-iconbutton--default");
-
-    await defaultButton.click();
-
-    const loadingControl = page.locator("#control-loading");
-
-    await loadingControl.click();
-
-    const iconButton = page
-      .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=IconButton")
-      .first();
+    await page.waitForTimeout(500);
 
     await iconButton.screenshot({
       path: snapshotPath,
     });
+
+    await compareScreenshots([testInfo.snapshotDir, snapshotDir], 14);
   });
 });

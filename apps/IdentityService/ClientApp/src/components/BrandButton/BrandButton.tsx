@@ -1,6 +1,6 @@
 import { classNames } from "@identity-service/core";
 import { LinkButton } from "@identity-service/ui";
-import { FunctionComponent, HTMLAttributes, createElement, memo } from "react";
+import { createElement, memo } from "react";
 
 import { ReactComponent as Apple } from "icons/brands/apple.svg";
 import { ReactComponent as Epic } from "icons/brands/epic-games.svg";
@@ -13,10 +13,7 @@ import { ReactComponent as Vk } from "icons/brands/vk.svg";
 import css from "./BrandButton.module.scss";
 import { Brand, BrandButtonProps } from "./BrandButton.type";
 
-const brandIcons: Record<
-  Brand,
-  FunctionComponent<HTMLAttributes<SVGSVGElement>>
-> = {
+const brandIcons: Record<Brand, SvgComponent> = {
   [Brand.APPLE]: Apple,
   [Brand.EPIC_GAMES]: Epic,
   [Brand.FACEBOOK]: Facebook,

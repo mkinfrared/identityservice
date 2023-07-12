@@ -5,15 +5,6 @@ import { test } from "@playwright/test";
 import { compareScreenshots } from "utils/testHelpers";
 
 test.describe("Fieldset", () => {
-  const newTabTitle = "Open canvas in new tab";
-
-  test.afterAll(async ({ screenshot }, testInfo) => {
-    // eslint-disable-next-line no-unused-expressions
-    screenshot;
-
-    await compareScreenshots(3, testInfo.snapshotDir);
-  });
-
   test("compare fieldsets", async ({ page }, testInfo) => {
     const snapshotDir = "default";
 
@@ -23,25 +14,18 @@ test.describe("Fieldset", () => {
       `${testInfo.project.name}.png`,
     );
 
-    await page.goto("/");
+    await page.goto(
+      "/iframe.html?args=&id=ui-fieldset--default&viewMode=story",
+    );
 
-    const fieldsetButton = page.locator("#ui-fieldset");
+    const fieldset = page.locator("data-testid=Fieldset");
 
-    await fieldsetButton.click();
-
-    const defaultButton = page.locator("#ui-fieldset--default");
-
-    await defaultButton.click();
-
-    const newTabLink = page.getByTitle(newTabTitle);
-    const href = await newTabLink.getAttribute("href");
-
-    await page.goto(`/${href!}`);
-
-    const fieldset = page.getByTestId("Fieldset");
+    await page.waitForTimeout(500);
 
     await fieldset.screenshot({
       path: snapshotPath,
     });
+
+    await compareScreenshots([testInfo.snapshotDir, snapshotDir], 1);
   });
 });

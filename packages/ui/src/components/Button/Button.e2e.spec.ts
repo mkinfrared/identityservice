@@ -5,13 +5,6 @@ import { test } from "@playwright/test";
 import { compareScreenshots } from "utils/testHelpers";
 
 test.describe("Button", () => {
-  test.afterAll(async ({ screenshot }, testInfo) => {
-    // eslint-disable-next-line no-unused-expressions
-    screenshot;
-
-    await compareScreenshots(10, testInfo.snapshotDir);
-  });
-
   test("compare default button", async ({ page }, testInfo) => {
     const snapshotDir = "default";
 
@@ -21,24 +14,17 @@ test.describe("Button", () => {
       `${testInfo.project.name}.png`,
     );
 
-    await page.goto("/");
+    await page.goto("/iframe.html?args=&id=ui-button--default&viewMode=story");
 
-    const buttonNode = page.locator("#ui-button");
+    const button = page.locator("data-testid=Button").first();
 
-    await buttonNode.click();
-
-    const defaultButton = page.locator("#ui-button--default");
-
-    await defaultButton.click();
-
-    const button = page
-      .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=Button")
-      .first();
+    await page.waitForTimeout(500);
 
     await button.screenshot({
       path: snapshotPath,
     });
+
+    await compareScreenshots([testInfo.snapshotDir, snapshotDir], 13);
   });
 
   test("compare disabled state", async ({ page }, testInfo) => {
@@ -50,28 +36,19 @@ test.describe("Button", () => {
       `${testInfo.project.name}.png`,
     );
 
-    await page.goto("/");
+    await page.goto(
+      "/iframe.html?args=disabled:true&id=ui-button--default&viewMode=story",
+    );
 
-    const buttonNode = page.locator("#ui-button");
+    const button = page.locator("data-testid=Button").first();
 
-    await buttonNode.click();
-
-    const defaultButton = page.locator("#ui-button--default");
-
-    await defaultButton.click();
-
-    const disabledControl = page.locator("#control-disabled");
-
-    await disabledControl.click();
-
-    const button = page
-      .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=Button")
-      .first();
+    await page.waitForTimeout(500);
 
     await button.screenshot({
       path: snapshotPath,
     });
+
+    await compareScreenshots([testInfo.snapshotDir, snapshotDir], 14);
   });
 
   test("compare outlined variant", async ({ page }, testInfo) => {
@@ -83,29 +60,18 @@ test.describe("Button", () => {
       `${testInfo.project.name}.png`,
     );
 
-    await page.goto("/");
+    await page.goto(
+      "/iframe.html?args=variant:outlined&id=ui-button--default&viewMode=story",
+    );
 
-    const buttonNode = page.locator("#ui-button");
+    const button = page.locator("data-testid=Button").first();
 
-    await buttonNode.click();
-
-    const defaultButton = page.locator("#ui-button--default");
-
-    await defaultButton.click();
-
-    const variantControl = page.locator("#control-variant-1");
-
-    await variantControl.click();
-
-    await page.waitForTimeout(200);
-
-    const button = page
-      .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=Button")
-      .first();
+    await page.waitForTimeout(500);
 
     await button.screenshot({
       path: snapshotPath,
     });
+
+    await compareScreenshots([testInfo.snapshotDir, snapshotDir], 21);
   });
 });

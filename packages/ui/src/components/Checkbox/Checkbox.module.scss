@@ -107,7 +107,7 @@
       mask-composite: exclude;
       transition: all 1ms ease-in-out;
       transition-delay: 0s;
-      z-index: -1;
+      z-index: 0;
     }
 
     &::after {
@@ -115,7 +115,7 @@
       opacity: 0;
       transform: scale(0);
       transition: all var(--transition-time) ease-in-out;
-      z-index: -1;
+      z-index: 0;
     }
 
     .tick {
@@ -123,6 +123,7 @@
       opacity: 0;
       transition: opacity var(--transition-time) ease-in-out;
       width: 100%;
+      z-index: 2;
 
       path {
         fill: var(--white);

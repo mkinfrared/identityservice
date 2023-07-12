@@ -386,6 +386,7 @@ build
 **/core/lib
 **/ui/lib
 storybook-static
+*.tokens.css*
 
 # misc
 .DS_Store

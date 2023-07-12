@@ -5,14 +5,7 @@ import { test } from "@playwright/test";
 import { compareScreenshots } from "utils/testHelpers";
 
 test.describe("LinkButton", () => {
-  test.afterAll(async ({ screenshot }, testInfo) => {
-    // eslint-disable-next-line no-unused-expressions
-    screenshot;
-
-    await compareScreenshots(14, testInfo.snapshotDir);
-  });
-
-  test("compare contained group", async ({ page }, testInfo) => {
+  test("compare contained", async ({ page }, testInfo) => {
     const snapshotDir = "contained";
 
     const snapshotPath = path.resolve(
@@ -21,25 +14,19 @@ test.describe("LinkButton", () => {
       `${testInfo.project.name}.png`,
     );
 
-    await page.goto("/");
+    await page.goto(
+      "/iframe.html?args=&id=ui-linkbutton--default&viewMode=story",
+    );
 
-    const buttonNode = page.locator("#ui-linkbutton");
+    const linkButton = page.locator("data-testid=LinkButton").first();
 
-    await buttonNode.click();
-
-    const defaultButton = page.locator("#ui-linkbutton--default");
-
-    await defaultButton.click();
-
-    // const linkButton = await page.getByRole("link", { name: "Contained" });
-    const linkButton = page
-      .frameLocator("#storybook-preview-iframe")
-      .getByTestId("LinkButton")
-      .filter({ hasText: "Contained" });
+    await page.waitForTimeout(500);
 
     await linkButton.screenshot({
       path: snapshotPath,
     });
+
+    await compareScreenshots([testInfo.snapshotDir, snapshotDir], 13);
   });
 
   test("compare outlined variant", async ({ page }, testInfo) => {
@@ -51,23 +38,18 @@ test.describe("LinkButton", () => {
       `${testInfo.project.name}.png`,
     );
 
-    await page.goto("/");
+    await page.goto(
+      "/iframe.html?args=variant:outlined&id=ui-linkbutton--default&viewMode=story",
+    );
 
-    const buttonNode = page.locator("#ui-linkbutton");
+    const button = page.locator("data-testid=LinkButton").first();
 
-    await buttonNode.click();
+    await page.waitForTimeout(500);
 
-    const defaultButton = page.locator("#ui-linkbutton--default");
-
-    await defaultButton.click();
-
-    const linkButton = page
-      .frameLocator("#storybook-preview-iframe")
-      .getByTestId("LinkButton")
-      .filter({ hasText: "Outlined" });
-
-    await linkButton.screenshot({
+    await button.screenshot({
       path: snapshotPath,
     });
+
+    await compareScreenshots([testInfo.snapshotDir, snapshotDir], 21);
   });
 });

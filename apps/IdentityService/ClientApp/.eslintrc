@@ -3,5 +3,13 @@
   "ignorePatterns": ["webpack*"],
   "parserOptions": {
     "project": "./tsconfig.json"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "rules": {
+        "import/no-cycle": "warn"
+      }
+    }
+  ]
 }

@@ -1,18 +1,10 @@
 import path from "path";
 
-import { delay } from "@identity-service/core";
 import { test } from "@playwright/test";
 
 import { compareScreenshots } from "utils/testHelpers";
 
 test.describe("Radio", () => {
-  test.afterAll(async ({ screenshot }, testInfo) => {
-    // eslint-disable-next-line no-unused-expressions
-    screenshot;
-
-    await compareScreenshots(8, testInfo.snapshotDir);
-  });
-
   test("compare with no label", async ({ page }, testInfo) => {
     const snapshotDir = "empty-label";
 
@@ -22,23 +14,19 @@ test.describe("Radio", () => {
       `${testInfo.project.name}.png`,
     );
 
-    await page.goto("/");
+    await page.goto(
+      "/iframe.html?args=label:&id=ui-radio--uncontrolled&viewMode=story",
+    );
 
-    const radioButton = page.locator("#ui-radio");
+    const radio = page.locator("data-testid=Radio");
 
-    await radioButton.click();
-
-    const controlledButton = page.locator("#ui-radio--controlled");
-
-    await controlledButton.click();
-
-    const radio = page
-      .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=Radio");
+    await page.waitForTimeout(500);
 
     await radio.screenshot({
       path: snapshotPath,
     });
+
+    await compareScreenshots([testInfo.snapshotDir, snapshotDir], 1);
   });
 
   test("compare checked with no label", async ({ page }, testInfo) => {
@@ -50,27 +38,19 @@ test.describe("Radio", () => {
       `${testInfo.project.name}.png`,
     );
 
-    await page.goto("/");
+    await page.goto(
+      "/iframe.html?args=label:;checked:true&id=ui-radio--uncontrolled&viewMode=story",
+    );
 
-    const radioButton = page.locator("#ui-radio");
+    const radio = page.locator("data-testid=Radio");
 
-    await radioButton.click();
-
-    const controlledButton = page.locator("#ui-radio--controlled");
-
-    await controlledButton.click();
-
-    const radio = page
-      .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=Radio");
-
-    await radio.click();
-
-    await delay(500);
+    await page.waitForTimeout(500);
 
     await radio.screenshot({
       path: snapshotPath,
     });
+
+    await compareScreenshots([testInfo.snapshotDir, snapshotDir], 1);
   });
 
   test("compare with label", async ({ page }, testInfo) => {
@@ -82,22 +62,18 @@ test.describe("Radio", () => {
       `${testInfo.project.name}.png`,
     );
 
-    await page.goto("/");
+    await page.goto(
+      "/iframe.html?args=checked:true&id=ui-radio--uncontrolled&viewMode=story",
+    );
 
-    const radioButton = page.locator("#ui-radio");
+    const radio = page.locator("data-testid=Radio");
 
-    await radioButton.click();
+    await page.waitForTimeout(500);
 
-    const uncontrolledButton = page.locator("#ui-radio--uncontrolled");
-
-    await uncontrolledButton.click();
-
-    const checkbox = page
-      .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=Radio");
-
-    await checkbox.screenshot({
+    await radio.screenshot({
       path: snapshotPath,
     });
+
+    await compareScreenshots([testInfo.snapshotDir, snapshotDir], 11);
   });
 });
