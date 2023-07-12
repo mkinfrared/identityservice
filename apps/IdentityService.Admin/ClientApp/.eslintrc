@@ -1,6 +1,14 @@
 {
   "extends": ["../../../.eslintrc"],
   "ignorePatterns": ["craco*"],
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "rules": {
+        "import/no-unused-modules": "warn"
+      }
+    }
+  ],
   "parserOptions": {
     "project": "./tsconfig.json"
   }

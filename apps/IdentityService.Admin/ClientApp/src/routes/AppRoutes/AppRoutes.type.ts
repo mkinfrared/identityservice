@@ -10,4 +10,5 @@ export type AppRoutesProps = {
 export const AppRoute = {
   HOME: route(""),
   LOGIN: route("login"),
+  CLIENTS: route("clients"),
 };

@@ -1,7 +1,7 @@
 import { memo } from "react";
 
-import useUserSession from "hooks/useUserSession";
-import userManager from "utils/userManager";
+import { userManager } from "shared/lib/helpers";
+import { useUserSession } from "shared/lib/hooks";
 
 import css from "./Home.module.scss";
 

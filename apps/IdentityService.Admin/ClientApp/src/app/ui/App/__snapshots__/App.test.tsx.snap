@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> should match the snapshot 1`] = `
+<div>
+  <div
+    class="App"
+  >
+    <div
+      class="Header"
+      data-testid="Header"
+    >
+      Header works!!
+    </div>
+    <div
+      class="content"
+    >
+      <div
+        aria-busy="true"
+        aria-live="polite"
+        class="ant-spin ant-spin-lg ant-spin-spinning spinner css-dev-only-do-not-override-1m62vyb"
+      >
+        <span
+          class="ant-spin-dot ant-spin-dot-spin"
+        >
+          <i
+            class="ant-spin-dot-item"
+          />
+          <i
+            class="ant-spin-dot-item"
+          />
+          <i
+            class="ant-spin-dot-item"
+          />
+          <i
+            class="ant-spin-dot-item"
+          />
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;

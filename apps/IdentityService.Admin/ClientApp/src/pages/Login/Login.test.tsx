@@ -1,10 +1,10 @@
 import { fireEvent, render } from "@testing-library/react";
 
-import userManager from "utils/userManager";
+import { userManager } from "shared/lib/helpers";
 
-import { Login } from "./Login";
+import Login from "./Login";
 
-jest.mock("utils/userManager");
+jest.mock("shared/lib/helpers");
 
 describe("<Login />", () => {
   const userManagerMock = jest.mocked(userManager);

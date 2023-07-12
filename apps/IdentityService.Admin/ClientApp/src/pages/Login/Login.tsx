@@ -1,7 +1,7 @@
 import { Button } from "@identity-service/ui";
-import { memo, useCallback } from "react";
+import { useCallback } from "react";
 
-import userManager from "utils/userManager";
+import { userManager } from "shared/lib/helpers";
 
 import css from "./Login.module.scss";
 
@@ -17,6 +17,4 @@ const Login = () => {
   );
 };
 
-export { Login };
-
-export default memo(Login);
+export default Login;

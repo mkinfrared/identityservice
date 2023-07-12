@@ -2,7 +2,7 @@ import { act, render } from "@testing-library/react";
 
 import { Home } from "./Home";
 
-jest.mock("utils/userManager");
+jest.mock("shared/lib/hooks", () => ({ useUserSession: jest.fn() }));
 
 describe("<Home />", () => {
   const Component = <Home />;

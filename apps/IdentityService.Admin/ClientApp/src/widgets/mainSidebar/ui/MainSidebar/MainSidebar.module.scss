@@ -1,0 +1,14 @@
+.MainSidebar {
+  background-color: cornflowerblue;
+  max-width: 400px;
+
+  a {
+    display: block;
+    text-decoration: none;
+  }
+
+  .listItem {
+    display: block;
+    width: 100%;
+  }
+}
