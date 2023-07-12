@@ -1,11 +1,11 @@
-import { SchemaOf } from "yup";
+import { ObjectSchema } from "yup";
 import * as yup from "yup";
 
 import { RegisterCommand } from "api/types";
 
 import { passwordValidation } from "../validationObjects";
 
-const registerSchema: SchemaOf<RegisterCommand> = yup.object().shape({
+const registerSchema: ObjectSchema<RegisterCommand> = yup.object().shape({
   username: yup.string().required(),
   firstName: yup.string().required(),
   lastName: yup.string().required(),

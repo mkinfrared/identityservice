@@ -1,34 +1,39 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */
 import { action } from "@storybook/addon-actions";
-import { Meta, Story } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
 import Text from "components/Text";
 
 import { FakeButton } from "./FakeButton";
-import { FakeButtonProps } from "./FakeButton.type";
 import css from "./Story.module.scss";
 
-export default {
+type Story = StoryObj<typeof FakeButton>;
+
+const meta = {
   title: "UI/FakeButton",
   component: FakeButton,
-} as Meta;
+  parameters: {
+    componentSubtitle: "Subtitle from template",
+  },
+} satisfies Meta<typeof FakeButton>;
 
-const Template: Story<FakeButtonProps> = (args) => (
-  <div className={css.Story} onClick={action("Bubbled Synthetic Click")}>
-    <FakeButton {...args} />
-    <FakeButton {...args} />
-    <FakeButton {...args} />
-    <FakeButton {...args} />
-    <FakeButton {...args} />
-  </div>
-);
-
-const Default = Template.bind({});
-
-Default.args = {
-  children: <Text>I am a Fake Button</Text>,
-  onClick: action("Synthetic Event"),
+const Default: Story = {
+  args: {
+    children: <Text>I am a Fake Button</Text>,
+    onClick: action("Synthetic Event"),
+  },
+  render: (args) => (
+    <div className={css.Story} onClick={action("Bubbled Synthetic Click")}>
+      <FakeButton {...args} />
+      <FakeButton {...args} />
+      <FakeButton {...args} />
+      <FakeButton {...args} />
+      <FakeButton {...args} />
+    </div>
+  ),
 };
 
 export { Default };
+
+export default meta;

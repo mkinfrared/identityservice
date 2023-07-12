@@ -1,45 +1,51 @@
 import { classNames } from "@identity-service/core";
-import { Meta, Story } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
 import Text from "components/Text";
 
 import { Card } from "./Card";
-import { CardProps } from "./Card.type";
 import css from "./Story.module.scss";
 
-export default {
+type Story = StoryObj<typeof Card>;
+
+const meta = {
   title: "UI/Card",
   component: Card,
-} as Meta;
+  parameters: {
+    componentSubtitle: "Subtitle from template",
+  },
+} satisfies Meta<typeof Card>;
 
-const Template: Story<CardProps> = () => (
-  <div className={css.Story}>
-    <div className={css.cardContainer}>
-      <Card className={classNames(css.card, css.emptyCard)} />
+const Default: Story = {
+  render: () => (
+    <div className={css.Story}>
+      <div className={css.cardContainer}>
+        <Card className={classNames(css.card, css.emptyCard)} />
+      </div>
     </div>
-  </div>
-);
+  ),
+};
 
-const WithTextTemplate: Story<CardProps> = (args) => (
-  <div className={css.Story}>
-    <div className={css.cardContainer}>
-      <Card className={css.card} {...args} />
+const WithText: Story = {
+  args: {
+    children: (
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad autem
+        distinctio labore magnam nam nesciunt nisi odit possimus vero? Aliquam
+        assumenda ea ipsam laboriosam nam quasi voluptatibus? Qui, repellat.
+      </Text>
+    ),
+  },
+  render: (args) => (
+    <div className={css.Story}>
+      <div className={css.cardContainer}>
+        <Card className={css.card} {...args} />
+      </div>
     </div>
-  </div>
-);
-
-const Default = Template.bind({});
-const WithText = WithTextTemplate.bind({});
-
-WithText.args = {
-  children: (
-    <Text>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad autem
-      distinctio labore magnam nam nesciunt nisi odit possimus vero? Aliquam
-      assumenda ea ipsam laboriosam nam quasi voluptatibus? Qui, repellat.
-    </Text>
   ),
 };
 
 export { Default, WithText };
+
+export default meta;

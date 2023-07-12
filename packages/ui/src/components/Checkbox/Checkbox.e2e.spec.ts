@@ -1,19 +1,11 @@
 import path from "path";
 
-import { delay } from "@identity-service/core";
 import { test } from "@playwright/test";
 
 import { compareScreenshots } from "utils/testHelpers";
 
 test.describe("Checkbox", () => {
-  test.afterAll(async ({ screenshot }, testInfo) => {
-    // eslint-disable-next-line no-unused-expressions
-    screenshot;
-
-    await compareScreenshots(8, testInfo.snapshotDir);
-  });
-
-  test("compare with no label", async ({ page }, testInfo) => {
+  test("compare unchecked with no label", async ({ page }, testInfo) => {
     const snapshotDir = "empty-label";
 
     const snapshotPath = path.resolve(
@@ -22,23 +14,19 @@ test.describe("Checkbox", () => {
       `${testInfo.project.name}.png`,
     );
 
-    await page.goto("/");
+    await page.goto(
+      "/iframe.html?args=label:&id=ui-checkbox--uncontrolled&viewMode=story",
+    );
 
-    const checkboxButton = page.locator("#ui-checkbox");
+    const checkbox = page.locator("data-testid=Checkbox");
 
-    await checkboxButton.click();
-
-    const controlledButton = page.locator("#ui-checkbox--controlled");
-
-    await controlledButton.click();
-
-    const checkbox = page
-      .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=Checkbox");
+    await page.waitForTimeout(500);
 
     await checkbox.screenshot({
       path: snapshotPath,
     });
+
+    await compareScreenshots([testInfo.snapshotDir, snapshotDir], 1);
   });
 
   test("compare checked with no label", async ({ page }, testInfo) => {
@@ -50,27 +38,19 @@ test.describe("Checkbox", () => {
       `${testInfo.project.name}.png`,
     );
 
-    await page.goto("/");
+    await page.goto(
+      "/iframe.html?args=label:;checked:true&id=ui-checkbox--uncontrolled&viewMode=story",
+    );
 
-    const checkboxButton = page.locator("#ui-checkbox");
+    const checkbox = page.locator("data-testid=Checkbox");
 
-    await checkboxButton.click();
-
-    const controlledButton = page.locator("#ui-checkbox--controlled");
-
-    await controlledButton.click();
-
-    const checkbox = page
-      .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=Checkbox");
-
-    await checkbox.click();
-
-    await delay(500);
+    await page.waitForTimeout(500);
 
     await checkbox.screenshot({
       path: snapshotPath,
     });
+
+    await compareScreenshots([testInfo.snapshotDir, snapshotDir], 9);
   });
 
   test("compare with label", async ({ page }, testInfo) => {
@@ -82,22 +62,18 @@ test.describe("Checkbox", () => {
       `${testInfo.project.name}.png`,
     );
 
-    await page.goto("/");
+    await page.goto(
+      "/iframe.html?args=checked:true&id=ui-checkbox--uncontrolled&viewMode=story",
+    );
 
-    const checkboxButton = page.locator("#ui-checkbox");
+    const checkbox = page.locator("data-testid=Checkbox");
 
-    await checkboxButton.click();
-
-    const uncontrolledButton = page.locator("#ui-checkbox--uncontrolled");
-
-    await uncontrolledButton.click();
-
-    const checkbox = page
-      .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=Checkbox");
+    await page.waitForTimeout(500);
 
     await checkbox.screenshot({
       path: snapshotPath,
     });
+
+    await compareScreenshots([testInfo.snapshotDir, snapshotDir], 9);
   });
 });

@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import * as mutations from "api/mutations";
 import { withQuery } from "utils/testUtils";
@@ -18,7 +18,7 @@ describe("useConsentSubmitMutation", () => {
   it("should call 'submitConsent'", async () => {
     mutationsMock.submitConsent.mockResolvedValueOnce("42" as any);
 
-    const { result, waitFor } = renderHook(() => hook(), {
+    const { result } = renderHook(() => hook(), {
       wrapper: withQuery,
     });
 

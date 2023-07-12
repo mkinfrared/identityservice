@@ -5,13 +5,6 @@ import { test } from "@playwright/test";
 import { compareScreenshots } from "utils/testHelpers";
 
 test.describe("TextField", () => {
-  test.afterAll(async ({ screenshot }, testInfo) => {
-    // eslint-disable-next-line no-unused-expressions
-    screenshot;
-
-    await compareScreenshots(4.5, testInfo.snapshotDir);
-  });
-
   test("compare empty fields", async ({ page }, testInfo) => {
     const snapshotDir = "empty-fields";
 
@@ -21,27 +14,19 @@ test.describe("TextField", () => {
       `${testInfo.project.name}.png`,
     );
 
-    await page.goto("/");
+    await page.goto(
+      "/iframe.html?args=value:&id=ui-textfield--uncontrolled&viewMode=story",
+    );
 
-    const textFieldButton = page.locator("#ui-textfield");
+    const textField = page.locator("data-testid=TextField");
 
-    await textFieldButton.click();
-
-    const uncontrolledButton = page.locator("#ui-textfield--uncontrolled");
-
-    await uncontrolledButton.click();
-
-    const valueControl = page.locator("#control-value");
-
-    await valueControl.fill("");
-
-    const textField = page
-      .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=TextField");
+    await page.waitForTimeout(500);
 
     await textField.screenshot({
       path: snapshotPath,
     });
+
+    await compareScreenshots([testInfo.snapshotDir, snapshotDir], 2);
   });
 
   test("compare filled fields", async ({ page }, testInfo) => {
@@ -53,23 +38,19 @@ test.describe("TextField", () => {
       `${testInfo.project.name}.png`,
     );
 
-    await page.goto("/");
+    await page.goto(
+      "/iframe.html?args=value:marklar&id=ui-textfield--uncontrolled&viewMode=story",
+    );
 
-    const textFieldButton = page.locator("#ui-textfield");
+    const textField = page.locator("data-testid=TextField");
 
-    await textFieldButton.click();
-
-    const uncontrolledButton = page.locator("#ui-textfield--uncontrolled");
-
-    await uncontrolledButton.click();
-
-    const textField = page
-      .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=TextField");
+    await page.waitForTimeout(500);
 
     await textField.screenshot({
       path: snapshotPath,
     });
+
+    await compareScreenshots([testInfo.snapshotDir, snapshotDir], 1);
   });
 
   test("compare error fields", async ({ page }, testInfo) => {
@@ -81,27 +62,19 @@ test.describe("TextField", () => {
       `${testInfo.project.name}.png`,
     );
 
-    await page.goto("/");
+    await page.goto(
+      "/iframe.html?args=error:marklar&id=ui-textfield--uncontrolled&viewMode=story",
+    );
 
-    const textFieldButton = page.locator("#ui-textfield");
+    const textField = page.locator("data-testid=TextField");
 
-    await textFieldButton.click();
-
-    const uncontrolledButton = page.locator("#ui-textfield--uncontrolled");
-
-    await uncontrolledButton.click();
-
-    const errorControl = page.locator("#control-error");
-
-    await errorControl.fill("marklar");
-
-    const textField = page
-      .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=TextField");
+    await page.waitForTimeout(500);
 
     await textField.screenshot({
       path: snapshotPath,
     });
+
+    await compareScreenshots([testInfo.snapshotDir, snapshotDir], 1);
   });
 
   test("compare disabled fields", async ({ page }, testInfo) => {
@@ -113,27 +86,19 @@ test.describe("TextField", () => {
       `${testInfo.project.name}.png`,
     );
 
-    await page.goto("/");
+    await page.goto(
+      "/iframe.html?args=disabled:true&id=ui-textfield--uncontrolled&viewMode=story",
+    );
 
-    const textFieldButton = page.locator("#ui-textfield");
+    const textField = page.locator("data-testid=TextField");
 
-    await textFieldButton.click();
-
-    const uncontrolledButton = page.locator("#ui-textfield--uncontrolled");
-
-    await uncontrolledButton.click();
-
-    const disabledControl = page.locator("#control-disabled");
-
-    await disabledControl.click();
-
-    const textField = page
-      .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=TextField");
+    await page.waitForTimeout(500);
 
     await textField.screenshot({
       path: snapshotPath,
     });
+
+    await compareScreenshots([testInfo.snapshotDir, snapshotDir], 1);
   });
 
   test("compare with label fields", async ({ page }, testInfo) => {
@@ -145,27 +110,19 @@ test.describe("TextField", () => {
       `${testInfo.project.name}.png`,
     );
 
-    await page.goto("/");
+    await page.goto(
+      "/iframe.html?args=label:Marklar&id=ui-textfield--uncontrolled&viewMode=story",
+    );
 
-    const textFieldButton = page.locator("#ui-textfield");
+    const textField = page.locator("data-testid=TextField");
 
-    await textFieldButton.click();
-
-    const uncontrolledButton = page.locator("#ui-textfield--uncontrolled");
-
-    await uncontrolledButton.click();
-
-    const labelControl = page.locator("#control-label");
-
-    await labelControl.fill("Marklar");
-
-    const textField = page
-      .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=TextField");
+    await page.waitForTimeout(500);
 
     await textField.screenshot({
       path: snapshotPath,
     });
+
+    await compareScreenshots([testInfo.snapshotDir, snapshotDir], 1);
   });
 
   test("compare with prefix", async ({ page }, testInfo) => {
@@ -177,23 +134,19 @@ test.describe("TextField", () => {
       `${testInfo.project.name}.png`,
     );
 
-    await page.goto("/");
+    await page.goto(
+      "/iframe.html?args=&id=ui-textfield--with-prefix&viewMode=story",
+    );
 
-    const textFieldButton = page.locator("#ui-textfield");
+    const textField = page.locator("data-testid=TextField");
 
-    await textFieldButton.click();
-
-    const withPrefixButton = page.locator("#ui-textfield--with-prefix");
-
-    await withPrefixButton.click();
-
-    const textField = page
-      .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=TextField");
+    await page.waitForTimeout(500);
 
     await textField.screenshot({
       path: snapshotPath,
     });
+
+    await compareScreenshots([testInfo.snapshotDir, snapshotDir], 1);
   });
 
   test("compare with suffix", async ({ page }, testInfo) => {
@@ -205,23 +158,19 @@ test.describe("TextField", () => {
       `${testInfo.project.name}.png`,
     );
 
-    await page.goto("/");
+    await page.goto(
+      "/iframe.html?args=&id=ui-textfield--with-suffix&viewMode=story",
+    );
 
-    const textFieldButton = page.locator("#ui-textfield");
+    const textField = page.locator("data-testid=TextField");
 
-    await textFieldButton.click();
-
-    const withSuffixButton = page.locator("#ui-textfield--with-suffix");
-
-    await withSuffixButton.click();
-
-    const textField = page
-      .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=TextField");
+    await page.waitForTimeout(500);
 
     await textField.screenshot({
       path: snapshotPath,
     });
+
+    await compareScreenshots([testInfo.snapshotDir, snapshotDir], 1);
   });
 
   test("compare with prefix and suffix", async ({ page }, testInfo) => {
@@ -233,24 +182,18 @@ test.describe("TextField", () => {
       `${testInfo.project.name}.png`,
     );
 
-    await page.goto("/");
-
-    const textFieldButton = page.locator("#ui-textfield");
-
-    await textFieldButton.click();
-
-    const withPrefixSuffixButton = page.locator(
-      "#ui-textfield--with-prefix-suffix",
+    await page.goto(
+      "/iframe.html?args=&id=ui-textfield--with-prefix-suffix&viewMode=story",
     );
 
-    await withPrefixSuffixButton.click();
+    const textField = page.locator("data-testid=TextField");
 
-    const textField = page
-      .frameLocator("#storybook-preview-iframe")
-      .locator("data-testid=TextField");
+    await page.waitForTimeout(500);
 
     await textField.screenshot({
       path: snapshotPath,
     });
+
+    await compareScreenshots([testInfo.snapshotDir, snapshotDir], 1);
   });
 });

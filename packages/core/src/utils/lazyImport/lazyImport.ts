@@ -21,7 +21,13 @@ const lazyImport = <T extends ComponentType<any>>(
   timeout = 500,
 ) => {
   const result = lazy(() =>
-    Promise.all([lazyFunction(), delay(timeout)]).then(([imp]) => imp),
+    Promise.all([lazyFunction(), delay(timeout)]).then(([imp]) => {
+      if ("default" in imp) {
+        return imp;
+      }
+
+      return { default: imp };
+    }),
   );
 
   return result;

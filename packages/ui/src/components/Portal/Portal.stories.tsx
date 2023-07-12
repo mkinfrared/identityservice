@@ -1,4 +1,5 @@
-import { Meta } from "@storybook/react";
+/* eslint-disable react-hooks/rules-of-hooks */
+import { Meta, StoryObj } from "@storybook/react";
 import React, { useRef } from "react";
 
 import Heading from "components/Heading";
@@ -7,13 +8,15 @@ import Text from "components/Text";
 import { Portal } from "./Portal";
 import css from "./Story.module.scss";
 
-export default {
+type Story = StoryObj<typeof Portal>;
+
+const meta = {
   title: "UI/Portal",
   component: Portal,
   parameters: {
-    componentSubtitle: "Subtitle goes here",
+    componentSubtitle: "Subtitle from template",
   },
-} as Meta;
+} satisfies Meta<typeof Portal>;
 
 const children = (
   <Text>
@@ -31,46 +34,48 @@ const children = (
   </Text>
 );
 
-const ReplaceHtml = () => {
-  const ref = useRef<HTMLDivElement | null>(null);
+const ReplaceHtml: Story = {
+  render: () => {
+    const ref = useRef<HTMLDivElement | null>(null);
 
-  return (
-    <div className={css.Story}>
-      <div ref={ref}>
-        <Heading variant="h3">
-          This block will be replaced by Portal's children
-        </Heading>
+    return (
+      <div className={css.Story}>
+        <div ref={ref}>
+          <Heading variant="h3">
+            This block will be replaced by Portal's children
+          </Heading>
+        </div>
+        <div>
+          <Heading variant="h3">Simple block</Heading>
+          <Portal container={ref}>{children}</Portal>
+        </div>
       </div>
-      <div>
-        <Heading variant="h3">Simple block</Heading>
-        <Portal container={ref}>{children}</Portal>
-      </div>
-    </div>
-  );
+    );
+  },
 };
 
-const NoReplaceHtml = () => {
-  const ref = useRef<HTMLDivElement | null>(null);
+const NoReplaceHtml: Story = {
+  render: () => {
+    const ref = useRef<HTMLDivElement | null>(null);
 
-  return (
-    <div className={css.Story}>
-      <div ref={ref}>
-        <Heading variant="h3">This block will stay after Portal render</Heading>
+    return (
+      <div className={css.Story}>
+        <div ref={ref}>
+          <Heading variant="h3">
+            This block will stay after Portal render
+          </Heading>
+        </div>
+        <div>
+          <Heading variant="h3">Simple block</Heading>
+          <Portal replaceHtml={false} container={ref}>
+            {children}
+          </Portal>
+        </div>
       </div>
-      <div>
-        <Heading variant="h3">Simple block</Heading>
-        <Portal replaceHtml={false} container={ref}>
-          {children}
-        </Portal>
-      </div>
-    </div>
-  );
-};
-
-ReplaceHtml.parameters = {
-  docs: {
-    storyDescription: "Story description",
+    );
   },
 };
 
 export { ReplaceHtml, NoReplaceHtml };
+
+export default meta;

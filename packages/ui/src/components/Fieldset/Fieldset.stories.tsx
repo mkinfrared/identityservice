@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
 import Checkbox from "components/Checkbox";
@@ -6,35 +6,35 @@ import Radio from "components/Radio";
 import TextField from "components/TextField";
 
 import { Fieldset } from "./Fieldset";
-import { FieldsetProps } from "./Fieldset.type";
 import css from "./Story.module.scss";
 
-export default {
+type Story = StoryObj<typeof Fieldset>;
+
+const meta = {
   title: "UI/Fieldset",
   component: Fieldset,
   parameters: {
-    componentSubtitle: "Subtitle goes here",
+    componentSubtitle: "Subtitle from template",
   },
-} as Meta;
+} satisfies Meta<typeof Fieldset>;
 
-const Template: Story<FieldsetProps> = ({ className, disabled, legend }) => (
-  <div className={css.Story}>
-    <Fieldset className={className} disabled={disabled} legend={legend}>
-      <TextField />
-      <Checkbox label="foobar" />
-      <Radio label="foobar" />
-    </Fieldset>
-  </div>
-);
-
-const Default = Template.bind({});
-
-Default.args = {};
-
-Default.parameters = {
-  docs: {
-    storyDescription: "Story description",
+const Default: Story = {
+  parameters: {
+    docs: {
+      storyDescription: "Story description",
+    },
   },
+  render: ({ className, disabled, legend }) => (
+    <div className={css.Story}>
+      <Fieldset className={className} disabled={disabled} legend={legend}>
+        <TextField />
+        <Checkbox label="foobar" />
+        <Radio label="foobar" />
+      </Fieldset>
+    </div>
+  ),
 };
 
 export { Default };
+
+export default meta;

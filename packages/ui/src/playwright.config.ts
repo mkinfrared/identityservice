@@ -3,6 +3,8 @@
 
 import { PlaywrightTestConfig, devices } from "@playwright/test";
 
+const port = 8081;
+
 const projects = [
   {
     name: "chromium",
@@ -36,11 +38,11 @@ const config: PlaywrightTestConfig = {
   fullyParallel: true,
   webServer: {
     command: "pnpm serve:storybook",
-    port: 8081,
     reuseExistingServer: true,
+    port,
   },
   use: {
-    baseURL: "http://127.0.0.1:8081",
+    baseURL: `http://127.0.0.1:${port}`,
     trace: "on-first-retry",
     viewport,
     colorScheme: "dark",

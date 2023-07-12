@@ -1,25 +1,26 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
+    "lib": ["dom", "es2020", "esnext"],
     "module": "commonjs",
-    "lib": ["dom", "es2017", "esnext"],
-    "sourceMap": true,
     "moduleResolution": "node",
-    "removeComments": true,
-    "strict": true,
     "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictPropertyInitialization": false,
+    "noImplicitReturns": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "removeComments": true,
+    "sourceMap": true,
     "suppressExcessPropertyErrors": false,
-    "forceConsistentCasingInFileNames": true
+    "strict": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": false,
+    "target": "ES2020"
   },
   "exclude": ["node_modules"]
 }

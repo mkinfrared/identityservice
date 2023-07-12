@@ -81,7 +81,8 @@
     &::before {
       border-radius: 50%;
       /* stylelint-disable */
-      mask: linear-gradient(#ffffff 0 0) content-box,
+      mask:
+        linear-gradient(#ffffff 0 0) content-box,
         linear-gradient(#ffffff 0 0);
       /* stylelint-enable */
       mask-composite: exclude;

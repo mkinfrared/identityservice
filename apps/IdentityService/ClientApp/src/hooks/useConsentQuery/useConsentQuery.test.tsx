@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import * as queries from "api/queries";
 import { withQuery } from "utils/testUtils";
@@ -19,12 +19,10 @@ describe("useConsentQuery", () => {
   it("should call 'getConsent'", async () => {
     queriesMock.getConsent.mockResolvedValueOnce("42" as any);
 
-    const { result, waitFor } = renderHook(() => hook(returnUrl), {
+    const { result } = renderHook(() => hook(returnUrl), {
       wrapper: withQuery,
     });
 
-    await waitFor(() => result.current.isSuccess);
-
-    expect(result.current.data).toEqual("42");
+    await waitFor(() => expect(result.current.data).toEqual("42"));
   });
 });
