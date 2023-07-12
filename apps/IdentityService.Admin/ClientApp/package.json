@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "postinstall": "cp ./node_modules/oidc-client/dist/oidc-client.min.js ./public",
-    "start": "react-scripts start",
-    "build": "cross-env CI=false craco build --config ./config/craco.config.js",
+    "start": "craco start",
+    "build": "cross-env CI=false craco build",
     "serve": "npx serve -s build",
     "test": "cross-env CI=true react-scripts test --collectCoverage",
     "eject": "react-scripts eject",
@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@craco/craco": "^7.0.0",
+    "@craco/types": "^7.1.0",
     "@storybook/addon-actions": "^6.5.14",
     "@storybook/addon-docs": "^6.5.14",
     "@storybook/addon-essentials": "6.5.14",
@@ -48,7 +49,9 @@
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
     "@types/testing-library__jest-dom": "^5.14.5",
+    "@types/webpack": "^5.28.0",
     "babel-loader": "^9.1.0",
+    "craco-esbuild": "^0.5.2",
     "cross-env": "^7.0.3",
     "identity-obj-proxy": "^3.0.0",
     "open-cli": "^7.1.0",
@@ -96,5 +99,6 @@
       "@identity-service/core",
       "@identity-service/ui"
     ]
-  }
+  },
+  "cracoConfig": "config/craco.config.ts"
 }
