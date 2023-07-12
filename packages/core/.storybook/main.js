@@ -10,6 +10,13 @@ module.exports = {
       },
     },
     "storybook-design-token",
+    {
+      name: "storybook-addon-turbo-build",
+      options: {
+        // Please refer below tables for available options
+        optimizationLevel: 2,
+      },
+    },
   ],
   core: {
     builder: "webpack5",
