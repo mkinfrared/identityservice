@@ -2,11 +2,8 @@
   background-color: chocolate;
   display: flex;
   flex: 1;
+  padding: 20px;
   width: 100%;
-
-  .sidebar {
-    flex: 0 0 300px;
-  }
 
   .page {
     flex: 1;

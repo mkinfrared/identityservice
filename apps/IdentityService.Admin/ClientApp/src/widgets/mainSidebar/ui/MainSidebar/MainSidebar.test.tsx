@@ -1,5 +1,6 @@
 import { render } from "@testing-library/react";
 
+import { withRouter } from "shared/lib/helpers/testUtils";
 import { useUserSession } from "shared/lib/hooks";
 
 import MainSidebar from "./MainSidebar";
@@ -13,7 +14,7 @@ describe("<MainSidebar />", () => {
     useUserSessionMock.mockReturnValue({ bar: "foo" } as any);
   });
 
-  const Component = <MainSidebar />;
+  const Component = withRouter(<MainSidebar />);
 
   it("should be defined", () => {
     expect(MainSidebar).toBeDefined();
