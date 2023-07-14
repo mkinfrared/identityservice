@@ -6,7 +6,24 @@ exports[`<Header /> should match the snapshot 1`] = `
     class="Header"
     data-testid="Header"
   >
-    Header works!!
+    <div>
+      Logo
+    </div>
+    <div
+      class="right"
+    >
+      <button
+        class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+        data-testid="LoginButton"
+        tabindex="0"
+        type="button"
+      >
+        Login
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+    </div>
   </div>
 </div>
 `;

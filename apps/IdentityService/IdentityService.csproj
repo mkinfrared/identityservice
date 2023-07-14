@@ -41,62 +41,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="ClientApp\webpack.config.js" />
-        <Content Include="ClientApp\.storybook\middleware.js" />
-        <Content Include="Emails\*" CopyToOutputDirectory="Always" />
-        <Content Update="appsettings.json">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-    </ItemGroup>
-
-    <ItemGroup>
-        <_ContentIncludedByDefault Remove="Views\Home\Index.cshtml" />
-        <_ContentIncludedByDefault Remove="Views\Home\Privacy.cshtml" />
-        <_ContentIncludedByDefault Remove="wwwroot\css\styles.min.css" />
-        <_ContentIncludedByDefault Remove="client\build\asset-manifest.json" />
-        <_ContentIncludedByDefault Remove="client\build\manifest.json" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\media\mountain.1246044a979b87184da668e393f47cfa.jpg" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\css\ConfirmEmail.948841ff.chunk.css" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\css\ConfirmEmail.948841ff.chunk.css.map" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\css\LoginForm.7285bd94.chunk.css" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\css\LoginForm.7285bd94.chunk.css.map" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\css\main.b6605443.css" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\css\main.b6605443.css.map" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\css\RegisterForm.d80b45a7.chunk.css" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\css\RegisterForm.d80b45a7.chunk.css.map" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\js\ConfirmEmail.bc44c79e.chunk.js" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\js\ConfirmEmail.bc44c79e.chunk.js.map" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\js\default-src_api_mutations_index_ts-src_components_InputField_index_ts-src_utils_validationSch-07f187.e6e8068e.chunk.js" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\js\default-src_api_mutations_index_ts-src_components_InputField_index_ts-src_utils_validationSch-07f187.e6e8068e.chunk.js.map" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\js\LoginForm.50edf7f9.chunk.js" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\js\LoginForm.50edf7f9.chunk.js.map" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\js\main.703cbcfd.js" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\js\main.703cbcfd.js.map" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\js\RegisterForm.4daf5782.chunk.js" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\js\RegisterForm.4daf5782.chunk.js.map" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\js\runtime~main.dbbd26c2.js" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\js\runtime~main.dbbd26c2.js.map" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\js\vendors-node_modules_pnpm_hookform_resolvers_2_8_5_react-hook-form_7_24_0_node_modules_hookfo-5ad6e8.1ba7ae4f.chunk.js" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\js\vendors-node_modules_pnpm_hookform_resolvers_2_8_5_react-hook-form_7_24_0_node_modules_hookfo-5ad6e8.1ba7ae4f.chunk.js.LICENSE.txt" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\js\vendors-node_modules_pnpm_hookform_resolvers_2_8_5_react-hook-form_7_24_0_node_modules_hookfo-5ad6e8.1ba7ae4f.chunk.js.map" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\js\vendors-node_modules_pnpm_react-use_17_3_2_react-dom_17_0_2_react_17_0_2_node_modules_react-u-eaad18.aa391d30.js" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\js\vendors-node_modules_pnpm_react-use_17_3_2_react-dom_17_0_2_react_17_0_2_node_modules_react-u-eaad18.aa391d30.js.LICENSE.txt" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\js\vendors-node_modules_pnpm_react-use_17_3_2_react-dom_17_0_2_react_17_0_2_node_modules_react-u-eaad18.aa391d30.js.map" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\js\vendors-react-dom@17.0.2_react@17.0.2.e8fcbddc.js" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\js\vendors-react-dom@17.0.2_react@17.0.2.e8fcbddc.js.LICENSE.txt" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\js\vendors-react-dom@17.0.2_react@17.0.2.e8fcbddc.js.map" />
-        <_ContentIncludedByDefault Remove="wwwroot\static\media\mountain.1246044a.jpg" />
-    </ItemGroup>
-
-    <ItemGroup>
         <Folder Include="apps\IdentityService\Migrations\IdentityDb" />
         <Folder Include="wwwroot" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <None Include="ClientApp\.storybook\main.ts" />
-        <None Include="ClientApp\.storybook\manager.ts" />
-        <None Include="ClientApp\.storybook\preview.tsx" />
     </ItemGroup>
 
     <ItemGroup>

@@ -1,8 +1,6 @@
 using System;
 using System.Reflection;
 
-using IdentityServer4.Services;
-
 using IdentityService.Entities;
 
 using Microsoft.AspNetCore.Hosting;
@@ -32,6 +30,7 @@ public class IdentityServerService : ISerivce
                     options.UserInteraction.LogoutUrl = "/Auth/Logout";
                 }
             )
+            .AddAspNetIdentity<User>()
             .AddConfigurationStore(
                 options =>
                 {
@@ -55,12 +54,8 @@ public class IdentityServerService : ISerivce
                     options.EnableTokenCleanup = true;
                     options.TokenCleanupInterval = 3600; // interval in seconds (default is 3600)
                 }
-            )
-            .AddProfileService<AppProfileService>()
-            .AddAspNetIdentity<User>();
+            );
 
         builder.AddDeveloperSigningCredential();
-
-        service.AddTransient<IProfileService, AppProfileService>();
     }
 }

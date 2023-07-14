@@ -6,24 +6,16 @@ exports[`<Home /> should match the snapshot 1`] = `
     class="Home"
     data-testid="Home"
   >
-    <code>
+    <p
+      class="token"
+    >
       logged out
-    </code>
+    </p>
     <div>
       <button
         type="button"
       >
-        Login
-      </button>
-      <button
-        type="button"
-      >
         Log User Data
-      </button>
-      <button
-        type="button"
-      >
-        Logout
       </button>
     </div>
   </div>

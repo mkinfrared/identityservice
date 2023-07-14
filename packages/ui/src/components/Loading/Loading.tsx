@@ -1,5 +1,5 @@
 import { classNames } from "@identity-service/core";
-import React, { memo, useEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 
 import Spinner from "components/Spinner";
 
@@ -9,7 +9,7 @@ import { LoadingProps } from "./Loading.type";
 const Loading = ({ className, type }: LoadingProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const { current } = ref;
 
     if (current?.parentElement) {
@@ -38,4 +38,4 @@ const Loading = ({ className, type }: LoadingProps) => {
 
 export { Loading };
 
-export default memo(Loading);
+export default Loading;

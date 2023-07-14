@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Root /> should match the snapshot 1`] = `
+<div>
+  <div
+    class="Root"
+    data-testid="Root"
+  >
+    <main
+      class="Main main"
+      data-testid="Main"
+    >
+      <section
+        class="page"
+      />
+    </main>
+  </div>
+</div>
+`;

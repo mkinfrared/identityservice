@@ -1,6 +1,12 @@
 .Header {
+  align-items: center;
   background-color: palegreen;
+  display: flex;
   height: 50px;
-  position: static;
+  padding: 20px;
   width: 100%;
+
+  .right {
+    margin-left: auto;
+  }
 }

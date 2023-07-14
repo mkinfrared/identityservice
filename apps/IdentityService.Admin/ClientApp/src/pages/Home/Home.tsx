@@ -8,14 +8,6 @@ import css from "./Home.module.scss";
 const Home = () => {
   const user = useUserSession();
 
-  const logIn = () => {
-    userManager.signinRedirect();
-  };
-
-  const logOut = () => {
-    userManager.signoutRedirect();
-  };
-
   const logToken = async () => {
     const userData = await userManager.getUser();
 
@@ -25,16 +17,10 @@ const Home = () => {
 
   return (
     <div className={css.Home} data-testid="Home">
-      <code>{user ? user.access_token : "logged out"}</code>
+      <p className={css.token}>{user ? user.access_token : "logged out"}</p>
       <div>
-        <button type="button" onClick={logIn}>
-          Login
-        </button>
         <button type="button" onClick={logToken}>
           Log User Data
-        </button>
-        <button type="button" onClick={logOut}>
-          Logout
         </button>
       </div>
     </div>
