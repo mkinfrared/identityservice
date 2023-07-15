@@ -45,8 +45,6 @@
 
     <ItemGroup>
         <Folder Include="apps\IdentityService\Migrations\IdentityDb" />
-        <Folder Include="Repository\" />
-        <Folder Include="Views\Shared\" />
         <Folder Include="wwwroot" />
     </ItemGroup>
 
