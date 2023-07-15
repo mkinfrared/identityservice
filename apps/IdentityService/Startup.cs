@@ -50,6 +50,7 @@ public class Startup
 
         app.UseSwaggerUI();
 
+        app.UseMiddleware<ExceptionMiddleware>();
         app.UseHttpsRedirection();
 
         var extensionProvider = new FileExtensionContentTypeProvider();
@@ -64,7 +65,8 @@ public class Startup
         );
 
         app.UseRouting();
-        app.UseCors();
+        // app.UseCors();
+        app.UseCors("SafeOrigins");
 
         app.UseIdentityServer();
 
