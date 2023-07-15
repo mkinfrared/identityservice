@@ -27,7 +27,8 @@ public class MockHelpers
 {
     public static StringBuilder LogMessage = new();
 
-    public static Mock<UserManager<TUser>> MockUserManager<TUser>() where TUser : class
+    public static Mock<UserManager<TUser>> MockUserManager<TUser>()
+        where TUser : class
     {
         var store = new Mock<IUserStore<TUser>>();
 
@@ -49,7 +50,9 @@ public class MockHelpers
         return mgr;
     }
 
-    public static Mock<RoleManager<TRole>> MockRoleManager<TRole>(IRoleStore<TRole>? store = null)
+    public static Mock<RoleManager<TRole>> MockRoleManager<TRole>(
+        IRoleStore<TRole>? store = null
+    )
         where TRole : class
     {
         store = store ?? new Mock<IRoleStore<TRole>>().Object;
@@ -65,7 +68,8 @@ public class MockHelpers
         );
     }
 
-    public static Mock<SignInManager<TUser>> MockSignInManger<TUser>() where TUser : class
+    public static Mock<SignInManager<TUser>> MockSignInManger<TUser>()
+        where TUser : class
     {
         var userManager = MockUserManager<TUser>();
         var context = new Mock<IHttpContextAccessor>();
@@ -84,7 +88,9 @@ public class MockHelpers
         return manager;
     }
 
-    public static UserManager<TUser> TestUserManager<TUser>(IUserStore<TUser>? store = null)
+    public static UserManager<TUser> TestUserManager<TUser>(
+        IUserStore<TUser>? store = null
+    )
         where TUser : class
     {
         store = store ?? new Mock<IUserStore<TUser>>().Object;
@@ -118,7 +124,9 @@ public class MockHelpers
         return userManager;
     }
 
-    public static RoleManager<TRole> TestRoleManager<TRole>(IRoleStore<TRole>? store = null)
+    public static RoleManager<TRole> TestRoleManager<TRole>(
+        IRoleStore<TRole>? store = null
+    )
         where TRole : class
     {
         store = store ?? new Mock<IRoleStore<TRole>>().Object;
@@ -140,7 +148,9 @@ public class MockHelpers
 
         var context = new DefaultHttpContext();
 
-        contextAccessorMock.Setup(accessor => accessor.HttpContext).Returns(context);
+        contextAccessorMock
+            .Setup(accessor => accessor.HttpContext)
+            .Returns(context);
 
         return contextAccessorMock;
     }
@@ -162,12 +172,19 @@ public class MockHelpers
         var authRequestMock = new Mock<AuthorizationRequest>();
         var resourcesMock = new Mock<Resources>();
         var client = new Mock<Client>();
-        var validatedResources = new ResourceValidationResult(resourcesMock.Object);
+        var validatedResources = new ResourceValidationResult(
+            resourcesMock.Object
+        );
 
-        resourcesMock.Object.ApiScopes = new List<ApiScope> { apiScopeMock.Object };
+        resourcesMock.Object.ApiScopes = new List<ApiScope>
+        {
+            apiScopeMock.Object
+        };
 
         validatedResources.ParsedScopes.Add(parsedScopeMock.Object);
-        validatedResources.Resources.IdentityResources.Add(new IdentityResources.OpenId());
+        validatedResources.Resources.IdentityResources.Add(
+            new IdentityResources.OpenId()
+        );
 
         authRequestMock.Object.Client = client.Object;
         authRequestMock.Object.ValidatedResources = validatedResources;

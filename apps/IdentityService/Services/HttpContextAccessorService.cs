@@ -4,14 +4,14 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace IdentityService.Services;
 
-public class HttpContextAccessorService : ISerivce
+public class HttpContextAccessorService : IService
 {
-  public void InstallServices(
-    IServiceCollection service,
-    IConfiguration configuration,
-    IWebHostEnvironment env
-  )
-  {
-    // service.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-  }
+    public void InstallServices(
+        IServiceCollection service,
+        IConfiguration configuration,
+        IWebHostEnvironment env
+    )
+    {
+        // service.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+    }
 }

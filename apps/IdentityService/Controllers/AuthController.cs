@@ -2,7 +2,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-using IdentityService.Dto;
+using IdentityService.Dto.ForgotPassword;
 using IdentityService.Features.Auth.ConfirmEmail;
 using IdentityService.Features.Auth.ExternalProviderRedirect;
 using IdentityService.Features.Auth.ExternalProviderRegister;
@@ -40,17 +40,23 @@ public class AuthController : ControllerBase
             return Ok();
         }
 
-        return BadRequest(new { username = new[] { "Username or Password is incorrect" } });
+        return BadRequest(
+            new { username = new[] { "Username or Password is incorrect" } }
+        );
     }
 
     [HttpPost]
-    public async Task<ActionResult<ConfirmEmail.Command>> Register(Register.Command command)
+    public async Task<ActionResult<ConfirmEmail.Command>> Register(
+        Register.Command command
+    )
     {
         var registerResult = await _mediator.Send(command);
 
         if (!registerResult.Succeeded)
         {
-            var errors = registerResult.Errors.Select(error => error.Description);
+            var errors = registerResult.Errors.Select(
+                error => error.Description
+            );
 
             return BadRequest(new { username = errors });
         }
@@ -92,8 +98,13 @@ public class AuthController : ControllerBase
     public async Task<ActionResult> ForgotPassword(ForgotPasswordDto dto)
     {
         var (email, returnUrl) = dto;
-        var url = Url.Action("ResetPassword", "Account", null, HttpContext.Request.Scheme);
-        var command = new ForgotPassword.Command(email, returnUrl, url);
+        var url = Url.Action(
+            "ResetPassword",
+            "Account",
+            null,
+            HttpContext.Request.Scheme
+        );
+        var command = new ForgotPassword.Command(email, returnUrl, url!);
 
         await _mediator.Send(command);
 
@@ -116,7 +127,10 @@ public class AuthController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> ExternalRegister(Providers provider, string returnUrl)
+    public async Task<IActionResult> ExternalRegister(
+        Providers provider,
+        string returnUrl
+    )
     {
         var redirectUri = Url.Action(
             nameof(ExternalCallback),
@@ -125,7 +139,10 @@ public class AuthController : ControllerBase
             HttpContext.Request.Scheme
         );
 
-        var command = new ExternalProviderRedirect.Command(provider, redirectUri);
+        var command = new ExternalProviderRedirect.Command(
+            provider,
+            redirectUri
+        );
         var result = await _mediator.Send(command);
 
         return Challenge(result.Properties, result.Provider);

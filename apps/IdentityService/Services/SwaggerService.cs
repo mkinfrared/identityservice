@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace IdentityService.Services;
 
-public class SwaggerService : ISerivce
+public class SwaggerService : IService
 {
     public void InstallServices(
         IServiceCollection services,
@@ -12,22 +12,18 @@ public class SwaggerService : ISerivce
         IWebHostEnvironment env
     )
     {
-        services.AddSwaggerGen(
-            options =>
+        services.AddSwaggerGen(options =>
+        {
+            options.SupportNonNullableReferenceTypes();
+
+            options.CustomSchemaIds(type =>
             {
-                options.SupportNonNullableReferenceTypes();
+                var schemaName = type.ToString()
+                    .Replace($"{type.Namespace}.", "")
+                    .Replace('+', '.');
 
-                options.CustomSchemaIds(
-                    type =>
-                    {
-                        var schemaName = type.ToString()
-                            .Replace($"{type.Namespace}.", "")
-                            .Replace('+', '.');
-
-                        return schemaName;
-                    }
-                );
-            }
-        );
+                return schemaName;
+            });
+        });
     }
 }

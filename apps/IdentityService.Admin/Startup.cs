@@ -20,29 +20,23 @@ public class Startup
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddCors(
-            options =>
+        services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(builder =>
             {
-                options.AddDefaultPolicy(
-                    builder =>
-                    {
-                        builder.AllowAnyOrigin();
-                        builder.AllowAnyHeader();
-                        builder.AllowAnyMethod();
-                    }
-                );
-            }
-        );
+                builder.AllowAnyOrigin();
+                builder.AllowAnyHeader();
+                builder.AllowAnyMethod();
+            });
+        });
 
         services.AddControllersWithViews();
 
         // In production, the React files will be served from this directory
-        services.AddSpaStaticFiles(
-            configuration =>
-            {
-                configuration.RootPath = "wwwroot";
-            }
-        );
+        services.AddSpaStaticFiles(configuration =>
+        {
+            configuration.RootPath = "wwwroot";
+        });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,18 +64,17 @@ public class Startup
 
         app.UseRouting();
 
-        app.UseEndpoints(
-            endpoints =>
-            {
-                endpoints.MapControllerRoute("default", "{controller}/{action=Index}/{id?}");
-            }
-        );
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllerRoute(
+                "default",
+                "{controller}/{action=Index}/{id?}"
+            );
+        });
 
-        app.UseSpa(
-            builder =>
-            {
-                builder.Options.DefaultPageStaticFileOptions = null;
-            }
-        );
+        app.UseSpa(builder =>
+        {
+            builder.Options.DefaultPageStaticFileOptions = null;
+        });
     }
 }

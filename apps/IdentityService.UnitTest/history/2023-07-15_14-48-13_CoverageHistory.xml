@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<coverage version="1.0" date="2023-07-15_14-48-13" tag="">
+  <assembly name="IdentityService">
+    <class name="IdentityService.Configuration.AutoMapperConfig" coveredlines="24" coverablelines="24" totallines="39" coveredbranches="0" totalbranches="0" />
+    <class name="IdentityService.Controllers.AccountController" coveredlines="12" coverablelines="12" totallines="30" coveredbranches="0" totalbranches="0" />
+    <class name="IdentityService.Controllers.ApiScopeController" coveredlines="20" coverablelines="20" totallines="51" coveredbranches="3" totalbranches="4" />
+    <class name="IdentityService.Controllers.AuthController" coveredlines="81" coverablelines="82" totallines="165" coveredbranches="12" totalbranches="12" />
+    <class name="IdentityService.Controllers.ConsentController" coveredlines="20" coverablelines="20" totallines="57" coveredbranches="2" totalbranches="2" />
+    <class name="IdentityService.Dto.ApiScope.ApiScopeReadDto" coveredlines="14" coverablelines="14" totallines="30" coveredbranches="0" totalbranches="0" />
+    <class name="IdentityService.Dto.ApiScope.ApiScopeUpdateDto" coveredlines="6" coverablelines="6" totallines="11" coveredbranches="0" totalbranches="0" />
+    <class name="IdentityService.Dto.Consent.ConsentReadDto" coveredlines="7" coverablelines="7" totallines="17" coveredbranches="0" totalbranches="0" />
+    <class name="IdentityService.Dto.Consent.ConsentUpdateDto" coveredlines="6" coverablelines="6" totallines="27" coveredbranches="0" totalbranches="0" />
+    <class name="IdentityService.Dto.ForgotPassword.ForgotPasswordDto" coveredlines="6" coverablelines="6" totallines="18" coveredbranches="0" totalbranches="0" />
+    <class name="IdentityService.Dto.Login.LoginDto" coveredlines="3" coverablelines="3" totallines="8" coveredbranches="0" totalbranches="0" />
+    <class name="IdentityService.Dto.UserClaims.UserClaimReadDto" coveredlines="0" coverablelines="4" totallines="16" coveredbranches="0" totalbranches="0" />
+    <class name="IdentityService.Entities.User" coveredlines="3" coverablelines="3" totallines="12" coveredbranches="0" totalbranches="0" />
+    <class name="IdentityService.Extensions.DistributedClassExtensions" coveredlines="0" coverablelines="16" totallines="46" coveredbranches="0" totalbranches="4" />
+    <class name="IdentityService.Features.ApiScope.CreateApiScope.CreateApiScope" coveredlines="47" coverablelines="47" totallines="106" coveredbranches="0" totalbranches="0" />
+    <class name="IdentityService.Features.ApiScope.GetById.ApiScope" coveredlines="5" coverablelines="5" totallines="18" coveredbranches="0" totalbranches="0" />
+    <class name="IdentityService.Features.ApiScope.GetById.GetByIdQueryHandler" coveredlines="14" coverablelines="14" totallines="44" coveredbranches="2" totalbranches="2" />
+    <class name="IdentityService.Features.Auth.ConfirmEmail.ConfirmEmail" coveredlines="43" coverablelines="43" totallines="107" coveredbranches="6" totalbranches="6" />
+    <class name="IdentityService.Features.Auth.ExternalProviderRedirect.ExternalProviderRedirect" coveredlines="23" coverablelines="23" totallines="77" coveredbranches="0" totalbranches="0" />
+    <class name="IdentityService.Features.Auth.ExternalProviderRegister.ExternalProviderRegister" coveredlines="50" coverablelines="50" totallines="109" coveredbranches="17" totalbranches="26" />
+    <class name="IdentityService.Features.Auth.ForgotPassword.ForgotPassword" coveredlines="58" coverablelines="58" totallines="134" coveredbranches="4" totalbranches="4" />
+    <class name="IdentityService.Features.Auth.Login.Login" coveredlines="36" coverablelines="36" totallines="97" coveredbranches="2" totalbranches="2" />
+    <class name="IdentityService.Features.Auth.Logout.Logout" coveredlines="24" coverablelines="24" totallines="77" coveredbranches="0" totalbranches="0" />
+    <class name="IdentityService.Features.Auth.Register.Register" coveredlines="80" coverablelines="80" totallines="137" coveredbranches="0" totalbranches="0" />
+    <class name="IdentityService.Features.Auth.ResetPassword.ResetPassword" coveredlines="65" coverablelines="65" totallines="129" coveredbranches="2" totalbranches="2" />
+    <class name="IdentityService.Features.Auth.SendConfirmEmail.SendConfirmEmail" coveredlines="46" coverablelines="46" totallines="118" coveredbranches="0" totalbranches="0" />
+    <class name="IdentityService.Features.Consent.GetConsent.Consent" coveredlines="73" coverablelines="76" totallines="142" coveredbranches="11" totalbranches="14" />
+    <class name="IdentityService.Features.Consent.SubmitConsent.SubmitConsent" coveredlines="70" coverablelines="72" totallines="141" coveredbranches="4" totalbranches="4" />
+    <class name="IdentityService.Utils.RandomNumberGenerator" coveredlines="9" coverablelines="9" totallines="20" coveredbranches="2" totalbranches="2" />
+    <class name="IdentityService.Utils.ValidationRules" coveredlines="22" coverablelines="22" totallines="45" coveredbranches="0" totalbranches="0" />
+  </assembly>
+</coverage>

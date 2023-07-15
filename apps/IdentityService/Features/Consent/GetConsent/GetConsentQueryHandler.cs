@@ -7,7 +7,8 @@ using IdentityServer4.Models;
 using IdentityServer4.Services;
 using IdentityServer4.Validation;
 
-using IdentityService.Dto;
+using IdentityService.Dto.ApiScope;
+using IdentityService.Dto.Consent;
 
 using MediatR;
 
@@ -15,11 +16,14 @@ namespace IdentityService.Features.Consent.GetConsent;
 
 partial class Consent
 {
-    public class GetConsentQueryHandler : IRequestHandler<GetConsentQuery, ConsentReadDto?>
+    public class GetConsentQueryHandler
+        : IRequestHandler<GetConsentQuery, ConsentReadDto?>
     {
         private readonly IIdentityServerInteractionService _interaction;
 
-        public GetConsentQueryHandler(IIdentityServerInteractionService interaction)
+        public GetConsentQueryHandler(
+            IIdentityServerInteractionService interaction
+        )
         {
             _interaction = interaction;
         }
@@ -29,9 +33,10 @@ partial class Consent
             CancellationToken cancellationToken
         )
         {
-            var autorizationContext = await _interaction.GetAuthorizationContextAsync(
-                request.ReturnUrl
-            );
+            var autorizationContext =
+                await _interaction.GetAuthorizationContextAsync(
+                    request.ReturnUrl
+                );
 
             if (autorizationContext == null)
             {
@@ -41,28 +46,34 @@ partial class Consent
             return CreateConsent(autorizationContext, request.ReturnUrl);
         }
 
-        private ConsentReadDto CreateConsent(AuthorizationRequest request, string returnUrl)
+        private ConsentReadDto CreateConsent(
+            AuthorizationRequest request,
+            string returnUrl
+        )
         {
             var consent = new ConsentReadDto
             {
                 AllowRememberConsent = request.Client.AllowRememberConsent,
-                ClientName = request.Client.ClientName ?? request.Client.ClientId,
+                ClientName =
+                    request.Client.ClientName ?? request.Client.ClientId,
                 ClientUrl = request.Client.ClientUri,
                 ClientLogoUrl = request.Client.LogoUri,
                 ReturnUrl = returnUrl
             };
 
-            consent.IdentityScopes = request.ValidatedResources.Resources.IdentityResources
-                .Select(x => CreateApiScope(x))
-                .ToArray();
+            consent.IdentityScopes =
+                request.ValidatedResources.Resources.IdentityResources
+                    .Select(x => CreateApiScope(x))
+                    .ToArray();
 
             var apiScopes = new List<ApiScopeReadDto>();
 
             foreach (var parsedScope in request.ValidatedResources.ParsedScopes)
             {
-                var apiScope = request.ValidatedResources.Resources.FindApiScope(
-                    parsedScope.ParsedName
-                );
+                var apiScope =
+                    request.ValidatedResources.Resources.FindApiScope(
+                        parsedScope.ParsedName
+                    );
 
                 if (apiScope != null)
                 {
@@ -88,7 +99,10 @@ partial class Consent
             };
         }
 
-        public ApiScopeReadDto CreateApiScope(ParsedScopeValue parsedScopeValue, ApiScope apiScope)
+        public ApiScopeReadDto CreateApiScope(
+            ParsedScopeValue parsedScopeValue,
+            IdentityServer4.Models.ApiScope apiScope
+        )
         {
             var displayName = apiScope.DisplayName ?? apiScope.Name;
 

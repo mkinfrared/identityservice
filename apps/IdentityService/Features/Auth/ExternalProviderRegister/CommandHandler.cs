@@ -17,7 +17,10 @@ public partial class ExternalProviderRegister
         private readonly SignInManager<User> _signInManager;
         private readonly UserManager<User> _userManager;
 
-        public CommandHandler(SignInManager<User> signInManager, UserManager<User> userManager)
+        public CommandHandler(
+            SignInManager<User> signInManager,
+            UserManager<User> userManager
+        )
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -55,7 +58,9 @@ public partial class ExternalProviderRegister
             // principal.username, principal.firstName etc
             var username = info.Principal?.FindFirst(ClaimTypes.Name)?.Value;
             var email = info.Principal?.FindFirst(ClaimTypes.Email)?.Value;
-            var firstName = info.Principal?.FindFirst(ClaimTypes.GivenName)?.Value;
+            var firstName = info.Principal
+                ?.FindFirst(ClaimTypes.GivenName)
+                ?.Value;
             var lastName = info.Principal?.FindFirst(ClaimTypes.Surname)?.Value;
 
             var user = new User();

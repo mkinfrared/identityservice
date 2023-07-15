@@ -1,4 +1,4 @@
-using IdentityService.Dto;
+using IdentityService.Dto.Login;
 
 using Xunit;
 

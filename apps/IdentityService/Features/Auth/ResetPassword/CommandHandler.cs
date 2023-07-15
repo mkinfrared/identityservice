@@ -37,7 +37,11 @@ public partial class ResetPassword
                 return IdentityResult.Failed(error);
             }
 
-            var result = await _userManager.ResetPasswordAsync(user, token, password);
+            var result = await _userManager.ResetPasswordAsync(
+                user,
+                token,
+                password
+            );
 
             return result;
         }

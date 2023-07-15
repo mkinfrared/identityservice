@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 
-using IdentityService.Dto;
+using IdentityService.Dto.ApiScope;
+using IdentityService.Dto.Consent;
 
 using Xunit;
 

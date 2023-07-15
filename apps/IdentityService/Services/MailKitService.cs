@@ -7,16 +7,16 @@ using NETCore.MailKit.Infrastructure.Internal;
 
 namespace IdentityService.Services;
 
-public class MailKitService : ISerivce
+public class MailKitService : IService
 {
-  public void InstallServices(
-    IServiceCollection services,
-    IConfiguration configuration,
-    IWebHostEnvironment env
-  )
-  {
-    var options = configuration.GetSection("Email").Get<MailKitOptions>();
+    public void InstallServices(
+        IServiceCollection services,
+        IConfiguration configuration,
+        IWebHostEnvironment env
+    )
+    {
+        var options = configuration.GetSection("Email").Get<MailKitOptions>();
 
-    services.AddMailKit(config => config.UseMailKit(options));
-  }
+        services.AddMailKit(config => config.UseMailKit(options));
+    }
 }

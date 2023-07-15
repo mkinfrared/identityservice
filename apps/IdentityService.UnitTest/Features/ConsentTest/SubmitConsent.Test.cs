@@ -5,7 +5,8 @@ using System.Threading;
 using IdentityServer4.Events;
 using IdentityServer4.Services;
 
-using IdentityService.Dto;
+using IdentityService.Dto.ApiScope;
+using IdentityService.Dto.Consent;
 using IdentityService.Features.Consent.SubmitConsent;
 using IdentityService.Unit.Utils;
 
@@ -13,7 +14,7 @@ using Moq;
 
 using Xunit;
 
-namespace IdentityService.Unit.Features;
+namespace IdentityService.Unit.Features.ConsentTest;
 
 public class SubmitConsentTest
 {
@@ -51,7 +52,10 @@ public class SubmitConsentTest
         );
 
         _interactionMock
-            .Setup(service => service.GetAuthorizationContextAsync(It.IsAny<string>()))
+            .Setup(
+                service =>
+                    service.GetAuthorizationContextAsync(It.IsAny<string>())
+            )
             .ReturnsAsync(() => null);
 
         var commandHandler = new SubmitConsent.CommandHandler(
@@ -59,7 +63,10 @@ public class SubmitConsentTest
             _eventsMock.Object
         );
 
-        var result = await commandHandler.Handle(command, new CancellationToken());
+        var result = await commandHandler.Handle(
+            command,
+            new CancellationToken()
+        );
 
         Assert.Null(result);
     }
@@ -70,10 +77,16 @@ public class SubmitConsentTest
         var consentUpdateMock = new Mock<ConsentUpdateDto>();
         var claimsPrincipalMock = MockHelpers.MockClaimsPrincipal();
         var authRequestMock = MockHelpers.MockAuthorizationRequest();
-        var command = new SubmitConsent.Command(consentUpdateMock.Object, claimsPrincipalMock);
+        var command = new SubmitConsent.Command(
+            consentUpdateMock.Object,
+            claimsPrincipalMock
+        );
 
         _interactionMock
-            .Setup(service => service.GetAuthorizationContextAsync(It.IsAny<string>()))
+            .Setup(
+                service =>
+                    service.GetAuthorizationContextAsync(It.IsAny<string>())
+            )
             .ReturnsAsync(authRequestMock.Object);
 
         var commandHandler = new SubmitConsent.CommandHandler(
@@ -81,7 +94,10 @@ public class SubmitConsentTest
             _eventsMock.Object
         );
 
-        var result = await commandHandler.Handle(command, new CancellationToken());
+        var result = await commandHandler.Handle(
+            command,
+            new CancellationToken()
+        );
 
         Assert.NotNull(result);
         _eventsMock.Verify(
@@ -98,14 +114,20 @@ public class SubmitConsentTest
         var consentUpdateMock = new Mock<ConsentUpdateDto>();
         var claimsPrincipalMock = MockHelpers.MockClaimsPrincipal();
         var authRequestMock = MockHelpers.MockAuthorizationRequest();
-        var command = new SubmitConsent.Command(consentUpdateMock.Object, claimsPrincipalMock);
+        var command = new SubmitConsent.Command(
+            consentUpdateMock.Object,
+            claimsPrincipalMock
+        );
 
         consentUpdateMock.Object.PermissionGranted = true;
         consentUpdateMock.Object.IdentityScopes = identityScopes;
         consentUpdateMock.Object.ApiScopes = apiScopes;
 
         _interactionMock
-            .Setup(service => service.GetAuthorizationContextAsync(It.IsAny<string>()))
+            .Setup(
+                service =>
+                    service.GetAuthorizationContextAsync(It.IsAny<string>())
+            )
             .ReturnsAsync(authRequestMock.Object);
 
         var commandHandler = new SubmitConsent.CommandHandler(
@@ -113,7 +135,10 @@ public class SubmitConsentTest
             _eventsMock.Object
         );
 
-        var result = await commandHandler.Handle(command, new CancellationToken());
+        var result = await commandHandler.Handle(
+            command,
+            new CancellationToken()
+        );
 
         Assert.NotNull(result);
         _eventsMock.Verify(

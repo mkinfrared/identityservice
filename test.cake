@@ -63,6 +63,7 @@ Task("TestNet")
             "[*]AspNetCoreGeneratedDocument.*"
         },
         ExcludeByFile = new List<string> {
+            "**/Dto/*",
             "**/DbContexts/*",
             "**/Migrations/**",
             "**/Models/*",

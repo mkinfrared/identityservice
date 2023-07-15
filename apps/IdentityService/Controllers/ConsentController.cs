@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-using IdentityService.Dto;
+using IdentityService.Dto.Consent;
 using IdentityService.Features.Consent.GetConsent;
 using IdentityService.Features.Consent.SubmitConsent;
 
@@ -39,7 +39,9 @@ public class ConsentController : Controller
     [HttpPost]
     [Route("Consent/SubmitConsent")]
     [ApiExplorerSettings(IgnoreApi = false)]
-    public async Task<ActionResult<string>> SubmitConsent([FromBody] ConsentUpdateDto consent)
+    public async Task<ActionResult<string>> SubmitConsent(
+        [FromBody] ConsentUpdateDto consent
+    )
     {
         var command = new SubmitConsent.Command(consent, User);
 

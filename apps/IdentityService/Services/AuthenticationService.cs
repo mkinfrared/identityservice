@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace IdentityService.Services;
 
-public class AuthenticationService : ISerivce
+public class AuthenticationService : IService
 {
     public void InstallServices(
         IServiceCollection service,
@@ -14,12 +14,14 @@ public class AuthenticationService : ISerivce
     {
         service
             .AddAuthentication()
-            .AddGoogle(
-                options =>
-                {
-                    options.ClientId = configuration["Authentication:Google:ClientId"];
-                    options.ClientSecret = configuration["Authentication:Google:ClientSecret"];
-                }
-            );
+            .AddGoogle(options =>
+            {
+                options.ClientId = configuration[
+                    "Authentication:Google:ClientId"
+                ];
+                options.ClientSecret = configuration[
+                    "Authentication:Google:ClientSecret"
+                ];
+            });
     }
 }

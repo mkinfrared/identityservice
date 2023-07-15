@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace IdentityService.Dto;
+using IdentityService.Dto.ApiScope;
+
+namespace IdentityService.Dto.Consent;
 
 public class ConsentUpdateDto
 {

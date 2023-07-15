@@ -15,7 +15,7 @@ using Moq;
 
 using Xunit;
 
-namespace IdentityService.Unit.Features;
+namespace IdentityService.Unit.Features.AuthTest;
 
 public class LogoutTest
 {
@@ -56,7 +56,10 @@ public class LogoutTest
             _interactionServiceMock.Object
         );
 
-        var result = await commandHandler.Handle(command, new CancellationToken());
+        var result = await commandHandler.Handle(
+            command,
+            new CancellationToken()
+        );
 
         Assert.Equal(logoutRequest.PostLogoutRedirectUri, result);
     }
