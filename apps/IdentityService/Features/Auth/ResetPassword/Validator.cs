@@ -15,11 +15,17 @@ public partial class ResetPassword
                 .Matches(ValidationRules.Password.ContainsDigit)
                 .WithMessage(ValidationRules.Password.NotContainsDigitMessage)
                 .Matches(ValidationRules.Password.ContainsLowercaseLetter)
-                .WithMessage(ValidationRules.Password.NotContainsLowerCaseMessage)
+                .WithMessage(
+                    ValidationRules.Password.NotContainsLowerCaseMessage
+                )
                 .Matches(ValidationRules.Password.ContainsUppercaseLetter)
-                .WithMessage(ValidationRules.Password.NotContainsUpperCaseMessage)
+                .WithMessage(
+                    ValidationRules.Password.NotContainsUpperCaseMessage
+                )
                 .Matches(ValidationRules.Password.ContainsSpecialCharacter)
-                .WithMessage(ValidationRules.Password.NotContainsSpecialCharacterMessage);
+                .WithMessage(
+                    ValidationRules.Password.NotContainsSpecialCharacterMessage
+                );
 
             RuleFor(command => command.ConfirmPassword)
                 .NotEmpty()

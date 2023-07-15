@@ -38,7 +38,10 @@ public partial class ForgotPassword
             _hostEnvironment = hostEnvironment;
         }
 
-        public async Task<Task> Handle(Command request, CancellationToken cancellationToken)
+        public async Task<Task> Handle(
+            Command request,
+            CancellationToken cancellationToken
+        )
         {
             var user = await _userManager.FindByEmailAsync(request.Email);
 
@@ -65,7 +68,12 @@ public partial class ForgotPassword
             var url = $"{request.Url}?{query}";
             var emailMessage = GenerateEmailMessage(url);
 
-            await _emailService.SendAsync(request.Email, "Password Reset", emailMessage, true);
+            await _emailService.SendAsync(
+                request.Email,
+                "Password Reset",
+                emailMessage,
+                true
+            );
 
             return Task.CompletedTask;
         }

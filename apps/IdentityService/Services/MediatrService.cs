@@ -8,16 +8,16 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace IdentityService.Services;
 
-public class MediatrService : ISerivce
+public class MediatrService : IService
 {
-  public void InstallServices(
-    IServiceCollection services,
-    IConfiguration configuration,
-    IWebHostEnvironment env
-  )
-  {
-    var assembly = Assembly.GetExecutingAssembly();
+    public void InstallServices(
+        IServiceCollection services,
+        IConfiguration configuration,
+        IWebHostEnvironment env
+    )
+    {
+        var assembly = Assembly.GetExecutingAssembly();
 
-    services.AddMediatR(assembly);
-  }
+        services.AddMediatR(assembly);
+    }
 }

@@ -8,15 +8,14 @@ namespace IdentityService.Unit.Entities;
 
 public class UserTest
 {
-  [Fact]
-  public void Should_Have_Getters_And_Setters_For_DateOfBirth_Property()
-  {
-    var user = new User();
-    var date = DateOnly.FromDateTime(DateTime.Now);
-    ;
+    [Fact]
+    public void Should_Have_Getters_And_Setters_For_DateOfBirth_Property()
+    {
+        var user = new User();
+        var date = DateOnly.FromDateTime(DateTime.Now);
 
-    user.DateOfBirth = date;
+        user.DateOfBirth = date;
 
-    Assert.Equal(user.DateOfBirth, date);
-  }
+        Assert.Equal(user.DateOfBirth, date);
+    }
 }

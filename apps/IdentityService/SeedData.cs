@@ -21,123 +21,139 @@ namespace IdentityService;
 
 public class SeedData
 {
-  public static void EnsureSeedData(string connectionString)
-  {
-    var services = new ServiceCollection();
-
-    services.AddOperationalDbContext(
-      options =>
-      {
-        options.ConfigureDbContext = db =>
-          db.UseNpgsql(
-            connectionString,
-            sql => sql.MigrationsAssembly(typeof(SeedData).Assembly.FullName)
-          );
-      }
-    );
-
-    services.AddConfigurationDbContext(
-      options =>
-      {
-        options.ConfigureDbContext = db =>
-          db.UseNpgsql(
-            connectionString,
-            sql => sql.MigrationsAssembly(typeof(SeedData).Assembly.FullName)
-          );
-      }
-    );
-
-    var serviceProvider = services.BuildServiceProvider();
-
-    using (var scope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
+    public static void EnsureSeedData(string connectionString)
     {
-      scope.ServiceProvider.GetService<PersistedGrantDbContext>().Database.Migrate();
+        var services = new ServiceCollection();
 
-      var context = scope.ServiceProvider.GetService<ConfigurationDbContext>();
-      context.Database.Migrate();
-      EnsureSeedData(context);
-    }
-  }
+        services.AddOperationalDbContext(options =>
+        {
+            options.ConfigureDbContext = db =>
+                db.UseNpgsql(
+                    connectionString,
+                    sql =>
+                        sql.MigrationsAssembly(
+                            typeof(SeedData).Assembly.FullName
+                        )
+                );
+        });
 
-  private static void EnsureSeedData(ConfigurationDbContext context)
-  {
-    if (!context.Clients.Any())
-    {
-      Log.Debug("Clients being populated");
+        services.AddConfigurationDbContext(options =>
+        {
+            options.ConfigureDbContext = db =>
+                db.UseNpgsql(
+                    connectionString,
+                    sql =>
+                        sql.MigrationsAssembly(
+                            typeof(SeedData).Assembly.FullName
+                        )
+                );
+        });
 
-      foreach (var client in Config.Clients.ToList())
-      {
-        context.Clients.Add(client.ToEntity());
-      }
+        var serviceProvider = services.BuildServiceProvider();
 
-      context.SaveChanges();
-    }
-    else
-    {
-      Log.Debug("Clients already populated");
+        using (
+            var scope = serviceProvider
+                .GetRequiredService<IServiceScopeFactory>()
+                .CreateScope()
+        )
+        {
+            scope.ServiceProvider
+                .GetService<PersistedGrantDbContext>()
+                .Database.Migrate();
+
+            var context =
+                scope.ServiceProvider.GetService<ConfigurationDbContext>();
+            context.Database.Migrate();
+            EnsureSeedData(context);
+        }
     }
 
-    if (!context.IdentityResources.Any())
+    private static void EnsureSeedData(ConfigurationDbContext context)
     {
-      Log.Debug("IdentityResources being populated");
+        if (!context.Clients.Any())
+        {
+            Log.Debug("Clients being populated");
 
-      foreach (var resource in Config.IdentityResources.ToList())
-      {
-        context.IdentityResources.Add(resource.ToEntity());
-      }
+            foreach (var client in Config.Clients.ToList())
+            {
+                context.Clients.Add(client.ToEntity());
+            }
 
-      context.SaveChanges();
+            context.SaveChanges();
+        }
+        else
+        {
+            Log.Debug("Clients already populated");
+        }
+
+        if (!context.IdentityResources.Any())
+        {
+            Log.Debug("IdentityResources being populated");
+
+            foreach (var resource in Config.IdentityResources.ToList())
+            {
+                context.IdentityResources.Add(resource.ToEntity());
+            }
+
+            context.SaveChanges();
+        }
+        else
+        {
+            Log.Debug("IdentityResources already populated");
+        }
+
+        if (!context.ApiScopes.Any())
+        {
+            Log.Debug("ApiScopes being populated");
+
+            foreach (var resource in Config.ApiScopes.ToList())
+            {
+                context.ApiScopes.Add(resource.ToEntity());
+            }
+
+            context.SaveChanges();
+        }
+        else
+        {
+            Log.Debug("ApiScopes already populated");
+        }
+
+        if (!context.ApiResources.Any())
+        {
+            Log.Debug("ApiResources being populated");
+
+            foreach (var resource in Config.Resources.ToList())
+            {
+                context.ApiResources.Add(resource.ToEntity());
+            }
+
+            context.SaveChanges();
+        }
+        else
+        {
+            Log.Debug("ApiResources already populated");
+        }
     }
-    else
+
+    public static void SeedUsers(IServiceProvider serviceProvider)
     {
-      Log.Debug("IdentityResources already populated");
+        var userManager = serviceProvider.GetService<UserManager<User>>();
+
+        var user = new User
+        {
+            UserName = "admin",
+            DateOfBirth = new DateOnly(1988, 9, 18)
+        };
+
+        var result = userManager
+            .CreateAsync(user, "Pass123#")
+            .GetAwaiter()
+            .GetResult();
+
+        if (result.Succeeded)
+        {
+            var claim = new Claim(ClaimTypes.Role, "admin");
+            userManager.AddClaimAsync(user, claim).GetAwaiter().GetResult();
+        }
     }
-
-    if (!context.ApiScopes.Any())
-    {
-      Log.Debug("ApiScopes being populated");
-
-      foreach (var resource in Config.ApiScopes.ToList())
-      {
-        context.ApiScopes.Add(resource.ToEntity());
-      }
-
-      context.SaveChanges();
-    }
-    else
-    {
-      Log.Debug("ApiScopes already populated");
-    }
-
-    if (!context.ApiResources.Any())
-    {
-      Log.Debug("ApiResources being populated");
-
-      foreach (var resource in Config.Resources.ToList())
-      {
-        context.ApiResources.Add(resource.ToEntity());
-      }
-
-      context.SaveChanges();
-    }
-    else
-    {
-      Log.Debug("ApiResources already populated");
-    }
-  }
-
-  public static void SeedUsers(IServiceProvider serviceProvider)
-  {
-    var userManager = serviceProvider.GetService<UserManager<User>>();
-
-    var user = new User {UserName = "admin", DateOfBirth = new DateOnly(1988, 9, 18)};
-
-    var result = userManager.CreateAsync(user, "Pass123#").GetAwaiter().GetResult();
-
-    if (result.Succeeded)
-    {
-      var claim = new Claim(ClaimTypes.Role, "admin");
-      userManager.AddClaimAsync(user, claim).GetAwaiter().GetResult();
-    }
-  }
 }

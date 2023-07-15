@@ -8,17 +8,17 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace IdentityService.Services;
 
-public class AspIdentityService : ISerivce
+public class AspIdentityService : IService
 {
-  public void InstallServices(
-    IServiceCollection service,
-    IConfiguration configuration,
-    IWebHostEnvironment env
-  )
-  {
-    service
-      .AddIdentity<User, IdentityRole>()
-      .AddEntityFrameworkStores<AppDbContext>()
-      .AddDefaultTokenProviders();
-  }
+    public void InstallServices(
+        IServiceCollection service,
+        IConfiguration configuration,
+        IWebHostEnvironment env
+    )
+    {
+        service
+            .AddIdentity<User, IdentityRole>()
+            .AddEntityFrameworkStores<AppDbContext>()
+            .AddDefaultTokenProviders();
+    }
 }

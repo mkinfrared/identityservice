@@ -6,7 +6,7 @@ using Serilog;
 
 namespace IdentityService.Services;
 
-public class LoggingService : ISerivce
+public class LoggingService : IService
 {
     public void InstallServices(
         IServiceCollection services,

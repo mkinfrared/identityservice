@@ -6,13 +6,13 @@ namespace IdentityService.Features.Auth.SendConfirmEmail;
 
 public partial class SendConfirmEmail
 {
-  public class Command : IRequest<ConfirmEmailCommand>
-  {
-    public Command(string username)
+    public class Command : IRequest<ConfirmEmailCommand>
     {
-      Username = username;
-    }
+        public Command(string username)
+        {
+            Username = username;
+        }
 
-    public string Username { get; }
-  }
+        public string Username { get; }
+    }
 }

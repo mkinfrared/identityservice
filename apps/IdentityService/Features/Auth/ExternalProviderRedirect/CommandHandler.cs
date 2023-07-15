@@ -27,10 +27,11 @@ public partial class ExternalProviderRedirect
         )
         {
             var currentProvider = request.Provider.ToString();
-            var properties = _signInManager.ConfigureExternalAuthenticationProperties(
-                currentProvider,
-                request.RedirectUri
-            );
+            var properties =
+                _signInManager.ConfigureExternalAuthenticationProperties(
+                    currentProvider,
+                    request.RedirectUri
+                );
 
             var result = new ExternalRegisterDto();
             result.Properties = properties;

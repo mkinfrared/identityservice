@@ -4,11 +4,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace IdentityService.Services;
 
-public interface ISerivce
+public interface IService
 {
-  void InstallServices(
-    IServiceCollection serviceCollection,
-    IConfiguration configuration,
-    IWebHostEnvironment env
-  );
+    void InstallServices(
+        IServiceCollection serviceCollection,
+        IConfiguration configuration,
+        IWebHostEnvironment env
+    );
 }

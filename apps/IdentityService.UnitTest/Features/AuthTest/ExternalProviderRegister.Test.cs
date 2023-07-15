@@ -12,7 +12,7 @@ using Moq;
 
 using Xunit;
 
-namespace IdentityService.Unit.Features;
+namespace IdentityService.Unit.Features.AuthTest;
 
 public class ExternalProviderRegisterTest
 {
@@ -41,7 +41,9 @@ public class ExternalProviderRegisterTest
         var command = new ExternalProviderRegister.Command(redirectUrl);
 
         _signInManagerMock
-            .Setup(manager => manager.GetExternalLoginInfoAsync(It.IsAny<string>()))
+            .Setup(
+                manager => manager.GetExternalLoginInfoAsync(It.IsAny<string>())
+            )
             .ReturnsAsync(() => null);
 
         var commandHandler = new ExternalProviderRegister.CommandHandler(
@@ -49,7 +51,10 @@ public class ExternalProviderRegisterTest
             _userManagerMock.Object
         );
 
-        var result = await commandHandler.Handle(command, CancellationToken.None);
+        var result = await commandHandler.Handle(
+            command,
+            CancellationToken.None
+        );
 
         Assert.IsType<IdentityResult>(result);
         Assert.False(result.Succeeded);
@@ -83,7 +88,9 @@ public class ExternalProviderRegisterTest
         );
 
         _signInManagerMock
-            .Setup(manager => manager.GetExternalLoginInfoAsync(It.IsAny<string>()))
+            .Setup(
+                manager => manager.GetExternalLoginInfoAsync(It.IsAny<string>())
+            )
             .ReturnsAsync(infoMock);
 
         _signInManagerMock
@@ -102,12 +109,18 @@ public class ExternalProviderRegisterTest
             _userManagerMock.Object
         );
 
-        var result = await commandHandler.Handle(command, CancellationToken.None);
+        var result = await commandHandler.Handle(
+            command,
+            CancellationToken.None
+        );
 
         Assert.IsType<IdentityResult>(result);
         Assert.True(result.Succeeded);
 
-        _userManagerMock.Verify(manager => manager.CreateAsync(It.IsAny<User>()), Times.Never);
+        _userManagerMock.Verify(
+            manager => manager.CreateAsync(It.IsAny<User>()),
+            Times.Never
+        );
     }
 
     [Fact]
@@ -128,7 +141,9 @@ public class ExternalProviderRegisterTest
         );
 
         _signInManagerMock
-            .Setup(manager => manager.GetExternalLoginInfoAsync(It.IsAny<string>()))
+            .Setup(
+                manager => manager.GetExternalLoginInfoAsync(It.IsAny<string>())
+            )
             .ReturnsAsync(infoMock);
 
         _signInManagerMock
@@ -151,13 +166,20 @@ public class ExternalProviderRegisterTest
             _userManagerMock.Object
         );
 
-        var result = await commandHandler.Handle(command, CancellationToken.None);
+        var result = await commandHandler.Handle(
+            command,
+            CancellationToken.None
+        );
 
         Assert.IsType<IdentityResult>(result);
         Assert.False(result.Succeeded);
 
         _userManagerMock.Verify(
-            manager => manager.AddLoginAsync(It.IsAny<User>(), It.IsAny<ExternalLoginInfo>()),
+            manager =>
+                manager.AddLoginAsync(
+                    It.IsAny<User>(),
+                    It.IsAny<ExternalLoginInfo>()
+                ),
             Times.Never
         );
     }
@@ -180,7 +202,9 @@ public class ExternalProviderRegisterTest
         );
 
         _signInManagerMock
-            .Setup(manager => manager.GetExternalLoginInfoAsync(It.IsAny<string>()))
+            .Setup(
+                manager => manager.GetExternalLoginInfoAsync(It.IsAny<string>())
+            )
             .ReturnsAsync(infoMock);
 
         _signInManagerMock
@@ -207,13 +231,21 @@ public class ExternalProviderRegisterTest
             _userManagerMock.Object
         );
 
-        var result = await commandHandler.Handle(command, CancellationToken.None);
+        var result = await commandHandler.Handle(
+            command,
+            CancellationToken.None
+        );
 
         Assert.IsType<IdentityResult>(result);
         Assert.False(result.Succeeded);
 
         _signInManagerMock.Verify(
-            manager => manager.SignInAsync(It.IsAny<User>(), It.IsAny<bool>(), It.IsAny<string>()),
+            manager =>
+                manager.SignInAsync(
+                    It.IsAny<User>(),
+                    It.IsAny<bool>(),
+                    It.IsAny<string>()
+                ),
             Times.Never
         );
     }
@@ -236,7 +268,9 @@ public class ExternalProviderRegisterTest
         );
 
         _signInManagerMock
-            .Setup(manager => manager.GetExternalLoginInfoAsync(It.IsAny<string>()))
+            .Setup(
+                manager => manager.GetExternalLoginInfoAsync(It.IsAny<string>())
+            )
             .ReturnsAsync(infoMock);
 
         _signInManagerMock
@@ -263,13 +297,21 @@ public class ExternalProviderRegisterTest
             _userManagerMock.Object
         );
 
-        var result = await commandHandler.Handle(command, CancellationToken.None);
+        var result = await commandHandler.Handle(
+            command,
+            CancellationToken.None
+        );
 
         Assert.IsType<IdentityResult>(result);
         Assert.True(result.Succeeded);
 
         _signInManagerMock.Verify(
-            manager => manager.SignInAsync(It.IsAny<User>(), It.IsAny<bool>(), It.IsAny<string>()),
+            manager =>
+                manager.SignInAsync(
+                    It.IsAny<User>(),
+                    It.IsAny<bool>(),
+                    It.IsAny<string>()
+                ),
             Times.Once
         );
     }

@@ -71,13 +71,14 @@ public class Startup
         app.UseAuthorization();
         app.UseAuthentication();
 
-        app.UseEndpoints(
-            endpoints =>
-            {
-                endpoints
-                    .MapControllerRoute("default", "{controller}/{action=Index}/{id?}")
-                    .RequireCors("SafeOrigins");
-            }
-        );
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints
+                .MapControllerRoute(
+                    "default",
+                    "{controller}/{action=Index}/{id?}"
+                )
+                .RequireCors("SafeOrigins");
+        });
     }
 }

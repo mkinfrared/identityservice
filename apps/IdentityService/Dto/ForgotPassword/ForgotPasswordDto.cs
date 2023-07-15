@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace IdentityService.Dto;
+namespace IdentityService.Dto.ForgotPassword;
 
 public class ForgotPasswordDto
 {

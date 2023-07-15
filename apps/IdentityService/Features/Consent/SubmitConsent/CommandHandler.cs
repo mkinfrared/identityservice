@@ -13,12 +13,16 @@ namespace IdentityService.Features.Consent.SubmitConsent;
 
 public partial class SubmitConsent
 {
-    public class CommandHandler : IRequestHandler<Command, AuthorizationRequest?>
+    public class CommandHandler
+        : IRequestHandler<Command, AuthorizationRequest?>
     {
         private readonly IIdentityServerInteractionService _interaction;
         private readonly IEventService _events;
 
-        public CommandHandler(IIdentityServerInteractionService interaction, IEventService events)
+        public CommandHandler(
+            IIdentityServerInteractionService interaction,
+            IEventService events
+        )
         {
             _interaction = interaction;
             _events = events;
@@ -31,9 +35,10 @@ public partial class SubmitConsent
         {
             var (claimsPrincipal, consent) = request;
 
-            var authorizationRequest = await _interaction.GetAuthorizationContextAsync(
-                consent.RedirectUrl
-            );
+            var authorizationRequest =
+                await _interaction.GetAuthorizationContextAsync(
+                    consent.RedirectUrl
+                );
 
             // validate return url is still valid
             // var request = await _interaction.GetAuthorizationContextAsync(model.ReturnUrl);
@@ -75,7 +80,10 @@ public partial class SubmitConsent
             }
             else
             {
-                grantedConsent = new ConsentResponse { Error = AuthorizationError.AccessDenied };
+                grantedConsent = new ConsentResponse
+                {
+                    Error = AuthorizationError.AccessDenied
+                };
 
                 var consentEvent = new ConsentDeniedEvent(
                     claimsPrincipal.GetSubjectId(),
@@ -88,7 +96,10 @@ public partial class SubmitConsent
             }
 
             // communicate outcome of consent back to identityserver
-            await _interaction.GrantConsentAsync(authorizationRequest, grantedConsent);
+            await _interaction.GrantConsentAsync(
+                authorizationRequest,
+                grantedConsent
+            );
 
             return authorizationRequest;
         }

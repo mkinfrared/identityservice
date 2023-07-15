@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using IdentityServer4.Models;
 
 using IdentityService.Controllers;
-using IdentityService.Dto;
+using IdentityService.Dto.Consent;
 using IdentityService.Features.Consent.SubmitConsent;
 
 using MediatR;
@@ -44,7 +44,13 @@ public class ConsentControllerTest
         var queryResult = new Mock<ConsentReadDto>();
 
         _mediatrMock
-            .Setup(m => m.Send(It.IsAny<Consent.GetConsentQuery>(), It.IsAny<CancellationToken>()))
+            .Setup(
+                m =>
+                    m.Send(
+                        It.IsAny<Consent.GetConsentQuery>(),
+                        It.IsAny<CancellationToken>()
+                    )
+            )
             .ReturnsAsync(queryResult.Object);
 
         var result = await _controller.GetConsent(returnUrl);
@@ -63,7 +69,13 @@ public class ConsentControllerTest
         var consentUpdateMock = new Mock<ConsentUpdateDto>();
 
         _mediatrMock
-            .Setup(m => m.Send(It.IsAny<SubmitConsent.Command>(), It.IsAny<CancellationToken>()))
+            .Setup(
+                m =>
+                    m.Send(
+                        It.IsAny<SubmitConsent.Command>(),
+                        It.IsAny<CancellationToken>()
+                    )
+            )
             .ReturnsAsync(() => null);
 
         var result = await _controller.SubmitConsent(consentUpdateMock.Object);
@@ -78,7 +90,13 @@ public class ConsentControllerTest
         var authRequestMock = new Mock<AuthorizationRequest>();
 
         _mediatrMock
-            .Setup(m => m.Send(It.IsAny<SubmitConsent.Command>(), It.IsAny<CancellationToken>()))
+            .Setup(
+                m =>
+                    m.Send(
+                        It.IsAny<SubmitConsent.Command>(),
+                        It.IsAny<CancellationToken>()
+                    )
+            )
             .ReturnsAsync(authRequestMock.Object);
 
         var result = await _controller.SubmitConsent(consentUpdateMock.Object);

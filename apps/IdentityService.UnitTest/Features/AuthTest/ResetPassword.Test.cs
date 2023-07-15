@@ -13,7 +13,7 @@ using Moq;
 
 using Xunit;
 
-namespace IdentityService.Unit.Features;
+namespace IdentityService.Unit.Features.AuthTest;
 
 public class ResetPasswordTest
 {
@@ -31,7 +31,12 @@ public class ResetPasswordTest
         var token = "token";
         var password = "marklar";
         var confirmPassword = "marklar";
-        var command = new ResetPassword.Command(userId, token, password, confirmPassword);
+        var command = new ResetPassword.Command(
+            userId,
+            token,
+            password,
+            confirmPassword
+        );
 
         Assert.Equal(password, command.Password);
         Assert.Equal(confirmPassword, command.ConfirmPassword);
@@ -46,15 +51,27 @@ public class ResetPasswordTest
         var token = "token";
         var password = "marklar";
         var confirmPassword = "marklar";
-        var command = new ResetPassword.Command(userId, token, password, confirmPassword);
+        var command = new ResetPassword.Command(
+            userId,
+            token,
+            password,
+            confirmPassword
+        );
 
-        _userManagerMock.Setup(manager => manager.FindByIdAsync(userId)).ReturnsAsync(() => null);
+        _userManagerMock
+            .Setup(manager => manager.FindByIdAsync(userId))
+            .ReturnsAsync(() => null!);
 
-        var commandHandler = new ResetPassword.CommandHandler(_userManagerMock.Object);
+        var commandHandler = new ResetPassword.CommandHandler(
+            _userManagerMock.Object
+        );
 
-        var result = await commandHandler.Handle(command, new CancellationToken());
+        var result = await commandHandler.Handle(
+            command,
+            new CancellationToken()
+        );
 
-        Assert.False(result.Succeeded);
+        Assert.False(result?.Succeeded);
 
         _userManagerMock.Verify(
             manager =>
@@ -75,20 +92,33 @@ public class ResetPasswordTest
         var password = "marklar";
         var confirmPassword = "marklar";
         var userMock = new Mock<User>();
-        var command = new ResetPassword.Command(userId, token, password, confirmPassword);
+        var command = new ResetPassword.Command(
+            userId,
+            token,
+            password,
+            confirmPassword
+        );
 
         _userManagerMock
             .Setup(manager => manager.FindByIdAsync(userId))
             .ReturnsAsync(userMock.Object);
         _userManagerMock
-            .Setup(manager => manager.ResetPasswordAsync(userMock.Object, token, password))
+            .Setup(
+                manager =>
+                    manager.ResetPasswordAsync(userMock.Object, token, password)
+            )
             .ReturnsAsync(IdentityResult.Success);
 
-        var commandHandler = new ResetPassword.CommandHandler(_userManagerMock.Object);
+        var commandHandler = new ResetPassword.CommandHandler(
+            _userManagerMock.Object
+        );
 
-        var result = await commandHandler.Handle(command, new CancellationToken());
+        var result = await commandHandler.Handle(
+            command,
+            new CancellationToken()
+        );
 
-        Assert.True(result.Succeeded);
+        Assert.True(result?.Succeeded);
 
         _userManagerMock.Verify(
             manager =>
@@ -111,7 +141,12 @@ public class ResetPasswordTest
 
         var validator = new ResetPassword.Validator();
 
-        var command = new ResetPassword.Command(userId, token, password, confirmPassword);
+        var command = new ResetPassword.Command(
+            userId,
+            token,
+            password,
+            confirmPassword
+        );
 
         var result = validator.TestValidate(command);
 
@@ -128,7 +163,12 @@ public class ResetPasswordTest
 
         var validator = new ResetPassword.Validator();
 
-        var command = new ResetPassword.Command(userId, token, password, confirmPassword);
+        var command = new ResetPassword.Command(
+            userId,
+            token,
+            password,
+            confirmPassword
+        );
 
         var result = validator.TestValidate(command);
 
@@ -145,7 +185,12 @@ public class ResetPasswordTest
 
         var validator = new ResetPassword.Validator();
 
-        var command = new ResetPassword.Command(userId, token, password, confirmPassword);
+        var command = new ResetPassword.Command(
+            userId,
+            token,
+            password,
+            confirmPassword
+        );
 
         var result = validator.TestValidate(command);
 
@@ -162,7 +207,12 @@ public class ResetPasswordTest
 
         var validator = new ResetPassword.Validator();
 
-        var command = new ResetPassword.Command(userId, token, password, confirmPassword);
+        var command = new ResetPassword.Command(
+            userId,
+            token,
+            password,
+            confirmPassword
+        );
 
         var result = validator.TestValidate(command);
 
@@ -179,7 +229,12 @@ public class ResetPasswordTest
 
         var validator = new ResetPassword.Validator();
 
-        var command = new ResetPassword.Command(userId, token, password, confirmPassword);
+        var command = new ResetPassword.Command(
+            userId,
+            token,
+            password,
+            confirmPassword
+        );
 
         var result = validator.TestValidate(command);
 
@@ -196,7 +251,12 @@ public class ResetPasswordTest
 
         var validator = new ResetPassword.Validator();
 
-        var command = new ResetPassword.Command(userId, token, password, confirmPassword);
+        var command = new ResetPassword.Command(
+            userId,
+            token,
+            password,
+            confirmPassword
+        );
 
         var result = validator.TestValidate(command);
 
@@ -213,7 +273,12 @@ public class ResetPasswordTest
 
         var validator = new ResetPassword.Validator();
 
-        var command = new ResetPassword.Command(userId, token, password, confirmPassword);
+        var command = new ResetPassword.Command(
+            userId,
+            token,
+            password,
+            confirmPassword
+        );
 
         var result = validator.TestValidate(command);
 
@@ -230,7 +295,12 @@ public class ResetPasswordTest
 
         var validator = new ResetPassword.Validator();
 
-        var command = new ResetPassword.Command(userId, token, password, confirmPassword);
+        var command = new ResetPassword.Command(
+            userId,
+            token,
+            password,
+            confirmPassword
+        );
 
         var result = validator.TestValidate(command);
 
@@ -250,7 +320,12 @@ public class ResetPasswordTest
 
         var validator = new ResetPassword.Validator();
 
-        var command = new ResetPassword.Command(userId, token, password, confirmPassword);
+        var command = new ResetPassword.Command(
+            userId,
+            token,
+            password,
+            confirmPassword
+        );
 
         var result = validator.TestValidate(command);
 

@@ -3,6 +3,7 @@ using System.Threading;
 
 using IdentityService.Controllers;
 using IdentityService.Dto;
+using IdentityService.Dto.ForgotPassword;
 using IdentityService.Features.Auth.ConfirmEmail;
 using IdentityService.Features.Auth.ExternalProviderRedirect;
 using IdentityService.Features.Auth.ExternalProviderRegister;
@@ -51,7 +52,13 @@ public class AuthControllerTest
         var command = new Login.Command(username, password, returnUrl);
 
         _mediatrMock
-            .Setup(m => m.Send(It.IsAny<Login.Command>(), It.IsAny<CancellationToken>()))
+            .Setup(
+                m =>
+                    m.Send(
+                        It.IsAny<Login.Command>(),
+                        It.IsAny<CancellationToken>()
+                    )
+            )
             .ReturnsAsync(signInResult);
 
         var result = await _controller.Login(command);
@@ -70,7 +77,13 @@ public class AuthControllerTest
         var command = new Login.Command(username, password, returnUrl);
 
         _mediatrMock
-            .Setup(m => m.Send(It.IsAny<Login.Command>(), It.IsAny<CancellationToken>()))
+            .Setup(
+                m =>
+                    m.Send(
+                        It.IsAny<Login.Command>(),
+                        It.IsAny<CancellationToken>()
+                    )
+            )
             .ReturnsAsync(signInResult);
 
         var result = await _controller.Login(command);
@@ -94,7 +107,11 @@ public class AuthControllerTest
         var code = 424242;
 
         var registerResult = IdentityResult.Success;
-        var sendEmailResult = new Mock<ConfirmEmail.Command>(userId, token, code);
+        var sendEmailResult = new Mock<ConfirmEmail.Command>(
+            userId,
+            token,
+            code
+        );
 
         var command = new Register.Command(
             username,
@@ -108,17 +125,32 @@ public class AuthControllerTest
         );
 
         _mediatrMock
-            .Setup(m => m.Send(It.IsAny<Register.Command>(), It.IsAny<CancellationToken>()))
+            .Setup(
+                m =>
+                    m.Send(
+                        It.IsAny<Register.Command>(),
+                        It.IsAny<CancellationToken>()
+                    )
+            )
             .ReturnsAsync(registerResult);
 
         _mediatrMock
-            .Setup(m => m.Send(It.IsAny<SendConfirmEmail.Command>(), It.IsAny<CancellationToken>()))
+            .Setup(
+                m =>
+                    m.Send(
+                        It.IsAny<SendConfirmEmail.Command>(),
+                        It.IsAny<CancellationToken>()
+                    )
+            )
             .ReturnsAsync(sendEmailResult.Object);
 
         var result = await _controller.Register(command);
 
         Assert.IsType<OkObjectResult>(result.Result);
-        Assert.Equal(sendEmailResult.Object, ((OkObjectResult)result.Result)?.Value);
+        Assert.Equal(
+            sendEmailResult.Object,
+            ((OkObjectResult)result.Result)?.Value
+        );
     }
 
     [Fact]
@@ -146,7 +178,13 @@ public class AuthControllerTest
         );
 
         _mediatrMock
-            .Setup(m => m.Send(It.IsAny<Register.Command>(), It.IsAny<CancellationToken>()))
+            .Setup(
+                m =>
+                    m.Send(
+                        It.IsAny<Register.Command>(),
+                        It.IsAny<CancellationToken>()
+                    )
+            )
             .ReturnsAsync(registerResult);
 
         var result = await _controller.Register(command);
@@ -165,7 +203,13 @@ public class AuthControllerTest
         var command = new ConfirmEmail.Command(userId, token, code);
 
         _mediatrMock
-            .Setup(m => m.Send(It.IsAny<ConfirmEmail.Command>(), It.IsAny<CancellationToken>()))
+            .Setup(
+                m =>
+                    m.Send(
+                        It.IsAny<ConfirmEmail.Command>(),
+                        It.IsAny<CancellationToken>()
+                    )
+            )
             .ReturnsAsync(verificationResult);
 
         var result = await _controller.VerifyEmail(command);
@@ -184,7 +228,13 @@ public class AuthControllerTest
         var command = new ConfirmEmail.Command(userId, token, code);
 
         _mediatrMock
-            .Setup(m => m.Send(It.IsAny<ConfirmEmail.Command>(), It.IsAny<CancellationToken>()))
+            .Setup(
+                m =>
+                    m.Send(
+                        It.IsAny<ConfirmEmail.Command>(),
+                        It.IsAny<CancellationToken>()
+                    )
+            )
             .ReturnsAsync(verificationResult);
 
         var result = await _controller.VerifyEmail(command);
@@ -198,7 +248,13 @@ public class AuthControllerTest
         var logoutId = "";
 
         _mediatrMock
-            .Setup(m => m.Send(It.IsAny<Logout.Command>(), It.IsAny<CancellationToken>()))
+            .Setup(
+                m =>
+                    m.Send(
+                        It.IsAny<Logout.Command>(),
+                        It.IsAny<CancellationToken>()
+                    )
+            )
             .ReturnsAsync("");
 
         var result = await _controller.Logout(logoutId);
@@ -218,7 +274,13 @@ public class AuthControllerTest
         var commandResult = "foobar";
 
         _mediatrMock
-            .Setup(m => m.Send(It.IsAny<Logout.Command>(), It.IsAny<CancellationToken>()))
+            .Setup(
+                m =>
+                    m.Send(
+                        It.IsAny<Logout.Command>(),
+                        It.IsAny<CancellationToken>()
+                    )
+            )
             .ReturnsAsync(commandResult);
 
         var result = await _controller.Logout(logoutId);
@@ -239,7 +301,13 @@ public class AuthControllerTest
         var forgotPasswordDto = new ForgotPasswordDto();
 
         _mediatrMock
-            .Setup(m => m.Send(It.IsAny<ForgotPassword.Command>(), It.IsAny<CancellationToken>()))
+            .Setup(
+                m =>
+                    m.Send(
+                        It.IsAny<ForgotPassword.Command>(),
+                        It.IsAny<CancellationToken>()
+                    )
+            )
             .ReturnsAsync(() => null);
 
         var result = await _controller.ForgotPassword(forgotPasswordDto);
@@ -263,7 +331,13 @@ public class AuthControllerTest
         );
 
         _mediatrMock
-            .Setup(m => m.Send(It.IsAny<ResetPassword.Command>(), It.IsAny<CancellationToken>()))
+            .Setup(
+                m =>
+                    m.Send(
+                        It.IsAny<ResetPassword.Command>(),
+                        It.IsAny<CancellationToken>()
+                    )
+            )
             .ReturnsAsync(IdentityResult.Success);
 
         var result = await _controller.ResetPassword(resetPasswordCommand);
@@ -287,7 +361,13 @@ public class AuthControllerTest
         );
 
         _mediatrMock
-            .Setup(m => m.Send(It.IsAny<ResetPassword.Command>(), It.IsAny<CancellationToken>()))
+            .Setup(
+                m =>
+                    m.Send(
+                        It.IsAny<ResetPassword.Command>(),
+                        It.IsAny<CancellationToken>()
+                    )
+            )
             .ReturnsAsync(IdentityResult.Failed());
 
         var result = await _controller.ResetPassword(resetPasswordCommand);
@@ -342,7 +422,10 @@ public class AuthControllerTest
 
         Assert.IsType<RedirectToActionResult>(result);
         Assert.Equal("Login", ((RedirectToActionResult)result).ActionName);
-        Assert.Equal("Account", ((RedirectToActionResult)result).ControllerName);
+        Assert.Equal(
+            "Account",
+            ((RedirectToActionResult)result).ControllerName
+        );
     }
 
     [Fact]

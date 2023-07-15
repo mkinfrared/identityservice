@@ -2,7 +2,7 @@ using System.Security.Principal;
 
 using IdentityServer4.Models;
 
-using IdentityService.Dto;
+using IdentityService.Dto.Consent;
 
 using MediatR;
 
@@ -22,7 +22,10 @@ public partial class SubmitConsent
 
         public ConsentUpdateDto Consent { get; }
 
-        public void Deconstruct(out IPrincipal user, out ConsentUpdateDto consent)
+        public void Deconstruct(
+            out IPrincipal user,
+            out ConsentUpdateDto consent
+        )
         {
             user = User;
             consent = Consent;

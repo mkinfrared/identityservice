@@ -8,7 +8,12 @@ public partial class ResetPassword
 {
     public class Command : IRequest<IdentityResult?>
     {
-        public Command(string userId, string token, string password, string confirmPassword)
+        public Command(
+            string userId,
+            string token,
+            string password,
+            string confirmPassword
+        )
         {
             UserId = userId;
             Token = token;
@@ -21,7 +26,11 @@ public partial class ResetPassword
         public string Password { get; }
         public string ConfirmPassword { get; }
 
-        public void Deconstruct(out string userId, out string token, out string password)
+        public void Deconstruct(
+            out string userId,
+            out string token,
+            out string password
+        )
         {
             userId = UserId;
             token = Token;

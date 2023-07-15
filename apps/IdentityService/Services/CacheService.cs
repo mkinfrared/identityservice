@@ -11,32 +11,32 @@ namespace IdentityService.Services;
 
 public class CacheService
 {
-  private readonly IDistributedCache _cache;
+    private readonly IDistributedCache _cache;
 
-  public CacheService(IDistributedCache cache)
-  {
-    _cache = cache;
-  }
+    public CacheService(IDistributedCache cache)
+    {
+        _cache = cache;
+    }
 
-  public virtual Task SetRecordAsync<T>(string key, T data)
-  {
-    return _cache.SetRecordAsync(key, data);
-  }
+    public virtual Task SetRecordAsync<T>(string key, T data)
+    {
+        return _cache.SetRecordAsync(key, data);
+    }
 
-  public virtual Task<T?> GetRecordAsync<T>(string key)
-  {
-    return _cache.GetRecordAsync<T>(key);
-  }
+    public virtual Task<T?> GetRecordAsync<T>(string key)
+    {
+        return _cache.GetRecordAsync<T>(key);
+    }
 }
 
-public class CacheServiceInstaller : ISerivce
+public class CacheServiceInstaller : IService
 {
-  public void InstallServices(
-    IServiceCollection services,
-    IConfiguration configuration,
-    IWebHostEnvironment env
-  )
-  {
-    services.AddSingleton<CacheService>();
-  }
+    public void InstallServices(
+        IServiceCollection services,
+        IConfiguration configuration,
+        IWebHostEnvironment env
+    )
+    {
+        services.AddSingleton<CacheService>();
+    }
 }

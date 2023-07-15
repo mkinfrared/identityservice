@@ -13,12 +13,16 @@ namespace IdentityService;
 public static class Config
 {
     public static IEnumerable<IdentityResource> IdentityResources =>
-        new IdentityResource[] { new IdentityResources.OpenId(), new IdentityResources.Profile() };
+        new IdentityResource[]
+        {
+            new IdentityResources.OpenId(),
+            new IdentityResources.Profile()
+        };
 
     public static IEnumerable<ApiScope> ApiScopes =>
         new[]
         {
-            new ApiScope("scope1"),
+            new ApiScope("scope1", new List<string> { "foobar", "marklar" }),
             new ApiScope("scope2"),
             new ApiScope("OrdersApi"),
             new ApiScope("ClientMvc")
@@ -33,18 +37,27 @@ public static class Config
                 ClientId = "m2m.client",
                 ClientName = "Client Credentials Client",
                 AllowedGrantTypes = GrantTypes.ClientCredentials,
-                ClientSecrets = { new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256()) },
+                ClientSecrets =
+                {
+                    new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256())
+                },
                 AllowedScopes = { "scope1" }
             },
             // interactive client using code flow + pkce
             new Client
             {
                 ClientId = "interactive",
-                ClientSecrets = { new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256()) },
+                ClientSecrets =
+                {
+                    new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256())
+                },
                 AllowedGrantTypes = GrantTypes.Code,
                 RedirectUris = { "https://localhost:44300/signin-oidc" },
                 FrontChannelLogoutUri = "https://localhost:44300/signout-oidc",
-                PostLogoutRedirectUris = { "https://localhost:44300/signout-callback-oidc" },
+                PostLogoutRedirectUris =
+                {
+                    "https://localhost:44300/signout-callback-oidc"
+                },
                 AllowOfflineAccess = true,
                 AllowedScopes = { "openid", "profile", "scope2" }
             },
@@ -73,7 +86,10 @@ public static class Config
                     IdentityServerConstants.StandardScopes.Profile
                 },
                 RedirectUris = { "https://localhost:2001/signin-oidc" },
-                PostLogoutRedirectUris = { "https://localhost:2001/signout-callback-oidc" },
+                PostLogoutRedirectUris =
+                {
+                    "https://localhost:2001/signout-callback-oidc"
+                },
                 FrontChannelLogoutUri = "http://localhost:2001",
                 RequireConsent = false,
                 // Token lifetime in seconds

@@ -2,15 +2,14 @@ using System.Threading;
 
 using IdentityServer4.Services;
 
+using IdentityService.Features.Consent.GetConsent;
 using IdentityService.Unit.Utils;
 
 using Moq;
 
 using Xunit;
 
-using Consent = IdentityService.Features.Consent.GetConsent.Consent;
-
-namespace IdentityService.Unit.Features;
+namespace IdentityService.Unit.Features.ConsentTest;
 
 public class GetConsentTest
 {
@@ -40,9 +39,14 @@ public class GetConsentTest
             .Setup(service => service.GetAuthorizationContextAsync(returnUrl))
             .ReturnsAsync(() => null);
 
-        var commandHandler = new Consent.GetConsentQueryHandler(_interactionMock.Object);
+        var commandHandler = new Consent.GetConsentQueryHandler(
+            _interactionMock.Object
+        );
 
-        var result = await commandHandler.Handle(command, new CancellationToken());
+        var result = await commandHandler.Handle(
+            command,
+            new CancellationToken()
+        );
 
         Assert.Null(result);
     }
@@ -58,11 +62,16 @@ public class GetConsentTest
             .Setup(service => service.GetAuthorizationContextAsync(returnUrl))
             .ReturnsAsync(authRequestMock.Object);
 
-        var commandHandler = new Consent.GetConsentQueryHandler(_interactionMock.Object);
+        var commandHandler = new Consent.GetConsentQueryHandler(
+            _interactionMock.Object
+        );
 
-        var result = await commandHandler.Handle(command, new CancellationToken());
+        var result = await commandHandler.Handle(
+            command,
+            new CancellationToken()
+        );
 
         Assert.NotNull(result);
-        Assert.Equal(returnUrl, result?.ReturnUrl);
+        Assert.Equal(returnUrl, result.ReturnUrl);
     }
 }

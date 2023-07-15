@@ -28,7 +28,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <_ContentIncludedByDefault Remove="$(SpaRoot)\yarn.lock" />
         <_ContentIncludedByDefault Remove="$(SpaRoot)\package.json" />
         <_ContentIncludedByDefault Remove="$(SpaRoot)\public\manifest.json" />
         <_ContentIncludedByDefault Remove="ClientApp\build\asset-manifest.json" />
@@ -43,6 +42,14 @@
         <Folder Include="ClientApp\src\features\" />
         <Folder Include="ClientApp\src\shared\config\" />
         <Folder Include="ClientApp\src\widgets\main\ui\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="ClientApp\node_modules\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="ClientApp\node_modules\**" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

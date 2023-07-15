@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 
-namespace IdentityService.Dto;
+using IdentityService.Dto.ApiScope;
+
+namespace IdentityService.Dto.Consent;
 
 public class ConsentReadDto
 {

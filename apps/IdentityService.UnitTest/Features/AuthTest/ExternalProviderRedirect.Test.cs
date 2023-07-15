@@ -13,7 +13,7 @@ using Moq;
 
 using Xunit;
 
-namespace IdentityService.Unit.Features;
+namespace IdentityService.Unit.Features.AuthTest;
 
 public class ExternalProviderRedirectTest
 {
@@ -29,7 +29,10 @@ public class ExternalProviderRedirectTest
     {
         var provider = Providers.Google;
         var redirectUri = "/mark/lar";
-        var command = new ExternalProviderRedirect.Command(provider, redirectUri);
+        var command = new ExternalProviderRedirect.Command(
+            provider,
+            redirectUri
+        );
 
         Assert.Equal(provider, command.Provider);
         Assert.Equal(redirectUri, command.RedirectUri);
@@ -40,7 +43,10 @@ public class ExternalProviderRedirectTest
     {
         var provider = Providers.Google;
         var redirectUri = "/mark/lar";
-        var command = new ExternalProviderRedirect.Command(provider, redirectUri);
+        var command = new ExternalProviderRedirect.Command(
+            provider,
+            redirectUri
+        );
 
         _signInManagerMock
             .Setup(
@@ -53,9 +59,14 @@ public class ExternalProviderRedirectTest
             )
             .Returns(new AuthenticationProperties());
 
-        var commandHandler = new ExternalProviderRedirect.CommandHandler(_signInManagerMock.Object);
+        var commandHandler = new ExternalProviderRedirect.CommandHandler(
+            _signInManagerMock.Object
+        );
 
-        var result = await commandHandler.Handle(command, CancellationToken.None);
+        var result = await commandHandler.Handle(
+            command,
+            CancellationToken.None
+        );
 
         Assert.IsType<ExternalRegisterDto>(result);
     }

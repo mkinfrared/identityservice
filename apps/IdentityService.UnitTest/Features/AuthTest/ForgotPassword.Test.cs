@@ -17,7 +17,7 @@ using NETCore.MailKit.Core;
 
 using Xunit;
 
-namespace IdentityService.Unit.Features;
+namespace IdentityService.Unit.Features.AuthTest;
 
 public class ForgotPasswordTest
 {
@@ -55,7 +55,9 @@ public class ForgotPasswordTest
         var returnUrl = "/mark/lar";
         var command = new ForgotPassword.Command(email, returnUrl, url);
 
-        _userManagerMock.Setup(manager => manager.FindByEmailAsync(email)).ReturnsAsync(() => null);
+        _userManagerMock
+            .Setup(manager => manager.FindByEmailAsync(email))
+            .ReturnsAsync(() => null);
 
         var commandHandler = new ForgotPassword.CommandHandler(
             _userManagerMock.Object,
@@ -64,7 +66,10 @@ public class ForgotPasswordTest
             _hostEnvironmentMock.Object
         );
 
-        var result = await commandHandler.Handle(command, new CancellationToken());
+        var result = await commandHandler.Handle(
+            command,
+            new CancellationToken()
+        );
 
         Assert.Equal(Task.CompletedTask, result);
 
@@ -98,7 +103,10 @@ public class ForgotPasswordTest
             _hostEnvironmentMock.Object
         );
 
-        var result = await commandHandler.Handle(command, new CancellationToken());
+        var result = await commandHandler.Handle(
+            command,
+            new CancellationToken()
+        );
 
         Assert.Equal(Task.CompletedTask, result);
 
@@ -108,7 +116,8 @@ public class ForgotPasswordTest
         );
 
         _userManagerMock.Verify(
-            manager => manager.GeneratePasswordResetTokenAsync(It.IsAny<User>()),
+            manager =>
+                manager.GeneratePasswordResetTokenAsync(It.IsAny<User>()),
             Times.Never
         );
 
@@ -142,9 +151,13 @@ public class ForgotPasswordTest
             .Setup(manager => manager.IsEmailConfirmedAsync(userMock.Object))
             .ReturnsAsync(true);
 
-        _hostEnvironmentMock.Setup(environment => environment.ContentRootPath).Returns("root");
+        _hostEnvironmentMock
+            .Setup(environment => environment.ContentRootPath)
+            .Returns("root");
 
-        _fileMock.Setup(fileSystem => fileSystem.ReadAllText(It.IsAny<string>())).Returns("foobar");
+        _fileMock
+            .Setup(fileSystem => fileSystem.ReadAllText(It.IsAny<string>()))
+            .Returns("foobar");
 
         var commandHandler = new ForgotPassword.CommandHandler(
             _userManagerMock.Object,
@@ -153,7 +166,10 @@ public class ForgotPasswordTest
             _hostEnvironmentMock.Object
         );
 
-        var result = await commandHandler.Handle(command, new CancellationToken());
+        var result = await commandHandler.Handle(
+            command,
+            new CancellationToken()
+        );
 
         Assert.Equal(Task.CompletedTask, result);
 
@@ -163,7 +179,8 @@ public class ForgotPasswordTest
         );
 
         _userManagerMock.Verify(
-            manager => manager.GeneratePasswordResetTokenAsync(It.IsAny<User>()),
+            manager =>
+                manager.GeneratePasswordResetTokenAsync(It.IsAny<User>()),
             Times.Once
         );
 

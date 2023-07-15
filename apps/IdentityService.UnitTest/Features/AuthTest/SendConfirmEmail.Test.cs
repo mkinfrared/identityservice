@@ -20,7 +20,7 @@ using Xunit;
 
 using ConfirmEmailCommand = IdentityService.Features.Auth.ConfirmEmail.ConfirmEmail.Command;
 
-namespace IdentityService.Unit.Features;
+namespace IdentityService.Unit.Features.AuthTest;
 
 public class SendConfirmEmailTest
 {
@@ -65,12 +65,19 @@ public class SendConfirmEmailTest
             .ReturnsAsync(userMock.Object);
 
         _userManagerMock
-            .Setup(manager => manager.GenerateEmailConfirmationTokenAsync(userMock.Object))
+            .Setup(
+                manager =>
+                    manager.GenerateEmailConfirmationTokenAsync(userMock.Object)
+            )
             .ReturnsAsync(emailToken);
 
-        _hostEnvironmentMock.Setup(environment => environment.ContentRootPath).Returns("root");
+        _hostEnvironmentMock
+            .Setup(environment => environment.ContentRootPath)
+            .Returns("root");
 
-        _fileMock.Setup(fileSystem => fileSystem.ReadAllText(It.IsAny<string>())).Returns("foobar");
+        _fileMock
+            .Setup(fileSystem => fileSystem.ReadAllText(It.IsAny<string>()))
+            .Returns("foobar");
 
         var commandHandler = new SendConfirmEmail.CommandHandler(
             _userManagerMock.Object,
@@ -80,7 +87,10 @@ public class SendConfirmEmailTest
             _hostEnvironmentMock.Object
         );
 
-        var result = await commandHandler.Handle(command, new CancellationToken());
+        var result = await commandHandler.Handle(
+            command,
+            new CancellationToken()
+        );
 
         Assert.IsType<ConfirmEmailCommand>(result);
 

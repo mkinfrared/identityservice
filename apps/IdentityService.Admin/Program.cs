@@ -17,9 +17,15 @@ public class Program
         Log.Logger = new LoggerConfiguration().MinimumLevel
             .Debug()
             .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
-            .MinimumLevel.Override("Microsoft.Hosting.Lifetime", LogEventLevel.Information)
+            .MinimumLevel.Override(
+                "Microsoft.Hosting.Lifetime",
+                LogEventLevel.Information
+            )
             .MinimumLevel.Override("System", LogEventLevel.Warning)
-            .MinimumLevel.Override("Microsoft.AspNetCore.Authentication", LogEventLevel.Information)
+            .MinimumLevel.Override(
+                "Microsoft.AspNetCore.Authentication",
+                LogEventLevel.Information
+            )
             .Enrich.FromLogContext()
             // uncomment to write to Azure diagnostics stream
             //.WriteTo.File(
@@ -66,11 +72,9 @@ public class Program
     {
         return Host.CreateDefaultBuilder(args)
             .UseSerilog()
-            .ConfigureWebHostDefaults(
-                webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                }
-            );
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+            });
     }
 }
