@@ -11,36 +11,33 @@ using MediatR;
 
 namespace IdentityService.Features.ApiScope.CreateApiScope;
 
-public partial class CreateApiScope
+public class CommandHandler : IRequestHandler<Command, ApiScopeReadDto?>
 {
-    public class CommandHandler : IRequestHandler<Command, ApiScopeReadDto?>
+    private readonly ConfigurationDbContext _dbContext;
+    private readonly IMapper _mapper;
+
+    public CommandHandler(ConfigurationDbContext dbContext, IMapper mapper)
     {
-        private readonly ConfigurationDbContext _dbContext;
-        private readonly IMapper _mapper;
+        _dbContext = dbContext;
+        _mapper = mapper;
+    }
 
-        public CommandHandler(ConfigurationDbContext dbContext, IMapper mapper)
-        {
-            _dbContext = dbContext;
-            _mapper = mapper;
-        }
+    public async Task<ApiScopeReadDto?> Handle(
+        Command request,
+        CancellationToken cancellationToken
+    )
+    {
+        var apiScope =
+            _mapper.Map<IdentityServer4.EntityFramework.Entities.ApiScope>(
+                request
+            );
 
-        public async Task<ApiScopeReadDto?> Handle(
-            Command request,
-            CancellationToken cancellationToken
-        )
-        {
-            var apiScope =
-                _mapper.Map<IdentityServer4.EntityFramework.Entities.ApiScope>(
-                    request
-                );
+        var result = await _dbContext.ApiScopes.AddAsync(apiScope);
 
-            var result = await _dbContext.ApiScopes.AddAsync(apiScope);
+        await _dbContext.SaveChangesAsync();
 
-            await _dbContext.SaveChangesAsync();
+        var dto = _mapper.Map<ApiScopeReadDto>(result.Entity);
 
-            var dto = _mapper.Map<ApiScopeReadDto>(result.Entity);
-
-            return dto;
-        }
+        return dto;
     }
 }

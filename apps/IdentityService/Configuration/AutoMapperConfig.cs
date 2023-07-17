@@ -2,10 +2,12 @@ using System.Linq;
 
 using AutoMapper;
 
-using IdentityServer4.EntityFramework.Entities;
+using Is4Entity = IdentityServer4.EntityFramework.Entities;
 
 using IdentityService.Dto.ApiScope;
-using IdentityService.Features.ApiScope.CreateApiScope;
+using IdentityService.Utils;
+
+using ApiScope = IdentityService.Features.ApiScope;
 
 namespace IdentityService.Configuration;
 
@@ -13,7 +15,7 @@ public class AutoMapperConfig : Profile
 {
     public AutoMapperConfig()
     {
-        CreateMap<ApiScope, ApiScopeReadDto>()
+        CreateMap<Is4Entity.ApiScope, ApiScopeReadDto>()
             .ForMember(
                 (dest) => dest.UserClaims,
                 (opt) =>
@@ -22,7 +24,7 @@ public class AutoMapperConfig : Profile
                     )
             );
 
-        CreateMap<CreateApiScope.Command, ApiScope>()
+        CreateMap<ApiScope.CreateApiScope.Command, Is4Entity.ApiScope>()
             .ForMember(
                 dest => dest.UserClaims,
                 opt =>
@@ -30,10 +32,17 @@ public class AutoMapperConfig : Profile
                     opt.MapFrom(
                         src =>
                             src.UserClaims.Select(
-                                claim => new ApiScopeClaim { Type = claim }
+                                claim =>
+                                    new Is4Entity.ApiScopeClaim()
+                                    {
+                                        Type = claim
+                                    }
                             )
                     );
                 }
             );
+
+        CreateMap(typeof(PaginatedList<>), typeof(PaginatedList<>))
+            .ConvertUsing(typeof(PaginatedListConverter<,>));
     }
 }

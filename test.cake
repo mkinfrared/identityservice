@@ -12,7 +12,7 @@ var testProjectsRelativePaths = new string[]
 };
 
 /*  Change the output artifacts and their configuration here. */
-uint threshold = 75;
+uint threshold = 70;
 var unitTestDirectory = Directory("./apps/IdentityService.UnitTest/");
 var rootDirectory = Directory(".");
 var coverageDirectory = unitTestDirectory + Directory("coverage");

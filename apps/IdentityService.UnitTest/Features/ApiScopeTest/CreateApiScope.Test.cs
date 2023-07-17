@@ -11,9 +11,9 @@ using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Options;
 
 using IdentityService.Configuration;
-using IdentityService.Features.ApiScope.CreateApiScope;
 
 using Microsoft.EntityFrameworkCore;
+using ApiScope = IdentityService.Features.ApiScope;
 
 using Xunit;
 
@@ -23,11 +23,11 @@ public class CreateApiScopeTest
 {
     private readonly ConfigurationDbContext _mockDbContext;
     private readonly IMapper _mapper;
-    private readonly CreateApiScope.Validator _validator;
+    private readonly ApiScope.CreateApiScope.Validator _validator;
 
     public CreateApiScopeTest()
     {
-        _validator = new CreateApiScope.Validator();
+        _validator = new ApiScope.CreateApiScope.Validator();
 
         var options = new DbContextOptionsBuilder<ConfigurationDbContext>()
             .UseInMemoryDatabase(databaseName: GetType().FullName) // Unique name for in-memory database
@@ -61,7 +61,7 @@ public class CreateApiScopeTest
         // var expectedApiScope =
         // new IdentityServer4.EntityFramework.Entities.ApiScope(); // Assuming ApiScope is the entity model
 
-        var command = new CreateApiScope.Command(
+        var command = new ApiScope.CreateApiScope.Command(
             description,
             displayName,
             emphasize,
@@ -73,7 +73,7 @@ public class CreateApiScopeTest
         ); // Provide test data for the Command class
 
         // Act
-        var commandHandler = new CreateApiScope.CommandHandler(
+        var commandHandler = new ApiScope.CreateApiScope.CommandHandler(
             _mockDbContext,
             _mapper
         );
@@ -99,7 +99,7 @@ public class CreateApiScopeTest
         bool required = false;
         bool showInDiscoveryDocument = true;
         List<string> userClaims = new List<string> { "foo", "bar" };
-        var command = new CreateApiScope.Command(
+        var command = new ApiScope.CreateApiScope.Command(
             description,
             displayName,
             emphasize,
@@ -129,7 +129,7 @@ public class CreateApiScopeTest
         bool required = false;
         bool showInDiscoveryDocument = true;
         List<string> userClaims = new List<string> { "foo", "bar" };
-        var command = new CreateApiScope.Command(
+        var command = new ApiScope.CreateApiScope.Command(
             description,
             displayName,
             emphasize,
@@ -159,7 +159,7 @@ public class CreateApiScopeTest
         bool required = false;
         bool showInDiscoveryDocument = true;
         List<string> userClaims = new List<string> { "foo", "bar" };
-        var command = new CreateApiScope.Command(
+        var command = new ApiScope.CreateApiScope.Command(
             description,
             displayName,
             emphasize,
