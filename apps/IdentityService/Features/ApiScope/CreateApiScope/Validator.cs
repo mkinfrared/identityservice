@@ -2,13 +2,10 @@ using FluentValidation;
 
 namespace IdentityService.Features.ApiScope.CreateApiScope;
 
-public partial class CreateApiScope
+public class Validator : AbstractValidator<Command>
 {
-    public class Validator : AbstractValidator<Command>
+    public Validator()
     {
-        public Validator()
-        {
-            RuleFor(command => command.Name).NotNull().NotEmpty();
-        }
+        RuleFor(command => command.Name).NotNull().NotEmpty();
     }
 }

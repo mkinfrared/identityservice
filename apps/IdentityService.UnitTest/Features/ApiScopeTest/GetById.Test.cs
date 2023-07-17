@@ -1,7 +1,5 @@
 using Xunit;
 
-using IdentityService.Features.ApiScope.GetById;
-
 using IdentityServer4.EntityFramework.DbContexts;
 
 using AutoMapper;
@@ -15,7 +13,7 @@ using IdentityServer4.EntityFramework.Options;
 
 using IdentityService.Configuration;
 
-using ApiScope = IdentityService.Features.ApiScope.GetById.ApiScope;
+using ApiScope = IdentityService.Features.ApiScope;
 
 namespace IdentityService.Unit.Features.ApiScopeTest;
 
@@ -60,10 +58,13 @@ public class GetByIdTest
 
         _mockDbContext.ApiScopes.Add(expectedApiScope);
         await _mockDbContext.SaveChangesAsync();
-        var request = new ApiScope.GetByIdQuery(id);
+        var request = new ApiScope.GetById.GetByIdQuery(id);
 
         // Act
-        var handler = new GetByIdQueryHandler(_mockDbContext, _mapper);
+        var handler = new ApiScope.GetById.GetByIdQueryHandler(
+            _mockDbContext,
+            _mapper
+        );
         var result = await handler.Handle(request, CancellationToken.None);
 
         // Assert
@@ -83,8 +84,11 @@ public class GetByIdTest
         _mockDbContext.ApiScopes.Add(scope);
         await _mockDbContext.SaveChangesAsync();
 
-        var queryHandler = new GetByIdQueryHandler(_mockDbContext, _mapper);
-        var query = new ApiScope.GetByIdQuery(999);
+        var queryHandler = new ApiScope.GetById.GetByIdQueryHandler(
+            _mockDbContext,
+            _mapper
+        );
+        var query = new ApiScope.GetById.GetByIdQuery(999);
         var result = await queryHandler.Handle(query, default);
 
         Assert.Null(result);

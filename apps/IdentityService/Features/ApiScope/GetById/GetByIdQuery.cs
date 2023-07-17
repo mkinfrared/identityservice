@@ -4,15 +4,12 @@ using MediatR;
 
 namespace IdentityService.Features.ApiScope.GetById;
 
-public partial class ApiScope
+public class GetByIdQuery : IRequest<ApiScopeReadDto?>
 {
-    public class GetByIdQuery : IRequest<ApiScopeReadDto?>
+    public GetByIdQuery(int id)
     {
-        public GetByIdQuery(int id)
-        {
-            Id = id;
-        }
-
-        public int Id { get; }
+        Id = id;
     }
+
+    public int Id { get; }
 }

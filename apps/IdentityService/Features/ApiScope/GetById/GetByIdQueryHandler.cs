@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 namespace IdentityService.Features.ApiScope.GetById;
 
 public class GetByIdQueryHandler
-    : IRequestHandler<ApiScope.GetByIdQuery, ApiScopeReadDto?>
+    : IRequestHandler<GetByIdQuery, ApiScopeReadDto?>
 {
     private readonly ConfigurationDbContext _dbContext;
     private readonly IMapper _mapper;
@@ -26,7 +26,7 @@ public class GetByIdQueryHandler
     }
 
     public async Task<ApiScopeReadDto?> Handle(
-        ApiScope.GetByIdQuery? request,
+        GetByIdQuery? request,
         CancellationToken cancellationToken
     )
     {

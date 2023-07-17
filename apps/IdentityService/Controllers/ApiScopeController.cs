@@ -1,7 +1,7 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using IdentityService.Features.ApiScope.CreateApiScope;
-using IdentityService.Features.ApiScope.GetById;
+using ApiScope = IdentityService.Features.ApiScope;
 
 using MediatR;
 
@@ -23,7 +23,7 @@ public class ApiScopeController : Controller
     [HttpGet("{id}")]
     public async Task<ActionResult> GetApiScopeById(int id)
     {
-        var query = new ApiScope.GetByIdQuery(id);
+        var query = new ApiScope.GetById.GetByIdQuery(id);
 
         var result = await _mediator.Send(query);
 
@@ -37,7 +37,7 @@ public class ApiScopeController : Controller
 
     [HttpPost]
     public async Task<ActionResult> CreateApiScope(
-        CreateApiScope.Command command
+        ApiScope.CreateApiScope.Command command
     )
     {
         var result = await _mediator.Send(command);
@@ -47,5 +47,37 @@ public class ApiScopeController : Controller
             new { id = result?.Id },
             result
         );
+    }
+
+    [HttpGet]
+    public async Task<ActionResult> GetAll(
+        int? page,
+        int? pageSize,
+        bool? enabled,
+        string? name,
+        string? displayName,
+        string? description,
+        bool? required,
+        bool? emphasize,
+        bool? showInDiscoveryDocument,
+        [FromQuery] List<string>? userClaims
+    )
+    {
+        var query = new ApiScope.GetAll.GetAllQuery(
+            page,
+            pageSize,
+            enabled,
+            name,
+            displayName,
+            description,
+            required,
+            emphasize,
+            showInDiscoveryDocument,
+            userClaims
+        );
+
+        var result = await _mediator.Send(query);
+
+        return Ok(result);
     }
 }
