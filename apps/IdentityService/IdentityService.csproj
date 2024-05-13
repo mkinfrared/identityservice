@@ -37,7 +37,7 @@
         <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="6.0.20" />
         <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.15" />
         <PackageReference Include="NETCore.MailKit" Version="2.1.0" />
-        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.8" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.29" />
         <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
         <PackageReference Include="StackExchange.Redis" Version="2.6.122" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
